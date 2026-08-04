@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Monroe Street Tattler</title>
+<meta name="description" content="An independent, occasional neighborhood tabloid covering matters of local consequence and limited consequence. Special Culinary Investigation Issue now available.">
+<meta property="og:title" content="The Monroe Street Tattler">
+<meta property="og:description" content="News so small it barely counts. An independent neighborhood tabloid, published when conditions warrant.">
+<meta property="og:type" content="website">
+<style>
+  :root {
+    --paper: #fdfcf3;
+    --ink: #111;
+    --red: #b3241c;
+    --rule: #111;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: #e4e2d8;
+    color: var(--ink);
+    font-family: Georgia, 'Times New Roman', serif;
+    line-height: 1.5;
+  }
+  .wrap { max-width: 760px; margin: 0 auto; background: var(--paper); min-height: 100vh; padding: 0 28px 60px; box-shadow: 0 0 40px rgba(0,0,0,0.15); }
+
+  .topbar {
+    display: flex; justify-content: space-between; align-items: center;
+    font-family: Arial, sans-serif; font-size: 11px; text-transform: uppercase;
+    letter-spacing: 1px; border-bottom: 2px solid var(--rule); padding: 10px 0;
+  }
+  .topbar a { color: var(--ink); text-decoration: none; margin-left: 18px; }
+  .topbar a:first-child { margin-left: 0; }
+  .topbar a:hover, .topbar a.active { color: var(--red); }
+  .topbar nav a.active { border-bottom: 2px solid var(--red); }
+
+  h1.masthead {
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: 900; text-align: center; text-transform: uppercase;
+    font-size: 54px; letter-spacing: 0.5px; margin: 22px 0 4px;
+  }
+  .thesis {
+    text-align: center; font-style: italic; font-size: 14px; margin: 0 0 18px;
+    padding-bottom: 16px; border-bottom: 3px double var(--rule);
+  }
+
+  .lede {
+    display: flex; gap: 24px; margin: 26px 0; align-items: flex-start;
+  }
+  .lede-text { flex: 1.4; }
+  .lede-text p { font-size: 15px; }
+  .lede-side { flex: 1; border: 1.5px solid var(--rule); padding: 14px 16px; font-size: 13px; }
+  .lede-side .box-title {
+    font-family: Arial, sans-serif; font-weight: bold; text-transform: uppercase;
+    font-size: 11px; letter-spacing: 0.5px; border-bottom: 1px solid var(--rule);
+    padding-bottom: 6px; margin-bottom: 8px;
+  }
+
+  .section-title {
+    font-family: Arial, sans-serif; font-weight: bold; text-transform: uppercase;
+    font-size: 13px; letter-spacing: 1px; color: var(--red);
+    border-bottom: 2px solid var(--red); padding-bottom: 6px; margin: 34px 0 14px;
+  }
+
+  .issue-card {
+    display: flex; justify-content: space-between; align-items: center;
+    border: 1.5px solid var(--rule); padding: 14px 18px; margin-bottom: 12px;
+  }
+  .issue-card .meta { font-family: Arial, sans-serif; font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; color: #555; }
+  .issue-card .headline { font-size: 17px; font-weight: bold; margin: 4px 0 0; }
+  .issue-card a.read {
+    font-family: Arial, sans-serif; font-size: 11px; font-weight: bold; text-transform: uppercase;
+    letter-spacing: 0.5px; color: var(--red); text-decoration: none; border: 1.5px solid var(--red);
+    padding: 8px 14px; white-space: nowrap; margin-left: 16px;
+  }
+  .issue-card a.read:hover { background: var(--red); color: var(--paper); }
+
+  .archive-note { font-size: 12.5px; font-style: italic; color: #555; margin: 0 0 20px; }
+
+  .contribute-box {
+    border: 2px solid var(--red); padding: 16px 18px; font-size: 13.5px; margin-top: 14px;
+  }
+  .contribute-box .box-title {
+    font-family: Arial, sans-serif; font-weight: 900; text-transform: uppercase;
+    font-size: 13px; letter-spacing: 0.5px; color: var(--red);
+    border-bottom: 1px solid var(--red); padding-bottom: 6px; margin-bottom: 10px;
+  }
+  .contribute-box a { color: var(--ink); font-weight: bold; }
+
+  footer {
+    margin-top: 50px; padding-top: 16px; border-top: 2px solid var(--rule);
+    display: flex; justify-content: space-between; align-items: flex-end;
+    font-family: Arial, sans-serif; font-size: 10.5px; color: #555;
+  }
+  footer .signoff { font-style: italic; font-family: Georgia, serif; font-size: 12px; color: var(--ink); }
+
+  @media (max-width: 560px) {
+    .lede { flex-direction: column; }
+    h1.masthead { font-size: 38px; }
+    .topbar { flex-direction: column; align-items: flex-start; gap: 8px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="topbar">
+    <span>Vol. 3, No. 6 &middot; Summer 2026</span>
+    <nav>
+      <a href="index.html" class="active">Home</a>
+      <a href="faq.html">FAQ</a>
+      <a href="#contribute">Contribute</a>
+      <a href="#delivery">Get It Delivered</a>
+    </nav>
+  </div>
+
+  <h1 class="masthead">The Monroe Street Tattler</h1>
+  <p class="thesis">Neighborhood news so small, it barely counts.</p>
+
+  <div class="lede">
+    <div class="lede-text">
+      <p>The Monroe Street Tattler is an occasional publication devoted to matters of local consequence and limited consequence. It began with a french fry report that was, by all accounts, too controversial for conventional neighborhood media. It has continued, since, for reasons that remain under internal review.</p>
+      <p>New issues appear when neighborhood conditions warrant. There is no schedule. There is only vigilance.</p>
+    </div>
+    <div class="lede-side">
+      <div class="box-title">This Issue</div>
+      Special Culinary Investigation: the full Monroe Street French Fry Report, Official Recognitions, and Around the Neighborhood.
+    </div>
+  </div>
+
+  <p class="section-title">Latest Issue</p>
+  <div class="issue-card">
+    <div>
+      <div class="meta">Vol. 3, No. 6 &middot; Summer 2026</div>
+      <div class="headline">Too Hot for Conventional Neighborhood Media</div>
+    </div>
+    <a class="read" href="Monroe_Street_Tattler%20Summer%202026.pdf">Read Issue &rarr;</a>
+  </div>
+  <p class="archive-note">Earlier volumes are referenced but not currently available. This is normal and not cause for concern.</p>
+
+  <p class="section-title" id="delivery">Get It Delivered</p>
+  <div class="contribute-box">
+    <div class="box-title">Have the Next Issue Sent Your Way</div>
+    <p>Tired of hoping to spot the Tattler in a pile of someone's recycling? Sign up and future issues will be brought directly to your door, mailed to you, or you'll simply be emailed the moment a new one exists &mdash; your choice.</p>
+    <p><a href="#" id="delivery-form-link">Sign up here &rarr;</a></p>
+    <p style="font-size: 11.5px; margin-bottom: 0;">Your information is used only to get you the paper. It is not sold, shared, or filed with any Commission.</p>
+  </div>
+
+  <p class="section-title" id="contribute">Contribute</p>
+  <div class="contribute-box">
+    <div class="box-title">Contribute to the Tattler</div>
+    <p>The Monroe Street Tattler welcomes food opinions, harmless neighborhood observations, corrections, guest dispatches, comics, cartoons, puzzles, and questions requiring lighthearted investigation.</p>
+    <p>Know someone who would enjoy writing for a tiny neighborhood paper? Have a student in the house with strong opinions, a drawing, or a puzzle to submit? Have a neighborhood pro tip, an oddly specific local observation, or an overheard gem that deserves preservation?</p>
+    <p>Write to: <a href="mailto:MonroeStreetTattler@gmail.com">MonroeStreetTattler@gmail.com</a></p>
+    <p style="font-size: 11.5px; margin-bottom: 0;">Submissions may be edited for length, clarity, and unnecessary restraint.</p>
+  </div>
+
+  <footer>
+    <span class="signoff">Certified by the Monroe Street Tattler Culinary Commission &middot; Ex Cibo Veritas</span>
+    <span>Not affiliated with any official body. Not for resale. Please read responsibly.</span>
+  </footer>
+
+</div>
+</body>
+</html>
