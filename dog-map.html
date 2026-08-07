@@ -63,9 +63,9 @@
   <p class="subhead">A neighbor-submitted map of every known water bowl and treat jar around the broader neighborhood</p>
 
   <div class="legend">
-    <span><span class="dot water"></span> Water</span>
-    <span><span class="dot treats"></span> Treats</span>
-    <span><span class="dot both"></span> Both</span>
+    <span>💧 Water</span>
+    <span>🦴 Treats</span>
+    <span>💧🦴 Both</span>
   </div>
 
   <div id="map"></div>
@@ -87,29 +87,122 @@
 
   const colors = { water: '#2a6fb0', treats: '#b3241c', both: '#5a8a3a' };
 
-  fetch('dog-map-data.json')
-    .then(res => res.json())
-    .then(data => {
-      data.spots.forEach(spot => {
-        const color = colors[spot.type] || '#111';
-        const marker = L.circleMarker([spot.lat, spot.lng], {
-          radius: 9,
-          fillColor: color,
-          color: '#111',
-          weight: 1.5,
-          fillOpacity: 0.9
-        }).addTo(map);
+  const SHEET_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRDycSySJ29-mgW64bue-2NVj5Q7Sbvj9MZNAwOYzNDgvfs_4qdoUQllcIGabXB0GDrQZnJe3gWQaGd/pub?output=csv';
 
-        const typeLabel = spot.type === 'both' ? 'Water & Treats' : (spot.type.charAt(0).toUpperCase() + spot.type.slice(1));
-        marker.bindPopup(
-          '<strong>' + spot.name + '</strong><br>' +
-          typeLabel + '<br>' +
-          (spot.location ? spot.location + '<br>' : '') +
-          (spot.notes ? '<em>' + spot.notes + '</em>' : '')
-        );
-      });
-    })
-    .catch(err => console.error('Could not load dog map data:', err));
+  function parseCSV(text) {
+    const rows = [];
+    let row = [], field = '', inQuotes = false;
+    for (let i = 0; i < text.length; i++) {
+      const c = text[i], next = text[i+1];
+      if (inQuotes) {
+        if (c === '"' && next === '"') { field += '"'; i++; }
+        else if (c === '"') { inQuotes = false; }
+        else { field += c; }
+      } else {
+        if (c === '"') { inQuotes = true; }
+        else if (c === ',') { row.push(field); field = ''; }
+        else if (c === '\n' || c === '\r') {
+          if (field.length || row.length) { row.push(field); rows.push(row); row = []; field = ''; }
+          if (c === '\r' && next === '\n') i++;
+        } else { field += c; }
+      }
+    }
+    if (field.length || row.length) { row.push(field); rows.push(row); }
+    return rows;
+  }
+
+  function rowsToObjects(rows) {
+    const headers = rows[0].map(h => h.trim().toLowerCase());
+    return rows.slice(1).filter(r => r.some(v => v && v.trim())).map(r => {
+      const obj = {};
+      headers.forEach((h, i) => { obj[h] = (r[i] || '').trim(); });
+      return obj;
+    });
+  }
+
+  function findKey(obj, ...guesses) {
+    const keys = Object.keys(obj);
+    for (const g of guesses) {
+      const hit = keys.find(k => k.includes(g));
+      if (hit) return hit;
+    }
+    return null;
+  }
+
+  async function geocode(address) {
+    const cacheKey = 'geocode:' + address;
+    const cached = localStorage.getItem(cacheKey);
+    if (cached) return JSON.parse(cached);
+
+    const query = encodeURIComponent(address + ', Madison, WI');
+    const url = 'https://nominatim.openstreetmap.org/search?format=json&limit=1&q=' + query;
+    try {
+      const res = await fetch(url);
+      const data = await res.json();
+      if (data && data[0]) {
+        const coords = { lat: parseFloat(data[0].lat), lng: parseFloat(data[0].lon) };
+        localStorage.setItem(cacheKey, JSON.stringify(coords));
+        return coords;
+      }
+    } catch (e) {
+      console.error('Geocoding failed for', address, e);
+    }
+    return null;
+  }
+
+  function addMarker(spot) {
+    let iconHtml;
+    if (spot.type === 'both') {
+      iconHtml = '<div style="font-size:20px; line-height:1; text-shadow: 0 0 3px #fdfcf3, 0 0 3px #fdfcf3;">💧🦴</div>';
+    } else if (spot.type === 'treats') {
+      iconHtml = '<div style="font-size:24px; line-height:1; text-shadow: 0 0 3px #fdfcf3, 0 0 3px #fdfcf3;">🦴</div>';
+    } else {
+      iconHtml = '<div style="font-size:24px; line-height:1; text-shadow: 0 0 3px #fdfcf3, 0 0 3px #fdfcf3;">💧</div>';
+    }
+    const icon = L.divIcon({ html: iconHtml, className: 'dog-map-icon', iconSize: [30, 30], iconAnchor: [15, 15] });
+    const marker = L.marker([spot.lat, spot.lng], { icon: icon }).addTo(map);
+    const typeLabel = spot.type === 'both' ? 'Water & Treats' : (spot.type.charAt(0).toUpperCase() + spot.type.slice(1));
+    marker.bindPopup(
+      '<strong>' + spot.name + '</strong><br>' +
+      typeLabel + '<br>' +
+      (spot.location ? spot.location + '<br>' : '') +
+      (spot.notes ? '<em>' + spot.notes + '</em>' : '')
+    );
+  }
+
+  async function loadLiveSpots() {
+    try {
+      const res = await fetch(SHEET_CSV_URL);
+      const text = await res.text();
+      const rows = parseCSV(text);
+      if (rows.length < 2) return;
+      const entries = rowsToObjects(rows);
+
+      for (const entry of entries) {
+        const nameKey = findKey(entry, 'spot name', 'name');
+        const typeKey = findKey(entry, 'type');
+        const locKey = findKey(entry, 'location', 'address');
+        const notesKey = findKey(entry, 'notes');
+
+        const name = nameKey ? entry[nameKey] : 'Unnamed spot';
+        const rawType = typeKey ? entry[typeKey].toLowerCase() : 'water';
+        const type = rawType.includes('both') ? 'both' : rawType.includes('treat') ? 'treats' : 'water';
+        const location = locKey ? entry[locKey] : '';
+        const notes = notesKey ? entry[notesKey] : '';
+
+        if (!location) continue;
+        const coords = await geocode(location);
+        if (coords) {
+          addMarker({ name, type, location, notes, lat: coords.lat, lng: coords.lng });
+        }
+        await new Promise(r => setTimeout(r, 1000)); // be polite to the free geocoding service
+      }
+    } catch (err) {
+      console.error('Could not load live spots from Sheet:', err);
+    }
+  }
+
+  loadLiveSpots();
 </script>
 </body>
 </html>
