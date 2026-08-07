@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Official Monroe Street Tattler Dog Water Bowl & Treat Map</title>
+<meta name="description" content="A neighbor-submitted map of dog water bowls and treat spots around Monroe Street.">
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<style>
+  :root { --paper: #fdfcf3; --ink: #111; --red: #b3241c; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #e4e2d8; color: var(--ink); font-family: Georgia, 'Times New Roman', serif; line-height: 1.55; }
+  .wrap { max-width: 900px; margin: 0 auto; background: var(--paper); min-height: 100vh; padding: 0 26px 50px; box-shadow: 0 0 40px rgba(0,0,0,0.15); }
+
+  nav.tabs {
+    display: flex; justify-content: center; gap: 22px; font-family: Arial, sans-serif;
+    font-weight: bold; font-size: 11px; text-transform: uppercase; letter-spacing: 0.8px;
+    padding: 12px 0 26px; flex-wrap: wrap; border-bottom: 1px solid var(--ink); margin-bottom: 20px;
+  }
+  nav.tabs a { color: var(--ink); text-decoration: none; }
+  nav.tabs a:hover, nav.tabs a.active { color: var(--red); border-bottom: 2px solid var(--red); }
+
+  h1.masthead {
+    font-family: 'Times New Roman', Times, serif; font-weight: 900; text-align: center;
+    text-transform: uppercase; letter-spacing: 0.5px;
+    font-size: clamp(22px, 5.5vw, 36px); margin: 10px 0 6px;
+  }
+  .subhead {
+    text-align: center; font-style: italic; font-size: 13px; margin: 0 0 24px;
+  }
+
+  #map { height: 480px; width: 100%; border: 2px solid var(--ink); margin-bottom: 20px; }
+
+  .legend {
+    display: flex; justify-content: center; gap: 30px; font-family: Arial, sans-serif;
+    font-size: 12px; font-weight: bold; text-transform: uppercase; letter-spacing: 0.5px;
+    margin-bottom: 26px;
+  }
+  .legend span { display: inline-flex; align-items: center; gap: 6px; }
+  .dot { width: 12px; height: 12px; border-radius: 50%; display: inline-block; }
+  .dot.water { background: #2a6fb0; }
+  .dot.treats { background: #b3241c; }
+  .dot.both { background: #5a8a3a; }
+
+  .box {
+    border: 1.5px solid var(--ink); padding: 16px 18px; font-size: 14px; margin-bottom: 20px;
+  }
+  .box a { color: var(--red); font-weight: bold; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <nav class="tabs">
+    <a href="index.html">Home</a>
+    <a href="faq.html">FAQ</a>
+    <a href="dog-map.html" class="active">Dog Map</a>
+    <a href="index.html#contribute">Contribute</a>
+  </nav>
+
+  <h1 class="masthead">Official Dog Water Bowl & Treat Map</h1>
+  <p class="subhead">A neighbor-submitted map of every known water bowl and treat jar around the broader neighborhood</p>
+
+  <div class="legend">
+    <span><span class="dot water"></span> Water</span>
+    <span><span class="dot treats"></span> Treats</span>
+    <span><span class="dot both"></span> Both</span>
+  </div>
+
+  <div id="map"></div>
+
+  <div class="box">
+    Know a spot we're missing? <a href="https://docs.google.com/forms/d/e/1FAIpQLSdb83b9c0-P9R5L3_f0oFALI6RPREu27ItEID5SPLdZYBouaA/viewform" id="dog-map-form-link">Report a Dog Water Bowl or Treat Spot</a> and it'll be added to the map.
+  </div>
+
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+  const map = L.map('map').setView([43.0570, -89.4275], 14);
+
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; OpenStreetMap contributors',
+    maxZoom: 19
+  }).addTo(map);
+
+  const colors = { water: '#2a6fb0', treats: '#b3241c', both: '#5a8a3a' };
+
+  fetch('dog-map-data.json')
+    .then(res => res.json())
+    .then(data => {
+      data.spots.forEach(spot => {
+        const color = colors[spot.type] || '#111';
+        const marker = L.circleMarker([spot.lat, spot.lng], {
+          radius: 9,
+          fillColor: color,
+          color: '#111',
+          weight: 1.5,
+          fillOpacity: 0.9
+        }).addTo(map);
+
+        const typeLabel = spot.type === 'both' ? 'Water & Treats' : (spot.type.charAt(0).toUpperCase() + spot.type.slice(1));
+        marker.bindPopup(
+          '<strong>' + spot.name + '</strong><br>' +
+          typeLabel + '<br>' +
+          (spot.location ? spot.location + '<br>' : '') +
+          (spot.notes ? '<em>' + spot.notes + '</em>' : '')
+        );
+      });
+    })
+    .catch(err => console.error('Could not load dog map data:', err));
+</script>
+</body>
+</html>
