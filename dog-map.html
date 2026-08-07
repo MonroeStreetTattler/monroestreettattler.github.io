@@ -71,7 +71,7 @@
   <div id="map"></div>
 
   <div class="box">
-    Know a spot we're missing? <a href="https://docs.google.com/forms/d/e/1FAIpQLSdb83b9c0-P9R5L3_f0oFALI6RPREu27ItEID5SPLdZYBouaA/viewform" id="dog-map-form-link">Report a Dog Water Bowl or Treat Spot</a> and it'll be added to the map.
+    Know a spot we're missing? <a href="#" onclick="openDogFormModal(event)" id="dog-map-form-link">Report a Dog Water Bowl or Treat Spot</a> and it'll be added to the map.
   </div>
 
 </div>
@@ -186,7 +186,7 @@
 
         const name = nameKey ? entry[nameKey] : 'Unnamed spot';
         const rawType = typeKey ? entry[typeKey].toLowerCase() : 'water';
-        const type = rawType.includes('both') ? 'both' : rawType.includes('treat') ? 'treats' : 'water';
+        const type = rawType.includes('both') ? 'both' : (rawType.includes('treat') || rawType.includes('food')) ? 'treats' : 'water';
         const location = locKey ? entry[locKey] : '';
         const notes = notesKey ? entry[notesKey] : '';
 
@@ -204,5 +204,6 @@
 
   loadLiveSpots();
 </script>
+<script src="dog-form-modal.js"></script>
 </body>
 </html>
