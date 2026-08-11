@@ -146,6 +146,75 @@
 
 </div>
 <script src="dog-form-modal.js"></script>
-<script src="subscribe-modal.js"></script>
+<script>
+(function() {
+  const FORM_EMBED_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSeVxx8iimNEeSg3KKIyF8Ckb3UIu6Lzlsk5xUpaeJJu8LRtlg/viewform?embedded=true';
+
+  const style = document.createElement('style');
+  style.textContent = `
+    .subform-overlay {
+      display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(17,17,17,0.75); z-index: 1000; align-items: center; justify-content: center;
+    }
+    .subform-overlay.open { display: flex; }
+    .subform-modal {
+      background: #fdfcf3; width: 92%; max-width: 640px; height: 85vh; max-height: 800px;
+      border: 3px solid #111; position: relative; display: flex; flex-direction: column;
+    }
+    .subform-header {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 12px 16px; border-bottom: 2px solid #111; font-family: Arial, sans-serif;
+      font-weight: bold; font-size: 13px; text-transform: uppercase; letter-spacing: 0.5px;
+    }
+    .subform-subtext {
+      padding: 10px 16px; font-family: Georgia, serif; font-size: 13px; font-style: italic;
+      border-bottom: 1px solid #ccc; color: #333;
+    }
+    .subform-close {
+      background: none; border: none; font-size: 22px; cursor: pointer; line-height: 1;
+      color: #111; font-family: Arial, sans-serif; padding: 0 4px;
+    }
+    .subform-close:hover { color: #b3241c; }
+    .subform-modal iframe { flex: 1; width: 100%; border: none; }
+  `;
+  document.head.appendChild(style);
+
+  const overlay = document.createElement('div');
+  overlay.className = 'subform-overlay';
+  overlay.innerHTML = `
+    <div class="subform-modal">
+      <div class="subform-header">
+        <span>Subscribe to the Tattler</span>
+        <button class="subform-close" aria-label="Close">&times;</button>
+      </div>
+      <div class="subform-subtext">Free. One form. No spam, ever.</div>
+      <iframe src="about:blank" title="Subscribe form"></iframe>
+    </div>
+  `;
+  document.body.appendChild(overlay);
+
+  const iframe = overlay.querySelector('iframe');
+  const closeBtn = overlay.querySelector('.subform-close');
+
+  window.openSubscribeModal = function(e) {
+    if (e) e.preventDefault();
+    iframe.src = FORM_EMBED_URL;
+    overlay.classList.add('open');
+  };
+
+  function closeModal() {
+    overlay.classList.remove('open');
+    iframe.src = 'about:blank';
+  }
+
+  closeBtn.addEventListener('click', closeModal);
+  overlay.addEventListener('click', function(e) {
+    if (e.target === overlay) closeModal();
+  });
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeModal();
+  });
+})();
+</script>
 </body>
 </html>
