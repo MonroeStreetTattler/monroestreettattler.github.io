@@ -175,6 +175,17 @@
     color: #666;
   }
 
+  .section-divider {
+    text-align: center;
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: #999;
+    margin: 34px 0 14px;
+  }
+
   @media (max-width: 480px) {
     .edition-row {
       flex-direction: column;
@@ -220,15 +231,16 @@
   </div>
 
   <nav class="tabs">
-    <a href="#edition">Latest Edition</a>
-    <a href="#contribute">Get Involved</a>
+    <a href="#edition">Latest Issue</a>
+    <a href="#investigate">Investigate</a>
     <a href="#delivery">Subscribe</a>
+    <a href="#support">Support</a>
     <a href="dog-map.html">Dog Map</a>
     <a href="faq.html">FAQ</a>
   </nav>
 
   <div class="block accent" id="edition">
-    <div class="block-title">Latest Edition</div>
+    <div class="block-title">Read the Latest Issue</div>
 
     <div class="edition-row">
       <p class="headline">The Monroe Street French Fry Report</p>
@@ -242,29 +254,58 @@
         Read the Issue &rarr;
       </a>
     </div>
+  </div>
 
-    <div style="margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--red);">
-      <p style="font-family: Georgia, 'Times New Roman', serif; font-size: 13px; margin: 0 0 10px; font-style: italic;">
-        Don't trust us? Good. Conduct your own fry investigation and see whether our findings hold up.
-      </p>
-      <div style="display: flex; gap: 12px; flex-wrap: wrap;">
-        <a
-          href="fry-field-report.pdf"
-          target="_blank"
-          rel="noopener"
-          style="display: inline-block; font-family: Arial, sans-serif; font-weight: bold; font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; text-decoration: none; color: var(--red); border: 1.5px solid var(--red); padding: 9px 16px;">
-          Print the Fry Field Report &rarr;
-        </a>
-        <a
-          href="https://docs.google.com/forms/d/e/1FAIpQLScwPPS4bPXABHhRzCUW1RVwL1r--G1tprex7jizt6nIt1USeA/viewform"
-          target="_blank"
-          rel="noopener"
-          style="display: inline-block; font-family: Arial, sans-serif; font-weight: bold; font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; text-decoration: none; color: var(--red); border: 1.5px solid var(--red); padding: 9px 16px;">
-          Submit Your Findings &rarr;
-        </a>
-      </div>
+  <div class="block accent" id="investigate">
+    <div class="block-title">Conduct Your Own French Fry Investigation</div>
+
+    <p>
+      Assemble your own French Fry Commission, grab our Field Report, head out for a basket,
+      and issue your findings.
+    </p>
+
+    <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+      <a
+        class="btn"
+        href="fry-field-report.pdf"
+        target="_blank"
+        rel="noopener">
+        Print the Fry Field Report &rarr;
+      </a>
+      <a
+        class="btn"
+        href="https://docs.google.com/forms/d/e/1FAIpQLScwPPS4bPXABHhRzCUW1RVwL1r--G1tprex7jizt6nIt1USeA/viewform"
+        target="_blank"
+        rel="noopener">
+        Submit Your Findings &rarr;
+      </a>
     </div>
   </div>
+
+  <div class="block accent" id="delivery">
+    <div class="block-title">Never Miss an Issue</div>
+
+    <p>
+      <strong>Email me when a new issue drops.</strong>
+      Fastest, easiest way to never miss one.
+    </p>
+
+    <p>
+      <strong>Physical delivery to my door?</strong>
+      We're considering it and gauging interest first.
+    </p>
+
+    <p>
+      Either way, one form covers it:
+      <a
+        href="https://docs.google.com/forms/d/e/1FAIpQLSeVxx8iimNEeSg3KKIyF8Ckb3UIu6Lzlsk5xUpaeJJu8LRtlg/viewform"
+        id="delivery-form-link">
+        Sign up here &rarr;
+      </a>
+    </p>
+  </div>
+
+  <p class="section-divider">More About the Tattler</p>
 
   <div class="block">
     <div class="block-title">About the Tattler</div>
@@ -281,7 +322,7 @@
     </p>
   </div>
 
-  <div class="block">
+  <div class="block" id="support">
     <div class="block-title">Support the Tattler</div>
 
     <p>
@@ -322,29 +363,6 @@
 
     <p class="fine">
       Send whatever seems worth sharing. The Tattler will take it from there.
-    </p>
-  </div>
-
-  <div class="block accent" id="delivery">
-    <div class="block-title">Subscribe</div>
-
-    <p>
-      <strong>Email me when a new issue drops.</strong>
-      Fastest, easiest way to never miss one.
-    </p>
-
-    <p>
-      <strong>Physical delivery to my door?</strong>
-      We're considering it and gauging interest first.
-    </p>
-
-    <p>
-      Either way, one form covers it:
-      <a
-        href="https://docs.google.com/forms/d/e/1FAIpQLSeVxx8iimNEeSg3KKIyF8Ckb3UIu6Lzlsk5xUpaeJJu8LRtlg/viewform"
-        id="delivery-form-link">
-        Sign up here &rarr;
-      </a>
     </p>
   </div>
 
