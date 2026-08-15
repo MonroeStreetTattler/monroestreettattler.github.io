@@ -15,7 +15,9 @@
     --ink: #111;
     --red: #b3241c;
   }
+
   * { box-sizing: border-box; }
+
   body {
     margin: 0;
     background: #e4e2d8;
@@ -23,75 +25,198 @@
     font-family: Georgia, 'Times New Roman', serif;
     line-height: 1.5;
   }
-  .wrap { max-width: 780px; margin: 0 auto; background: var(--paper); min-height: 100vh; padding: 0 26px 50px; box-shadow: 0 0 40px rgba(0,0,0,0.15); }
+
+  .wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    background: var(--paper);
+    min-height: 100vh;
+    padding: 0 26px 50px;
+    box-shadow: 0 0 40px rgba(0,0,0,0.15);
+  }
 
   h1.masthead {
-    font-family: 'Times New Roman', Times, serif; font-weight: 900; text-align: center;
-    text-transform: uppercase; letter-spacing: 0.2px; white-space: nowrap;
-    font-size: clamp(18px, 6.5vw, 42px); margin: 26px 0 6px;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: 900;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 0.2px;
+    white-space: nowrap;
+    font-size: clamp(18px, 6.5vw, 42px);
+    margin: 26px 0 6px;
   }
+
   @media (max-width: 430px) {
-    h1.masthead { white-space: normal; font-size: 30px; line-height: 1.05; }
+    h1.masthead {
+      white-space: normal;
+      font-size: 30px;
+      line-height: 1.05;
+    }
   }
+
   .headline-tag {
-    text-align: center; font-weight: bold;
+    text-align: center;
+    font-weight: bold;
     font-size: clamp(12px, 3.6vw, 20px);
-    text-transform: uppercase; letter-spacing: 0.3px; margin: 0 0 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+    margin: 0 0 6px;
   }
+
   .tagline {
-    text-align: center; font-style: italic; font-size: 13px; margin: 0 0 4px;
-    border-top: 1px solid var(--ink); border-bottom: 3px double var(--ink);
-    padding: 9px 0; letter-spacing: 0.2px;
+    text-align: center;
+    font-style: italic;
+    font-size: 13px;
+    margin: 0 0 4px;
+    border-top: 1px solid var(--ink);
+    border-bottom: 3px double var(--ink);
+    padding: 9px 0;
+    letter-spacing: 0.2px;
   }
 
   nav.tabs {
-    display: flex; justify-content: center; gap: 22px; font-family: Arial, sans-serif;
-    font-weight: bold; font-size: 11px; text-transform: uppercase; letter-spacing: 0.8px;
-    padding: 12px 0 26px; flex-wrap: wrap;
+    display: flex;
+    justify-content: center;
+    gap: 22px;
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    padding: 12px 0 26px;
+    flex-wrap: wrap;
   }
-  nav.tabs a { color: var(--ink); text-decoration: none; }
-  nav.tabs a:hover { color: var(--red); border-bottom: 2px solid var(--red); }
 
-  .block { margin-bottom: 20px; border: 1.5px solid var(--ink); padding: 14px 18px; }
-  .block-title {
-    font-family: Arial, sans-serif; font-weight: bold; font-size: 12px;
-    text-transform: uppercase; letter-spacing: 1px; border-bottom: 1px solid var(--ink);
-    padding-bottom: 8px; margin-bottom: 10px;
+  nav.tabs a {
+    color: var(--ink);
+    text-decoration: none;
   }
-  .block.accent { border-color: var(--red); }
-  .block.accent .block-title { color: var(--red); border-bottom-color: var(--red); }
+
+  nav.tabs a:hover {
+    color: var(--red);
+    border-bottom: 2px solid var(--red);
+  }
+
+  .block {
+    margin-bottom: 20px;
+    border: 1.5px solid var(--ink);
+    padding: 14px 18px;
+  }
+
+  .block-title {
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-bottom: 1px solid var(--ink);
+    padding-bottom: 8px;
+    margin-bottom: 10px;
+  }
+
+  .block.accent {
+    border-color: var(--red);
+  }
+
+  .block.accent .block-title {
+    color: var(--red);
+    border-bottom-color: var(--red);
+  }
 
   .edition-row {
-    display: flex; justify-content: space-between; align-items: center; gap: 14px; flex-wrap: wrap;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 14px;
+    flex-wrap: wrap;
   }
-  .edition-row .headline { font-size: 18px; font-weight: bold; margin: 0; }
-  .btn {
-    display: inline-block; font-family: Arial, sans-serif; font-weight: bold; font-size: 11px;
-    text-transform: uppercase; letter-spacing: 0.5px; text-decoration: none;
-    color: var(--red); border: 1.5px solid var(--red); padding: 9px 16px; white-space: nowrap;
-  }
-  .btn:hover { background: var(--red); color: var(--paper); }
 
-  .block p { margin: 0 0 10px; font-size: 14px; }
-  .block p:last-child { margin-bottom: 0; }
-  .block a { color: var(--red); font-weight: bold; }
-  .fine { font-size: 11px; color: #666; }
+  .edition-row .headline {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 0;
+  }
+
+  .btn {
+    display: inline-block;
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    text-decoration: none;
+    color: var(--red);
+    border: 1.5px solid var(--red);
+    padding: 9px 16px;
+    white-space: nowrap;
+  }
+
+  .btn:hover {
+    background: var(--red);
+    color: var(--paper);
+  }
+
+  .block p {
+    margin: 0 0 10px;
+    font-size: 14px;
+  }
+
+  .block p:last-child {
+    margin-bottom: 0;
+  }
+
+  .block a {
+    color: var(--red);
+    font-weight: bold;
+  }
+
+  .fine {
+    font-size: 11px;
+    color: #666;
+  }
 
   @media (max-width: 480px) {
-    .edition-row { flex-direction: column; align-items: flex-start; }
-    nav.tabs { gap: 14px; }
+    .edition-row {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    nav.tabs {
+      gap: 14px;
+    }
   }
 </style>
-<!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "b4b7990d0c27478ea9b605f098b4ad3c"}'></script><!-- End Cloudflare Web Analytics -->
+
+<!-- Cloudflare Web Analytics -->
+<script
+  type="module"
+  src="https://static.cloudflareinsights.com/beacon.min.js"
+  data-cf-beacon='{"token": "b4b7990d0c27478ea9b605f098b4ad3c"}'>
+</script>
+<!-- End Cloudflare Web Analytics -->
+
 </head>
+
 <body>
+
 <div class="wrap">
 
   <h1 class="masthead">The Monroe Street Tattler</h1>
-  <p class="headline-tag" style="border-top: 1px solid var(--ink); border-bottom: 3px double var(--ink); padding: 10px 0; margin-top: 8px;">Urgent Reports on Matters<br>of Limited Public Importance</p>
+
+  <p
+    class="headline-tag"
+    style="border-top: 1px solid var(--ink); border-bottom: 3px double var(--ink); padding: 10px 0; margin-top: 8px;">
+    Urgent Reports on Matters<br>
+    of Limited Public Importance
+  </p>
 
   <div style="text-align: center; margin: 18px 0;">
-    <a href="#" onclick="openSubscribeModal(event)" style="display: inline-block; background: var(--red); color: var(--paper); font-family: Arial, sans-serif; font-weight: 900; font-size: 15px; text-transform: uppercase; letter-spacing: 0.5px; text-decoration: none; padding: 14px 32px; border: 2px solid var(--ink);">Subscribe &mdash; Never Miss an Issue</a>
+    <a
+      href="#"
+      onclick="openSubscribeModal(event)"
+      style="display: inline-block; background: var(--red); color: var(--paper); font-family: Arial, sans-serif; font-weight: 900; font-size: 15px; text-transform: uppercase; letter-spacing: 0.5px; text-decoration: none; padding: 14px 32px; border: 2px solid var(--ink);">
+      Subscribe &mdash; Never Miss an Issue
+    </a>
   </div>
 
   <nav class="tabs">
@@ -104,89 +229,244 @@
 
   <div class="block accent" id="edition">
     <div class="block-title">Latest Edition</div>
+
     <div class="edition-row">
       <p class="headline">The Monroe Street French Fry Report</p>
-      <a class="btn" href="monroe_street_tattler_digital.pdf" id="edition-link" target="_blank" rel="noopener">Read the Issue &rarr;</a>
+
+      <a
+        class="btn"
+        href="monroe_street_tattler_digital.pdf"
+        id="edition-link"
+        target="_blank"
+        rel="noopener">
+        Read the Issue &rarr;
+      </a>
+    </div>
+
+    <div style="margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--red);">
+      <p style="font-family: Georgia, 'Times New Roman', serif; font-size: 13px; margin: 0 0 10px; font-style: italic;">
+        Don't trust us? Good. Conduct your own fry investigation and see whether our findings hold up.
+      </p>
+      <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+        <a
+          href="fry-field-report.pdf"
+          target="_blank"
+          rel="noopener"
+          style="display: inline-block; font-family: Arial, sans-serif; font-weight: bold; font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; text-decoration: none; color: var(--red); border: 1.5px solid var(--red); padding: 9px 16px;">
+          Print the Fry Field Report &rarr;
+        </a>
+        <a
+          href="https://docs.google.com/forms/d/e/1FAIpQLScwPPS4bPXABHhRzCUW1RVwL1r--G1tprex7jizt6nIt1USeA/viewform"
+          target="_blank"
+          rel="noopener"
+          style="display: inline-block; font-family: Arial, sans-serif; font-weight: bold; font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; text-decoration: none; color: var(--red); border: 1.5px solid var(--red); padding: 9px 16px;">
+          Submit Your Findings &rarr;
+        </a>
+      </div>
     </div>
   </div>
 
   <div class="block">
     <div class="block-title">About the Tattler</div>
-    <p>The Monroe Street Tattler is an occasional, unofficial neighborhood paper about local food, neighborhood oddities, and the small details that make a place feel like itself.</p>
-    <p>The aim is simple: celebrate local places, notice small things, and help build the kind of neighborhood spirit that comes from shared curiosity, good humor, and paying attention to what's right in front of us.</p>
+
+    <p>
+      The Monroe Street Tattler is an occasional, unofficial neighborhood paper about local food,
+      neighborhood oddities, and the small details that make a place feel like itself.
+    </p>
+
+    <p>
+      The aim is simple: celebrate local places, notice small things, and help build the kind of
+      neighborhood spirit that comes from shared curiosity, good humor, and paying attention to
+      what's right in front of us.
+    </p>
   </div>
 
   <div class="block">
     <div class="block-title">Support the Tattler</div>
-    <p>The Monroe Street Tattler is free to read and intends to stay that way. If you'd like to help cover printing, website costs, trophies and whatever unnecessary investigation comes next, you can <a href="https://ko-fi.com/monroestreettattler">chip in once or become a recurring supporter</a>.</p>
+
+    <p>
+      The Monroe Street Tattler is free to read and intends to stay that way. If you'd like to help
+      cover printing, website costs, trophies and whatever unnecessary investigation comes next,
+      you can
+      <a href="https://ko-fi.com/monroestreettattler">
+        chip in once or become a recurring supporter
+      </a>.
+    </p>
+
     <p>Either way, please keep reading. That's the whole point.</p>
   </div>
 
   <div class="block" id="contribute">
     <div class="block-title">Send a Tip or Write for Us</div>
-    <p>The Tattler is always accepting leads, questions, tips, curiosities, and small matters that may deserve more attention than they strictly require.</p>
-    <p>Know someone in the neighborhood worth interviewing? Have a local pro tip others should know? Notice a tiny mystery, excellent sandwich, suspiciously beloved menu item, useful shortcut, unusual sign, strong opinion, or oddly perfect overheard remark?</p>
+
+    <p>
+      The Tattler is always accepting leads, questions, tips, curiosities, and small matters that may
+      deserve more attention than they strictly require.
+    </p>
+
+    <p>
+      Know someone in the neighborhood worth interviewing? Have a local pro tip others should know?
+      Notice a tiny mystery, excellent sandwich, suspiciously beloved menu item, useful shortcut,
+      unusual sign, strong opinion, or oddly perfect overheard remark?
+    </p>
+
     <p>Send it our way.</p>
-    <p>Ideas, suggestions, reader submissions, and things that made you say &ldquo;someone should look into this&rdquo; can be sent to: <a href="mailto:MonroeStreetTattler@gmail.com">MonroeStreetTattler@gmail.com</a></p>
-    <p class="fine">Send whatever seems worth sharing. The Tattler will take it from there.</p>
+
+    <p>
+      Ideas, suggestions, reader submissions, and things that made you say
+      &ldquo;someone should look into this&rdquo; can be sent to:
+      <a href="mailto:MonroeStreetTattler@gmail.com">
+        MonroeStreetTattler@gmail.com
+      </a>
+    </p>
+
+    <p class="fine">
+      Send whatever seems worth sharing. The Tattler will take it from there.
+    </p>
   </div>
 
   <div class="block accent" id="delivery">
     <div class="block-title">Subscribe</div>
-    <p><strong>Email me when a new issue drops.</strong> Fastest, easiest way to never miss one.</p>
-    <p><strong>Physical delivery to my door?</strong> We're considering it and gauging interest first.</p>
-    <p>Either way, one form covers it: <a href="https://docs.google.com/forms/d/e/1FAIpQLSeVxx8iimNEeSg3KKIyF8Ckb3UIu6Lzlsk5xUpaeJJu8LRtlg/viewform" id="delivery-form-link">Sign up here &rarr;</a></p>
+
+    <p>
+      <strong>Email me when a new issue drops.</strong>
+      Fastest, easiest way to never miss one.
+    </p>
+
+    <p>
+      <strong>Physical delivery to my door?</strong>
+      We're considering it and gauging interest first.
+    </p>
+
+    <p>
+      Either way, one form covers it:
+      <a
+        href="https://docs.google.com/forms/d/e/1FAIpQLSeVxx8iimNEeSg3KKIyF8Ckb3UIu6Lzlsk5xUpaeJJu8LRtlg/viewform"
+        id="delivery-form-link">
+        Sign up here &rarr;
+      </a>
+    </p>
   </div>
 
   <div class="block accent">
     <div class="block-title">Official Dog Water Bowl &amp; Treat Map</div>
-    <p>The Tattler is mapping every known water bowl and treat jar around the neighborhood. Know a spot? Please submit any you discover or already know about.</p>
-    <p><a href="dog-map.html">View the map &rarr;</a></p>
-    <p><a href="#" onclick="openDogFormModal(event)">Report a Dog Water Bowl or Treat Spot &rarr;</a></p>
+
+    <p>
+      The Tattler is mapping every known water bowl and treat jar around the neighborhood.
+      Know a spot? Please submit any you discover or already know about.
+    </p>
+
+    <p>
+      <a href="dog-map.html">View the map &rarr;</a>
+    </p>
+
+    <p>
+      <a href="#" onclick="openDogFormModal(event)">
+        Report a Dog Water Bowl or Treat Spot &rarr;
+      </a>
+    </p>
   </div>
 
   <div class="block">
     <div class="block-title">Questions</div>
-    <p>Is this real? Who runs this? <a href="faq.html">Answers on the FAQ page &rarr;</a></p>
+
+    <p>
+      Is this real? Who runs this?
+      <a href="faq.html">Answers on the FAQ page &rarr;</a>
+    </p>
   </div>
 
 </div>
+
 <script src="dog-form-modal.js"></script>
+
 <script>
 (function() {
-  const FORM_EMBED_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSeVxx8iimNEeSg3KKIyF8Ckb3UIu6Lzlsk5xUpaeJJu8LRtlg/viewform?embedded=true';
+
+  const FORM_EMBED_URL =
+    'https://docs.google.com/forms/d/e/1FAIpQLSeVxx8iimNEeSg3KKIyF8Ckb3UIu6Lzlsk5xUpaeJJu8LRtlg/viewform?embedded=true';
 
   const style = document.createElement('style');
+
   style.textContent = `
     .subform-overlay {
-      display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(17,17,17,0.75); z-index: 1000; align-items: center; justify-content: center;
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(17,17,17,0.75);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
     }
-    .subform-overlay.open { display: flex; }
+
+    .subform-overlay.open {
+      display: flex;
+    }
+
     .subform-modal {
-      background: #fdfcf3; width: 92%; max-width: 640px; height: 85vh; max-height: 800px;
-      border: 3px solid #111; position: relative; display: flex; flex-direction: column;
+      background: #fdfcf3;
+      width: 92%;
+      max-width: 640px;
+      height: 85vh;
+      max-height: 800px;
+      border: 3px solid #111;
+      position: relative;
+      display: flex;
+      flex-direction: column;
     }
+
     .subform-header {
-      display: flex; justify-content: space-between; align-items: center;
-      padding: 12px 16px; border-bottom: 2px solid #111; font-family: Arial, sans-serif;
-      font-weight: bold; font-size: 13px; text-transform: uppercase; letter-spacing: 0.5px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 16px;
+      border-bottom: 2px solid #111;
+      font-family: Arial, sans-serif;
+      font-weight: bold;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
     }
+
     .subform-subtext {
-      padding: 10px 16px; font-family: Georgia, serif; font-size: 13px; font-style: italic;
-      border-bottom: 1px solid #ccc; color: #333;
+      padding: 10px 16px;
+      font-family: Georgia, serif;
+      font-size: 13px;
+      font-style: italic;
+      border-bottom: 1px solid #ccc;
+      color: #333;
     }
+
     .subform-close {
-      background: none; border: none; font-size: 22px; cursor: pointer; line-height: 1;
-      color: #111; font-family: Arial, sans-serif; padding: 0 4px;
+      background: none;
+      border: none;
+      font-size: 22px;
+      cursor: pointer;
+      line-height: 1;
+      color: #111;
+      font-family: Arial, sans-serif;
+      padding: 0 4px;
     }
-    .subform-close:hover { color: #b3241c; }
-    .subform-modal iframe { flex: 1; width: 100%; border: none; }
+
+    .subform-close:hover {
+      color: #b3241c;
+    }
+
+    .subform-modal iframe {
+      flex: 1;
+      width: 100%;
+      border: none;
+    }
   `;
+
   document.head.appendChild(style);
 
   const overlay = document.createElement('div');
   overlay.className = 'subform-overlay';
+
   overlay.innerHTML = `
     <div class="subform-modal">
       <div class="subform-header">
@@ -196,6 +476,7 @@
       <iframe src="about:blank" title="Subscribe form"></iframe>
     </div>
   `;
+
   document.body.appendChild(overlay);
 
   const iframe = overlay.querySelector('iframe');
@@ -213,23 +494,21 @@
   }
 
   closeBtn.addEventListener('click', closeModal);
+
   overlay.addEventListener('click', function(e) {
-    if (e.target === overlay) closeModal();
+    if (e.target === overlay) {
+      closeModal();
+    }
   });
+
   document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') closeModal();
+    if (e.key === 'Escape') {
+      closeModal();
+    }
   });
+
 })();
 </script>
-<div style="border: 2px solid #b3241c; background: #F7F4EA; padding: 20px 24px; margin: 20px 0; max-width: 700px;">
-  <h3 style="font-family: Arial, sans-serif; font-weight: 900; text-transform: uppercase; font-size: 18px; letter-spacing: 0.5px; color: #1A1A1A; margin: 0 0 8px;">
-    Don't Live Here? You Can Still Get Bothered by Us.
-  </h3>
-  <p style="font-family: Georgia, 'Times New Roman', serif; font-size: 15px; line-height: 1.5; color: #1A1A1A; margin: 0 0 14px;">
-    We're exploring mailing future issues of the Tattler beyond the neighborhood. If you'd want a copy even from far away, join the waiting list. No commitment, no cost, no guarantee &mdash; just a way for us to gauge if this is worth doing.
-  </p>
-  <a href="https://docs.google.com/forms/d/e/1FAIpQLSfoXOBCGPzldIf_H7eCOrNNoCErjMXlbBUdJJDg8okujF2Now/viewform?usp=dialog" style="display: inline-block; background: #C0271C; color: #fff; font-family: Arial, sans-serif; font-weight: bold; text-transform: uppercase; letter-spacing: 0.5px; font-size: 13px; padding: 10px 20px; text-decoration: none; border-radius: 2px;">
-    Join the Waiting List
-  </a>
-</div></body>
+
+</body>
 </html>
