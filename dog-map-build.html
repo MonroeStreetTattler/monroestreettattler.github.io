@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dog Map — Coordinate Builder (Tattler editors only)</title>
+<style>
+  :root { --paper: #fdfcf3; --ink: #111; --red: #b3241c; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #e4e2d8; color: var(--ink);
+         font-family: Georgia, 'Times New Roman', serif; line-height: 1.55; }
+  .wrap { max-width: 820px; margin: 0 auto; background: var(--paper);
+          min-height: 100vh; padding: 30px 26px 60px; box-shadow: 0 0 40px rgba(0,0,0,0.15); }
+  h1 { font-family: 'Times New Roman', serif; font-weight: 900; text-transform: uppercase;
+       font-size: 26px; margin: 0 0 4px; }
+  .sub { font-style: italic; font-size: 13px; margin: 0 0 24px; color: #444; }
+  .warn { border: 2px dashed var(--red); padding: 12px 16px; font-size: 13px; margin-bottom: 24px; }
+  button.go { font-family: Arial, sans-serif; font-weight: bold; font-size: 13px;
+              text-transform: uppercase; letter-spacing: 1px; background: var(--ink);
+              color: var(--paper); border: none; padding: 12px 22px; cursor: pointer; }
+  button.go:disabled { background: #999; cursor: default; }
+  button.copy { font-family: Arial, sans-serif; font-size: 12px; font-weight: bold;
+                text-transform: uppercase; letter-spacing: 0.8px; background: none;
+                border: 1.5px solid var(--ink); padding: 8px 14px; cursor: pointer; margin-right: 8px; }
+  #log { font-family: 'Courier New', monospace; font-size: 12.5px; margin: 22px 0;
+         border: 1px solid #ccc; padding: 12px; max-height: 300px; overflow-y: auto; background: #fff; }
+  #log div { padding: 2px 0; }
+  #log .ok   { color: #2a6f2a; }
+  #log .bad  { color: var(--red); }
+  #log .skip { color: #888; }
+  textarea { width: 100%; height: 320px; font-family: 'Courier New', monospace;
+             font-size: 12px; border: 1.5px solid var(--ink); padding: 10px; }
+  h2 { font-family: Arial, sans-serif; font-size: 12px; text-transform: uppercase;
+       letter-spacing: 1px; border-bottom: 2px solid var(--ink); padding-bottom: 5px; margin: 30px 0 12px; }
+  ol { font-size: 14px; } ol li { margin-bottom: 6px; }
+  code { background: #eceadf; padding: 1px 5px; font-size: 13px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <h1>Update the Dog Map</h1>
+  <p class="sub">A tool for the editor of the Tattler. Readers never see this page.</p>
+
+  <div class="warn">
+    <p style="margin-top:0"><strong>What this is for.</strong> Your dog map needs to know
+    where each spot sits on the globe. Neighbors submit addresses, not map coordinates,
+    so somebody has to look each one up. This page does that looking up, once, and gives
+    you a file to save. The map then reads that file and draws every pin instantly.</p>
+
+    <p><strong>When to run it.</strong> Whenever a few new submissions have come in.
+    Once a month is plenty. Nothing breaks if you forget — the map falls back to looking
+    up new spots itself, just more slowly.</p>
+
+    <p style="margin-bottom:0"><strong>What happens when you press the button.</strong>
+    It reads your form responses, checks each address, and shows you a running list:
+    a green tick for spots it found, a red cross for ones it couldn't. Give it about a
+    second per spot. When it finishes, you'll get a block of text and instructions for
+    where to paste it.</p>
+  </div>
+
+  <button class="go" id="run">Start — look up every spot</button>
+
+  <div id="log"></div>
+
+  <div id="output" style="display:none">
+    <h2>Step 1 — copy this</h2>
+    <p style="font-size:14px; margin-top:0">This is the finished list of spots and their
+    coordinates. You don't need to understand it or edit it — just move it across intact.</p>
+    <button class="copy" id="copy">Copy to clipboard</button>
+    <button class="copy" id="download">Download as a file</button>
+    <textarea id="json" readonly></textarea>
+
+    <h2>Step 2 — put it on the site</h2>
+    <ol>
+      <li>Go to
+        <a href="https://github.com/monroestreettattler/monroestreettattler.github.io/edit/main/dog-map-data.json">dog-map-data.json on GitHub</a>.</li>
+      <li>Click into the text, select all of it, and delete it.</li>
+      <li>Paste what you copied above.</li>
+      <li>Scroll down and click the green <strong>Commit changes</strong> button.</li>
+    </ol>
+    <p style="font-size:14px">The map updates the next time anyone loads it. If any spots
+    came back with a red cross above, fix their addresses in the responses sheet and run
+    this again.</p>
+  </div>
+
+</div>
+
+<script>
+/* Settings must match dog-map.html */
+const NEIGHBORHOOD_CENTER       = { lat: 43.0570, lng: -89.4275 };
+const NEIGHBORHOOD_RADIUS_MILES = 3;
+const SHEET_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRDycSySJ29-mgW64bue-2NVj5Q7Sbvj9MZNAwOYzNDgvfs_4qdoUQllcIGabXB0GDrQZnJe3gWQaGd/pub?output=csv';
+
+const logEl = document.getElementById('log');
+function log(msg, cls) {
+  const d = document.createElement('div');
+  if (cls) d.className = cls;
+  d.textContent = msg;
+  logEl.appendChild(d);
+  logEl.scrollTop = logEl.scrollHeight;
+}
+
+function milesBetween(a, b) {
+  const R = 3958.8, toRad = d => d * Math.PI / 180;
+  const dLat = toRad(b.lat - a.lat), dLng = toRad(b.lng - a.lng);
+  const s = Math.sin(dLat/2)**2 +
+            Math.cos(toRad(a.lat)) * Math.cos(toRad(b.lat)) * Math.sin(dLng/2)**2;
+  return 2 * R * Math.asin(Math.sqrt(s));
+}
+function keyFor(t) { return (t || '').toLowerCase().replace(/[^a-z0-9]/g, ''); }
+function titleCase(s) {
+  if (s !== s.toLowerCase()) return s;
+  return s.replace(/\b[a-z]/g, c => c.toUpperCase());
+}
+function splitNameAndAddress(raw) {
+  let s = (raw || '').trim()
+    .replace(/\s*,?\s*Madison\s*,?\s*WI\.?\s*,?\s*\d{0,5}\s*$/i, '')
+    .replace(/[\s,.]+$/, '').trim();
+  const m = s.match(/^([^0-9]+?)[,\s]+(\d+\s+.+)$/);
+  if (m && m[1].trim().length > 2) return { name: titleCase(m[1].trim()), address: m[2].trim() };
+  if (/^\d/.test(s)) return { name: '', address: s };
+  return { name: titleCase(s), address: '' };
+}
+function normaliseType(raw) {
+  const t = (raw || '').toLowerCase();
+  if (t.includes('both')) return 'both';
+  if (t.includes('treat') || t.includes('food')) return 'treats';
+  return 'water';
+}
+function parseCSV(text) {
+  const rows = []; let row = [], field = '', inQuotes = false;
+  for (let i = 0; i < text.length; i++) {
+    const c = text[i], next = text[i+1];
+    if (inQuotes) {
+      if (c === '"' && next === '"') { field += '"'; i++; }
+      else if (c === '"') { inQuotes = false; } else { field += c; }
+    } else {
+      if (c === '"') { inQuotes = true; }
+      else if (c === ',') { row.push(field); field = ''; }
+      else if (c === '\n' || c === '\r') {
+        if (field.length || row.length) { row.push(field); rows.push(row); row = []; field = ''; }
+        if (c === '\r' && next === '\n') i++;
+      } else { field += c; }
+    }
+  }
+  if (field.length || row.length) { row.push(field); rows.push(row); }
+  return rows;
+}
+function rowsToObjects(rows) {
+  const headers = rows[0].map(h => h.trim().toLowerCase());
+  return rows.slice(1).filter(r => r.some(v => v && v.trim())).map(r => {
+    const o = {}; headers.forEach((h, i) => { o[h] = (r[i] || '').trim(); }); return o;
+  });
+}
+function pickColumn(obj, ...needles) {
+  const keys = Object.keys(obj);
+  for (const n of needles) { const hit = keys.find(k => k.includes(n)); if (hit) return hit; }
+  return null;
+}
+async function geocode(query) {
+  const latPad = NEIGHBORHOOD_RADIUS_MILES / 69;
+  const lngPad = NEIGHBORHOOD_RADIUS_MILES /
+                 (69 * Math.cos(NEIGHBORHOOD_CENTER.lat * Math.PI / 180));
+  const viewbox = [
+    NEIGHBORHOOD_CENTER.lng - lngPad, NEIGHBORHOOD_CENTER.lat + latPad,
+    NEIGHBORHOOD_CENTER.lng + lngPad, NEIGHBORHOOD_CENTER.lat - latPad
+  ].join(',');
+  const url = 'https://nominatim.openstreetmap.org/search?format=jsonv2&limit=1' +
+              '&countrycodes=us&viewbox=' + viewbox + '&bounded=1' +
+              '&q=' + encodeURIComponent(query + ', Madison, WI');
+  try {
+    const res = await fetch(url);
+    const data = await res.json();
+    if (data && data[0]) return { lat: parseFloat(data[0].lat), lng: parseFloat(data[0].lon) };
+  } catch (e) { log('  network error: ' + e.message, 'bad'); }
+  return null;
+}
+
+document.getElementById('run').addEventListener('click', async function () {
+  this.disabled = true;
+  logEl.innerHTML = '';
+  log('Reading submissions…');
+
+  let entries;
+  try {
+    const res = await fetch(SHEET_CSV_URL);
+    entries = rowsToObjects(parseCSV(await res.text()));
+  } catch (e) {
+    log('Could not read the sheet: ' + e.message, 'bad');
+    this.disabled = false;
+    return;
+  }
+  log('Found ' + entries.length + ' submission(s).');
+
+  const spots = [], seen = new Set(), failures = [];
+
+  for (let i = 0; i < entries.length; i++) {
+    const entry    = entries[i];
+    const locKey   = pickColumn(entry, 'address', 'location', 'business name');
+    const typeKey  = pickColumn(entry, 'type');
+    const notesKey = pickColumn(entry, 'notes');
+    const raw      = locKey ? entry[locKey] : '';
+    if (!raw) continue;
+
+    const { name, address } = splitNameAndAddress(raw);
+    const key = keyFor(name || address);
+    if (seen.has(key)) { log('· ' + raw + ' — duplicate, skipped', 'skip'); continue; }
+    seen.add(key);
+
+    const coords = await geocode(address || name);
+
+    if (!coords) {
+      log('✗ ' + raw + " — couldn't find it", 'bad');
+      failures.push(raw + " (couldn't find it)");
+    } else if (milesBetween(NEIGHBORHOOD_CENTER, coords) > NEIGHBORHOOD_RADIUS_MILES) {
+      const d = milesBetween(NEIGHBORHOOD_CENTER, coords).toFixed(1);
+      log('✗ ' + raw + ' — ' + d + ' miles out, beyond the neighborhood', 'bad');
+      failures.push(raw + ' (' + d + ' miles out)');
+    } else {
+      // Guard against two entries landing on the same doorstep.
+      const dupe = spots.find(s => milesBetween(s, coords) < 0.025);
+      if (dupe) { log('· ' + raw + ' — same place as ' + (dupe.name || dupe.address), 'skip'); continue; }
+      spots.push({
+        name, address,
+        type : normaliseType(typeKey ? entry[typeKey] : ''),
+        notes: notesKey ? entry[notesKey] : '',
+        lat  : +coords.lat.toFixed(6),
+        lng  : +coords.lng.toFixed(6)
+      });
+      log('✓ ' + (name || address), 'ok');
+    }
+
+    if (i < entries.length - 1) await new Promise(r => setTimeout(r, 1100));
+  }
+
+  log('');
+  log('Done — ' + spots.length + ' mapped, ' + failures.length + ' need attention.');
+  if (failures.length) {
+    log('Needs attention:');
+    failures.forEach(f => log('  · ' + f, 'bad'));
+    log('Fix these in the responses sheet (add a street address), then run again.');
+  }
+
+  const payload = {
+    _readme: [
+      'Saved coordinates for the Monroe Street Tattler dog map.',
+      'Generated by dog-map-build.html — do not hand-edit unless you mean it.'
+    ],
+    updated: new Date().toISOString().slice(0, 10),
+    spots
+  };
+  const text = JSON.stringify(payload, null, 2);
+  document.getElementById('json').value = text;
+  document.getElementById('output').style.display = 'block';
+
+  document.getElementById('copy').onclick = () => {
+    navigator.clipboard.writeText(text).then(() => alert('Copied.'));
+  };
+  document.getElementById('download').onclick = () => {
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(new Blob([text], { type: 'application/json' }));
+    a.download = 'dog-map-data.json';
+    a.click();
+  };
+
+  this.disabled = false;
+});
+</script>
+</body>
+</html>
