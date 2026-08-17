@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Official Monroe Street Tattler Dog Water Bowl & Treat Map</title>
+<title>Official Monroe Street Tattler Dog Water Bowl &amp; Treat Map</title>
 <meta name="description" content="A neighbor-submitted map of dog water bowls and treat spots around Monroe Street.">
 <link rel="icon" type="image/x-icon" href="favicon.ico">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
@@ -26,27 +26,53 @@
     text-transform: uppercase; letter-spacing: 0.5px;
     font-size: clamp(22px, 5.5vw, 36px); margin: 10px 0 6px;
   }
-  .subhead {
-    text-align: center; font-style: italic; font-size: 13px; margin: 0 0 24px;
-  }
+  .subhead { text-align: center; font-style: italic; font-size: 13px; margin: 0 0 24px; }
 
-  #map { height: 480px; width: 100%; border: 2px solid var(--ink); margin-bottom: 20px; }
+  #map { height: 480px; width: 100%; border: 2px solid var(--ink); margin-bottom: 12px; background: #e9e7dd; }
 
   .legend {
     display: flex; justify-content: center; gap: 30px; font-family: Arial, sans-serif;
     font-size: 12px; font-weight: bold; text-transform: uppercase; letter-spacing: 0.5px;
-    margin-bottom: 26px;
+    margin-bottom: 20px; flex-wrap: wrap;
   }
   .legend span { display: inline-flex; align-items: center; gap: 6px; }
-  .dot { width: 12px; height: 12px; border-radius: 50%; display: inline-block; }
-  .dot.water { background: #2a6fb0; }
-  .dot.treats { background: #b3241c; }
-  .dot.both { background: #5a8a3a; }
 
-  .box {
-    border: 1.5px solid var(--ink); padding: 16px 18px; font-size: 14px; margin-bottom: 20px;
+  .status {
+    font-family: Arial, sans-serif; font-size: 11px; text-transform: uppercase;
+    letter-spacing: 0.6px; text-align: center; margin-bottom: 22px; min-height: 16px; color: #555;
   }
+  .status .count { font-weight: bold; color: var(--ink); }
+
+  .box { border: 1.5px solid var(--ink); padding: 16px 18px; font-size: 14px; margin-bottom: 20px; }
   .box a { color: var(--red); font-weight: bold; }
+
+  /* ---- Listing under the map ---- */
+  h2.section {
+    font-family: Arial, sans-serif; font-size: 12px; font-weight: bold; text-transform: uppercase;
+    letter-spacing: 1px; border-bottom: 2px solid var(--ink); padding-bottom: 5px; margin: 34px 0 0;
+  }
+  ul.spot-list { list-style: none; margin: 0; padding: 0; columns: 2; column-gap: 30px; }
+  @media (max-width: 620px) { ul.spot-list { columns: 1; } }
+  ul.spot-list li {
+    break-inside: avoid; padding: 10px 0; border-bottom: 1px dotted #bbb; font-size: 14px;
+  }
+  ul.spot-list .nm { font-weight: bold; }
+  ul.spot-list .ic { margin-right: 5px; }
+  ul.spot-list .meta { display: block; font-size: 12.5px; color: #555; font-style: italic; }
+  ul.spot-list button {
+    background: none; border: none; padding: 0; font: inherit; color: var(--red);
+    cursor: pointer; text-align: left; text-decoration: underline;
+  }
+
+  /* ---- Debug panel (only with ?debug=1) ---- */
+  .debug { border: 2px dashed var(--red); padding: 14px 18px; margin-top: 30px; font-size: 13px; }
+  .debug h3 {
+    font-family: Arial, sans-serif; font-size: 11px; text-transform: uppercase;
+    letter-spacing: 1px; margin: 0 0 8px; color: var(--red);
+  }
+  .debug ol { margin: 0; padding-left: 20px; }
+  .debug li { margin-bottom: 5px; }
+  .debug .why { color: #555; font-style: italic; }
 </style>
 <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "b4b7990d0c27478ea9b605f098b4ad3c"}'></script><!-- End Cloudflare Web Analytics -->
 </head>
@@ -60,7 +86,7 @@
     <a href="index.html#contribute">Contribute</a>
   </nav>
 
-  <h1 class="masthead">Official Dog Water Bowl & Treat Map</h1>
+  <h1 class="masthead">Official Dog Water Bowl &amp; Treat Map</h1>
   <p class="subhead">A neighbor-submitted map of every known water bowl and treat jar around the broader neighborhood</p>
 
   <div class="legend">
@@ -70,140 +96,383 @@
   </div>
 
   <div id="map"></div>
+  <div class="status" id="status">Loading the map&hellip;</div>
 
   <div class="box">
     Know a spot we're missing? <a href="#" onclick="openDogFormModal(event)" id="dog-map-form-link">Report a Dog Water Bowl or Treat Spot</a> and it'll be added to the map.
   </div>
 
+  <h2 class="section">Every Known Spot</h2>
+  <ul class="spot-list" id="spot-list"></ul>
+
+  <div id="debug-panel"></div>
+
 </div>
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script>
-  const map = L.map('map').setView([43.0570, -89.4275], 14);
+/* ============================================================================
+   MONROE STREET TATTLER — DOG WATER BOWL & TREAT MAP
+   ----------------------------------------------------------------------------
+   How this works, in plain terms:
 
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; OpenStreetMap contributors',
-    maxZoom: 19
-  }).addTo(map);
+   1. It reads dog-map-data.json — spots whose coordinates were looked up ONCE
+      and saved. These appear instantly, with no waiting.
+   2. It then reads the live Google Sheet of form submissions. Anything already
+      in the JSON file is skipped. Only genuinely NEW spots get looked up.
+   3. Anything further than NEIGHBORHOOD_RADIUS_MILES from the center below is
+      rejected, so a submission for the far side of town never lands on the map.
+   4. Anything that can't be found or is out of bounds is recorded, not silently
+      dropped. Add ?debug=1 to the page URL to see the list.
 
-  const colors = { water: '#2a6fb0', treats: '#b3241c', both: '#5a8a3a' };
+   TO TIGHTEN OR WIDEN THE NEIGHBORHOOD: change NEIGHBORHOOD_RADIUS_MILES.
+   TO REFRESH THE SAVED COORDINATES: open dog-map-build.html, run it, and paste
+   the result into dog-map-data.json.
+   ========================================================================== */
 
-  const SHEET_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRDycSySJ29-mgW64bue-2NVj5Q7Sbvj9MZNAwOYzNDgvfs_4qdoUQllcIGabXB0GDrQZnJe3gWQaGd/pub?output=csv';
+const NEIGHBORHOOD_CENTER       = { lat: 43.0570, lng: -89.4275 }; // Monroe St
+const NEIGHBORHOOD_RADIUS_MILES = 3;
 
-  function parseCSV(text) {
-    const rows = [];
-    let row = [], field = '', inQuotes = false;
-    for (let i = 0; i < text.length; i++) {
-      const c = text[i], next = text[i+1];
-      if (inQuotes) {
-        if (c === '"' && next === '"') { field += '"'; i++; }
-        else if (c === '"') { inQuotes = false; }
-        else { field += c; }
-      } else {
-        if (c === '"') { inQuotes = true; }
-        else if (c === ',') { row.push(field); field = ''; }
-        else if (c === '\n' || c === '\r') {
-          if (field.length || row.length) { row.push(field); rows.push(row); row = []; field = ''; }
-          if (c === '\r' && next === '\n') i++;
-        } else { field += c; }
-      }
-    }
-    if (field.length || row.length) { row.push(field); rows.push(row); }
-    return rows;
+const SHEET_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRDycSySJ29-mgW64bue-2NVj5Q7Sbvj9MZNAwOYzNDgvfs_4qdoUQllcIGabXB0GDrQZnJe3gWQaGd/pub?output=csv';
+
+const DEBUG = new URLSearchParams(location.search).has('debug');
+
+/* ---------------------------------------------------------------- map setup */
+const map = L.map('map').setView([NEIGHBORHOOD_CENTER.lat, NEIGHBORHOOD_CENTER.lng], 14);
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  attribution: '&copy; OpenStreetMap contributors',
+  maxZoom: 19
+}).addTo(map);
+
+const statusEl   = document.getElementById('status');
+const listEl     = document.getElementById('spot-list');
+const debugEl    = document.getElementById('debug-panel');
+
+const placed   = [];   // spots successfully on the map
+const rejected = [];   // {label, why}
+const markers  = {};   // key -> leaflet marker
+
+/* ------------------------------------------------------- shared helper bits */
+
+// Distance between two points, in miles.
+function milesBetween(a, b) {
+  const R = 3958.8, toRad = d => d * Math.PI / 180;
+  const dLat = toRad(b.lat - a.lat), dLng = toRad(b.lng - a.lng);
+  const s = Math.sin(dLat/2)**2 +
+            Math.cos(toRad(a.lat)) * Math.cos(toRad(b.lat)) * Math.sin(dLng/2)**2;
+  return 2 * R * Math.asin(Math.sqrt(s));
+}
+
+function inNeighborhood(coords) {
+  return milesBetween(NEIGHBORHOOD_CENTER, coords) <= NEIGHBORHOOD_RADIUS_MILES;
+}
+
+// A stable key so the same spot submitted twice only appears once.
+function keyFor(text) {
+  return (text || '').toLowerCase().replace(/[^a-z0-9]/g, '');
+}
+
+// Normalise the free-text field into a display name and a street address.
+// Neighbors type things like "Orange Tree Imports 1721 Monroe St", or just
+// "strictly discs", or just "1336 Drake St". Handle all three shapes.
+function splitNameAndAddress(raw) {
+  let s = (raw || '').trim()
+    .replace(/\s*,?\s*Madison\s*,?\s*WI\.?\s*,?\s*\d{0,5}\s*$/i, '')
+    .replace(/[\s,.]+$/, '')
+    .trim();
+
+  const m = s.match(/^([^0-9]+?)[,\s]+(\d+\s+.+)$/);
+  if (m && m[1].trim().length > 2) {
+    return { name: titleCase(m[1].trim()), address: m[2].trim() };
+  }
+  if (/^\d/.test(s)) return { name: '', address: s };
+  return { name: titleCase(s), address: '' };
+}
+
+// "strictly discs" -> "Strictly Discs", but leave "Artsy Fartsy" alone.
+function titleCase(s) {
+  if (s !== s.toLowerCase()) return s;              // already has capitals
+  return s.replace(/\b[a-z]/g, c => c.toUpperCase());
+}
+
+function normaliseType(raw) {
+  const t = (raw || '').toLowerCase();
+  if (t.includes('both')) return 'both';
+  if (t.includes('treat') || t.includes('food')) return 'treats';
+  return 'water';
+}
+
+const TYPE_ICON  = { water: '💧', treats: '🦴', both: '💧🦴' };
+const TYPE_LABEL = { water: 'Water', treats: 'Treats', both: 'Water & Treats' };
+
+function escapeHtml(s) {
+  return (s || '').replace(/[&<>"']/g, c =>
+    ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+
+/* ------------------------------------------------------------- placing pins */
+
+function addSpot(spot) {
+  const key = keyFor(spot.name || spot.address);
+  if (markers[key]) return false;                    // exact duplicate name
+
+  // Also treat two pins within ~40 metres of each other as the same place,
+  // which catches the same shop submitted once with and once without its
+  // street address.
+  for (const existing of placed) {
+    if (milesBetween(existing, spot) < 0.025) return false;
   }
 
-  function rowsToObjects(rows) {
-    const headers = rows[0].map(h => h.trim().toLowerCase());
-    return rows.slice(1).filter(r => r.some(v => v && v.trim())).map(r => {
-      const obj = {};
-      headers.forEach((h, i) => { obj[h] = (r[i] || '').trim(); });
-      return obj;
+  const icon = L.divIcon({
+    html: '<div style="font-size:' + (spot.type === 'both' ? '20' : '24') +
+          'px; line-height:1; text-shadow: 0 0 3px #fdfcf3, 0 0 3px #fdfcf3;">' +
+          TYPE_ICON[spot.type] + '</div>',
+    className: 'dog-map-icon', iconSize: [30, 30], iconAnchor: [15, 15]
+  });
+
+  const marker = L.marker([spot.lat, spot.lng], { icon }).addTo(map);
+
+  const title = spot.name || spot.address || 'Unnamed spot';
+  marker.bindPopup(
+    '<strong>' + escapeHtml(title) + '</strong><br>' +
+    TYPE_LABEL[spot.type] +
+    (spot.address && spot.address !== title ? '<br>' + escapeHtml(spot.address) : '') +
+    (spot.notes ? '<br><em>' + escapeHtml(spot.notes) + '</em>' : '')
+  );
+
+  markers[key] = marker;
+  placed.push(spot);
+  renderList();
+  updateStatus();
+  return true;
+}
+
+function renderList() {
+  const sorted = [...placed].sort((a, b) =>
+    (a.name || a.address).localeCompare(b.name || b.address));
+
+  listEl.innerHTML = sorted.map(s => {
+    const title = escapeHtml(s.name || s.address || 'Unnamed spot');
+    const key   = keyFor(s.name || s.address);
+    const meta  = [
+      TYPE_LABEL[s.type],
+      (s.address && s.address !== (s.name || s.address)) ? s.address : '',
+      s.notes
+    ].filter(Boolean).join(' · ');
+    return '<li><span class="ic">' + TYPE_ICON[s.type] + '</span>' +
+           '<button class="nm" data-key="' + key + '">' + title + '</button>' +
+           '<span class="meta">' + escapeHtml(meta) + '</span></li>';
+  }).join('');
+
+  listEl.querySelectorAll('button[data-key]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const m = markers[btn.dataset.key];
+      if (!m) return;
+      map.setView(m.getLatLng(), 17);
+      m.openPopup();
+      document.getElementById('map').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+  });
+}
+
+function updateStatus(msg) {
+  statusEl.innerHTML = msg
+    ? msg
+    : '<span class="count">' + placed.length + '</span> spot' +
+      (placed.length === 1 ? '' : 's') + ' mapped';
+}
+
+function renderDebug() {
+  if (!DEBUG) return;
+  debugEl.innerHTML =
+    '<div class="debug"><h3>Editor view — submissions not on the map (' +
+    rejected.length + ')</h3>' +
+    (rejected.length
+      ? '<ol>' + rejected.map(r =>
+          '<li>' + escapeHtml(r.label) + ' <span class="why">— ' +
+          escapeHtml(r.why) + '</span></li>').join('') + '</ol>'
+      : '<p>Everything submitted is on the map.</p>') +
+    '</div>';
+}
+
+/* --------------------------------------------------------------- geocoding  */
+
+// Ask OpenStreetMap where something is, biased to the neighborhood.
+// Results are remembered in the browser for 30 days so a repeat visitor
+// never re-asks.
+async function geocode(query) {
+  const cacheKey = 'geo:v2:' + query;
+  try {
+    const hit = JSON.parse(localStorage.getItem(cacheKey) || 'null');
+    if (hit && Date.now() - hit.at < 30 * 24 * 3600 * 1000) return hit.coords;
+  } catch (e) { /* ignore a corrupt cache entry */ }
+
+  // A box around the neighborhood, so "Artsy Fartsy" finds the local one.
+  const latPad = NEIGHBORHOOD_RADIUS_MILES / 69;
+  const lngPad = NEIGHBORHOOD_RADIUS_MILES /
+                 (69 * Math.cos(NEIGHBORHOOD_CENTER.lat * Math.PI / 180));
+  const viewbox = [
+    NEIGHBORHOOD_CENTER.lng - lngPad, NEIGHBORHOOD_CENTER.lat + latPad,
+    NEIGHBORHOOD_CENTER.lng + lngPad, NEIGHBORHOOD_CENTER.lat - latPad
+  ].join(',');
+
+  const url = 'https://nominatim.openstreetmap.org/search' +
+              '?format=jsonv2&limit=1&countrycodes=us' +
+              '&viewbox=' + viewbox + '&bounded=1' +
+              '&q=' + encodeURIComponent(query + ', Madison, WI');
+
+  try {
+    const res  = await fetch(url);
+    const data = await res.json();
+    if (data && data[0]) {
+      const coords = { lat: parseFloat(data[0].lat), lng: parseFloat(data[0].lon) };
+      try { localStorage.setItem(cacheKey, JSON.stringify({ at: Date.now(), coords })); }
+      catch (e) { /* storage full — not fatal */ }
+      return coords;
+    }
+  } catch (e) {
+    console.error('Geocoding failed for', query, e);
+  }
+  return null;
+}
+
+/* ------------------------------------------------------------ CSV plumbing  */
+
+function parseCSV(text) {
+  const rows = [];
+  let row = [], field = '', inQuotes = false;
+  for (let i = 0; i < text.length; i++) {
+    const c = text[i], next = text[i+1];
+    if (inQuotes) {
+      if (c === '"' && next === '"') { field += '"'; i++; }
+      else if (c === '"') { inQuotes = false; }
+      else { field += c; }
+    } else {
+      if (c === '"') { inQuotes = true; }
+      else if (c === ',') { row.push(field); field = ''; }
+      else if (c === '\n' || c === '\r') {
+        if (field.length || row.length) { row.push(field); rows.push(row); row = []; field = ''; }
+        if (c === '\r' && next === '\n') i++;
+      } else { field += c; }
+    }
+  }
+  if (field.length || row.length) { row.push(field); rows.push(row); }
+  return rows;
+}
+
+function rowsToObjects(rows) {
+  const headers = rows[0].map(h => h.trim().toLowerCase());
+  return rows.slice(1).filter(r => r.some(v => v && v.trim())).map(r => {
+    const obj = {};
+    headers.forEach((h, i) => { obj[h] = (r[i] || '').trim(); });
+    return obj;
+  });
+}
+
+// The form's column headings are long questions, so match on a keyword.
+// Note the address column also contains the words "business name", so the
+// location lookup has to run FIRST and win.
+function pickColumn(obj, ...needles) {
+  const keys = Object.keys(obj);
+  for (const n of needles) {
+    const hit = keys.find(k => k.includes(n));
+    if (hit) return hit;
+  }
+  return null;
+}
+
+/* ------------------------------------------------------------------ startup */
+
+async function loadSavedSpots() {
+  try {
+    const res = await fetch('dog-map-data.json', { cache: 'no-cache' });
+    if (!res.ok) return;
+    const data = await res.json();
+    if (!data || !Array.isArray(data.spots)) return;
+    data.spots.forEach(s => {
+      if (typeof s.lat !== 'number' || typeof s.lng !== 'number') return;
+      if (!inNeighborhood(s)) {
+        rejected.push({ label: s.name || s.address, why: 'outside the neighborhood' });
+        return;
+      }
+      addSpot({
+        name: s.name || '', address: s.address || '', notes: s.notes || '',
+        type: normaliseType(s.type), lat: s.lat, lng: s.lng
+      });
+    });
+  } catch (e) {
+    // No saved file yet, or it isn't valid JSON. The live sheet still works.
+    console.warn('No usable dog-map-data.json — falling back to live lookups.', e);
+  }
+}
+
+async function loadLiveSpots() {
+  let entries;
+  try {
+    const res  = await fetch(SHEET_CSV_URL);
+    const rows = parseCSV(await res.text());
+    if (rows.length < 2) { updateStatus(); return; }
+    entries = rowsToObjects(rows);
+  } catch (err) {
+    console.error('Could not read the submissions sheet:', err);
+    updateStatus();
+    return;
+  }
+
+  // Work out which submissions we don't already have coordinates for.
+  const pending = [], queued = new Set();
+  for (const entry of entries) {
+    const locKey   = pickColumn(entry, 'address', 'location', 'business name');
+    const typeKey  = pickColumn(entry, 'type');
+    const notesKey = pickColumn(entry, 'notes');
+
+    const raw = locKey ? entry[locKey] : '';
+    if (!raw) continue;
+
+    const { name, address } = splitNameAndAddress(raw);
+    const key = keyFor(name || address);
+    if (markers[key]) continue;                       // already placed from JSON
+    if (queued.has(key)) continue;                    // same spot submitted twice
+    queued.add(key);
+
+    pending.push({
+      name, address, raw,
+      notes: notesKey ? entry[notesKey] : '',
+      type : normaliseType(typeKey ? entry[typeKey] : '')
     });
   }
 
-  function findKey(obj, ...guesses) {
-    const keys = Object.keys(obj);
-    for (const g of guesses) {
-      const hit = keys.find(k => k.includes(g));
-      if (hit) return hit;
-    }
-    return null;
-  }
+  if (!pending.length) { updateStatus(); return; }
 
-  async function geocode(address) {
-    const cacheKey = 'geocode:' + address;
-    const cached = localStorage.getItem(cacheKey);
-    if (cached) return JSON.parse(cached);
+  for (let i = 0; i < pending.length; i++) {
+    const p = pending[i];
+    updateStatus('Looking up ' + (i + 1) + ' of ' + pending.length + ' new spot' +
+                 (pending.length === 1 ? '' : 's') + '&hellip;');
 
-    const query = encodeURIComponent(address + ', Madison, WI');
-    const url = 'https://nominatim.openstreetmap.org/search?format=json&limit=1&q=' + query;
-    try {
-      const res = await fetch(url);
-      const data = await res.json();
-      if (data && data[0]) {
-        const coords = { lat: parseFloat(data[0].lat), lng: parseFloat(data[0].lon) };
-        localStorage.setItem(cacheKey, JSON.stringify(coords));
-        return coords;
-      }
-    } catch (e) {
-      console.error('Geocoding failed for', address, e);
-    }
-    return null;
-  }
+    const coords = await geocode(p.address || p.name);
 
-  function addMarker(spot) {
-    let iconHtml;
-    if (spot.type === 'both') {
-      iconHtml = '<div style="font-size:20px; line-height:1; text-shadow: 0 0 3px #fdfcf3, 0 0 3px #fdfcf3;">💧🦴</div>';
-    } else if (spot.type === 'treats') {
-      iconHtml = '<div style="font-size:24px; line-height:1; text-shadow: 0 0 3px #fdfcf3, 0 0 3px #fdfcf3;">🦴</div>';
+    if (!coords) {
+      rejected.push({ label: p.raw, why: "couldn't find this address or business" });
+    } else if (!inNeighborhood(coords)) {
+      const d = milesBetween(NEIGHBORHOOD_CENTER, coords).toFixed(1);
+      rejected.push({ label: p.raw, why: d + ' miles out — beyond the neighborhood' });
     } else {
-      iconHtml = '<div style="font-size:24px; line-height:1; text-shadow: 0 0 3px #fdfcf3, 0 0 3px #fdfcf3;">💧</div>';
+      addSpot({ ...p, lat: coords.lat, lng: coords.lng });
     }
-    const icon = L.divIcon({ html: iconHtml, className: 'dog-map-icon', iconSize: [30, 30], iconAnchor: [15, 15] });
-    const marker = L.marker([spot.lat, spot.lng], { icon: icon }).addTo(map);
-    const typeLabel = spot.type === 'both' ? 'Water & Treats' : (spot.type.charAt(0).toUpperCase() + spot.type.slice(1));
-    marker.bindPopup(
-      '<strong>' + spot.name + '</strong><br>' +
-      typeLabel + '<br>' +
-      (spot.location ? spot.location + '<br>' : '') +
-      (spot.notes ? '<em>' + spot.notes + '</em>' : '')
-    );
+
+    if (i < pending.length - 1) await new Promise(r => setTimeout(r, 1100));
   }
 
-  async function loadLiveSpots() {
-    try {
-      const res = await fetch(SHEET_CSV_URL);
-      const text = await res.text();
-      const rows = parseCSV(text);
-      if (rows.length < 2) return;
-      const entries = rowsToObjects(rows);
+  updateStatus();
+  renderDebug();
+}
 
-      for (const entry of entries) {
-        const nameKey = findKey(entry, 'spot name', 'name');
-        const typeKey = findKey(entry, 'type');
-        const locKey = findKey(entry, 'location', 'address');
-        const notesKey = findKey(entry, 'notes');
-
-        const name = nameKey ? entry[nameKey] : 'Unnamed spot';
-        const rawType = typeKey ? entry[typeKey].toLowerCase() : 'water';
-        const type = rawType.includes('both') ? 'both' : (rawType.includes('treat') || rawType.includes('food')) ? 'treats' : 'water';
-        const location = locKey ? entry[locKey] : '';
-        const notes = notesKey ? entry[notesKey] : '';
-
-        if (!location) continue;
-        const coords = await geocode(location);
-        if (coords) {
-          addMarker({ name, type, location, notes, lat: coords.lat, lng: coords.lng });
-        }
-        await new Promise(r => setTimeout(r, 1000)); // be polite to the free geocoding service
-      }
-    } catch (err) {
-      console.error('Could not load live spots from Sheet:', err);
-    }
-  }
-
-  loadLiveSpots();
+(async function start() {
+  await loadSavedSpots();
+  updateStatus();
+  renderDebug();
+  await loadLiveSpots();
+})();
 </script>
 <script src="dog-form-modal.js"></script>
 </body>
