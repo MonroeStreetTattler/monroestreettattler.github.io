@@ -133,6 +133,31 @@
 const NEIGHBORHOOD_CENTER       = { lat: 43.0570, lng: -89.4275 }; // Monroe St
 const NEIGHBORHOOD_RADIUS_MILES = 3;
 
+/* ---------------------------------------------------------------------------
+   SAVED SPOTS — the known map, with coordinates already looked up.
+   These draw instantly. Anything new in the Google Form gets looked up live
+   and added underneath.
+
+   To refresh this list: run dog-map-build.html, then either paste its output
+   into dog-map-data.json (which overrides this list) or paste the "spots"
+   array over the one below.
+   ------------------------------------------------------------------------- */
+const SAVED_SPOTS = [
+  { name: "Artsy Fartsy",        address: "1717 Monroe St",  type: "treats", notes: "",
+    lat: 43.065605, lng: -89.415634 },
+  { name: "Orange Tree Imports", address: "1721 Monroe St",  type: "treats", notes: "M-Sa 10-5:30, Su 12-4",
+    lat: 43.065584, lng: -89.415680 },
+  { name: "Strictly Discs",      address: "",                type: "water",  notes: "",
+    lat: 43.064649, lng: -89.417742 },
+  { name: "ZuZu Cafe",           address: "1336 Drake St",   type: "water",  notes: "",
+    lat: 43.062368, lng: -89.408758 },
+  { name: "Destination Bicycle", address: "2606 Monroe St",  type: "both",   notes: "",
+    lat: 43.057538, lng: -89.428613 },
+  { name: "Wingra Boats",        address: "",                type: "both",
+    notes: "Seasonal - Memorial Day Weekend through Labor Day with some Spring and Fall Hours.",
+    lat: 43.055311, lng: -89.426782 }
+];
+
 const SHEET_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRDycSySJ29-mgW64bue-2NVj5Q7Sbvj9MZNAwOYzNDgvfs_4qdoUQllcIGabXB0GDrQZnJe3gWQaGd/pub?output=csv';
 
 const DEBUG = new URLSearchParams(location.search).has('debug');
@@ -216,11 +241,16 @@ function addSpot(spot) {
   const key = keyFor(spot.name || spot.address);
   if (markers[key]) return false;                    // exact duplicate name
 
-  // Also treat two pins within ~40 metres of each other as the same place,
-  // which catches the same shop submitted once with and once without its
-  // street address.
+  // Two entries at nearly the same coordinates are usually one place submitted
+  // twice — once by name, once by street address. But Monroe St shops sit
+  // shoulder to shoulder, so two DIFFERENT named businesses that land close
+  // together are genuinely two spots and both must stay.
   for (const existing of placed) {
-    if (milesBetween(existing, spot) < 0.025) return false;
+    if (milesBetween(existing, spot) < 0.009) {
+      const a = (existing.name || '').toLowerCase();
+      const b = (spot.name || '').toLowerCase();
+      if (!a || !b || a === b) return false;      // same place, or one unnamed
+    }
   }
 
   const icon = L.divIcon({
@@ -384,12 +414,22 @@ function pickColumn(obj, ...needles) {
 /* ------------------------------------------------------------------ startup */
 
 async function loadSavedSpots() {
+  // Start from the list built into this file. If a valid dog-map-data.json
+  // is sitting alongside it, that wins — but it is entirely optional, and a
+  // missing or broken one changes nothing.
+  let spots = SAVED_SPOTS;
   try {
     const res = await fetch('dog-map-data.json', { cache: 'no-cache' });
-    if (!res.ok) return;
-    const data = await res.json();
-    if (!data || !Array.isArray(data.spots)) return;
-    data.spots.forEach(s => {
+    if (res.ok) {
+      const data = await res.json();
+      if (data && Array.isArray(data.spots) && data.spots.length) spots = data.spots;
+    }
+  } catch (e) {
+    // No data file, or it isn't valid JSON. The built-in list covers us.
+  }
+
+  try {
+    spots.forEach(s => {
       if (typeof s.lat !== 'number' || typeof s.lng !== 'number') return;
       if (!inNeighborhood(s)) {
         rejected.push({ label: s.name || s.address, why: 'outside the neighborhood' });
@@ -401,8 +441,7 @@ async function loadSavedSpots() {
       });
     });
   } catch (e) {
-    // No saved file yet, or it isn't valid JSON. The live sheet still works.
-    console.warn('No usable dog-map-data.json — falling back to live lookups.', e);
+    console.warn('A saved spot could not be drawn.', e);
   }
 }
 
@@ -449,7 +488,14 @@ async function loadLiveSpots() {
     updateStatus('Looking up ' + (i + 1) + ' of ' + pending.length + ' new spot' +
                  (pending.length === 1 ? '' : 's') + '&hellip;');
 
-    const coords = await geocode(p.address || p.name);
+    // Try the street address first, then fall back to the business name.
+    // Some real addresses simply aren't in OpenStreetMap's data, while the
+    // shop sitting at them is.
+    let coords = await geocode(p.address || p.name);
+    if (!coords && p.address && p.name) {
+      await new Promise(r => setTimeout(r, 1100));
+      coords = await geocode(p.name);
+    }
 
     if (!coords) {
       rejected.push({ label: p.raw, why: "couldn't find this address or business" });
