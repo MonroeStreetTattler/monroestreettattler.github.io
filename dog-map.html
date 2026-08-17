@@ -270,7 +270,13 @@ function addSpot(spot) {
     (spot.notes ? '<br><em>' + escapeHtml(spot.notes) + '</em>' : '')
   );
 
+  // Register under BOTH the business name and the street address. Neighbours
+  // submit the same place either way ("Artsy Fartsy" / "1717 Monroe St"), and
+  // without both aliases the second form gets looked up all over again — the
+  // main cause of a slow-loading map.
   markers[key] = marker;
+  if (spot.name)    markers[keyFor(spot.name)]    = marker;
+  if (spot.address) markers[keyFor(spot.address)] = marker;
   placed.push(spot);
   renderList();
   updateStatus();
