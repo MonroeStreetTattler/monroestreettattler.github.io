@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dog Map — Coordinate Builder (Tattler editors only)</title>
+<title>Dog Map Coordinate Builder (Tattler editors only)</title>
 <style>
   :root { --paper: #fdfcf3; --ink: #111; --red: #b3241c; }
   * { box-sizing: border-box; }
@@ -49,7 +49,7 @@
     you a file to save. The map then reads that file and draws every pin instantly.</p>
 
     <p><strong>When to run it.</strong> Whenever a few new submissions have come in.
-    Once a month is plenty. Nothing breaks if you forget — the map falls back to looking
+    Once a month is plenty. Nothing breaks if you forget. The map falls back to looking
     up new spots itself, just more slowly.</p>
 
     <p style="margin-bottom:0"><strong>What happens when you press the button.</strong>
@@ -59,19 +59,19 @@
     where to paste it.</p>
   </div>
 
-  <button class="go" id="run">Start — look up every spot</button>
+  <button class="go" id="run">Start: look up every spot</button>
 
   <div id="log"></div>
 
   <div id="output" style="display:none">
-    <h2>Step 1 — copy this</h2>
+    <h2>Step 1. Copy this</h2>
     <p style="font-size:14px; margin-top:0">This is the finished list of spots and their
-    coordinates. You don't need to understand it or edit it — just move it across intact.</p>
+    coordinates. You don't need to understand it or edit it, just move it across intact.</p>
     <button class="copy" id="copy">Copy to clipboard</button>
     <button class="copy" id="download">Download as a file</button>
     <textarea id="json" readonly></textarea>
 
-    <h2>Step 2 — put it on the site</h2>
+    <h2>Step 2. Put it on the site</h2>
     <ol>
       <li>Go to
         <a href="https://github.com/monroestreettattler/monroestreettattler.github.io/edit/main/dog-map-data.json">dog-map-data.json on GitHub</a>.</li>
