@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Issue 2: The Ice Cream Investigation | The Monroe Street Tattler</title>
+<meta name="description" content="The complete September 2026 issue of The Monroe Street Tattler. Fifty-six flavors, one Commission, the People's Fry Award, Puddin', and the neighborhood crossword.">
+<meta property="og:title" content="The Monroe Street Tattler, Issue 2">
+<meta property="og:description" content="We tried every flavor at Chocolate Shoppe so you don't have to. Plus the People's Fry Award, a gravy jurisdiction dispute, and one dog named Puddin'.">
+<meta property="og:image" content="https://monroestreettattler.com/september-2026_og.png">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://monroestreettattler.com/september-2026.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="The Monroe Street Tattler, Issue 2">
+<meta name="twitter:description" content="We tried every flavor at Chocolate Shoppe so you don't have to. Plus the People's Fry Award, a gravy jurisdiction dispute, and one dog named Puddin'.">
+<meta name="twitter:image" content="https://monroestreettattler.com/september-2026_og.png">
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+<style>
+  :root { --paper:#fdfcf3; --ink:#111; --red:#b3241c; --muted:#5a5a5a; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:#e4e2d8; color:var(--ink);
+         font-family:Georgia,'Times New Roman',serif; line-height:1.55; }
+  .wrap { max-width:900px; margin:0 auto; background:var(--paper); min-height:100vh;
+          padding:0 26px 60px; box-shadow:0 0 40px rgba(0,0,0,0.15); }
+
+  nav.tabs { display:flex; justify-content:center; gap:22px; font-family:Arial,sans-serif;
+             font-weight:bold; font-size:11px; text-transform:uppercase; letter-spacing:.8px;
+             padding:12px 0 22px; flex-wrap:wrap; border-bottom:1px solid var(--ink); }
+  nav.tabs a { color:var(--ink); text-decoration:none; }
+  nav.tabs a:hover { color:var(--red); border-bottom:2px solid var(--red); }
+
+  .issueline { text-align:center; font-family:Arial,sans-serif; font-size:11px; font-weight:bold;
+               letter-spacing:1.5px; color:var(--red); text-transform:uppercase; margin:18px 0 6px; }
+  h1.masthead { font-family:'Times New Roman',Times,serif; font-weight:900; text-align:center;
+                text-transform:uppercase; letter-spacing:.5px; line-height:1.02;
+                font-size:clamp(34px,8vw,62px); margin:0 0 8px; }
+  .tagline { text-align:center; font-style:italic; font-size:14px; color:var(--muted);
+             margin:0 0 4px; padding-bottom:16px; border-bottom:3px double var(--ink); }
+
+  .splash { text-align:center; margin:30px 0 22px; }
+  .stamp { display:inline-block; border:2px solid var(--red); color:var(--red);
+           font-family:Arial,sans-serif; font-weight:bold; font-size:12px; letter-spacing:3px;
+           text-transform:uppercase; padding:7px 16px; transform:rotate(-2deg); margin-bottom:18px; }
+  .kicker { font-family:Arial,sans-serif; font-size:12px; font-weight:bold; color:var(--red);
+            text-transform:uppercase; letter-spacing:2px; }
+  .splash h2 { font-family:Arial,sans-serif; font-weight:900; text-transform:uppercase;
+               font-size:clamp(26px,5.5vw,44px); line-height:1.05; margin:10px 0; }
+  .splash .sub { font-size:15px; color:var(--muted); font-style:italic; }
+
+  .reversebar { background:var(--ink); color:var(--paper); text-align:center;
+                font-family:Arial,sans-serif; font-weight:bold; font-size:13px;
+                text-transform:uppercase; letter-spacing:1.5px; padding:11px 14px; margin:0 0 22px; }
+
+  .teasers { display:grid; grid-template-columns:repeat(3,1fr); border-top:1px solid var(--ink);
+             border-left:1px solid var(--ink); margin:0 0 6px; }
+  @media (max-width:640px){ .teasers { grid-template-columns:1fr 1fr; } }
+  .teaser { border-right:1px solid var(--ink); border-bottom:1px solid var(--ink);
+            padding:13px 12px; text-align:center; font-family:Arial,sans-serif;
+            font-weight:bold; font-size:11.5px; line-height:1.35; text-transform:uppercase;
+            letter-spacing:.4px; color:var(--ink); text-decoration:none; display:flex;
+            align-items:center; justify-content:center; }
+  .teaser:hover { background:var(--ink); color:var(--paper); }
+  .teaser.wide { grid-column:1 / -1; }
+
+  .flashbox { border:1px solid var(--red); background:#fbf3f2; text-align:center;
+              padding:15px 16px; margin:6px 0; }
+  .flashbox .fh { font-family:Arial,sans-serif; font-weight:900; text-transform:uppercase;
+                  color:var(--red); font-size:17px; letter-spacing:.5px; }
+  .flashbox p { font-size:14px; font-style:italic; color:var(--muted); margin:6px 0 0; }
+
+  figure { margin:0 0 18px; }
+  figure img { width:100%; height:auto; display:block; border:1px solid #ddd9c8; }
+  figcaption { font-family:Arial,sans-serif; font-size:10.5px; text-transform:uppercase;
+               letter-spacing:.8px; color:var(--muted); margin-top:6px; line-height:1.4; }
+  .photos4 { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin:20px 0 6px; }
+  @media (max-width:640px){ .photos4 { grid-template-columns:1fr 1fr; } }
+  .photos4 img { width:100%; height:auto; display:block; border:1px solid #ddd9c8; }
+  .photos4 .who { font-family:Arial,sans-serif; font-weight:900; text-transform:uppercase;
+                  font-size:12.5px; margin:7px 0 3px; text-align:center; }
+  .photos4 .what { font-size:11.5px; color:var(--muted); font-style:italic; text-align:center;
+                   line-height:1.35; }
+  .figright { float:right; width:44%; margin:4px 0 16px 24px; }
+  @media (max-width:640px){ .figright { float:none; width:100%; margin:0 0 18px; } }
+  .clearfix::after { content:""; display:block; clear:both; }
+
+  .clipline { text-align:center; font-family:Arial,sans-serif; font-size:11px; letter-spacing:4px;
+              text-transform:uppercase; color:var(--muted); margin:0 0 6px; }
+  .coupon { position:relative; border:2px dashed var(--ink); padding:22px 26px;
+            background:#fff; display:flex; align-items:center; gap:26px; }
+  @media (max-width:560px){ .coupon { flex-direction:column; gap:14px; text-align:center; } }
+  .coupon-logo { flex:0 0 118px; }
+  .coupon-logo img { width:118px; height:auto; display:block; }
+  .coupon-inner { flex:1; text-align:center; }
+  .coupon-head { font-family:Arial,sans-serif; font-weight:900; text-transform:uppercase;
+                 font-size:clamp(22px,4.2vw,34px); line-height:1.02; }
+  .coupon-fine { font-size:11.5px; color:var(--muted); margin-top:9px; line-height:1.55; }
+  .voidstamp { position:absolute; top:50%; right:6%; z-index:2;
+               transform:translateY(-50%) rotate(-11deg);
+               font-family:Arial,sans-serif; font-weight:900; text-transform:uppercase;
+               font-size:clamp(38px,6vw,54px); letter-spacing:5px;
+               color:rgba(179,36,28,0.38); border:4px solid rgba(179,36,28,0.38);
+               padding:2px 14px 2px 19px; white-space:nowrap; pointer-events:none; }
+  @media (max-width:560px){ .voidstamp { top:68%; right:50%; transform:translate(50%,-50%) rotate(-11deg); } }
+  .coupon-note { text-align:center; font-style:italic; font-size:13px; color:var(--muted);
+                 margin:12px 0 0; }
+
+  .pdfbar { border:2px solid var(--ink); background:#fff; padding:14px 18px; margin:0 0 34px;
+            display:flex; justify-content:space-between; align-items:center; gap:14px; flex-wrap:wrap; }
+  .pdfbar span { font-size:14px; }
+  .pdfbar a { font-family:Arial,sans-serif; font-weight:bold; font-size:12px; text-transform:uppercase;
+              letter-spacing:1px; background:var(--ink); color:var(--paper); padding:10px 16px;
+              text-decoration:none; white-space:nowrap; }
+  .pdfbar a:hover { background:var(--red); }
+
+  h3.section { font-family:Arial,sans-serif; font-size:13px; font-weight:bold; text-transform:uppercase;
+               letter-spacing:1.5px; color:var(--red); border-top:2px solid var(--ink);
+               border-bottom:1px solid var(--ink); padding:7px 0 6px; margin:46px 0 18px;
+               text-align:center; }
+  h4.head { font-family:Arial,sans-serif; font-weight:900; text-transform:uppercase;
+            font-size:19px; line-height:1.15; margin:0 0 8px; }
+  h5.sub { font-family:Arial,sans-serif; font-weight:bold; font-size:13px; text-transform:uppercase;
+           letter-spacing:1px; color:var(--red); margin:26px 0 8px; }
+  p { font-size:16px; margin:0 0 14px; }
+  .deck { font-style:italic; color:var(--muted); font-size:15px; margin-bottom:18px; }
+  .byline { font-family:Arial,sans-serif; font-size:11px; letter-spacing:1px;
+            text-transform:uppercase; color:var(--muted); margin-bottom:16px; }
+
+  .awards { border:1.5px solid var(--ink); padding:16px 20px; margin:22px 0; background:#fff; }
+  .award { margin-bottom:16px; }
+  .award:last-child { margin-bottom:0; }
+  .award .name { font-family:Arial,sans-serif; font-weight:bold; font-size:14px; }
+  .award p { font-size:15px; margin:4px 0 0; }
+
+  .grid { display:grid; grid-template-columns:1fr 1fr; gap:26px 30px; align-items:start; }
+  @media (max-width:640px) { .grid { grid-template-columns:1fr; } }
+  .brief h4 { font-size:16px; }
+  .brief p { font-size:15px; }
+
+  .box { border:1.5px solid var(--ink); padding:18px 20px; margin:26px 0; }
+  .box.heavy { border:4px solid var(--ink); }
+  .box.center { text-align:center; }
+  .box h4 { margin-bottom:10px; color:var(--red); font-size:15px; letter-spacing:.5px; }
+  .box p { font-size:15px; }
+  .box a { color:var(--red); font-weight:bold; }
+
+  .trophies { display:grid; grid-template-columns:repeat(4,1fr); gap:18px; margin:20px 0; text-align:center; }
+  @media (max-width:640px) { .trophies { grid-template-columns:1fr 1fr; } }
+  .trophy .who { font-family:Arial,sans-serif; font-weight:900; text-transform:uppercase;
+                 font-size:14px; margin-bottom:5px; }
+  .trophy .what { font-size:13px; color:var(--muted); font-style:italic; }
+
+  .void { border:3px dashed var(--muted); background:#f4f2e6; padding:18px 20px; margin:22px 0;
+          text-align:center; color:var(--muted); }
+  .void .vlabel { font-family:Arial,sans-serif; font-weight:900; letter-spacing:6px;
+                  font-size:26px; color:#b9b4a0; text-transform:uppercase; margin-bottom:8px; }
+  .void p { font-size:14px; margin:0 0 8px; }
+
+  blockquote { margin:0; font-size:19px; font-style:italic; line-height:1.4; }
+  .attrib { font-family:Arial,sans-serif; font-size:12px; text-transform:uppercase;
+            letter-spacing:1px; color:var(--muted); margin-top:10px; }
+  .letter p { font-size:15px; }
+  .letter .from { font-style:italic; color:var(--muted); }
+
+  .ode { border-left:3px solid var(--ink); padding-left:20px; margin:20px 0; }
+  .ode p { font-size:15px; }
+
+  footer { margin-top:48px; padding-top:18px; border-top:3px double var(--ink);
+           text-align:center; font-size:13px; color:var(--muted); }
+</style>
+<!-- Cloudflare Web Analytics -->
+<script
+  type="module"
+  src="https://static.cloudflareinsights.com/beacon.min.js"
+  data-cf-beacon='{"token": "b4b7990d0c27478ea9b605f098b4ad3c"}'>
+</script>
+<!-- End Cloudflare Web Analytics -->
+</head>
+<body>
+<div class="wrap">
+
+  <nav class="tabs">
+    <a href="/">Home</a>
+    <a href="faq.html">FAQ</a>
+    <a href="dog-map.html">Dog Map</a>
+    <a href="/#contribute">Contribute</a>
+  </nav>
+
+  <div class="issueline">Extra! &middot; Vol. 3, No. 7 &middot; September 2026 &middot; Free</div>
+  <h1 class="masthead">The Monroe Street Tattler</h1>
+  <p class="tagline">News so hyperlocal, it's amazing anyone takes an interest.</p>
+
+  <div class="splash">
+    <div class="stamp">Our Largest Issue Yet</div>
+    <div class="kicker">What Big Ice Cream Doesn't Want You to Know</div>
+    <h2>We Tried Every Flavor at Chocolate Shoppe So You Don't Have To</h2>
+  </div>
+
+  <div class="reversebar">The Tattler's Most Ambitious Culinary Investigation Yet</div>
+
+  <div class="teasers">
+    <a class="teaser" href="#junior">Junior Correspondents Break Their Silence</a>
+    <a class="teaser" href="#fryvote">Fry Vote Shocker! Readers Issue Their Own Fry Verdict</a>
+    <a class="teaser" href="#neighborhood">Rare Celebrity Sighting in Vilas</a>
+  </div>
+
+  <div class="flashbox">
+    <div class="fh">Camp Cantina Makes Tattler History</div>
+    <p>Our biggest giveaway yet is inside.</p>
+  </div>
+
+  <div class="teasers">
+    <a class="teaser" href="#housecalls">The Tattler Prize Patrol Hits the Streets</a>
+    <a class="teaser" href="#gravy">A Matter of Gravy Jurisdiction</a>
+    <a class="teaser" href="#neighborhood">Rush Hour Miracle: Motorists Stunned</a>
+    <a class="teaser" href="#neighborhood">Dads Gone Wild! Shocks Neighborhood</a>
+    <a class="teaser" href="#neighborhood">Listserv Finally Justifies Its Existence</a>
+    <a class="teaser" href="#neighborhood">Parenting Arms Race Enters Dangerous New Phase</a>
+    <a class="teaser wide" href="#crossword">Local Intelligence Test! Monroe Street Tattler Crossword No. 1</a>
+  </div>
+
+  <div class="pdfbar" style="margin-top:26px">
+    <span>Prefer the real thing? The printed edition is exactly as it landed on doorsteps.</span>
+    <a href="september_2026_digital.pdf">Download the printed issue</a>
+  </div>
+
+  <h3 class="section">Flagship Feature</h3>
+  <h4 class="head">The Monroe Street Ice Cream Investigation</h4>
+  <p class="deck">Fifty-six flavors. One Commission. The neighborhood now has answers.</p>
+
+  <p>Someone had to do it.</p>
+  <p>In what can only be described as the most ambitious act of neighborhood journalism since the Fry Report, the Monroe Street Tattler Culinary Commission sat down at Chocolate Shoppe and did not get up until all 56 flavors had been tasted, rated and, in several cases, argued about.</p>
+  <p>The panel included adult Commissioners and Junior Correspondents ages 7 to 10. Over nearly two hours, Chocolate Shoppe staff accommodated the pre-arranged investigation without visible complaint, providing roughly 448 tasting-spoon samples.</p>
+  <p>Before tasting could begin, all Commissioners and Junior Correspondents were formally sworn in. Each raised an ice cream spoon and pledged to try the ice cream, tell the truth, remain brave about weird flavors, and never let another member of the panel tell them what tastes good.</p>
+  <p>With spoons held aloft, several of them higher than strictly necessary, the Commission was certified and the investigation commenced.</p>
+
+  <h5 class="sub">Findings</h5>
+  <p>Each flavor was tasted and rated independently before the panel compared notes. This procedure held for approximately four flavors.</p>
+  <p>Super Human looked like Play-Doh and tasted like several ideas happening at once. Cherry, Blue Moon and vanilla all made appearances, while one taster reported a faint tingling on the tongue. Nobody could quite explain it, which only improved its superhero credentials.</p>
+  <p>Cotton Candy Twist prompted an immediate and unusually efficient assessment from one Commissioner: "Fair vibes."</p>
+  <p>Mint Avalanche produced one of the investigation's earliest useful comparisons. A Junior Correspondent considered the matter briefly before reporting: "It tastes like my toothpaste, but a lot better."</p>
+  <p>By Halley's Comet, the caramel-and-malt one, any pretense of quiet independent judgment had collapsed entirely. "THIS IS THE BEST ONE YET," announced one Junior Correspondent, in what would prove to be the first of several final rulings. Other tasters independently declared it their favorite so far.</p>
+  <p>The Commission considers this evidence of a functioning process.</p>
+  <p>A Junior Correspondent sniffed Exhausted Parent and correctly identified it as their parents' cold brew, a finding that reflects on both the flavor and the household.</p>
+  <p>Plain Chocolate prompted perhaps the day's least explained finding when a Junior Correspondent declared it "a mom flavor."</p>
+  <p>Zanzibar Chocolate divided the room along lines that already existed. The chocolate faction was unequivocal: "extremely good," and "if you like chocolate, this one is for you." One known chocolate skeptic said considerably less. Her face was entered into the record.</p>
+  <p>Then came Cr-Appley Ever After, and the volume changed. "Oh, I don't like that." "Ew." From across the table: "I'd order that again." "Might be the next one I get." Voices rose. Positions were restated more loudly. No minds were changed.</p>
+  <p>By this stage more than thirty flavors had come and gone. Several supposedly permanent favorites had already been quietly abandoned. Just past the halfway mark, at flavor thirty-four, Blackberry Lemon Bar stopped the proceedings. Before a single spoon went in, the table began making "oooo" noises over the lemon aroma. Then the spoons went in. For the first time all day, every Commissioner and every Junior Correspondent independently landed on the same finding: this was a favorite.</p>
+  <p>The matter was considered settled.</p>
+  <p>Twice the panel talked itself out of a flavor before tasting it. Matcha Green Tea was approached with open suspicion. Carrot Mango Italian Ice fared worse: "I hate all vegetables. But especially carrots."</p>
+  <p>The subsequent tastings did not support the initial objections. The investigation into Butter Pecan began with allegations of "old man ice cream." Those allegations were subsequently withdrawn.</p>
+  <p>By flavor forty-six, enthusiasm should reasonably have been in decline. Peanut Butter Cookie Dough woke the room back up anyway. "Best smell for miles." "Go for a second scoop."</p>
+  <p>Near the end, Espresso Almond Fudge produced the clearest demonstration of why this Commission seats both adults and children. An adult: "I love that one. Why don't I order this more?" A Junior Correspondent, same spoon, same table: "Never make me try this again."</p>
+  <p>Both findings stand.</p>
+
+  <h5 class="sub">Staff Unable to Provide Decisive Guidance</h5>
+  <p>Seeking additional expertise, the Tattler asked Chocolate Shoppe staff to identify a definitive favorite for the coveted title of 2026 Staff Pick.</p>
+  <p>Zoreo received a strong endorsement from one staff member, while another declined to commit, explaining that favorites tend to rotate.</p>
+  <p>The coveted 2026 Staff Pick remains vacant.</p>
+
+  <h3 class="section">Official Recognitions</h3>
+  <p class="deck">After careful tasting, solemn deliberation and the necessary application of Commission judgment, the following recognitions are awarded.</p>
+
+  <div class="awards">
+    <div class="award">
+      <div class="name">Commissioner's Citation for Overall Distinction: Blackberry Lemon Bar</div>
+      <p>Bright blackberry, sharp lemon and buttery pieces of actual lemon bar. The first unanimous favorite of the investigation, and it never surrendered the position.</p>
+    </div>
+    <div class="award">
+      <div class="name">Outstanding Achievement in Texture: S'more to Love</div>
+      <p>Graham cracker on the nose, caramel throughout, and enough mix-ins to earn immediate attention. "So, so, so good," reported one taster. A Junior Correspondent went further: "10 out of 10."</p>
+    </div>
+    <div class="award">
+      <div class="name">Outstanding Achievement in Flavor Risk-Taking: Matcha Green Tea</div>
+      <p>Mild, creamy and persuasive enough to convert several declared skeptics.</p>
+    </div>
+  </div>
+
+  <h5 class="sub" id="junior">The Junior Correspondents &middot; Findings from investigators ages 7 to 10</h5>
+  <div class="awards">
+    <div class="award">
+      <div class="name">Best Flavor for a Birthday: Me Want Cookie!</div>
+      <p>Unanimous. No further deliberation required.</p>
+    </div>
+    <div class="award">
+      <div class="name">Grossest Sounding, Surprisingly Good: Carrot Mango Italian Ice</div>
+      <p>The sleeper hit of the investigation. Bright mango, excellent texture and remarkably little evidence of the vegetable that had caused so much concern. Multiple tasters planned return orders.</p>
+    </div>
+    <div class="award">
+      <div class="name">The No-Sharing Award: Ultimate Oreo</div>
+      <p>Three Junior Correspondents independently concluded that sharing would not be in their interest.</p>
+    </div>
+  </div>
+
+  <h5 class="sub">Cross-Panel Recognitions</h5>
+  <div class="awards">
+    <div class="award">
+      <div class="name">The Neighborhood Ambassador Award</div>
+      <p>Adult Commission: This $&amp;@! Just Got Serious. Junior Correspondents: Me Want Cookie!</p>
+      <p>The adults chose a sweet-salty, mix-in-packed classic. The Junior Correspondents went straight for cookies, Oreo pieces and pure birthday-party energy. Different choices, same conclusion: if you're bringing someone to Chocolate Shoppe for the first time, start here.</p>
+    </div>
+    <div class="award">
+      <div class="name">The Bipartisan Scoop: Peppermint Stick</div>
+      <p>Adults and Junior Correspondents independently arrived at the same conclusion: this one was excellent. It tasted like a creamy candy cane, with some tasters comparing it to a York peppermint patty without the chocolate. Even late in the investigation, the room lit up. Cross-generational consensus has been certified.</p>
+    </div>
+    <div class="award">
+      <div class="name">The Generational Divide: Cr-Appley Ever After</div>
+      <p>Caramel-apple-sucker nostalgia proved to be an acquired taste, and acquiring it appears to take about thirty years. Adults were enthusiastic. Most Junior Correspondents remained unconvinced. The divide remains unresolved.</p>
+    </div>
+  </div>
+
+  <div class="box heavy clearfix">
+    <h4 class="head">Final Determination</h4>
+    <figure class="figright" style="width:32%">
+      <img src="double-scoop-award.png" alt="The Tattler 2026 Double Scoop Award, a trophy of two ice cream cones on a pedestal">
+      <figcaption>The Tattler 2026 Double Scoop Award</figcaption>
+    </figure>
+    <p>Chocolate Shoppe staff deserve our sincere thanks for allowing this operation to occur at all, and for doing so with extraordinary patience and good humor. In recognition of this, Chocolate Shoppe has been awarded the esteemed and coveted Tattler 2026 Double Scoop Award.</p>
+  </div>
+
+  <div class="box">
+    <h4 class="head">Did We Miss Your Favorite?</h4>
+    <p>If your go-to flavor didn't make the print report, don't panic. The Commission tasted all 56.</p>
+    <p><a href="56-flavors.html">Read the complete flavor-by-flavor findings</a>, with additional tasting notes and more official recognitions.</p>
+    <p>You'll also find the <a href="tasting-kit.html">Tattler's Family Ice Cream Investigation Kit</a>. Assemble your own panel, choose five flavors, issue your findings, and report back to the newsroom.</p>
+    <p>Strong opinions are encouraged.</p>
+    <p><em>Outside verification is the foundation of good journalism. Ice cream is no exception.</em></p>
+  </div>
+
+  <div class="box">
+    <h4 class="head">Wanted: Future Tasting Panelists</h4>
+    <p>The Commission is recruiting Commissioners and Junior Correspondents for future investigations. No experience required. Strong opinions preferred. Contact <a href="mailto:MonroeStreetTattler@gmail.com">MonroeStreetTattler@gmail.com</a> if interested.</p>
+  </div>
+
+  <h3 class="section" id="fryvote">Fry Report Fallout, Part II</h3>
+  <h4 class="head">Fry Vote Shocker: Readers Issue Their Own Verdict</h4>
+  <p>Since publishing the Monroe Street French Fry Report, shockwaves have continued to ripple through the neighborhood. The mailbag has not stopped. Readers wrote in with opinions, corrections, gravy-related grievances, and, more than anything else, love for one restaurant in particular.</p>
+  <p>One reader wrote in to say they had their engagement photos taken in front of The Laurel. No further explanation was offered, or needed.</p>
+  <p>The people have spoken, loudly and repeatedly, and the Tattler listens to volume above all else.</p>
+
+  <div class="box center">
+    <div class="kicker">2026 Reader's Choice</div>
+    <h4 class="head" style="margin-top:8px">The People's Fry Award: The Laurel Tavern</h4>
+  </div>
+
+  <p>One reader felt so strongly about the honor that he sent us something longer than a letter. The Tattler is pleased to turn the page over to him.</p>
+
+  <h4 class="head">A Reader's Ode to The Laurel</h4>
+  <div class="byline">By Wm. Joseph</div>
+  <figure class="figright">
+    <img src="laurel.jpg" alt="The Laurel Tavern interior with the People's Fry Award trophy on a table">
+    <figcaption>The Laurel Tavern, home of the 2026 Reader's Choice: The People's Fry Award</figcaption>
+  </figure>
+  <div class="ode">
+    <p>Some places become part of your life without you quite realizing it at the time. For me, The Laurel is one of those places.</p>
+    <p>My relationship with The Laurel began when I was a student in Madison in the early '90s. It was the kind of neighborhood place where you could settle in after class, decompress, laugh with friends, and let the day slowly transition into evening. During graduate school, it became even more of a second home. Many of us would find our way there after classes, sometimes to talk about what we were learning, sometimes to complain about what we were learning, and sometimes to talk about absolutely anything other than school. Mostly relationship stuff, if I'm being totally honest.</p>
+    <p>Years later, life brought me back to Madison in a different role. I was no longer the graduate student leaving class. I was now the faculty member teaching it. And somehow, there was The Laurel again. It became one of my regular hangouts, a familiar place even though a lot in my life had changed.</p>
+    <p>I have since moved away from the area, but whenever I return to Madison, I try to make at least one visit to The Laurel. There is something comforting about walking back into a place that has been part of so many stages of your life.</p>
+    <p>Of course, there are also the important things: TouchTunes (seriously, how did I ever survive without it?), fried mushrooms, jalape&ntilde;o poppers, and a menu that has somehow never disappointed me.</p>
+    <p>But the food, music, and drinks are only part of why I keep returning. The Laurel reminds me of friendships, conversations after class, celebrations, stressful semesters, laughter, and the strange experience of eventually becoming the professor instead of the student. It has been there through different stages of my life while somehow remaining unmistakably The Laurel.</p>
+    <p>There are restaurants you enjoy, bars you frequent, and then there are those rare neighborhood places that become something more.</p>
+    <p>For me, The Laurel will always be one of those places. Whenever I walk through the door, no matter how long I've been away, it feels a little bit like coming home.</p>
+  </div>
+
+  <div class="clearfix"></div>
+  <h3 class="section" id="housecalls">Tattler Impact Report</h3>
+  <h4 class="head">The Tattler Makes House Calls</h4>
+  <p class="deck">Recipients, reportedly stunned, accept the Tattler's highest honors.</p>
+
+  <div class="photos4">
+    <div>
+      <img src="camp-cantina.jpg" alt="The Camp Cantina trophy, engraved Outstanding Exterior Crispness">
+      <div class="who">Camp Cantina</div>
+      <div class="what">Outstanding Achievement in Exterior Crispness</div>
+    </div>
+    <div>
+      <img src="gates-brovi.jpg" alt="The Gates and Brovi trophy, engraved Dependable Basket Award">
+      <div class="who">Gates &amp; Brovi</div>
+      <div class="what">Distinguished Service to the Dependable Basket</div>
+    </div>
+    <div>
+      <img src="stadium-takeout.jpg" alt="The Stadium Takeout trophy, engraved Overall Distinction Award">
+      <div class="who">Stadium Takeout</div>
+      <div class="what">Commissioner's Citation for Overall Distinction</div>
+    </div>
+    <div>
+      <img src="mickies.jpg" alt="The Mickies Dairy Bar trophy, engraved Excellence in Potato Character">
+      <div class="who">Mickies Dairy Bar</div>
+      <div class="what">Excellence in Potato Character</div>
+    </div>
+  </div>
+
+  <div class="reversebar" style="margin:22px 0">Winners Still Fielding a Crushing Surge in Demand in the Wake of Our Report</div>
+
+  <div class="box">
+    <h4 class="head">A Special Thank You</h4>
+    <p>These individually engraved gold monuments to culinary excellence were made possible by an unsolicited reader contribution. The Tattler remains shaken by this extraordinary act of support. Readers are encouraged to look for these prestigious honors proudly displayed at winning establishments.</p>
+  </div>
+
+  <h3 class="section">The Great Tattler Fry Giveaway</h3>
+  <p>Camp Cantina has done something no business on this beat has ever done: responded to Tattler recognition with an actual, genuine giveaway.</p>
+  <p>Readers holding a first-run printed copy can redeem the coupon inside for one free small basket of fries during September. This is the first time in Tattler history a business has done this. The Commission does not expect it to happen again anytime soon.</p>
+
+  <div class="box center" style="margin-bottom:20px">
+    <p style="font-family:Arial,sans-serif;font-weight:bold;font-size:13px;line-height:1.5;margin:0">
+      Congratulations! This coupon was issued only with the Tattler's first print run
+      and is available in limited numbers. Don't let this rare piece of neighborhood
+      commerce go to waste.</p>
+  </div>
+
+  <div class="clipline">&#9986; &nbsp;Clip and Save&nbsp; &#9986;</div>
+
+  <div class="coupon">
+    <div class="voidstamp">Void</div>
+    <div class="coupon-logo">
+      <img src="camp-cantina-logo.png" alt="Camp Cantina, Madison WI">
+    </div>
+    <div class="coupon-inner">
+      <div class="coupon-head">Free Small Basket<br>of Fries</div>
+      <div class="coupon-fine">
+        Dine-in only &middot; One per table/group<br>
+        No purchase necessary &middot; No football or volleyball game days<br>
+        Expires 9/30/26
+      </div>
+    </div>
+  </div>
+
+  <p class="coupon-note">A note from the Tattler, not Camp Cantina: original printed paper coupon
+  required. No screenshots, PDFs, or funny business.</p>
+
+  <div class="void">
+    <p><strong>This is a picture of the coupon, not the coupon.</strong></p>
+    <p>The Great Tattler Fry Giveaway was a first-print-run offer. If you are reading the
+    September issue on the web, you are holding nothing Camp Cantina can accept. Find a
+    printed copy, or catch the next one.</p>
+  </div>
+
+  <h3 class="section">Letters to the Editor</h3>
+  <p class="deck">Thanks to everyone who sent questions, comments and neighborhood intelligence our way. Keep them coming.</p>
+
+  <div class="box">
+    <blockquote>"I've only had [The Monroe Street Tattler] for 3 minutes and I deeply resonate with all observations."</blockquote>
+    <div class="attrib">Tattletale</div>
+    <p style="margin-top:14px"><em>The Tattler responds: Keep tattling.</em></p>
+  </div>
+
+  <div class="box letter" id="gravy">
+    <h4 class="head">A Matter of Gravy Jurisdiction</h4>
+    <p>Dear Editor,</p>
+    <p>Excellent report. Rigorous, well argued, and wrong about one thing.</p>
+    <p>I'm a Southerner, and I've never been to Mickies on principle. I have heard they put brown gravy on the Scrambler. Brown gravy is for roast beef or turkey. It has no business anywhere near breakfast. Breakfast gets white sausage gravy. This seems like something the Commission should investigate.</p>
+    <p class="from">A Concerned Southerner</p>
+    <h5 class="sub">The Commission Responds</h5>
+    <p>The Commission thanks the reader for raising what appears to be a sincerely held position on gravy.</p>
+    <p>As a reminder, the Commission's jurisdiction for the French Fry Report was limited exclusively to french fries, making this an unusual time to air grievances on unrelated matters. While Mickies received well-deserved recognition in that investigation, no findings were issued regarding gravy.</p>
+    <p>The Commission also recognizes the longstanding right of every diner to enjoy gravy in the manner they see fit, whether brown, white, or not at all.</p>
+    <p>As for Mickies, the Commission notes that its lines routinely stretch out the door in January, July, and nearly every season in between. Whatever position one takes on breakfast gravy, the neighborhood has clearly rendered its verdict on the restaurant itself.</p>
+    <p>The Commission therefore expresses no opinion on brown gravy, white gravy, or the boundaries separating the two. The matter remains unresolved, though it may warrant the convening of a future Breakfast Commission.</p>
+  </div>
+
+  <h3 class="section">Featured Pet</h3>
+  <h4 class="head">Puddin': Seen at Last</h4>
+  <p class="deck">The neighborhood's most photographed dog opens up.</p>
+  <figure class="figright">
+    <img src="puddin.jpg" alt="Puddin', a black and white speckled dog, sitting in tall grass">
+    <figcaption>Puddin', available for squirrel patrol, bun inspection and compliments</figcaption>
+  </figure>
+  <p>For our inaugural Featured Pet, meet Puddin', a neighborhood beauty with a complicated relationship with rules, squirrels and hamburger buns.</p>
+  <p>Puddin' takes her role in the family seriously. She considers following her human dad a full-time job and, remarkably, will not pass her four-year-old human sister on the stairs. Other household expectations are more negotiable. The no-dogs-on-the-guest-bed policy, for instance, is treated as a suggestion.</p>
+  <p>Her official makeup is 50% blue heeler, 25% golden retriever and 25% yellow lab, plus, somehow, 2% Dalmatian. Her family also suspects 2% raccoon. Testing remains inconclusive.</p>
+  <p>When she isn't following Dad, Puddin' hunts squirrels with a career success rate of zero, rests her head on inconveniently hard surfaces and keeps an eye out for unattended carbohydrates. Hamburger buns are a particular weakness.</p>
+  <p>Her lack of success with squirrels has not hurt her public profile. Strangers routinely tell Puddin' she's beautiful. Drivers have called out questions about her from their cars. One passenger even took her picture, most recently on Van Beuren in Vilas, proof that Puddin's fame, like this paper's coverage, does not stop at the Monroe Street border.</p>
+  <p>Puddin' remains available for squirrel patrol, bun inspection and compliments.</p>
+
+  <div class="box">
+    <p>Know a pet with main character energy? The Tattler is now accepting nominations for future Featured Pet honors. No r&eacute;sum&eacute; required, though we won't discourage one. Email <a href="mailto:MonroeStreetTattler@gmail.com">MonroeStreetTattler@gmail.com</a>.</p>
+  </div>
+
+  <div class="clearfix"></div>
+  <h3 class="section" id="neighborhood">Around the Neighborhood</h3>
+  <div class="grid">
+    <div class="brief">
+      <figure>
+        <img src="cranes.jpg" alt="A marked crosswalk at Edgewood Avenue on Monroe Street">
+        <figcaption>Monroe Street miracle! Crosswalk used as intended.</figcaption>
+      </figure>
+      <h4 class="head">Traffic Miracle on Monroe!</h4>
+      <p class="deck" style="margin-bottom:10px">Crane Family Demonstrates Proper Crosswalk Use</p>
+      <p>A family of cranes was observed crossing a busy neighborhood intersection this week during morning rush hour. They activated the pedestrian crossing button, waited for traffic to yield, and proceeded through the marked crosswalk with confidence.</p>
+      <p>Sources on the scene report that traffic stopped for the birds, offering cautious evidence that local commuters do, in fact, recognize crosswalks under certain conditions. The cranes, having safely reached the other side, declined to comment.</p>
+    </div>
+    <div class="brief">
+      <h4 class="head">Field Report</h4>
+      <p class="deck" style="margin-bottom:10px">Area Millennial Dads Report Strikingly High Levels of Public Praise</p>
+      <p>At Hillington Green Park, known locally to some as "Triangle Park," multiple fathers report being routinely told they are "great dads" by older passersby.</p>
+      <p>One neighborhood source, when asked what prompted the praise, said, "He appears to have shown up and remained for the entire duration."</p>
+    </div>
+    <div class="brief">
+      <h4 class="head">Airspace Update: Look Up!</h4>
+      <p>A bald eagle has been spotted over Vilas twice in recent weeks. Between this and the cranes, local birds appear increasingly comfortable with public life.</p>
+    </div>
+    <div class="brief">
+      <h4 class="head">Neighborhood Listserv Reaches Its Final and Intended Purpose</h4>
+      <p class="deck" style="margin-bottom:10px">Day 6: Half-Used Tube of Denture Cream Remains Available</p>
+      <p>No further updates at this time.</p>
+    </div>
+    <div class="brief">
+      <figure>
+        <img src="ninja.jpg" alt="A homemade ninja warrior course strung between trees in a front yard">
+        <figcaption>Training grounds, Adams Street.</figcaption>
+      </figure>
+      <h4 class="head">Backyard Athletics</h4>
+      <p class="deck" style="margin-bottom:10px">Bad-Ass Parent Transforms Terrace Into Elite Training Facility</p>
+      <p>What appears to be a homemade miniature Ninja Warrior course has emerged on Adams Street, strung between two trees in a neighborhood front yard and complete with a swing, ropes, hanging handles and a step stool.</p>
+      <p>Sources have not confirmed whether any children at the property have formally qualified for American Ninja Warrior, though preparations appear well underway.</p>
+    </div>
+  </div>
+
+  <h3 class="section">Tattler Business &middot; Notices from the Front Office</h3>
+
+  <div class="box heavy center">
+    <h4 class="head">Get a Yard Sign</h4>
+    <p>We're giving away ten yard signs to the neighborhood's first Tattler readers. Publicly admit that you read this publication before they're gone. Email <a href="mailto:MonroeStreetTattler@gmail.com">MonroeStreetTattler@gmail.com</a> to claim one.</p>
+  </div>
+
+  <div class="grid">
+    <div class="brief">
+      <h4 class="head">Never Miss an Issue</h4>
+      <p>The Tattler can now reach you by two methods: email, which is instant and asks nothing of anyone, or physical delivery to your door here in the neighborhood, which requires someone to walk there. Both are free. One form covers both. <a href="/#delivery">Sign up here</a>.</p>
+    </div>
+    <div class="brief">
+      <h4 class="head">Write to Us</h4>
+      <p>Got a pet, some neighborhood lore, or outrageous history everyone should know about? What about a Halloween, Thanksgiving, Christmas or Valentine's story? Doesn't have to be funny. Email <a href="mailto:MonroeStreetTattler@gmail.com">MonroeStreetTattler@gmail.com</a>.</p>
+    </div>
+    <div class="brief">
+      <h4 class="head">Dog Water Intelligence</h4>
+      <p>We're mapping the neighborhood's water bowls and treat jars so dogs and their people know where to stop. Know one we missed? <a href="dog-map.html">Add it to the map</a>.</p>
+    </div>
+    <div class="brief">
+      <h4 class="head">Host the Tattler</h4>
+      <p>Own a Free Little Library, or are you a neighborhood business? Become an official distribution point. We handle delivery. You provide the shelf space. Email us to volunteer.</p>
+    </div>
+    <div class="brief">
+      <h4 class="head">Support the Tattler</h4>
+      <p>If you're enjoying the Tattler and want to say thanks, <a href="/#contribute">our website has a way for readers to chip in</a> once or become a recurring supporter. Your support helps cover printing, trophies, and whatever unnecessary investigation comes next. Reading it, sharing it, and telling your neighbors about it helps too. That's the whole point.</p>
+    </div>
+    <div class="brief">
+      <h4 class="head">Find a Copy</h4>
+      <p>Printed copies turn up in Free Little Libraries and a growing list of neighborhood businesses. <a href="/#delivery">Sign up for our email list</a> and we'll let you know when a new issue is out.</p>
+    </div>
+  </div>
+
+  <div class="box">
+    <h4 class="head">Notice to Businesses Near and Far</h4>
+    <p>The Tattler has recently been made aware that printing and trophies cost money. If you are a business and wish to sponsor a future issue or underwrite an unnecessary investigation, the Tattler is prepared to allow it. Space is limited by the size of the paper, which is not large. Our readership stretches near and far, including as far as McFarland, Fitchburg, and Orlando.</p>
+    <p>Inquiries may be directed to <a href="mailto:MonroeStreetTattler@gmail.com">MonroeStreetTattler@gmail.com</a>.</p>
+  </div>
+
+  <h3 class="section" id="crossword">Tattler Crossword No. 1</h3>
+  <div class="box heavy center">
+    <h4 class="head">Local Intelligence Test</h4>
+    <p>Monroe Street Tattler Crossword No. 1 appears on the back page of the printed issue, with clues ranging from neighborhood specifics to the merely unfair.</p>
+    <img src="crossword-grid.png" alt="The Monroe Street Tattler Crossword No. 1 grid" style="width:100%;max-width:340px;height:auto;margin:14px auto 16px;display:block;border:1px solid #ddd9c8">
+    <p><a href="crossword-1.pdf">Download and print the crossword</a></p>
+  </div>
+
+  <figure style="margin:34px 0 0">
+    <img src="cartoon.png" alt="Cartoon: two neighbors at a Free Little Library, one saying tough call, you've got some good options">
+    <figcaption>Cartoons</figcaption>
+  </figure>
+
+  <footer>
+    <p>MonroeStreetTattler.com: subscribe, read past issues, submit a tip, or support our paper.<br>
+    Or email us directly at <a href="mailto:MonroeStreetTattler@gmail.com" style="color:var(--muted)">MonroeStreetTattler@gmail.com</a>.</p>
+  </footer>
+
+</div>
+</body>
+</html>
