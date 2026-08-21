@@ -102,6 +102,15 @@
   .coupon-note { text-align:center; font-style:italic; font-size:13px; color:var(--muted);
                  margin:12px 0 0; }
 
+  .btnrow { display:flex; gap:12px; flex-wrap:wrap; margin:14px 0 0; }
+  .btnrow a { font-family:Arial,sans-serif; font-weight:bold; font-size:12px; text-transform:uppercase;
+              letter-spacing:1px; background:var(--ink); color:var(--paper); padding:12px 18px;
+              text-decoration:none; }
+  .btnrow a:hover { background:var(--red); }
+  .btnrow a.ghost { background:transparent; color:var(--ink); border:2px solid var(--ink);
+                    padding:10px 16px; }
+  .btnrow a.ghost:hover { background:var(--ink); color:var(--paper); }
+
   .pdfbar { border:2px solid var(--ink); background:#fff; padding:14px 18px; margin:0 0 34px;
             display:flex; justify-content:space-between; align-items:center; gap:14px; flex-wrap:wrap; }
   .pdfbar span { font-size:14px; }
@@ -312,11 +321,24 @@
 
   <div class="box">
     <h4 class="head">Did We Miss Your Favorite?</h4>
-    <p>If your go-to flavor didn't make the print report, don't panic. The Commission tasted all 56.</p>
-    <p><a href="56-flavors.html">Read the complete flavor-by-flavor findings</a>, with additional tasting notes and more official recognitions.</p>
-    <p>You'll also find the <a href="tasting-kit.html">Tattler's Family Ice Cream Investigation Kit</a>. Assemble your own panel, choose five flavors, issue your findings, and report back to the newsroom.</p>
-    <p>Strong opinions are encouraged.</p>
-    <p><em>Outside verification is the foundation of good journalism. Ice cream is no exception.</em></p>
+    <p>If your go-to flavor didn't make the print report, don't panic. The Commission tasted all 56.
+    The complete flavor-by-flavor findings are online, with additional tasting notes and more
+    official recognitions.</p>
+    <div class="btnrow">
+      <a href="56-flavors.html">Read all 56 flavors &rarr;</a>
+    </div>
+  </div>
+
+  <div class="box heavy">
+    <h4 class="head">Conduct Your Own Ice Cream Investigation</h4>
+    <p>Assemble your own panel, choose five flavors, issue your findings, and report back to the
+    newsroom. Five flavors, not fifty-six.</p>
+    <p>Strong opinions are encouraged. <em>Outside verification is the foundation of good
+    journalism. Ice cream is no exception.</em></p>
+    <div class="btnrow">
+      <a href="athome-family-panel.pdf" target="_blank" rel="noopener">Print the Family Panel &rarr;</a>
+      <a class="ghost" href="https://docs.google.com/forms/d/e/1FAIpQLSfIpeGFNoOInsQJGskPnJdH6CZlpxdR2ti4-zTWCQlpzuZOyQ/viewform" target="_blank" rel="noopener">Submit Your Findings &rarr;</a>
+    </div>
   </div>
 
   <div class="box">
