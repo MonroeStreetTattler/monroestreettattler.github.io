@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>We Tried Every Flavor at Chocolate Shoppe So You Don't Have To | The Monroe Street Tattler</title>
+<meta name="description" content="Tasting notes for all 56 ice cream flavors at Chocolate Shoppe Ice Cream on Monroe Street in Madison, Wisconsin. The complete flavor-by-flavor record from the Monroe Street Tattler Culinary Commission.">
+<meta property="og:title" content="We Tried Every Flavor at Chocolate Shoppe So You Don't Have To">
+<meta property="og:description" content="All 56 flavors at Chocolate Shoppe Ice Cream on Monroe Street in Madison, tasted in one sitting by the Monroe Street Tattler Culinary Commission.">
+<meta property="og:image" content="https://monroestreettattler.com/september-2026_og.png">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://monroestreettattler.com/56-flavors.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="We Tried Every Flavor at Chocolate Shoppe So You Don't Have To">
+<meta name="twitter:description" content="All 56 flavors at Chocolate Shoppe Ice Cream on Monroe Street in Madison, tasted in one sitting by the Monroe Street Tattler Culinary Commission.">
+<meta name="twitter:image" content="https://monroestreettattler.com/september-2026_og.png">
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+<style>
+  :root { --paper:#fdfcf3; --ink:#111; --red:#b3241c; --muted:#5a5a5a; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:#e4e2d8; color:var(--ink);
+         font-family:Georgia,'Times New Roman',serif; line-height:1.55; }
+  .wrap { max-width:900px; margin:0 auto; background:var(--paper); min-height:100vh;
+          padding:0 26px 60px; box-shadow:0 0 40px rgba(0,0,0,0.15); }
+  nav.tabs { display:flex; justify-content:center; gap:22px; font-family:Arial,sans-serif;
+             font-weight:bold; font-size:11px; text-transform:uppercase; letter-spacing:.8px;
+             padding:12px 0 22px; flex-wrap:wrap; border-bottom:1px solid var(--ink); }
+  nav.tabs a { color:var(--ink); text-decoration:none; }
+  nav.tabs a:hover { color:var(--red); border-bottom:2px solid var(--red); }
+  .issueline { text-align:center; font-family:Arial,sans-serif; font-size:11px; font-weight:bold;
+               letter-spacing:1.5px; color:var(--red); text-transform:uppercase; margin:18px 0 6px; }
+  h1.masthead { font-family:'Times New Roman',Times,serif; font-weight:900; text-align:center;
+                text-transform:uppercase; letter-spacing:.5px; line-height:1.02;
+                font-size:clamp(28px,6.5vw,50px); margin:0 0 8px; }
+  .tagline { text-align:center; font-style:italic; font-size:14px; color:var(--muted);
+             margin:0 0 4px; padding-bottom:16px; border-bottom:3px double var(--ink); }
+  .reportname { font-family:Arial,sans-serif; font-size:12px; font-weight:bold; color:var(--red);
+                text-transform:uppercase; letter-spacing:2px; text-align:center; margin:34px 0 0; }
+  h2.title { font-family:Arial,sans-serif; font-weight:900; text-transform:uppercase;
+             font-size:clamp(24px,5vw,38px); line-height:1.08; margin:12px 0 0; text-align:center; }
+  .lede p { font-size:17px; text-align:center; color:var(--muted); font-style:italic; margin:0 0 10px; }
+  .orient { font-size:15px; color:var(--muted); margin:24px 0 0; }
+  .orient a { color:var(--red); font-weight:bold; }
+  .joinbar { display:flex; justify-content:space-between; align-items:center; gap:16px; flex-wrap:wrap;
+             border-top:1px solid var(--ink); border-bottom:1px solid var(--ink);
+             padding:14px 0; margin:24px 0 6px; }
+  .joinbar span { font-size:15px; }
+  .joinbar a { font-family:Arial,sans-serif; font-weight:bold; font-size:12px; text-transform:uppercase;
+               letter-spacing:1px; background:var(--ink); color:var(--paper); padding:9px 15px;
+               text-decoration:none; white-space:nowrap; }
+  .joinbar a:hover { background:var(--red); }
+  .searchbar { margin:34px 0 6px; }
+  .searchbar label { font-family:Arial,sans-serif; font-size:11px; font-weight:bold;
+                     text-transform:uppercase; letter-spacing:1.5px; color:var(--red);
+                     display:block; margin-bottom:4px; }
+  .searchbar input { width:100%; border:none; border-bottom:2px solid var(--ink); background:transparent;
+                     font-family:Georgia,serif; font-size:18px; padding:6px 2px; outline:none; color:var(--ink); }
+  .searchbar input::placeholder { color:#a9a496; font-style:italic; }
+  .count { font-family:Arial,sans-serif; font-size:11px; text-transform:uppercase; letter-spacing:1px;
+           color:var(--muted); margin:0 0 26px; }
+  .flavor { border-bottom:1px solid #d8d4c4; padding:20px 0; }
+  .flavor h4 { font-family:Arial,sans-serif; font-weight:900; text-transform:uppercase;
+               font-size:17px; margin:0 0 8px; }
+  .flavor p { font-size:16px; margin:0 0 10px; }
+  .flavor p:last-child { margin-bottom:0; }
+  .flavor.hide { display:none; }
+  .noresult { display:none; padding:26px 0; font-style:italic; color:var(--muted); font-size:16px; }
+  .noresult.show { display:block; }
+  .box { border:1.5px solid var(--ink); padding:18px 20px; margin:30px 0; }
+  .box.heavy { border:4px solid var(--ink); }
+  .box h4 { font-family:Arial,sans-serif; font-weight:900; text-transform:uppercase;
+            font-size:19px; margin:0 0 10px; }
+  .box p { font-size:15px; margin:0 0 12px; }
+  .box p:last-child { margin-bottom:0; }
+  .box a { color:var(--red); font-weight:bold; }
+  footer { margin-top:44px; padding-top:18px; border-top:3px double var(--ink);
+           text-align:center; font-size:13px; color:var(--muted); }
+  footer a { color:var(--muted); }
+</style>
+<!-- Cloudflare Web Analytics -->
+<script
+  type="module"
+  src="https://static.cloudflareinsights.com/beacon.min.js"
+  data-cf-beacon='{"token": "b4b7990d0c27478ea9b605f098b4ad3c"}'>
+</script>
+<!-- End Cloudflare Web Analytics -->
+</head>
+<body>
+<div class="wrap">
+
+  <nav class="tabs">
+    <a href="/">Home</a>
+    <a href="september-2026.html">September Issue</a>
+    <a href="icecream.html">Investigation Kit</a>
+    <a href="dog-map.html">Dog Map</a>
+  </nav>
+
+  <div class="issueline">Culinary Commission &middot; Full Record &middot; September 2026</div>
+  <h1 class="masthead">The Monroe Street Tattler</h1>
+  <p class="tagline">News so hyperlocal, it's amazing anyone takes an interest.</p>
+
+  <p class="reportname">The Complete 56-Flavor Findings</p>
+  <h2 class="title">We Tried Every Flavor at Chocolate Shoppe So You Don't Have To</h2>
+  <p class="orient">The complete tasting record behind <a href="september-2026.html">The Monroe Street Ice Cream Investigation</a>, published by The Monroe Street Tattler.</p>
+
+  <div class="joinbar">
+    <span><strong>Want in?</strong> Run your own tasting panel at home. The Tattler's Family Ice Cream Investigation Kit takes 5 flavors, not 56.</span>
+    <a href="icecream.html">Get the tasting kit</a>
+  </div>
+
+  <div class="searchbar">
+    <label for="q">Jump to a flavor</label>
+    <input id="q" type="search" placeholder="Type a flavor name, like Zanzibar, Blue Moon or cookie dough" autocomplete="off">
+  </div>
+  <p class="count" id="count">Showing all 56 flavors</p>
+
+  <div id="list">
+<article class="flavor" data-name="blue moon oat cream">
+  <h4>Blue Moon Oat Cream</h4>
+  <p>The Junior Correspondents went immediately to <strong>Froot Loops</strong>, which turns out to be a remarkably useful description. Citrusy, cereal-milk-ish and blue enough to make clear that ordinary rules do not apply.</p>
+</article>
+<article class="flavor" data-name="black cherry oat cream">
+  <h4>Black Cherry Oat Cream</h4>
+  <p>One Junior Correspondent compared it to cherry yogurt from a tube, but with a major upgrade: <strong>actual pieces of cherry appeared in the spoon.</strong> The cherry flavor came through clearly without overwhelming the oat base.</p>
+</article>
+<article class="flavor" data-name="ultimate oreo oat cream">
+  <h4>Ultimate Oreo Oat Cream</h4>
+  <p>A nice Oreo-cream burst with plenty of cookie character. Even one Junior Correspondent who announced a general skepticism toward oat-based ice cream still conceded: <strong>“It’s ice cream, so it’s good.”</strong> Progress.</p>
+</article>
+<article class="flavor" data-name="rhubarb crumble">
+  <h4>Rhubarb Crumble</h4>
+  <p>Tart rhubarb, plenty of crumble and a little cream-cheese richness made this one feel closer to dessert-counter territory than a standard scoop. Commissioners particularly appreciated the contrast between the bright rhubarb and buttery crumble.</p>
+</article>
+<article class="flavor" data-name="red wine chocolate cake">
+  <h4>Red Wine Chocolate Cake</h4>
+  <p>Chocolate Shoppe promised notes of California Zinfandel, chocolate frosting and dense chocolate cake. The Commission somehow landed on Christmas cherry cordials. Rich, dark and very chocolaty either way.</p>
+</article>
+<article class="flavor" data-name="mint avalanche">
+  <h4>Mint Avalanche</h4>
+  <p>Fresh mint with Andes candies, Grasshopper cookies and a chocolate fudge swirl. One Junior Correspondent described it as “my toothpaste, but a lot better.” The Commission considers this complimentary.</p>
+</article>
+<article class="flavor" data-name="door county cherry">
+  <h4>Door County Cherry</h4>
+  <p>Vanilla and cherry came through together, with real pieces of cherry providing the occasional jackpot spoon. A gentle, classic combination with the added benefit of Wisconsin fruit credentials.</p>
+</article>
+<article class="flavor" data-name="rainbow sherbet">
+  <h4>Rainbow Sherbet</h4>
+  <p>Bright, fruity and instantly nostalgic. Orange dominated much of the Junior Correspondent discussion, while at least one taster immediately identified its natural habitat: <strong>a birthday party.</strong></p>
+</article>
+<article class="flavor" data-name="kitty kitty bang bang™">
+  <h4>Kitty Kitty Bang Bang™</h4>
+  <p>The name generated excitement before the spoon arrived. Raspberry took the lead once tasting began, running through a cheesecake base, with chocolate chunks and whole Oreos submerged somewhere in the vicinity. One Junior Correspondent offered perhaps the most precise endorsement of the day: <strong>“If one of my friends got this, I’d have a bite.”</strong></p>
+</article>
+<article class="flavor" data-name="birthday cake">
+  <h4>Birthday Cake</h4>
+  <p>The Junior Correspondents knew exactly what to do with this one. Sprinkles, frosting energy, good texture and repeated declarations that it belonged at a birthday. Several investigators independently proposed it for an ice cream cake, which feels like useful field intelligence.</p>
+</article>
+<article class="flavor" data-name="super human">
+  <h4>Super Human</h4>
+  <p>Visually, the panel compared it to Play-Doh. Flavor-wise, it proved much harder to define. Cherry, Blue Moon and vanilla combine into something big, sweet and genuinely difficult to explain. Several tasters also reported a tingling or slightly numb tongue, which only strengthened its superhero credentials.</p>
+</article>
+<article class="flavor" data-name="blue moon">
+  <h4>Blue Moon</h4>
+  <p>Sweeter than the oat version and immediately familiar to Junior Correspondents who had ordered it before. One comparison landed especially well: <strong>blue raspberry Kool-Aid, if blue raspberry Kool-Aid became ice cream.</strong></p>
+</article>
+<article class="flavor" data-name="halley’s comet®">
+  <h4>Halley’s Comet®</h4>
+  <p>One of the earliest flavors to make the room stop and pay attention. Caramel and malt came through strongly, with chocolate and vanilla underneath. Multiple tasters independently declared it their favorite so far. The phrase <strong>“THIS IS THE BEST ONE YET”</strong> entered the official record.</p>
+</article>
+<article class="flavor" data-name="cotton candy twist">
+  <h4>Cotton Candy Twist</h4>
+  <p>Exactly the sort of bright carnival scoop its name promises. Some tasted bubble gum, others cotton candy, but one Junior Correspondent issued the first <strong>5</strong> of the investigation. Adults also nominated it for the highly technical category of <strong>Tastes Like the Name</strong>.</p>
+</article>
+<article class="flavor" data-name="s’more to love™">
+  <h4>S’more to Love™</h4>
+  <p>It smelled like graham cracker before anyone even tasted it. Then came caramel, graham, mix-ins and the general feeling of an extremely well-built sundae. “So, so, so good,” said one taster. A Junior Correspondent was more precise: <strong>10 out of 10.</strong></p>
+</article>
+<article class="flavor" data-name="banana cream pie">
+  <h4>Banana Cream Pie</h4>
+  <p>Very banana, with marshmallow ripple and Nilla Wafer pieces turning it into a proper banana-cream-pie situation. The room briefly discussed banana Runts, which will either help or hurt depending on your personal history.</p>
+</article>
+<article class="flavor" data-name="strawberry">
+  <h4>Strawberry</h4>
+  <p>This one tasted like comfort. Real strawberry flavor came through strongly, with enough fruit that the panel had no trouble identifying what was in the cup. One Commissioner summed it up simply: <strong>“Exactly what I’d want for strawberry ice cream.”</strong></p>
+</article>
+<article class="flavor" data-name="ultimate oreo">
+  <h4>Ultimate Oreo</h4>
+  <p>A serious showing for Team Oreo. Great texture, good cookie distribution and enough Oreo flavor throughout that several adults and Junior Correspondents put it in their top three. It also earned the Junior Correspondents’ <strong>No-Sharing Award</strong>, which may be the highest practical compliment available.</p>
+</article>
+<article class="flavor" data-name="exhausted parent®">
+  <h4>Exhausted Parent®</h4>
+  <p>The Junior Correspondents immediately recognized the smell of their parents’ cold brew, which is roughly correct: the base is bourbon-spiked espresso, with bittersweet chocolate chunks throughout. Coffee comes through clearly and the sweetness stays well behind many of the surrounding flavors. One Junior Correspondent concluded: <strong>“If I’m a parent, I’d definitely get this for a wake-up ice cream.”</strong></p>
+</article>
+<article class="flavor" data-name="zanzibar® chocolate">
+  <h4>Zanzibar® Chocolate</h4>
+  <p>Chocolate people, report for duty. Three kinds of cocoa go into this one, and it lands somewhere in the neighborhood of a fudge brownie: deep, rich and unapologetically chocolaty. It inspired multiple variations of <strong>“extremely good.”</strong> One known chocolate skeptic remained unmoved, which only confirms that Zanzibar knows exactly what it is.</p>
+</article>
+<article class="flavor" data-name="peppermint stick">
+  <h4>Peppermint Stick</h4>
+  <p>A creamy candy cane in ice cream form. Refreshing, sweet and unmistakably peppermint, with comparisons ranging from candy canes to a York Peppermint Patty without the chocolate. Even late in a 56-flavor tasting, the room lit up. <strong>The Bipartisan Scoop</strong> was born.</p>
+</article>
+<article class="flavor" data-name="zoreo">
+  <h4>Zoreo</h4>
+  <p>This one arrived with an existing constituency. “My favorite of all time.” “Number one.” “It smells delicious.” Junior Correspondents were particularly committed, while everyone could agree on the smooth, creamy texture and extremely fun combination of chocolate, marshmallow and Oreo.</p>
+</article>
+<article class="flavor" data-name="iced latte-da®">
+  <h4>Iced Latte-Da®</h4>
+  <p>The coffee flavors created some of the day’s finest Junior Correspondent apprehension. Once the adults got involved, this one earned praise for balance: espresso with chocolate and a nice little kick, plus larger chocolate chunks that several tasters appreciated.</p>
+</article>
+<article class="flavor" data-name="vanilla bean">
+  <h4>Vanilla Bean</h4>
+  <p>Vanilla was not permitted to hide behind the excuse of being vanilla. Made with Madagascar vanilla and real vanilla bean flakes, the aroma was immediate, the texture was lovely, and more than one taster called it a favorite. Best Junior Correspondent assessment: <strong>“Better than normal vanilla.”</strong></p>
+</article>
+<article class="flavor" data-name="mint chip">
+  <h4>Mint Chip</h4>
+  <p>If Mint Avalanche is the maximalist cousin, Mint Chip is the cleaner classic. Mild mint, little chocolate flakes that crack pleasantly when you chew them, and a simple balance that lets the mint do most of the work.</p>
+</article>
+<article class="flavor" data-name="chocolate">
+  <h4>Chocolate</h4>
+  <p>A Junior Correspondent declared this <strong>“a mom flavor,”</strong> which was not further explained. The chocolate itself was smooth and surprisingly restrained, with one Commissioner specifically noting that it wasn’t overly sweet. Classic chocolate doing its job.</p>
+</article>
+<article class="flavor" data-name="root beer float">
+  <h4>Root Beer Float</h4>
+  <p>Chocolate Shoppe says vanilla ice cream swirled with root beer Italian ice. The Commission can confirm: <strong>that is exactly what happens.</strong> Creamy, balanced and immediately recognizable, with the Italian ice supplying just enough root beer bite to make the whole thing taste like the float you hoped you ordered. A strong contender for <strong>Most Accurate Flavor Representation</strong>.</p>
+</article>
+<article class="flavor" data-name="cookie dough">
+  <h4>Cookie Dough</h4>
+  <p>The texture did most of the talking here. Soft cookie dough pieces, chocolate and repeated Junior Correspondent appreciation for the chunks. The only complaint was wanting more cookie dough, which may have been an unfortunate consequence of conducting science one tasting spoon at a time.</p>
+</article>
+<article class="flavor" data-name="caramel chaos™">
+  <h4>Caramel Chaos™</h4>
+  <p>Chocolate-covered caramel cups and a gooey caramel swirl created enough richness to make a small spoon feel consequential. The chocolate-caramel bursts drew particular praise. One Junior Correspondent immediately went to <strong>Reese’s Cup</strong>, which captures the general neighborhood of the experience.</p>
+</article>
+<article class="flavor" data-name="belgian daydream">
+  <h4>Belgian Daydream</h4>
+  <p>Maple announces itself immediately, then the waffle pieces arrive to provide texture and help balance the sweetness. It is big, fun and very much committed to the breakfast-for-dessert premise.</p>
+</article>
+<article class="flavor" data-name="strawberry cheesecake">
+  <h4>Strawberry Cheesecake</h4>
+  <p>The base here is actual cheesecake ice cream, and the strawberry still comes through clearly. The panel split, but one Commissioner was firmly on Team Strawberry Cheesecake. For people who want their ice cream to lean confidently toward an actual slice of cheesecake, this is the lane.</p>
+</article>
+<article class="flavor" data-name="cr-appley ever after">
+  <h4>Cr-Appley Ever After</h4>
+  <p>The room got loud.</p><p>Sour green apple against a caramel ice cream base, with gooey caramel ribbons throughout, produced full-on <strong>old-school caramel apple sucker nostalgia</strong> for the adults and one Junior Correspondent, while the remaining Juniors maintained substantial objections. A little gooey. A little visually unusual. Absolutely unforgettable. <strong>The Generational Divide</strong> remains unresolved.</p>
+</article>
+<article class="flavor" data-name="matcha green tea">
+  <h4>Matcha Green Tea</h4>
+  <p>Approached with skepticism. Finished with converts. Mild, creamy and much more approachable than several panelists expected, including adults who do not normally seek out matcha. A deserved winner for <strong>Outstanding Achievement in Flavor Risk-Taking</strong>.</p>
+</article>
+<article class="flavor" data-name="blackberry lemon bar">
+  <h4>Blackberry Lemon Bar</h4>
+  <p>The first unanimous favorite of the investigation.</p><p>Before the spoon even arrived, the panel could smell lemon. Then came bright blackberry, lemon and buttery lemon-bar pieces. Fresh, summery and immediately loved by everyone at the table. <strong>Commissioner’s Citation for Overall Distinction.</strong></p>
+</article>
+<article class="flavor" data-name="me want cookie™">
+  <h4>Me Want Cookie™</h4>
+  <p>The Junior Correspondents went wild. Oreo flavor, creamy cookie filling vibes and enough pure childhood energy that one taster threatened to move it ahead of longtime favorite Zoreo. Adults were more restrained. The children were not. <strong>Best Flavor for a Birthday</strong> and the Junior Correspondents’ <strong>Neighborhood Ambassador</strong>.</p>
+</article>
+<article class="flavor" data-name="nsa pomegranate swirl">
+  <h4>NSA Pomegranate Swirl</h4>
+  <p>One of the more surprising adult findings. Despite being no-sugar-added, it came across sweeter and more flavorful than the Commission expected, with pomegranate and berry character running through the vanilla base. Adults were considerably more enthusiastic than the Juniors, another reminder that generations remain divided on important issues.</p>
+</article>
+<article class="flavor" data-name="blueberry cheesecake">
+  <h4>Blueberry Cheesecake</h4>
+  <p>Nobody could accuse this flavor of hiding the cheesecake. The base is cheesecake ice cream and behaves accordingly, with blueberry providing the fruit counterpoint and cheesecake pieces reinforcing the point. This is for the person who orders cheesecake ice cream because they actually want <strong>cheesecake</strong> ice cream.</p>
+</article>
+<article class="flavor" data-name="lemon meringue">
+  <h4>Lemon Meringue</h4>
+  <p>One adult literally yelled <strong>“YES!”</strong> before the investigation had fully concluded. Creamy lemon and marshmallow gave the panel a remarkably convincing frozen-lemon-meringue-pie experience. Adults took the lead on this one and issued <strong>two thumbs up</strong>.</p>
+</article>
+<article class="flavor" data-name="sticks &amp; stones®">
+  <h4>Sticks &amp; Stones®</h4>
+  <p>A little salt can accomplish a lot. The salty-sweet combination earned immediate fans, with one Junior Correspondent putting it in the top ten. The salt itself received specific praise, which does not happen every day in ice cream journalism.</p>
+</article>
+<article class="flavor" data-name="carrot mango italian ice">
+  <h4>Carrot Mango Italian Ice</h4>
+  <p>The sleeper hit of the entire investigation.</p><p>“Ew, there are real carrots.”<br>“I hate all vegetables. But especially carrots.”</p><p>Then they tasted it.</p><p>Bright mango, terrific texture, great aroma and virtually none of the carrot flavor everyone had feared. “Way better than it sounds.” “I’m shocked.” Several tasters immediately planned to order it next time. <strong>The Flavor We Owe an Apology To.</strong></p>
+</article>
+<article class="flavor" data-name="raspberry lemon italian ice">
+  <h4>Raspberry Lemon Italian Ice</h4>
+  <p>First finding: <strong>“Ooooh, that’s really pretty.”</strong> Second finding: it tastes good too. Sweet raspberry and tart lemon make this a bright, refreshing option that feels especially well suited to a hot day.</p>
+</article>
+<article class="flavor" data-name="key lime cheesecake">
+  <h4>Key Lime Cheesecake</h4>
+  <p>The color got immediate approval, followed by appreciation for the big chewy crust pieces. Then the panel split dramatically. One taster loved it. For key-lime devotees, there is plenty here to investigate personally.</p>
+</article>
+<article class="flavor" data-name="munchie madness">
+  <h4>Munchie Madness</h4>
+  <p>The anticipation was enormous. Peanut butter cups, Oreos, M&amp;Ms and a salted caramel ripple all appeared somewhere in the proceedings, supported by a cake-batter base and a lasting peanut-butter aroma. It became an immediate contender for <strong>Most Stuff In It</strong>, a category created largely because this flavor exists.</p>
+</article>
+<article class="flavor" data-name="this $&amp;@! just got serious®">
+  <h4>This $&amp;@! Just Got Serious®</h4>
+  <p>Everybody was excited to try it, and it delivered. Salted caramel ice cream, sea salt fudge and salted cashews add up to sweet, salty, crunchy and unusually balanced for something carrying this much material. Nothing overwhelmed anything else. One taster liked it enough to request consideration for the <strong>No-Sharing Award</strong>. The adult Commission named it its <strong>Neighborhood Ambassador</strong>.</p>
+</article>
+<article class="flavor" data-name="butter pecan">
+  <h4>Butter Pecan</h4>
+  <p>The investigation began with allegations of “old man ice cream.” Those allegations were subsequently withdrawn.</p><p>Generously loaded with lightly roasted, salted pecans, it delivers a buttery richness and a classic salty-sweet thing happening throughout. By the end: <strong>“Not just for my grandparents anymore.”</strong></p>
+</article>
+<article class="flavor" data-name="peanut butter cookie dough">
+  <h4>Peanut Butter Cookie Dough</h4>
+  <p>This flavor received “oooos” before tasting and continued gaining ground afterward. Great peanut-butter aroma, cookie dough, chocolate and enough pull to prompt multiple requests for another spoon. <strong>“Best smell for miles.”</strong> Winner of <strong>The Comeback Bite</strong>.</p>
+</article>
+<article class="flavor" data-name="pb &amp; yay">
+  <h4>PB &amp; Yay</h4>
+  <p>Peanut butter and jelly in ice cream form is exactly the sort of proposal that requires an independent commission. Some approached cautiously. At least one adult came away genuinely impressed. Peanut butter ice cream, peanut butter swirls, grape jelly and pound cake bites made it weird enough to be interesting and familiar enough to work.</p>
+</article>
+<article class="flavor" data-name="nsa cashews &amp; caramel">
+  <h4>NSA Cashews &amp; Caramel</h4>
+  <p>A restrained, balanced combination of caramel and cashew in a no-sugar-added base. The caramel came through nicely, and Commissioners appreciated that neither half of the pairing took over the whole scoop.</p>
+</article>
+<article class="flavor" data-name="rocky road">
+  <h4>Rocky Road</h4>
+  <p>Sometimes a classic needs no reinvention. Chocolate, marshmallow and almonds produced a string of highly technical Junior Correspondent findings including <strong>“amazing,” “so good,”</strong> and finally <strong>“YES!!!!”</strong> Three Juniors asked for more. Case closed.</p>
+</article>
+<article class="flavor" data-name="party animal™">
+  <h4>Party Animal™</h4>
+  <p>The cookie pieces became the story. Tasters kept coming back to those little bites, and one Junior Correspondent said they would happily eat the cookie component all by itself. A useful reminder to investigate the entire spoon.</p>
+</article>
+<article class="flavor" data-name="yippee skippee®">
+  <h4>Yippee Skippee®</h4>
+  <p>Peanut butter fans should pay attention. Creamy peanut butter meets a salted caramel ripple, brownie chunks and crunchy chocolate-covered pretzels, creating exactly the kind of crunchy-creamy-salty texture shifts the Commission likes to overanalyze. Junior Correspondents gave particular credit to the pretzels.</p>
+</article>
+<article class="flavor" data-name="turtle">
+  <h4>Turtle</h4>
+  <p>The mix-ins looked good before the first bite, and the classic caramel-chocolate-nut combination did what classics tend to do: deliver. One adult called it a nice ice cream. A Junior Correspondent offered a stronger finding: <strong>“God. It was amazing.”</strong></p>
+</article>
+<article class="flavor" data-name="pistachio nut">
+  <h4>Pistachio Nut</h4>
+  <p>Whole pistachio pieces made this one immediately interesting. The almond-forward base prompted an unexpected Blue Moon comparison from the panel, with the pistachios adding a satisfying crunch and making sure nobody forgot what flavor they had ordered.</p>
+</article>
+<article class="flavor" data-name="heaps of love™">
+  <h4>Heaps of Love™</h4>
+  <p>A Junior Correspondent immediately announced, <strong>“Oh, my mom really likes this one.”</strong> That tracks: Oreos, brownies, cookie dough, pecans, caramel and chocolate ripples are all invited. With this many mix-ins involved, every spoon becomes its own small investigation.</p>
+</article>
+<article class="flavor" data-name="espresso almond fudge">
+  <h4>Espresso Almond Fudge</h4>
+  <p>A proper coffee flavor and proud of it. Espresso comes through strongly, backed by fudge and crunchy almond. One Commissioner’s reaction: <strong>“I love that one. Why don’t I order this more?”</strong> Junior Correspondents expressed their own opinions with equal clarity.</p>
+</article>
+<article class="flavor" data-name="scotcheroo">
+  <h4>Scotcheroo</h4>
+  <p>A deeply Midwestern proposition: butterscotch, peanut butter, chocolate-covered rice crisps and the memory of an actual Scotcheroo bar. It performed better than expected and, importantly, inspired one Commissioner to announce that they should probably make Scotcheroos soon.</p>
+</article>
+  </div>
+  <p class="noresult" id="noresult">No flavor by that name was tasted. The Commission regrets the omission and will consider it for a future investigation.</p>
+
+  <div class="box heavy">
+    <h4>Final Commission Note</h4>
+  <p>Not every flavor produced agreement. That was never really the point.</p>
+  <p>The Commission did not taste 56 flavors to identify one correct answer. It tasted 56 flavors to find surprises, rediscover classics, argue about caramel apples, learn that children have extremely developed opinions about coffee ice cream, and send everyone home with a few new flavors worth trying.</p>
+  <p>If our findings seem obviously wrong, good.</p>
+  <p>Conduct your own investigation. The Tattler’s Family Ice Cream Investigation Kit is available at MonroeStreetTattler.com with everything you need to assemble your own tasting panel, choose five flavors, issue your findings, and report back to the newsroom.</p>
+  <p>Outside verification remains the foundation of good journalism. Ice cream is no exception.</p>
+  </div>
+
+  <div class="box">
+    <h4>Conduct Your Own Investigation</h4>
+    <p>The Tattler's <a href="icecream.html">Family Ice Cream Investigation Kit</a> has everything you need to assemble your own tasting panel, choose five flavors at Chocolate Shoppe, and issue your findings.</p>
+    <p>Report back to <a href="mailto:MonroeStreetTattler@gmail.com">MonroeStreetTattler@gmail.com</a>. Strong opinions are encouraged.</p>
+  </div>
+
+  <footer>
+    <p><a href="september-2026.html">Back to the September issue</a><br>
+    The Monroe Street Tattler &middot; Madison, Wisconsin &middot; MonroeStreetTattler.com</p>
+  </footer>
+
+</div>
+<script>
+(function(){
+  var q = document.getElementById('q');
+  var cards = Array.prototype.slice.call(document.querySelectorAll('.flavor'));
+  var count = document.getElementById('count');
+  var none = document.getElementById('noresult');
+  q.addEventListener('input', function(){
+    var v = q.value.trim().toLowerCase();
+    var shown = 0;
+    cards.forEach(function(c){
+      var hit = !v || c.getAttribute('data-name').indexOf(v) !== -1
+                   || c.textContent.toLowerCase().indexOf(v) !== -1;
+      c.classList.toggle('hide', !hit);
+      if (hit) shown++;
+    });
+    none.classList.toggle('show', shown === 0);
+    count.textContent = !v ? 'Showing all 56 flavors'
+      : (shown === 1 ? '1 flavor matches "' + q.value.trim() + '"'
+                     : shown + ' flavors match "' + q.value.trim() + '"');
+  });
+})();
+</script>
+</body>
+</html>
