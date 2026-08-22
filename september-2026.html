@@ -3,15 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Issue 2: The Ice Cream Investigation | The Monroe Street Tattler</title>
-<meta name="description" content="The complete September 2026 issue of The Monroe Street Tattler. Fifty-six flavors, one Commission, the People's Fry Award, Puddin', and the neighborhood crossword.">
-<meta property="og:title" content="The Monroe Street Tattler, Issue 2">
+<title>We Tried Every Flavor at Chocolate Shoppe So You Don't Have To | The Monroe Street Tattler, September 2026</title>
+<meta name="description" content="The Monroe Street Tattler Culinary Commission tasted all 56 flavors at Chocolate Shoppe Ice Cream in Madison, Wisconsin. The complete September 2026 issue, plus the People's Fry Award, a gravy jurisdiction dispute, and one dog named Puddin'.">
+<meta property="og:title" content="We Tried Every Flavor at Chocolate Shoppe So You Don't Have To">
 <meta property="og:description" content="We tried every flavor at Chocolate Shoppe so you don't have to. Plus the People's Fry Award, a gravy jurisdiction dispute, and one dog named Puddin'.">
 <meta property="og:image" content="https://monroestreettattler.com/september-2026_og.png">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://monroestreettattler.com/september-2026.html">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="The Monroe Street Tattler, Issue 2">
+<meta name="twitter:title" content="We Tried Every Flavor at Chocolate Shoppe So You Don't Have To">
 <meta name="twitter:description" content="We tried every flavor at Chocolate Shoppe so you don't have to. Plus the People's Fry Award, a gravy jurisdiction dispute, and one dog named Puddin'.">
 <meta name="twitter:image" content="https://monroestreettattler.com/september-2026_og.png">
 <link rel="icon" type="image/x-icon" href="favicon.ico">
@@ -62,8 +62,11 @@
   .teaser:hover { background:var(--ink); color:var(--paper); }
   .teaser.wide { grid-column:1 / -1; }
 
-  .flashbox { border:1px solid var(--red); background:#fbf3f2; text-align:center;
-              padding:15px 16px; margin:6px 0; }
+  .flashbox { display:block; border:1px solid var(--red); background:#fbf3f2; text-align:center;
+              padding:15px 16px; margin:6px 0; text-decoration:none; }
+  a.flashbox:hover { background:var(--red); }
+  a.flashbox:hover .fh { color:var(--paper); }
+  a.flashbox:hover p { color:var(--paper); }
   .flashbox .fh { font-family:Arial,sans-serif; font-weight:900; text-transform:uppercase;
                   color:var(--red); font-size:17px; letter-spacing:.5px; }
   .flashbox p { font-size:14px; font-style:italic; color:var(--muted); margin:6px 0 0; }
@@ -102,6 +105,15 @@
   .coupon-note { text-align:center; font-style:italic; font-size:13px; color:var(--muted);
                  margin:12px 0 0; }
 
+  .adzone { border-top:2px solid var(--ink); margin:44px 0 0; padding:10px 0 0; }
+  .adlabel { font-family:Arial,sans-serif; font-size:10px; font-weight:bold; letter-spacing:2.5px;
+             text-transform:uppercase; color:var(--muted); text-align:center; margin:0 0 16px; }
+  .ads { display:grid; grid-template-columns:1fr 1fr; gap:26px; }
+  @media (max-width:560px){ .ads { grid-template-columns:1fr; } }
+  .ads img { width:100%; height:auto; display:block; border:1px solid #ddd9c8; }
+  .adcap { font-family:Arial,sans-serif; font-size:10px; text-transform:uppercase;
+           letter-spacing:1px; color:var(--muted); text-align:center; margin-top:7px; }
+  .newhere { border-width:4px; }
   .btnrow { display:flex; gap:12px; flex-wrap:wrap; margin:14px 0 0; }
   .btnrow a { font-family:Arial,sans-serif; font-weight:bold; font-size:12px; text-transform:uppercase;
               letter-spacing:1px; background:var(--ink); color:var(--paper); padding:12px 18px;
@@ -205,10 +217,10 @@
     <a class="teaser" href="#neighborhood">Rare Celebrity Sighting in Vilas</a>
   </div>
 
-  <div class="flashbox">
+  <a class="flashbox" href="#housecalls">
     <div class="fh">Camp Cantina Makes Tattler History</div>
     <p>Our biggest giveaway yet is inside.</p>
-  </div>
+  </a>
 
   <div class="teasers">
     <a class="teaser" href="#housecalls">The Tattler Prize Patrol Hits the Streets</a>
@@ -515,42 +527,32 @@
 
   <h3 class="section">Tattler Business &middot; Notices from the Front Office</h3>
 
-  <div class="box heavy center">
-    <h4 class="head">Get a Yard Sign</h4>
-    <p>We're giving away ten yard signs to the neighborhood's first Tattler readers. Publicly admit that you read this publication before they're gone. Email <a href="mailto:MonroeStreetTattler@gmail.com">MonroeStreetTattler@gmail.com</a> to claim one.</p>
-  </div>
-
   <div class="grid">
     <div class="brief">
       <h4 class="head">Never Miss an Issue</h4>
-      <p>The Tattler can now reach you by two methods: email, which is instant and asks nothing of anyone, or physical delivery to your door here in the neighborhood, which requires someone to walk there. Both are free. One form covers both. <a href="/#delivery">Sign up here</a>.</p>
-    </div>
-    <div class="brief">
-      <h4 class="head">Write to Us</h4>
-      <p>Got a pet, some neighborhood lore, or outrageous history everyone should know about? What about a Halloween, Thanksgiving, Christmas or Valentine's story? Doesn't have to be funny. Email <a href="mailto:MonroeStreetTattler@gmail.com">MonroeStreetTattler@gmail.com</a>.</p>
-    </div>
-    <div class="brief">
-      <h4 class="head">Dog Water Intelligence</h4>
-      <p>We're mapping the neighborhood's water bowls and treat jars so dogs and their people know where to stop. Know one we missed? <a href="dog-map.html">Add it to the map</a>.</p>
-    </div>
-    <div class="brief">
-      <h4 class="head">Host the Tattler</h4>
-      <p>Own a Free Little Library, or are you a neighborhood business? Become an official distribution point. We handle delivery. You provide the shelf space. Email us to volunteer.</p>
+      <p>Get the Tattler by email or free neighborhood delivery. <a href="/#delivery">Sign up here</a>.</p>
     </div>
     <div class="brief">
       <h4 class="head">Support the Tattler</h4>
-      <p>If you're enjoying the Tattler and want to say thanks, <a href="/#contribute">our website has a way for readers to chip in</a> once or become a recurring supporter. Your support helps cover printing, trophies, and whatever unnecessary investigation comes next. Reading it, sharing it, and telling your neighbors about it helps too. That's the whole point.</p>
+      <p>The Tattler is free. Printing, regrettably, is not.
+      <a href="/#contribute">Chip in or become a recurring supporter</a>.</p>
     </div>
     <div class="brief">
-      <h4 class="head">Find a Copy</h4>
-      <p>Printed copies turn up in Free Little Libraries and a growing list of neighborhood businesses. <a href="/#delivery">Sign up for our email list</a> and we'll let you know when a new issue is out.</p>
+      <h4 class="head">Find or Host the Tattler</h4>
+      <p>Find printed copies in Free Little Libraries and neighborhood businesses. Want to become
+      a distribution point or run an ad?
+      <a href="mailto:MonroeStreetTattler@gmail.com">Get in touch</a>.</p>
     </div>
-  </div>
-
-  <div class="box">
-    <h4 class="head">Notice to Businesses Near and Far</h4>
-    <p>The Tattler has recently been made aware that printing and trophies cost money. If you are a business and wish to sponsor a future issue or underwrite an unnecessary investigation, the Tattler is prepared to allow it. Space is limited by the size of the paper, which is not large. Our readership stretches near and far, including as far as McFarland, Fitchburg, and Orlando.</p>
-    <p>Inquiries may be directed to <a href="mailto:MonroeStreetTattler@gmail.com">MonroeStreetTattler@gmail.com</a>.</p>
+    <div class="brief">
+      <h4 class="head">Tattle to Us</h4>
+      <p>Got a tip, neighborhood lore, outrageous history or something we should investigate?
+      Email <a href="mailto:MonroeStreetTattler@gmail.com">MonroeStreetTattler@gmail.com</a>.</p>
+    </div>
+    <div class="brief">
+      <h4 class="head">Dog Water Intelligence</h4>
+      <p>We're mapping neighborhood water bowls and treat jars for dogs and their people.
+      <a href="dog-map.html">Find the map or add a stop</a>.</p>
+    </div>
   </div>
 
   <h3 class="section" id="crossword">Tattler Crossword No. 1</h3>
@@ -565,6 +567,36 @@
     <img src="cartoon.png" alt="Cartoon: two neighbors at a Free Little Library, one saying tough call, you've got some good options">
     <figcaption>Cartoons</figcaption>
   </figure>
+
+
+
+  <div class="adzone">
+    <p class="adlabel">Advertisements</p>
+    <div class="ads">
+      <div>
+        <a href="https://www.chocolateshoppeicecream.com" target="_blank" rel="noopener">
+          <img src="ad-chocolate-shoppe.jpg" alt="Chocolate Shoppe Ice Cream. Wisconsin made, family owned, community loved since 1962.">
+        </a>
+        <div class="adcap">Chocolate Shoppe Ice Cream</div>
+      </div>
+      <div>
+        <a href="https://monroestreetfestival.com" target="_blank" rel="noopener">
+          <img src="ad-monroe-street-festival.jpg" alt="Monroe Street Festival, September 26">
+        </a>
+        <div class="adcap">Monroe Street Festival &middot; September 26</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="box newhere">
+    <h4 class="head">New Here? What Is This?</h4>
+    <p><strong>The Monroe Street Tattler.</strong> We cover the people, places, peculiarities and extremely minor developments that make a
+    community interesting, with considerably more seriousness than the circumstances require.</p>
+    <div class="btnrow">
+      <a href="/">Read the latest issue &rarr;</a>
+      <a class="ghost" href="/#delivery">Get the Tattler free &rarr;</a>
+    </div>
+  </div>
 
   <footer>
     <p>MonroeStreetTattler.com: subscribe, read past issues, submit a tip, or support our paper.<br>
