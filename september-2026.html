@@ -20,6 +20,7 @@
   * { box-sizing:border-box; }
   body { margin:0; background:#e4e2d8; color:var(--ink);
          font-family:Georgia,'Times New Roman',serif; line-height:1.55; }
+  .wrap a { color:var(--red); }
   .wrap { max-width:900px; margin:0 auto; background:var(--paper); min-height:100vh;
           padding:0 26px 60px; box-shadow:0 0 40px rgba(0,0,0,0.15); }
 
@@ -115,6 +116,14 @@
   h4.bh { font-family:Georgia,'Times New Roman',serif; font-weight:bold; font-size:19px;
           line-height:1.2; margin:0 0 8px; }
   .nbhd-briefs p { font-size:15px; margin:0 0 10px; }
+  .notice { border:1px solid var(--ink); padding:12px 15px; }
+  .notice.wide { margin:0 0 16px; }
+  .notice h4 { font-family:Arial,sans-serif; font-weight:bold; font-size:11.5px;
+               text-transform:uppercase; letter-spacing:1px; margin:0 0 6px; }
+  .notice p { font-size:13.5px; line-height:1.45; margin:0; }
+  .notice a { color:var(--red); font-weight:bold; }
+  .notices { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+  @media (max-width:640px){ .notices { grid-template-columns:1fr; } }
   .pagerow { display:grid; grid-template-columns:1fr 42%; gap:30px; align-items:start;
              margin:34px 0 0; }
   @media (max-width:640px){ .pagerow { grid-template-columns:1fr; gap:24px; } }
@@ -200,9 +209,10 @@
 
   <nav class="tabs">
     <a href="/">Home</a>
+    <a href="/#edition">Latest Issue</a>
+    <a href="/#past">Past Issues</a>
     <a href="dog-map.html">Dog Map</a>
     <a href="faq.html">FAQ</a>
-    <a href="/#contribute">Contribute</a>
   </nav>
 
   <div class="issueline">Extra! &middot; Vol. 3, No. 7 &middot; September 2026 &middot; Free</div>
@@ -554,34 +564,35 @@
 
   <h3 class="section">Tattler Business &middot; Notices from the Front Office</h3>
 
-  <div class="grid">
-    <div class="brief">
-      <h4 class="head">Never Miss an Issue</h4>
-      <p>Get the Tattler by email or free neighborhood delivery. <a href="/#delivery">Sign up here</a>.</p>
-    </div>
-    <div class="brief">
-      <h4 class="head">Support the Tattler</h4>
+  <div class="notice wide">
+    <h4>Never Miss an Issue</h4>
+    <p>Get the Tattler by email or free neighborhood delivery.
+    <a href="/#delivery">Sign up here</a>.</p>
+  </div>
+
+  <div class="notices">
+    <div class="notice">
+      <h4>Support the Tattler</h4>
       <p>The Tattler is free. Printing, regrettably, is not.
-      <a href="/#contribute">Chip in or become a recurring supporter</a>.</p>
+      <a href="/#support">Chip in or become a recurring supporter</a>.</p>
     </div>
-    <div class="brief">
-      <h4 class="head">Find or Host the Tattler</h4>
+    <div class="notice">
+      <h4>Find or Host the Tattler</h4>
       <p>Find printed copies in Free Little Libraries and neighborhood businesses. Want to become
       a distribution point or run an ad?
       <a href="mailto:MonroeStreetTattler@gmail.com">Get in touch</a>.</p>
     </div>
-    <div class="brief">
-      <h4 class="head">Tattle to Us</h4>
+    <div class="notice">
+      <h4>Tattle to Us</h4>
       <p>Got a tip, neighborhood lore, outrageous history or something we should investigate?
       Email <a href="mailto:MonroeStreetTattler@gmail.com">MonroeStreetTattler@gmail.com</a>.</p>
     </div>
-    <div class="brief">
-      <h4 class="head">Dog Water Intelligence</h4>
+    <div class="notice">
+      <h4>Dog Water Intelligence</h4>
       <p>We're mapping neighborhood water bowls and treat jars for dogs and their people.
       <a href="dog-map.html">Find the map or add a stop</a>.</p>
     </div>
   </div>
-
 
   <div class="pagerow">
     <div>
