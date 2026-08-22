@@ -105,14 +105,20 @@
   .coupon-note { text-align:center; font-style:italic; font-size:13px; color:var(--muted);
                  margin:12px 0 0; }
 
-  .adzone { border-top:2px solid var(--ink); margin:44px 0 0; padding:10px 0 0; }
-  .adlabel { font-family:Arial,sans-serif; font-size:10px; font-weight:bold; letter-spacing:2.5px;
-             text-transform:uppercase; color:var(--muted); text-align:center; margin:0 0 16px; }
-  .ads { display:grid; grid-template-columns:1fr 1fr; gap:26px; }
-  @media (max-width:560px){ .ads { grid-template-columns:1fr; } }
-  .ads img { width:100%; height:auto; display:block; border:1px solid #ddd9c8; }
-  .adcap { font-family:Arial,sans-serif; font-size:10px; text-transform:uppercase;
-           letter-spacing:1px; color:var(--muted); text-align:center; margin-top:7px; }
+  .nbhd { display:grid; grid-template-columns:31% 1fr; gap:0 30px; align-items:start; }
+  @media (max-width:640px){ .nbhd { grid-template-columns:1fr; gap:0; } }
+  .nbhd-photos figure { margin:0 0 20px; }
+  .nbhd-briefs .brf { margin:0 0 24px; }
+  .nbhd-briefs .brf:last-child { margin-bottom:0; }
+  .kick { font-family:Arial,sans-serif; font-size:11px; font-weight:bold; color:var(--red);
+          text-transform:uppercase; letter-spacing:.6px; line-height:1.3; margin:0 0 3px; }
+  h4.bh { font-family:Georgia,'Times New Roman',serif; font-weight:bold; font-size:19px;
+          line-height:1.2; margin:0 0 8px; }
+  .nbhd-briefs p { font-size:15px; margin:0 0 10px; }
+  .pagerow { display:grid; grid-template-columns:1fr 42%; gap:30px; align-items:start;
+             margin:34px 0 0; }
+  @media (max-width:640px){ .pagerow { grid-template-columns:1fr; gap:24px; } }
+  .adslot img { width:100%; height:auto; display:block; border:1px solid #ddd9c8; }
   .newhere { border-width:4px; }
   .btnrow { display:flex; gap:12px; flex-wrap:wrap; margin:14px 0 0; }
   .btnrow a { font-family:Arial,sans-serif; font-weight:bold; font-size:12px; text-transform:uppercase;
@@ -214,10 +220,10 @@
   <div class="teasers">
     <a class="teaser" href="#junior">Junior Correspondents Break Their Silence</a>
     <a class="teaser" href="#fryvote">Fry Vote Shocker! Readers Issue Their Own Fry Verdict</a>
-    <a class="teaser" href="#neighborhood">Rare Celebrity Sighting in Vilas</a>
+    <a class="teaser" href="#puddin">Rare Celebrity Sighting in Vilas</a>
   </div>
 
-  <a class="flashbox" href="#housecalls">
+  <a class="flashbox" href="#giveaway">
     <div class="fh">Camp Cantina Makes Tattler History</div>
     <p>Our biggest giveaway yet is inside.</p>
   </a>
@@ -225,10 +231,10 @@
   <div class="teasers">
     <a class="teaser" href="#housecalls">The Tattler Prize Patrol Hits the Streets</a>
     <a class="teaser" href="#gravy">A Matter of Gravy Jurisdiction</a>
-    <a class="teaser" href="#neighborhood">Rush Hour Miracle: Motorists Stunned</a>
-    <a class="teaser" href="#neighborhood">Dads Gone Wild! Shocks Neighborhood</a>
-    <a class="teaser" href="#neighborhood">Listserv Finally Justifies Its Existence</a>
-    <a class="teaser" href="#neighborhood">Parenting Arms Race Enters Dangerous New Phase</a>
+    <a class="teaser" href="#cranes">Rush Hour Miracle: Motorists Stunned</a>
+    <a class="teaser" href="#dads">Dads Gone Wild! Shocks Neighborhood</a>
+    <a class="teaser" href="#listserv">Listserv Finally Justifies Its Existence</a>
+    <a class="teaser" href="#ninja">Parenting Arms Race Enters Dangerous New Phase</a>
     <a class="teaser wide" href="#crossword">Local Intelligence Test! Monroe Street Tattler Crossword No. 1</a>
   </div>
 
@@ -423,7 +429,7 @@
     <p>These individually engraved gold monuments to culinary excellence were made possible by an unsolicited reader contribution. The Tattler remains shaken by this extraordinary act of support. Readers are encouraged to look for these prestigious honors proudly displayed at winning establishments.</p>
   </div>
 
-  <h3 class="section">The Great Tattler Fry Giveaway</h3>
+  <h3 class="section" id="giveaway">The Great Tattler Fry Giveaway</h3>
   <p>Camp Cantina has done something no business on this beat has ever done: responded to Tattler recognition with an actual, genuine giveaway.</p>
   <p>Readers holding a first-run printed copy can redeem the coupon for one free small basket of fries during September. This is the first time in Tattler history a business has done this. The Commission does not expect it to happen again anytime soon.</p>
 
@@ -467,7 +473,7 @@
     <p>The Commission therefore expresses no opinion on brown gravy, white gravy, or the boundaries separating the two. The matter remains unresolved, though it may warrant the convening of a future Breakfast Commission.</p>
   </div>
 
-  <h3 class="section">Featured Pet</h3>
+  <h3 class="section" id="puddin">Featured Pet</h3>
   <h4 class="head">Puddin': Seen at Last</h4>
   <p class="deck">The neighborhood's most photographed dog opens up.</p>
   <figure class="figright">
@@ -487,41 +493,62 @@
 
   <div class="clearfix"></div>
   <h3 class="section" id="neighborhood">Around the Neighborhood</h3>
-  <div class="grid">
-    <div class="brief">
+
+  <div class="nbhd">
+    <div class="nbhd-photos">
       <figure>
-        <img src="cranes.jpg" alt="A marked crosswalk at Edgewood Avenue on Monroe Street">
+        <img src="cranes.jpg" alt="Sandhill cranes crossing a marked crosswalk at Edgewood Avenue on Monroe Street">
         <figcaption>Monroe Street miracle! Crosswalk used as intended.</figcaption>
       </figure>
-      <h4 class="head">Traffic Miracle on Monroe!</h4>
-      <p class="deck" style="margin-bottom:10px">Crane Family Demonstrates Proper Crosswalk Use</p>
-      <p>A family of cranes was observed crossing a busy neighborhood intersection this week during morning rush hour. They activated the pedestrian crossing button, waited for traffic to yield, and proceeded through the marked crosswalk with confidence.</p>
-      <p>Sources on the scene report that traffic stopped for the birds, offering cautious evidence that local commuters do, in fact, recognize crosswalks under certain conditions. The cranes, having safely reached the other side, declined to comment.</p>
-    </div>
-    <div class="brief">
-      <h4 class="head">Field Report</h4>
-      <p class="deck" style="margin-bottom:10px">Area Millennial Dads Report Strikingly High Levels of Public Praise</p>
-      <p>At Hillington Green Park, known locally to some as "Triangle Park," multiple fathers report being routinely told they are "great dads" by older passersby.</p>
-      <p>One neighborhood source, when asked what prompted the praise, said, "He appears to have shown up and remained for the entire duration."</p>
-    </div>
-    <div class="brief">
-      <h4 class="head">Airspace Update: Look Up!</h4>
-      <p>A bald eagle has been spotted over Vilas twice in recent weeks. Between this and the cranes, local birds appear increasingly comfortable with public life.</p>
-    </div>
-    <div class="brief">
-      <h4 class="head">Neighborhood Listserv Reaches Its Final and Intended Purpose</h4>
-      <p class="deck" style="margin-bottom:10px">Day 6: Half-Used Tube of Denture Cream Remains Available</p>
-      <p>No further updates at this time.</p>
-    </div>
-    <div class="brief">
       <figure>
         <img src="ninja.jpg" alt="A homemade ninja warrior course strung between trees in a front yard">
         <figcaption>Training grounds, Adams Street.</figcaption>
       </figure>
-      <h4 class="head">Backyard Athletics</h4>
-      <p class="deck" style="margin-bottom:10px">Bad-Ass Parent Transforms Terrace Into Elite Training Facility</p>
-      <p>What appears to be a homemade miniature Ninja Warrior course has emerged on Adams Street, strung between two trees in a neighborhood front yard and complete with a swing, ropes, hanging handles and a step stool.</p>
-      <p>Sources have not confirmed whether any children at the property have formally qualified for American Ninja Warrior, though preparations appear well underway.</p>
+    </div>
+
+    <div class="nbhd-briefs">
+      <div class="brf" id="cranes">
+        <p class="kick">Traffic Miracle on Monroe!</p>
+        <h4 class="bh">Crane Family Demonstrates Proper Crosswalk Use</h4>
+        <p>A family of cranes was observed crossing a busy neighborhood intersection this week
+        during morning rush hour. They activated the pedestrian crossing button, waited for
+        traffic to yield, and proceeded through the marked crosswalk with confidence.</p>
+        <p>Sources on the scene report that traffic stopped for the birds, offering cautious
+        evidence that local commuters do, in fact, recognize crosswalks under certain conditions.
+        The cranes, having safely reached the other side, declined to comment.</p>
+      </div>
+
+      <div class="brf" id="dads">
+        <p class="kick">Field Report</p>
+        <h4 class="bh">Area Millennial Dads Report Strikingly High Levels of Public Praise</h4>
+        <p>At Hillington Green Park, known locally to some as "Triangle Park," multiple fathers
+        report being routinely told they are "great dads" by older passersby.</p>
+        <p>One neighborhood source, when asked what prompted the praise, said, "He appears to have
+        shown up and remained for the entire duration."</p>
+      </div>
+
+      <div class="brf" id="eagle">
+        <p class="kick">Airspace Update</p>
+        <h4 class="bh">Look Up!</h4>
+        <p>A bald eagle has been spotted over Vilas twice in recent weeks. Between this and the
+        cranes, local birds appear increasingly comfortable with public life.</p>
+      </div>
+
+      <div class="brf" id="listserv">
+        <p class="kick">Neighborhood Listserv Reaches Its Final and Intended Purpose</p>
+        <h4 class="bh">Day 6: Half-Used Tube of Denture Cream Remains Available</h4>
+        <p>No further updates at this time.</p>
+      </div>
+
+      <div class="brf" id="ninja">
+        <p class="kick">Backyard Athletics</p>
+        <h4 class="bh">Bad-Ass Parent Transforms Terrace Into Elite Training Facility</h4>
+        <p>What appears to be a homemade miniature Ninja Warrior course has emerged on Adams
+        Street, strung between two trees in a neighborhood front yard and complete with a swing,
+        ropes, hanging handles and a step stool.</p>
+        <p>Sources have not confirmed whether any children at the property have formally qualified
+        for American Ninja Warrior, though preparations appear well underway.</p>
+      </div>
     </div>
   </div>
 
@@ -555,36 +582,37 @@
     </div>
   </div>
 
-  <h3 class="section" id="crossword">Tattler Crossword No. 1</h3>
-  <div class="box heavy center">
-    <h4 class="head">Local Intelligence Test</h4>
-    <p>Monroe Street Tattler Crossword No. 1 appears on the back page of the printed issue, with clues ranging from neighborhood specifics to the merely unfair.</p>
-    <img src="crossword-grid.png" alt="The Monroe Street Tattler Crossword No. 1 grid" style="width:100%;max-width:340px;height:auto;margin:14px auto 16px;display:block;border:1px solid #ddd9c8">
-    <p><a href="crossword-1.pdf">Download and print the crossword</a></p>
+
+  <div class="pagerow">
+    <div>
+      <figure style="margin:0">
+        <img src="cartoon.png" alt="Cartoon: two neighbors at a Free Little Library, one saying tough call, you've got some good options">
+        <figcaption>Cartoons</figcaption>
+      </figure>
+    </div>
+    <div class="adslot">
+      <a href="https://monroestreetfestival.com" target="_blank" rel="noopener">
+        <img src="ad-monroe-street-festival.jpg" alt="Monroe Street Festival, September 26. monroestreetfestival.com">
+      </a>
+    </div>
   </div>
 
-  <figure style="margin:34px 0 0">
-    <img src="cartoon.png" alt="Cartoon: two neighbors at a Free Little Library, one saying tough call, you've got some good options">
-    <figcaption>Cartoons</figcaption>
-  </figure>
+  <h3 class="section" id="crossword">Tattler Crossword No. 1</h3>
 
-
-
-  <div class="adzone">
-    <p class="adlabel">Advertisements</p>
-    <div class="ads">
-      <div>
-        <a href="https://www.chocolateshoppeicecream.com" target="_blank" rel="noopener">
-          <img src="ad-chocolate-shoppe.jpg" alt="Chocolate Shoppe Ice Cream. Wisconsin made, family owned, community loved since 1962.">
-        </a>
-        <div class="adcap">Chocolate Shoppe Ice Cream</div>
+  <div class="pagerow">
+    <div>
+      <div class="box heavy center">
+        <h4 class="head">The Celebrated Monroe Street Tattler Crossword</h4>
+        <p class="deck" style="margin:0 0 4px">A neighborhood institution, effective immediately.</p>
+        <img src="crossword-grid.png" alt="The Monroe Street Tattler crossword grid"
+             style="width:100%;max-width:330px;height:auto;margin:16px auto 18px;display:block;border:1px solid #ddd9c8">
+        <p style="margin:0"><a href="sept-2026-crossword.pdf" target="_blank" rel="noopener">Download and print the crossword</a></p>
       </div>
-      <div>
-        <a href="https://monroestreetfestival.com" target="_blank" rel="noopener">
-          <img src="ad-monroe-street-festival.jpg" alt="Monroe Street Festival, September 26">
-        </a>
-        <div class="adcap">Monroe Street Festival &middot; September 26</div>
-      </div>
+    </div>
+    <div class="adslot">
+      <a href="https://www.chocolateshoppeicecream.com" target="_blank" rel="noopener">
+        <img src="ad-chocolate-shoppe.jpg" alt="Chocolate Shoppe Ice Cream. Wisconsin made, family owned, community loved since 1962.">
+      </a>
     </div>
   </div>
 
