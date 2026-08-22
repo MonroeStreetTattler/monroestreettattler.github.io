@@ -67,6 +67,15 @@
   .box p:last-child { margin-bottom:0; }
   .box a { color:var(--red); font-weight:bold; }
 
+  .newhere { border-width:4px; }
+  .btnrow { display:flex; gap:12px; flex-wrap:wrap; margin:14px 0 0; }
+  .btnrow a { font-family:Arial,sans-serif; font-weight:bold; font-size:12px; text-transform:uppercase;
+              letter-spacing:1px; background:var(--ink); color:var(--paper); padding:12px 18px;
+              text-decoration:none; }
+  .btnrow a:hover { background:var(--red); }
+  .btnrow a.ghost { background:transparent; color:var(--ink); border:2px solid var(--ink);
+                    padding:10px 16px; }
+  .btnrow a.ghost:hover { background:var(--ink); color:var(--paper); }
   footer { margin-top:34px; padding-top:18px; border-top:3px double var(--ink);
            text-align:center; font-size:13px; color:var(--muted); }
   footer a { color:var(--red); font-weight:bold; }
@@ -128,6 +137,19 @@
     <p>The Commission tasted all 56 flavors at Chocolate Shoppe in one sitting.
     <a href="56-flavors.html">Read the complete findings</a>. If ours seem obviously wrong to
     you, good.</p>
+  </div>
+
+
+  <div class="box newhere">
+    <h4>New Here? What Is This?</h4>
+    <p><strong>The Monroe Street Tattler</strong> is a neighborhood newspaper devoted to news that
+    is so hyperlocal, it's amazing anyone cares.</p>
+    <p>We cover the people, places, peculiarities and extremely minor developments that make a
+    community interesting, with considerably more seriousness than the circumstances require.</p>
+    <div class="btnrow">
+      <a href="/">Read the latest issue &rarr;</a>
+      <a class="ghost" href="/#delivery">Get the Tattler free &rarr;</a>
+    </div>
   </div>
 
   <footer>

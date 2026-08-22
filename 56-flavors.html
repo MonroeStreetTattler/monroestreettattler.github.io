@@ -49,6 +49,15 @@
                letter-spacing:1px; background:var(--ink); color:var(--paper); padding:9px 15px;
                text-decoration:none; white-space:nowrap; }
   .joinbar a:hover { background:var(--red); }
+  .newhere { border-width:4px; }
+  .btnrow { display:flex; gap:12px; flex-wrap:wrap; margin:14px 0 0; }
+  .btnrow a { font-family:Arial,sans-serif; font-weight:bold; font-size:12px; text-transform:uppercase;
+              letter-spacing:1px; background:var(--ink); color:var(--paper); padding:12px 18px;
+              text-decoration:none; }
+  .btnrow a:hover { background:var(--red); }
+  .btnrow a.ghost { background:transparent; color:var(--ink); border:2px solid var(--ink);
+                    padding:10px 16px; }
+  .btnrow a.ghost:hover { background:var(--ink); color:var(--paper); }
   .searchbar { margin:34px 0 6px; }
   .searchbar label { font-family:Arial,sans-serif; font-size:11px; font-weight:bold;
                      text-transform:uppercase; letter-spacing:1.5px; color:var(--red);
@@ -354,7 +363,20 @@
   <div class="box">
     <h4>Conduct Your Own Investigation</h4>
     <p>The Tattler's <a href="icecream.html">Family Ice Cream Investigation Kit</a> has everything you need to assemble your own tasting panel, choose five flavors at Chocolate Shoppe, and issue your findings.</p>
-    <p>Report back to <a href="mailto:MonroeStreetTattler@gmail.com">MonroeStreetTattler@gmail.com</a>. Strong opinions are encouraged.</p>
+    <p>Report back using the <a href="https://docs.google.com/forms/d/e/1FAIpQLSfIpeGFNoOInsQJGskPnJdH6CZlpxdR2ti4-zTWCQlpzuZOyQ/viewform" target="_blank" rel="noopener">official submission form</a>. Strong opinions are encouraged.</p>
+  </div>
+
+
+  <div class="box newhere">
+    <h4>New Here? What Is This?</h4>
+    <p><strong>The Monroe Street Tattler</strong> is a neighborhood newspaper devoted to news that
+    is so hyperlocal, it's amazing anyone cares.</p>
+    <p>We cover the people, places, peculiarities and extremely minor developments that make a
+    community interesting, with considerably more seriousness than the circumstances require.</p>
+    <div class="btnrow">
+      <a href="/">Read the latest issue &rarr;</a>
+      <a class="ghost" href="/#delivery">Get the Tattler free &rarr;</a>
+    </div>
   </div>
 
   <footer>
