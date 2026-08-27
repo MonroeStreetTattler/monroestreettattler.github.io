@@ -20,6 +20,7 @@
   * { box-sizing:border-box; }
   body { margin:0; background:#e4e2d8; color:var(--ink);
          font-family:Georgia,'Times New Roman',serif; line-height:1.55; }
+  [id] { scroll-margin-top:18px; }
   .wrap a { color:var(--red); }
   .wrap { max-width:900px; margin:0 auto; background:var(--paper); min-height:100vh;
           padding:0 26px 60px; box-shadow:0 0 40px rgba(0,0,0,0.15); }
@@ -137,6 +138,9 @@
   .btnrow a.ghost { background:transparent; color:var(--ink); border:2px solid var(--ink);
                     padding:10px 16px; }
   .btnrow a.ghost:hover { background:var(--ink); color:var(--paper); }
+  .btnrow a.cta { background:var(--red); color:var(--paper); border:3px solid var(--red);
+                  font-size:16px; font-weight:900; padding:15px 26px; }
+  .btnrow a.cta:hover { background:var(--paper); color:var(--red); }
 
   .pdfbar { border:2px solid var(--ink); background:#fff; padding:14px 18px; margin:0 0 34px;
             display:flex; justify-content:space-between; align-items:center; gap:14px; flex-wrap:wrap; }
@@ -228,7 +232,7 @@
   <div class="reversebar">The Tattler's Most Ambitious Culinary Investigation Yet</div>
 
   <div class="teasers">
-    <a class="teaser" href="#junior">Junior Correspondents Break Their Silence</a>
+    <a class="teaser" href="#flagship">Junior Correspondents Break Their Silence</a>
     <a class="teaser" href="#fryvote">Fry Vote Shocker! Readers Issue Their Own Fry Verdict</a>
     <a class="teaser" href="#puddin">Rare Celebrity Sighting in Vilas</a>
   </div>
@@ -241,7 +245,7 @@
   <div class="teasers">
     <a class="teaser" href="#housecalls">The Tattler Prize Patrol Hits the Streets</a>
     <a class="teaser" href="#gravy">A Matter of Gravy Jurisdiction</a>
-    <a class="teaser" href="#cranes">Rush Hour Miracle: Motorists Stunned</a>
+    <a class="teaser" href="#neighborhood">Rush Hour Miracle: Motorists Stunned</a>
     <a class="teaser" href="#dads">Dads Gone Wild! Shocks Neighborhood</a>
     <a class="teaser" href="#listserv">Listserv Finally Justifies Its Existence</a>
     <a class="teaser" href="#ninja">Parenting Arms Race Enters Dangerous New Phase</a>
@@ -253,7 +257,7 @@
     <a href="september_2026_digital.pdf">Download the printed issue</a>
   </div>
 
-  <h3 class="section">Flagship Feature</h3>
+  <h3 class="section" id="flagship">Flagship Feature</h3>
   <h4 class="head">The Monroe Street Ice Cream Investigation</h4>
   <p class="deck">Fifty-six flavors. One Commission. The neighborhood now has answers.</p>
 
@@ -632,8 +636,9 @@
     <p><strong>The Monroe Street Tattler.</strong> We cover the people, places, peculiarities and extremely minor developments that make a
     community interesting, with considerably more seriousness than the circumstances require.</p>
     <div class="btnrow">
-      <a href="/">Read the latest issue &rarr;</a>
-      <a class="ghost" href="/#delivery">Get the Tattler free &rarr;</a>
+      <a class="cta" href="https://docs.google.com/forms/d/e/1FAIpQLSeVxx8iimNEeSg3KKIyF8Ckb3UIu6Lzlsk5xUpaeJJu8LRtlg/viewform">Sign Up Here&nbsp;&rarr;</a>
+      <a class="ghost" href="/">Explore the Tattler&nbsp;&rarr;</a>
+      <a class="ghost" href="56-flavors.html">Read All 56 Flavors&nbsp;&rarr;</a>
     </div>
   </div>
 
