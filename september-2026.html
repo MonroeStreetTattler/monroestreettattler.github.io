@@ -88,6 +88,18 @@
   @media (max-width:640px){ .figright { float:none; width:100%; margin:0 0 18px; } }
   .clearfix::after { content:""; display:block; clear:both; }
 
+  /* Final Determination: the award art is 360x1160, so sizing it by WIDTH made it
+     873px tall next to three lines of text. Size it by HEIGHT instead. */
+  .det-row { display:flex; gap:30px; align-items:center; }
+  .det-row > p { flex:1 1 auto; margin:0; }
+  .det-fig { flex:0 0 auto; margin:0; text-align:center; }
+  .det-fig img { width:auto; height:270px; border:none; display:block; margin:0 auto; }
+  .det-fig figcaption { max-width:150px; margin:9px auto 0; }
+  @media (max-width:640px){
+    .det-row { flex-direction:column; align-items:center; gap:20px; }
+    .det-fig img { height:230px; }
+  }
+
   .coupon { position:relative; border:2px dashed var(--ink); padding:22px 26px;
             background:#fff; display:flex; align-items:center; gap:26px; }
   @media (max-width:560px){ .coupon { flex-direction:column; gap:14px; text-align:center; } }
@@ -342,13 +354,15 @@
     </div>
   </div>
 
-  <div class="box heavy clearfix">
+  <div class="box heavy">
     <h4 class="head">Final Determination</h4>
-    <figure class="figright" style="width:32%">
-      <img src="double-scoop-award.png" alt="The Tattler 2026 Double Scoop Award, a trophy of two ice cream cones on a pedestal">
-      <figcaption>The Tattler 2026 Double Scoop Award</figcaption>
-    </figure>
-    <p>Chocolate Shoppe staff deserve our sincere thanks for allowing this operation to occur at all, and for doing so with extraordinary patience and good humor. In recognition of this, Chocolate Shoppe has been awarded the esteemed and coveted Tattler 2026 Double Scoop Award.</p>
+    <div class="det-row">
+      <p>Chocolate Shoppe staff deserve our sincere thanks for allowing this operation to occur at all, and for doing so with extraordinary patience and good humor. In recognition of this, Chocolate Shoppe has been awarded the esteemed and coveted Tattler 2026 Double Scoop Award.</p>
+      <figure class="det-fig">
+        <img src="double-scoop-award.png" alt="The Tattler 2026 Double Scoop Award, a trophy of two ice cream cones on a pedestal">
+        <figcaption>The Tattler 2026 Double Scoop Award</figcaption>
+      </figure>
+    </div>
   </div>
 
   <div class="box">
