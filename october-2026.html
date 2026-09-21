@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Issue 3: A Monkey and a Cult | The Monroe Street Tattler</title>
+<meta name="description" content="October 2026. A cult, a monkey, 38 stuffed fugitives loose on Monroe Street, and a pit bull who would like to address the allegations.">
+<link rel="icon" href="favicon.ico">
+<style>
+  :root { --paper:#fdfcf3; --ink:#111; --red:#b3241c; --muted:#5a5a5a; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:#e4e2d8; color:var(--ink);
+         font-family:Georgia,'Times New Roman',serif; line-height:1.55; }
+  .wrap { max-width:900px; margin:0 auto; background:var(--paper); min-height:100vh;
+          padding:0 26px 60px; box-shadow:0 0 40px rgba(0,0,0,0.15); }
+
+  nav.tabs { display:flex; justify-content:center; gap:22px; font-family:Arial,sans-serif;
+             font-weight:bold; font-size:11px; text-transform:uppercase; letter-spacing:.8px;
+             padding:12px 0 22px; flex-wrap:wrap; border-bottom:1px solid var(--ink); }
+  nav.tabs a { color:var(--ink); text-decoration:none; }
+  nav.tabs a:hover { color:var(--red); border-bottom:2px solid var(--red); }
+
+  .issueline { text-align:center; font-family:Arial,sans-serif; font-size:11px; font-weight:bold;
+               letter-spacing:1.5px; color:var(--red); text-transform:uppercase; margin:18px 0 6px; }
+  h1.masthead { font-family:'Times New Roman',Times,serif; font-weight:900; text-align:center;
+                text-transform:uppercase; letter-spacing:.5px; line-height:1.02;
+                font-size:clamp(34px,8vw,62px); margin:0 0 8px; }
+  .tagline { text-align:center; font-style:italic; font-size:14px; color:var(--muted);
+             margin:0 0 4px; padding-bottom:16px; border-bottom:3px double var(--ink); }
+
+  .splash { text-align:center; margin:30px 0 22px; }
+  .kicker { font-family:Arial,sans-serif; font-size:12px; font-weight:bold; color:var(--red);
+            text-transform:uppercase; letter-spacing:2px; }
+  .splash h2 { font-family:Arial,sans-serif; font-weight:900; text-transform:uppercase;
+               font-size:clamp(26px,5.5vw,44px); line-height:1.05; margin:10px 0; }
+
+  .reversebar { background:var(--ink); color:var(--paper); text-align:center;
+                font-family:Arial,sans-serif; font-weight:bold; font-size:13px;
+                text-transform:uppercase; letter-spacing:1.5px; padding:11px 14px; margin:0 0 22px; }
+
+  .teasers { display:grid; grid-template-columns:repeat(3,1fr); border-top:1px solid var(--ink);
+             border-left:1px solid var(--ink); margin:0 0 6px; }
+  @media (max-width:640px){ .teasers { grid-template-columns:1fr 1fr; } }
+  .teaser { border-right:1px solid var(--ink); border-bottom:1px solid var(--ink);
+            padding:13px 12px; text-align:center; font-family:Arial,sans-serif;
+            font-weight:bold; font-size:11.5px; line-height:1.35; text-transform:uppercase;
+            letter-spacing:.4px; color:var(--ink); text-decoration:none; display:flex;
+            align-items:center; justify-content:center; }
+  .teaser:hover { background:var(--ink); color:var(--paper); }
+  .teaser.wide { grid-column:1 / -1; }
+
+  .flashbox { border:1px solid var(--red); background:#fbf3f2; text-align:center;
+              padding:15px 16px; margin:6px 0; }
+  .flashbox .fh { font-family:Arial,sans-serif; font-weight:900; text-transform:uppercase;
+                  color:var(--red); font-size:17px; letter-spacing:.5px; }
+  .flashbox p { font-size:14px; font-style:italic; color:var(--muted); margin:6px 0 0; }
+  .flashbox a.btn { display:inline-block; margin-top:12px; background:var(--red); color:#fff;
+                    font-family:Arial,sans-serif; font-weight:bold; font-size:12px;
+                    text-transform:uppercase; letter-spacing:1px; text-decoration:none;
+                    padding:10px 18px; }
+
+  .pdfbar { display:flex; align-items:center; justify-content:space-between; gap:18px;
+            border-top:2px solid var(--ink); border-bottom:2px solid var(--ink);
+            padding:14px 0; margin:26px 0 8px; font-size:14px; }
+  @media (max-width:560px){ .pdfbar { flex-direction:column; text-align:center; } }
+  .pdfbar a { font-family:Arial,sans-serif; font-weight:bold; font-size:12px; text-transform:uppercase;
+              letter-spacing:1px; color:var(--ink); border:2px solid var(--ink);
+              padding:9px 16px; text-decoration:none; white-space:nowrap; }
+  .pdfbar a:hover { background:var(--ink); color:var(--paper); }
+
+  h3.section { font-family:Arial,sans-serif; font-weight:bold; font-size:11px; letter-spacing:2px;
+               text-transform:uppercase; color:var(--red); border-bottom:1px solid var(--ink);
+               padding-bottom:5px; margin:44px 0 12px; }
+  h4.head { font-family:Arial,sans-serif; font-weight:900; text-transform:uppercase;
+            font-size:clamp(22px,4vw,32px); line-height:1.08; margin:0 0 8px; }
+  p.deck { font-style:italic; color:var(--muted); font-size:16px; margin:0 0 18px; }
+  h5.sub { font-family:Arial,sans-serif; font-weight:900; text-transform:uppercase; font-size:15px;
+           margin:30px 0 10px; }
+  .wrap p { font-size:17px; margin:0 0 14px; }
+  .byline { font-family:Arial,sans-serif; font-size:11px; letter-spacing:1px;
+            text-transform:uppercase; color:var(--muted); margin:0 0 18px; }
+
+  figure { margin:0 0 18px; }
+  figure img { width:100%; height:auto; display:block; border:1px solid #ddd9c8; }
+  figcaption { font-family:Arial,sans-serif; font-size:10.5px; text-transform:uppercase;
+               letter-spacing:.8px; color:var(--muted); margin-top:6px; line-height:1.4; }
+  .figright { float:right; width:44%; margin:4px 0 16px 24px; }
+  @media (max-width:640px){ .figright { float:none; width:100%; margin:0 0 18px; } }
+  .clearfix::after { content:""; display:block; clear:both; }
+  .pair { display:grid; grid-template-columns:1fr 1fr; gap:18px; margin:18px 0; }
+  @media (max-width:560px){ .pair { grid-template-columns:1fr; } }
+  .plain img { border:none; }
+
+  .brief { border-top:1px solid #ddd9c8; padding-top:16px; margin-top:22px; }
+  .brief .k { font-family:Arial,sans-serif; font-weight:bold; font-size:11px; letter-spacing:1.5px;
+              text-transform:uppercase; color:var(--red); }
+  .brief .h { font-family:Arial,sans-serif; font-weight:900; font-size:19px; line-height:1.15;
+              margin:4px 0 10px; }
+
+  .letterbox { border:1px solid var(--ink); padding:20px 22px; margin:18px 0; }
+  .letterbox .lh { font-family:Arial,sans-serif; font-weight:900; text-transform:uppercase;
+                   font-size:14px; margin:0 0 12px; }
+  .letterbox .sig { font-style:italic; color:var(--muted); }
+  .barb { border:2px solid var(--red); padding:20px 22px; margin:18px 0; }
+
+  .xwbox { border:1px solid var(--ink); padding:20px 22px; margin:18px 0; text-align:center; }
+  table.sol { border-collapse:collapse; margin:14px auto 0; }
+  table.sol td { width:26px; height:26px; border:1px solid var(--ink); text-align:center;
+                 font-family:Arial,sans-serif; font-weight:bold; font-size:13px; }
+  table.sol td.blk { background:var(--ink); }
+
+  .adwrap { text-align:center; margin:34px 0; }
+  .adwrap img { max-width:360px; width:100%; height:auto; border:1px solid #ddd9c8; }
+  .adwrap .lab { font-family:Arial,sans-serif; font-size:10.5px; letter-spacing:1px;
+                 text-transform:uppercase; color:var(--muted); margin-bottom:8px; }
+
+  .colophon { border-top:2px solid var(--ink); margin-top:44px; padding-top:18px;
+              font-size:14px; color:var(--muted); text-align:center; }
+  .colophon a { color:var(--ink); }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <nav class="tabs">
+    <a href="/">Home</a>
+    <a href="monkeys.html">Monkey Hunt</a>
+    <a href="faq.html">FAQ</a>
+    <a href="dog-map.html">Dog Map</a>
+    <a href="/#contribute">Contribute</a>
+  </nav>
+
+  <div class="issueline">Extra! &middot; Vol. 3, No. 8 &middot; October 2026 &middot; Free</div>
+  <h1 class="masthead">The Monroe Street Tattler</h1>
+  <p class="tagline">News so hyperlocal, it's amazing anyone takes an interest.</p>
+
+  <div class="splash">
+    <div class="kicker">A Reader Sent Us This. We Checked. It's Real.</div>
+    <h2>Cult Discovered on Monroe Street</h2>
+  </div>
+
+  <div class="reversebar">Questions remain. The Tattler asked none of them.</div>
+
+  <div class="teasers">
+    <a class="teaser" href="#librarian">Librarian Breaks Silence</a>
+    <a class="teaser" href="#barb">Romance in Crisis</a>
+    <a class="teaser" href="#neighborhood">Listserv Once Again Saves the Day</a>
+  </div>
+
+  <div class="flashbox">
+    <div class="fh">38-Prize Giveaway. One Very Strange October.</div>
+    <p>The Tattler and Orange Tree Imports have teamed up and made plans for you.</p>
+    <a class="btn" href="monkeys.html">Join the Monkey Hunt &rarr;</a>
+  </div>
+
+  <div class="teasers">
+    <a class="teaser" href="#neighborhood">Honk Watch! Friday Toots Raise Questions</a>
+    <a class="teaser" href="#neighborhood">Ethical Crisis Surfaces Yet Again</a>
+    <a class="teaser" href="#neighborhood">Cat Chaos Grips the Neighborhood</a>
+    <a class="teaser" href="#letters">A Question of Integrity</a>
+    <a class="teaser" href="#lola">Whatever Lola Wants, Lola Gets</a>
+    <a class="teaser" href="#crossword">Are You Smart Enough for Monroe Street?</a>
+  </div>
+
+  <div class="pdfbar">
+    <span>Prefer the real thing? The printed edition is exactly as it landed on doorsteps.</span>
+    <a href="october_2026_digital.pdf">Download the printed issue</a>
+  </div>
+
+
+  <h3 class="section" id="cult">Flagship Feature &middot; Reader Submission</h3>
+  <h4 class="head">A Monkey and a Cult</h4>
+  <p class="deck">Local history takes a very strange turn.</p>
+  <p class="byline">A Tattler reader submission</p>
+
+  <p>In an old home or apartment, some of the building&#x27;s history is visible right away: the old trim, the strange renovation choices, the pipes that suggest someone once had a plan, or at least access to tools. Other parts are harder to uncover. That&#x27;s one of the pleasures of living in an old house. You never really know what pieces of its history are going to find you.</p>
+  <p>Or knock on the door.</p>
+  <p>In this case, it was a man ringing the doorbell and asking if he could come inside and see the house.</p>
+  <p>This stranger, we quickly learned, was named David.</p>
+  <p>David told us that he had grown up in our house decades earlier. Now in his 60s, he had stopped by as he was passing through in the hopes to see his childhood home.</p>
+  <p>David knew enough about the house to establish that he was either telling the truth or had committed himself to an extremely specific form of fraud. He remembered layouts and house quirks. Which felt validating enough.</p>
+  <p>So we invited him in.</p>
+  <p>We explored the house while he told us what he remembered, including that his family had somehow gotten a full-sized pool table down the narrow basement stairs. We&#x27;re still not sure how they pulled that off.</p>
+  <p>Then while walking around the house, David casually mentioned the monkey. &quot;Oh yeah, and that&#x27;s where the monkey was.&quot;</p>
+  <p>&quot;I&#x27;m sorry what, what?&quot; I said, confirming I heard him correctly.</p>
+  <p>One Saturday morning, when David thought he was perhaps 8, he glanced out the sunroom window. To his complete surprise, there was a monkey a few feet from his face looking back at him. It was just sitting in the tree, making eye contact. He knew the story sounded wild. A monkey had appeared outside his window. He saw it. The monkey saw him.</p>
+  <p>This is the kind of information you receive politely. But your mind quickly replays the seemingly insufficient front door vetting from an hour earlier.</p>
+  <p>David had a theory about how the monkey got there, but corroborating it meant some investigative journalism and a trip through Wisconsin Historical Society records. Finally, we assumed, this would be our chance to pull microfiche. It took one simple website search.</p>
+  <p>In August 1960, Madison experienced a primate jailbreak. Thirty-eight monkeys escaped from the Vilas Zoo. Most were recaptured quickly. Others made their way into the surrounding area, including trees outside ordinary Madison homes. And amazingly, the last monkeys were not captured until December 5.</p>
+  <p>For four months, Madison had an unresolved monkey situation.</p>
+  <p>This childhood memory was not merely a family legend. It appears to be one small piece of real Madison history. He should have led with this story on our home tour. Or perhaps he was right to save it for the end of his visit.</p>
+  <p>For many houses, this would be the strangest visitor story.</p>
+  <p>Ours had another appointment on the calendar.</p>
+  <p>During the Monroe Street reconstruction, when the sidewalk and a good stretch of road disappeared for a season, the neighborhood developed a kind of improvised circulation system. Pedestrians, commuters, and the occasional confused cyclist began taking whatever routes made sense in the moment. This sometimes meant cutting across front yards with the quiet confidence of people who had temporarily believed that all land was public infrastructure for them to use.</p>
+  <p>One afternoon just after construction wrapped, while the memory of that collective boundary confusion was still fresh, an absolutely stuffed vanload of people climbed out of a white 15-passenger van in front of our house.</p>
+  <p>They were an eclectic group of varying ages, the kind you try to place in a category: a neighbor&#x27;s relatives, contractors, a wrong turn from campus.</p>
+  <p>We went back to whatever we were doing inside the house, until the volume of conversation outside made me look a second time.</p>
+  <p>The vanload of strangers was now in the front yard, feet from the window.</p>
+  <p>They had not knocked. They did not appear to be lost. Quirky things happen when you live near campus, so I chalked it up to that.</p>
+  <p>But then after a bit of time, they just stayed. So now this created a category problem. They were not visitors, because visitors knock. And they were not passersby, because passersby keep passing by.</p>
+  <p>While I watched them, trying to decide whether I should go outside and greet all 50 of them, they arranged themselves in front of the house and began posing for photos. Then after several pictures, they climbed back into the van and drove off.</p>
+  <p>It is a perfectly nice house, but not the sort of place a vanload of strangers would normally stop to commemorate.</p>
+  <p>Later that evening while still trying to make sense of it, I mentioned the daily happenings to a neighbor, who I learned had also seen them.</p>
+  <p>&quot;Oh my GOD,&quot; she said. &quot;That was the cult that used to live in your house!&quot;</p>
+  <p>Truly, a perfect neighbor sentence.</p>
+  <p>I suppose this answered my underlying question about the visitors. Unfortunately, it created several more.</p>
+  <p>For reasons I cannot explain, I stood there and asked no follow-up questions.</p>
+  <p>Instead, the sentence simply joined the house&#x27;s growing history, which we are still unpacking.</p>
+  <p>Maybe that&#x27;s the nature of living in an old house or building. You don&#x27;t get the whole story. You get fragments. Most of the house&#x27;s life remains unknown. But every once in a while, a piece of it finds its way back to the door.■</p>
+
+  <h3 class="section" id="monkeys">The Great Monkey Escape of 2026</h3>
+  <h4 class="head">The Monkeys Are Loose Again</h4>
+  <figure class="figright plain"><img src="monkeys.png" alt="Three stuffed monkeys hanging in a row">
+    <figcaption>Three of the thirty-eight.</figcaption></figure>
+
+  <p>Apparently, publishing a story about the great monkey escape of 1960 was not enough. We have now contributed to a second incident!!</p>
+  <p>Throughout October, 38 stuffed monkeys will be hiding in business windows around the neighborhood as part of The Great Monkey Escape of 2026, presented by The Monroe Street Tattler + Orange Tree Imports.</p>
+  <p>Each monkey has a name. When you spot one, write down the monkey&#x27;s name and the business where you found it on the Official Monkey Tracking Form below. Find 10, fill in your name and contact information, and return the completed paper form to Orange Tree Imports by October 31. Then we draw names.</p>
+  <p>There are 38 monkeys and 38 winners, which means every monkey will eventually leave its hiding place and go home with someone new. Winners will be drawn at random, so this is not a race. All ages are welcome. One entry per participant.</p>
+  <p>Bring this completed form to Orange Tree Imports by October 31 to be entered in the Great Monkey Adoption Drawing. 38 winners. 38 monkeys. 38 new homes.</p>
+  <div class="flashbox" style="clear:both">
+    <div class="fh">Find any 10 of the 38</div>
+    <p>Print the official tracking form, or cut it out of the paper. Completed forms go to Orange Tree Imports by October 31.</p>
+    <a class="btn" href="monkeys.html">Hunt details and printable form &rarr;</a>
+  </div>
+
+
+  <h3 class="section" id="lola">Featured Pet</h3>
+  <h4 class="head">Lola Would Like to Address the Allegations</h4>
+  <p class="deck">Local pit bull accepts responsibility for pajamas and ongoing distrust of umbrellas</p>
+  <figure class="figright"><img src="lola.jpg" alt="Lola, a grey and white pit bull, wearing duck-print pajamas on a porch">
+    <figcaption>The accused, in pajamas.</figcaption></figure>
+
+  <p>Lola arrived on Monroe Street about 18 months ago after being picked up as a stray in Janesville. She was roughly a year old, skinny, boogery and looking for a family.</p>
+  <p>Today she is 2½, considerably more comfortable and, according to her household, &quot;a m&#x27;f&#x27;ing baby.&quot;</p>
+  <p>The evidence is substantial.</p>
+  <p>Lola demands kisses on the nose. She sleeps the first half of the night in her crate, described as a &quot;blanket fort,&quot; before relocating around 2 a.m. to the human bed, where she burrows under the covers. Below 60 degrees, she prefers pajamas.</p>
+  <p>When her people work on puzzles at the kitchen table, Lola becomes unhappy unless her own chair, a brown velvet 1970s barrel chair known as the &quot;Grogu Pod,&quot; is pulled up alongside them.</p>
+  <p>Lola also enjoys Brewers games, riding through town with one elbow hanging out the passenger window, and her boyfriend Franklin of Terry Place.</p>
+  <p>Her list of enemies is shorter. At present, it consists mainly of umbrellas, which she regards as deeply suspicious and possibly up to something.</p>
+  <p>Some people give Lola extra room on the sidewalk. Others immediately want to meet her.</p>
+  <p>Her family says living with her has taught them not to treat either reaction as the whole story. Lola is exceptionally affectionate with people, but they are deliberate about introductions to other dogs. Rather than letting dogs meet nose-to-nose on a sidewalk, they prefer parallel walks, gradually closing the distance while everyone stays calm.</p>
+  <p>&quot;We need to be intentional about every interaction with other dogs,&quot; her family said.</p>
+  <p>Lola now has four dog friends introduced this way.</p>
+  <p>Squirrels and rabbits, however, should not interpret this statement as an offer of peace.</p>
+  <p>Given the opportunity to respond directly to allegations that she is intimidating, Lola acknowledged her formidable appearance but emphasized her record with humans.</p>
+  <p>Finally, the Tattler asked the question on which the entire investigation ultimately rests:</p>
+  <p>Is Lola a good girl?</p>
+  <p>Lola answered yes and submitted an extensive list of character witnesses, including neighborhood children, a crossing guard, several nearby dogs, Grandma Linda, a man who once stopped specifically to rub her, and Franklin, her aforementioned boyfriend.</p>
+  <p>The Tattler has not independently contacted all witnesses.■</p>
+  <p>Two recent neighborhood signs suggest local children are increasingly willing to bypass traditional media and communicate directly with the public.</p>
+  <p>One promoted lemonade. Another attempted to protect new grass.</p>
+  <div class="clearfix"></div>
+
+
+  <h3 class="section" id="signs">Public Messaging</h3>
+  <h4 class="head">Young Signmakers Take Control of Public Messaging</h4>
+  <p>Two recent neighborhood signs suggest local children are increasingly willing to bypass traditional media and communicate directly with the public.</p>
+  <p>One promoted lemonade. Another attempted to protect new grass.</p>
+  <div class="pair">
+    <figure><img src="sign-lemonade.jpg" alt="A hand-drawn sign reading Free Home-made Lemonade with an arrow"><figcaption>The lemonade notice.</figcaption></figure>
+    <figure><img src="sign-grass.jpg" alt="A hand-drawn yard sign asking people not to step on the new grass"><figcaption>The grass advisory.</figcaption></figure>
+  </div>
+
+
+  <h3 class="section" id="librarian">Shocking Tell All &middot; Part I</h3>
+  <h4 class="head">Shocking Tell All</h4>
+  <p class="deck">Part I of the Tattler's two-part librarian expos&eacute;</p>
+  <p><strong>For years, they've seen everything. Now they're talking.</strong></p>
+
+  <p>We sat down with Steve, a 17-year Madison Public Library veteran, to ask about life behind the desk at Monroe Street Library. He did not seem particularly concerned about what we might ask.</p>
+  <p>&quot;I&#x27;ve been asked just about everything you can think of,&quot; he said. &quot;Nothing could shock me anymore.&quot;</p>
+  <p>So we started with the books and looked for where he draws the line.</p>
+  <p>Steve is unshaken by overdue books. Returning one a day late earns a guilt level of exactly 0.0. &quot;Some folks apologize to assuage their guilt. I&#x27;m telling you, it&#x27;s ok. I do it too. Life marches on unaware.&quot;</p>
+  <p>Dog-ear a page in your own book and Steve&#x27;s position is: &quot;you do you.&quot; Dog-ear a library book and the situation changes. &quot;Borderline unforgivable,&quot; he said. &quot;These are shared items.&quot;</p>
+  <p>Then we found the sensitive area: underlining, highlighting or annotating a library book is Steve&#x27;s personal librarian hill to die on. Do it, he says, and you should feel &quot;more than a little bad.&quot;</p>
+  <p>What patrons leave inside the books is where things get more interesting.</p>
+  <p>He once found an insurance payout check for more than $5,000 tucked inside a returned book. On the subject of what people leave behind, he used the interview to issue one direct neighborhood plea:</p>
+  <p>&quot;Please don&#x27;t use toilet paper as a bookmark.&quot;</p>
+  <p>The books, it turns out, are only part of the story. The questions that arrive at the library desk can be just as unpredictable.</p>
+  <p>One patron wanted to know, &quot;Why can&#x27;t I ever find a ripe watermelon?&quot; Another question has followed him with rather more persistence. Asked to name the one he has answered approximately 14,000 times, Steve produced it immediately: &quot;Do you have tax forms?&quot;</p>
+  <p>Curiously, he did not actually tell the Tattler whether the library has tax forms.</p>
+  <p>Life at the library, we learned, is not all watermelon inquiries and questionable bookmarks. Steve offered a glimpse into what Monroe Street residents are actually asking for. Travel guides come up more often here than at other locations, cookbooks remain reliably popular, and two titles are currently drawing particular attention: <em>Whistler</em> by Ann Patchett and <em>The Correspondent</em> by Virginia Evans.</p>
+  <p>Of course, bringing new materials onto the shelves eventually raises a more delicate question: what has to go?</p>
+  <p>Steve, it turns out, enjoys making that call. Collection management is one of his favorite parts of the job, which means deciding when books, movies and CDs have outlived their usefulness or are in rough enough condition that they need to make way for something new.</p>
+  <p>Not everything at the library is about what stays on the shelves. Steve says younger visitors have their own favorites: the &quot;reading buddies,&quot; weighted stuffed animals that kids love, and he especially enjoys hearing the interactions children have with them.</p>
+  <p>Steve does see room for improvement. He wishes Monroe Street had a more accessible programming room, a fact neighborhood improvement enthusiasts may wish to quietly file away for future reference.</p>
+  <p>On which section of the library deserves more love, he was considerably more direct:</p>
+  <p>&quot;Bathrooms.&quot;</p>
+  <p>He did not elaborate.</p>
+  <p>While the facilities may remain under review, Steve&#x27;s opinion of the neighborhood is much more settled.</p>
+  <p>&quot;Folks here are friendly and clearly love their little library on Monroe St.&quot;</p>
+  <p>The Tattler can confirm at least one piece of supporting evidence. Monroe Street Library has carved out shelf space for this very newspaper, an editorial decision we continue to regard as both generous and slightly astonishing.</p>
+  <p>He wishes more people knew about the &quot;so many cool databases&quot; available through the library website. And when he talks about the most heartwarming part of the job, it is simpler: getting someone out the door with a book or movie they wanted, he says, &quot;feels great.&quot;</p>
+  <p>After 17 years with Madison Public Library, Steve offered one sentence he wishes people understood about librarians:</p>
+  <p>&quot;We don&#x27;t know everything but we are willing to try.&quot;</p>
+  <p>Which left the Tattler with one final question: Is a hot dog a sandwich?</p>
+  <p>&quot;Not in my culinary world.&quot;</p>
+  <p>After everything else he had revealed, it was perhaps the clearest answer of the interview.</p>
+  <p><strong>Next month: Part II. Another librarian agrees to talk. What they reveal may change how you see the library forever.</strong></p>
+
+
+  <h3 class="section" id="neighborhood">Around the Neighborhood</h3>
+
+  <div class="brief">
+    <div class="k">NEIGHBORHOOD LISTSERV REACHES ITS FINAL AND INTENDED PURPOSE</div>
+    <div class="h">Neighborhood Breathes Sigh of Relief as Half-Used Tube of Denture Cream Finally Claimed</div>
+  <p>Residents can once again safely open the neighborhood listserv without seeing it.</p>
+  </div>
+
+  <div class="brief">
+    <div class="k">HONK WATCH</div>
+    <div class="h">A Corner in Crisis</div>
+  <p>A reader has reported an apparent increase in horn activity at Monroe and Harrison on Friday afternoons.</p>
+  <p>No empirical data supports the claim.</p>
+  <p>The Tattler considers eyewitness reporting at least as important as actual evidence and has opened a preliminary investigation.</p>
+  <p>Readers noticing repeat honkers, unusually aggressive toots, or Thursday behaving suspiciously like Friday are asked to report them to the Tattletale Line at MonroeStreetTattler@gmail.com.</p>
+  </div>
+
+  <div class="brief">
+    <div class="k">CONTAINMENT UPDATE</div>
+    <div class="h">Outdoor Cat Debate Shows No Sign of Resolution</div>
+  <p>Residents remain divided on the question of outdoor cats.</p>
+  <p>Supporters cite enrichment, tradition, and the difficulty of explaining property lines to a cat. Opponents cite birds, nests, garden beds, and the broader concern that one household&#x27;s beloved pet may also serve as neighborhood wildlife policy.</p>
+  <p>The Tattler takes no position, except to note that all sides appear confident.</p>
+  </div>
+
+  <div class="brief">
+    <div class="k">FIELD REPORT</div>
+    <div class="h">Local Man Saves $2, Spends Rest of Morning Thinking About Chickens</div>
+  <p>Routine trip for eggs becomes crisis of personal morality.</p>
+  <p>A routine stop at Trader Joe&#x27;s became an ethical reckoning Thursday when a local shopper, who had reportedly delayed buying eggs for several days to avoid &quot;dealing with all this again,&quot; was finally forced to confront the refrigerated wall.</p>
+  <p>Sources say the shopper stood motionless for several minutes, weighing exactly how much chicken suffering he was willing to tolerate to save $2, and whether the extra money was even buying meaningfully better welfare in the first place.</p>
+  <p>After comparing labels, prices and increasingly cheerful illustrations of chickens standing in grass, he selected a mid-priced carton that appeared to offer the optimal balance of animal welfare and not paying $9 for eggs.</p>
+  <p>Even the $8.99 option failed to provide total peace of mind, as the shopper admitted he could no longer remember whether &quot;cage-free&quot; meant &quot;good,&quot; &quot;less bad,&quot; or merely &quot;not technically in a cage.&quot;</p>
+  <p>&quot;I just wanted eggs,&quot; he said.</p>
+  </div>
+
+  <figure style="margin-top:26px"><img src="comic.jpg" alt="Three-panel cartoon of a junior correspondent sampling ice cream flavours">
+    <figcaption>The junior correspondent at work.</figcaption></figure>
+
+
+  <h3 class="section" id="letters">Reader Mail</h3>
+  <h4 class="head">Letters to the Editor</h4>
+  <div class="letterbox">
+    <div class="lh">A Question of Integrity</div>
+    <p><em>Dear Editor,</em></p>
+
+  <p>I notice that in your September issue, Chocolate Shoppe received your highest ice cream honor and also purchased an advertisement. I am not accusing anyone of anything. I am simply noting it.</p>
+    <p class="sig">A Careful Reader</p>
+
+    <div class="lh" style="margin-top:18px">The Commission Responds</div>
+
+  <p>The Commission thanks the reader for noting it. Both facts are correct. Chocolate Shoppe received the Tattler 2026 Double Scoop Award, and Chocolate Shoppe purchased a quarter page in the same issue.</p>
+  <p>The award was determined in a Chocolate Shoppe dining room, over roughly two hours and 448 tasting spoons, at a time when this paper had no advertising to sell and no reason to believe it ever would. The Tattler&#x27;s entire revenue that month was a single unsolicited reader contribution, which was spent on trophies.</p>
+  <p>The award was given for allowing 56 flavors to be tasted in one sitting without visible complaint, which remains the most patience any business has shown this publication.</p>
+  <p>The Tattler&#x27;s independence is, as always, largely theoretical. In this instance it is also intact.</p>
+  <p>The Commission welcomes continued scrutiny, and reminds readers that advertising rates are available on request.</p>
+  </div>
+
+  <div class="letterbox">
+    <div class="lh">From the Mailbag</div>
+
+    <p><em>&quot;Just read my first issue cover-to-cover. I can&#x27;t remember the last time I enjoyed the news so much!&quot;</em></p>
+
+    <p><em>&quot;Just discovered this fabulous newspaper! Looking forward to the next issue. The humor is very appreciated.&quot;</em></p>
+
+    <div class="lh" style="margin-top:14px">The Tattler Responds</div>
+    <p>Thank you to both of you. This is exactly the kind of reckless encouragement that keeps the presses running. Thank you for supporting the Tattler.</p>
+  </div>
+
+
+  <div class="barb" id="barb">
+    <div class="lh" style="font-family:Arial,sans-serif;font-weight:900;text-transform:uppercase;font-size:14px;color:#b3241c;margin-bottom:12px;">Dear Barb</div>
+    <p><em>Dear Barb,</em></p>
+
+  <p>Last week I was shopping at Hy-Vee on Wellness Wednesday, as I do every week, when my cashier, let&#x27;s call them Jaime, seemed unusually friendly. At one point I became convinced we were flirting.</p>
+  <p>On the drive home, I replayed the entire exchange several times and became fairly certain I had mistaken ordinary friendliness for flirting. I&#x27;m now embarrassed enough that I&#x27;m considering changing grocery stores just to avoid the possibility of running into Jaime.</p>
+  <p>The problem is that I&#x27;ve been shopping there for years and have grown extremely accustomed to that weekly 10% HealthMarket discount. Can I go back?</p>
+    <p class="sig"><em>Between Grocery Stores</em></p>
+    <p><em>Dear Between Grocery Stores,</em></p>
+
+  <p>Can you go back? Absolutely not.</p>
+  <p>That store is no longer available to you. You had a good run, and I&#x27;m sorry it ended this way. The embarrassment will fade. Losing 10% off HealthMarket every Wednesday is the part that may take time.</p>
+  <p>As you search for a new grocery store, you will also need to rule out Trader Joe&#x27;s. If one pleasant interaction at Hy-Vee has created this much confusion, the interpersonal conditions there are simply too dangerous.</p>
+  <p><strong>Verdict: Shop elsewhere. Grieve privately.</strong></p>
+    </div>
+
+
+  <h3 class="section" id="crossword">Crossword</h3>
+  <h4 class="head">Are You Smart Enough for Monroe Street?</h4>
+  <p>Tattler Crossword No. 2 runs on the back page of the printed issue. Download the paper above to play it, or print the puzzle on its own.</p>
+  <div class="xwbox">
+    <div class="lh" style="font-family:Arial,sans-serif;font-weight:900;text-transform:uppercase;font-size:14px;">September Solution</div>
+    <p style="font-size:14px;color:#5a5a5a;margin:6px 0 0">Tattler Crossword No. 1</p>
+    <table class="sol"><tr><td class="blk"></td><td>P</td><td>A</td><td>I</td><td>G</td><td>E</td><td class="blk"></td><td>D</td><td>A</td><td>D</td><td>A</td></tr><tr><td>U</td><td class="blk"></td><td>I</td><td>S</td><td class="blk"></td><td class="blk"></td><td class="blk"></td><td>B</td><td>L</td><td>E</td><td>U</td></tr><tr><td>M</td><td>P</td><td class="blk"></td><td>R</td><td>E</td><td>C</td><td>A</td><td>L</td><td>L</td><td>E</td><td>D</td></tr><tr><td>P</td><td>E</td><td>C</td><td class="blk"></td><td class="blk"></td><td>O</td><td>N</td><td class="blk"></td><td class="blk"></td><td class="blk"></td><td>R</td></tr><tr><td class="blk"></td><td>T</td><td>E</td><td>F</td><td>L</td><td>O</td><td>N</td><td class="blk"></td><td>O</td><td>D</td><td>E</td></tr><tr><td>A</td><td>R</td><td>R</td><td class="blk"></td><td>E</td><td>L</td><td>I</td><td class="blk"></td><td>V</td><td>E</td><td>Y</td></tr><tr><td>C</td><td>I</td><td>A</td><td class="blk"></td><td>M</td><td>E</td><td>E</td><td>T</td><td>U</td><td>P</td><td class="blk"></td></tr><tr><td>A</td><td class="blk"></td><td class="blk"></td><td class="blk"></td><td>M</td><td>R</td><td class="blk"></td><td class="blk"></td><td>M</td><td>T</td><td>S</td></tr><tr><td>C</td><td>U</td><td>L</td><td>D</td><td>E</td><td>S</td><td>A</td><td>C</td><td class="blk"></td><td>H</td><td>I</td></tr><tr><td>I</td><td>S</td><td>E</td><td>E</td><td class="blk"></td><td class="blk"></td><td class="blk"></td><td>D</td><td>C</td><td class="blk"></td><td>P</td></tr><tr><td>A</td><td>D</td><td>A</td><td>M</td><td class="blk"></td><td>T</td><td>O</td><td>R</td><td>C</td><td>H</td><td class="blk"></td></tr></table>
+  </div>
+
+
+  <h3 class="section">A Note from the Tattler</h3>
+
+  <p>Thank you to everyone who has emailed, donated, sent in a tip, requested and displayed a yard sign, nominated a pet, suggested something ridiculous, or otherwise helped turn this into something much larger than we had any business expecting.</p>
+  <p>What started as a small neighborhood experiment has somehow become a real little community project, which is both very touching and, operationally, a little concerning.</p>
+  <p>Thank you for reading, sharing copies, writing back, and treating the Tattler like it belongs here.</p>
+  <p>It&#x27;s much more fun because of all of you, and we&#x27;re genuinely very grateful.</p>
+
+  <div class="adwrap">
+    <div class="lab">Advertisement</div>
+    <img src="orange-tree-ad.jpg" alt="Orange Tree Imports, celebrating over 50 years on Monroe Street">
+  </div>
+
+  <div class="colophon">
+    <p><strong>The Monroe Street Tattler</strong> is printed monthly-ish and distributed free throughout the surrounding neighborhoods.</p>
+    <p>Subscribe, read past issues, chip in, host a stack or run an ad at <a href="/">MonroeStreetTattler.com</a>.</p>
+    <p>Tips, neighborhood lore and unexplained local developments to
+       <a href="mailto:MonroeStreetTattler@gmail.com">MonroeStreetTattler@gmail.com</a>.
+       Story ideas are welcome and submissions need not be polished. This month's cover story even came from a reader.
+       Know a pet the Tattler should feature? Send nominations to the same address.</p>
+  </div>
+
+</div>
+</body>
+</html>
