@@ -109,6 +109,19 @@
                  font-family:Arial,sans-serif; font-weight:bold; font-size:13px; }
   table.sol td.blk { background:var(--ink); }
 
+
+  table.xw { border-collapse:collapse; margin:20px auto; }
+  table.xw td { width:30px; height:30px; border:1px solid var(--ink); position:relative;
+                background:#fff; }
+  table.xw td.blk { background:var(--ink); }
+  table.xw .n { position:absolute; top:1px; left:3px; font-family:Arial,sans-serif;
+                font-size:9px; line-height:1; color:var(--muted); }
+  @media (max-width:560px){ table.xw td { width:24px; height:24px; } table.xw .n { font-size:8px; } }
+  .xwclues { display:grid; grid-template-columns:1fr 1fr; gap:26px; margin-top:8px; text-align:left; }
+  @media (max-width:560px){ .xwclues { grid-template-columns:1fr; } }
+  ol.clues { list-style:none; margin:0; padding:0; }
+  ol.clues li { font-size:15px; line-height:1.4; margin-bottom:6px; }
+  ol.clues b { font-family:Arial,sans-serif; font-size:13px; }
   .adwrap { text-align:center; margin:34px 0; }
   .adwrap img { max-width:360px; width:100%; height:auto; border:1px solid #ddd9c8; }
   .adwrap .lab { font-family:Arial,sans-serif; font-size:10.5px; letter-spacing:1px;
@@ -144,7 +157,7 @@
   <div class="teasers">
     <a class="teaser" href="#librarian">Librarian Breaks Silence</a>
     <a class="teaser" href="#barb">Romance in Crisis</a>
-    <a class="teaser" href="#neighborhood">Listserv Once Again Saves the Day</a>
+    <a class="teaser" href="#listserv">Listserv Once Again Saves the Day</a>
   </div>
 
   <div class="flashbox">
@@ -154,9 +167,9 @@
   </div>
 
   <div class="teasers">
-    <a class="teaser" href="#neighborhood">Honk Watch! Friday Toots Raise Questions</a>
-    <a class="teaser" href="#neighborhood">Ethical Crisis Surfaces Yet Again</a>
-    <a class="teaser" href="#neighborhood">Cat Chaos Grips the Neighborhood</a>
+    <a class="teaser" href="#honk">Honk Watch! Friday Toots Raise Questions</a>
+    <a class="teaser" href="#eggs">Ethical Crisis Surfaces Yet Again</a>
+    <a class="teaser" href="#cats">Cat Chaos Grips the Neighborhood</a>
     <a class="teaser" href="#letters">A Question of Integrity</a>
     <a class="teaser" href="#lola">Whatever Lola Wants, Lola Gets</a>
     <a class="teaser" href="#crossword">Are You Smart Enough for Monroe Street?</a>
@@ -302,13 +315,13 @@
 
   <h3 class="section" id="neighborhood">Around the Neighborhood</h3>
 
-  <div class="brief">
+  <div class="brief" id="listserv">
     <div class="k">NEIGHBORHOOD LISTSERV REACHES ITS FINAL AND INTENDED PURPOSE</div>
     <div class="h">Neighborhood Breathes Sigh of Relief as Half-Used Tube of Denture Cream Finally Claimed</div>
   <p>Residents can once again safely open the neighborhood listserv without seeing it.</p>
   </div>
 
-  <div class="brief">
+  <div class="brief" id="honk">
     <div class="k">HONK WATCH</div>
     <div class="h">A Corner in Crisis</div>
   <p>A reader has reported an apparent increase in horn activity at Monroe and Harrison on Friday afternoons.</p>
@@ -317,7 +330,7 @@
   <p>Readers noticing repeat honkers, unusually aggressive toots, or Thursday behaving suspiciously like Friday are asked to report them to the Tattletale Line at MonroeStreetTattler@gmail.com.</p>
   </div>
 
-  <div class="brief">
+  <div class="brief" id="cats">
     <div class="k">CONTAINMENT UPDATE</div>
     <div class="h">Outdoor Cat Debate Shows No Sign of Resolution</div>
   <p>Residents remain divided on the question of outdoor cats.</p>
@@ -325,7 +338,7 @@
   <p>The Tattler takes no position, except to note that all sides appear confident.</p>
   </div>
 
-  <div class="brief">
+  <div class="brief" id="eggs">
     <div class="k">FIELD REPORT</div>
     <div class="h">Local Man Saves $2, Spends Rest of Morning Thinking About Chickens</div>
   <p>Routine trip for eggs becomes crisis of personal morality.</p>
@@ -389,7 +402,14 @@
 
   <h3 class="section" id="crossword">Crossword</h3>
   <h4 class="head">Are You Smart Enough for Monroe Street?</h4>
-  <p>Tattler Crossword No. 2 runs on the back page of the printed issue. Download the paper above to play it.</p>
+  <p>Tattler Crossword No. 2, as it runs on the back page of the printed issue. Answers appear in the November issue.</p>
+  <p><a href="crossword-2.pdf" target="_blank" rel="noopener"><strong>Download and print the crossword &rarr;</strong></a></p>
+  <table class="xw"><tr><td><span class="n">1</span></td><td></td><td><span class="n">2</span></td><td><span class="n">3</span></td><td class="blk"></td><td class="blk"></td><td class="blk"></td><td><span class="n">4</span></td><td><span class="n">5</span></td><td></td><td class="blk"></td></tr><tr><td></td><td class="blk"></td><td><span class="n">6</span></td><td></td><td><span class="n">7</span></td><td><span class="n">8</span></td><td><span class="n">9</span></td><td></td><td></td><td class="blk"></td><td><span class="n">10</span></td></tr><tr><td><span class="n">11</span></td><td><span class="n">12</span></td><td class="blk"></td><td><span class="n">13</span></td><td></td><td></td><td></td><td></td><td class="blk"></td><td><span class="n">14</span></td><td></td></tr><tr><td><span class="n">15</span></td><td></td><td><span class="n">16</span></td><td></td><td></td><td></td><td></td><td class="blk"></td><td><span class="n">17</span></td><td></td><td></td></tr><tr><td><span class="n">18</span></td><td></td><td></td><td></td><td class="blk"></td><td><span class="n">19</span></td><td></td><td><span class="n">20</span></td><td></td><td></td><td></td></tr><tr><td class="blk"></td><td><span class="n">21</span></td><td></td><td></td><td><span class="n">22</span></td><td></td><td></td><td></td><td></td><td></td><td class="blk"></td></tr><tr><td><span class="n">23</span></td><td></td><td></td><td></td><td></td><td></td><td class="blk"></td><td><span class="n">24</span></td><td></td><td></td><td><span class="n">25</span></td></tr><tr><td><span class="n">26</span></td><td></td><td></td><td class="blk"></td><td><span class="n">27</span></td><td></td><td><span class="n">28</span></td><td></td><td></td><td></td><td></td></tr><tr><td><span class="n">29</span></td><td></td><td class="blk"></td><td><span class="n">30</span></td><td></td><td></td><td></td><td></td><td class="blk"></td><td><span class="n">31</span></td><td></td></tr><tr><td></td><td class="blk"></td><td><span class="n">32</span></td><td></td><td></td><td></td><td></td><td></td><td><span class="n">33</span></td><td class="blk"></td><td></td></tr><tr><td class="blk"></td><td><span class="n">34</span></td><td></td><td></td><td class="blk"></td><td class="blk"></td><td class="blk"></td><td><span class="n">35</span></td><td></td><td></td><td></td></tr></table>
+  <div class="xwclues">
+    <div><h5 class="sub">Across</h5><ol class="clues"><li><b>1</b> Word before O’Riley or ganoush</li><li><b>4</b> Poker winnings</li><li><b>6</b> Sidebar with the key facts</li><li><b>11</b> Title that minds its own damn business about marital status</li><li><b>13</b> Country whose flag isn’t rectangular</li><li><b>14</b> Compass opposites, briefly</li><li><b>15</b> Hogwash, which the Tattler would NEVER publish</li><li><b>17</b> State Street shop for people who find normal glasses boring</li><li><b>18</b> ___, old chap!</li><li><b>19</b> How mixing bowls are stored, ideally</li><li><b>21</b> Wagner hero with serious family issues</li><li><b>23</b> Line politicians love talking about</li><li><b>24</b> Administrative junk drawer, briefly</li><li><b>26</b> ___ Angeles</li><li><b>27</b> Make use of, as a resource</li><li><b>29</b> Performing, as a comedian</li><li><b>30</b> Creature famously associated with a needle’s eye</li><li><b>31</b> Now I get it!</li><li><b>32</b> Changed enough to call it ‘new&#x27;</li><li><b>34</b> Put to work instead of storing in the basement</li><li><b>35</b> Planted, but not yet reaped</li></ol></div>
+    <div><h5 class="sub">Down</h5><ol class="clues"><li><b>1</b> Early entry in Disney’s proud tradition of killing off parents</li><li><b>2</b> What millennials called pan, more or less</li><li><b>3</b> Emotional state of approximately 40% of Nextdoor</li><li><b>4</b> Politician, briefly</li><li><b>5</b> Animal that really committed to leg day</li><li><b>7</b> Crosswordese for ‘wetland’</li><li><b>8</b> Structure before the walls go up.</li><li><b>9</b> Drugmaker a television commercial would like you to ask your doctor about</li><li><b>10</b> Like a tissue you absolutely do not want handed back</li><li><b>12</b> Vidal who gave geometry a haircut. Constructor’s note: We cannot overstate our relief upon learning this was even a word/surname.</li><li><b>14</b> Words before “take a bath,” after a long toddler day</li><li><b>16</b> Supervillain real estate</li><li><b>17</b> A mug that takes itself seriously</li><li><b>20</b> What “cold as ice” and “light as a feather” are</li><li><b>22</b> “What are you trying to ___?”</li><li><b>23</b> Undefined goo</li><li><b>25</b> Sacha Baron’s last name</li><li><b>28</b> Opening word in corporate emails for “I already told you this”</li><li><b>30</b> Cleveland, on a scoreboard</li><li><b>32</b> Word that comes before ‘seen on TV’</li><li><b>33</b> What Nike has been yelling at us to ___ since 1988</li></ol></div>
+  </div>
+
   <div class="xwbox">
     <div class="lh" style="font-family:Arial,sans-serif;font-weight:900;text-transform:uppercase;font-size:14px;">September Solution</div>
     <p style="font-size:14px;color:#5a5a5a;margin:6px 0 0">Tattler Crossword No. 1</p>
