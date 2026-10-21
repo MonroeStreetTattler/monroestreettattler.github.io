@@ -76,6 +76,22 @@
   .searchbar input::placeholder { color:#a9a496; font-style:italic; }
   .count { font-family:Arial,sans-serif; font-size:11px; text-transform:uppercase; letter-spacing:1px;
            color:var(--muted); margin:0 0 26px; }
+  .photo { margin:26px 0 0; }
+  .photo img { width:100%; height:auto; display:block; border:1px solid var(--ink); }
+  .photo figcaption { font-family:Arial,sans-serif; font-size:11px; text-transform:uppercase;
+                      letter-spacing:1px; color:var(--muted); margin-top:7px; }
+  .photo.trophy { text-align:center; margin:30px 0 0; }
+  .photo.trophy img { width:auto; max-width:200px; max-height:420px; margin:0 auto; border:none; }
+  .flavorindex { border-top:1px solid var(--ink); border-bottom:1px solid var(--ink);
+                 padding:14px 0; margin:10px 0 0; display:flex; flex-wrap:wrap; gap:7px 16px; }
+  .flavorindex a { font-family:Arial,sans-serif; font-size:12px; text-transform:uppercase;
+                   letter-spacing:.5px; color:var(--ink); text-decoration:none;
+                   border-bottom:1px solid #d8d4c4; padding-bottom:1px; }
+  .flavorindex a:hover { color:var(--red); border-bottom-color:var(--red); }
+  .indexlabel { font-family:Arial,sans-serif; font-size:11px; font-weight:bold;
+                text-transform:uppercase; letter-spacing:1.5px; color:var(--red);
+                margin:26px 0 0; }
+  .flavor { scroll-margin-top:14px; }
   .flavor { border-bottom:1px solid #d8d4c4; padding:20px 0; }
   .flavor h2 { font-family:Arial,sans-serif; font-weight:900; text-transform:uppercase;
                font-size:17px; margin:0 0 8px; }
@@ -134,6 +150,13 @@
   scored and no flavor is declared best.</p>
        ===== END METHODOLOGY DRAFT ===== -->
 
+  <figure class="photo">
+    <img src="chocolate-shoppe-tasting-spoons.jpg" width="1400" height="798"
+         alt="Two Chocolate Shoppe Ice Cream cups filled with blue plastic tasting spoons on a wooden table"
+         decoding="async">
+    <figcaption>The Commission's equipment. Chocolate Shoppe Ice Cream, Monroe Street.</figcaption>
+  </figure>
+
   <div class="joinbar">
     <span><strong>Want in?</strong> Run your own tasting panel at home. The Tattler's Family Ice Cream Investigation Kit takes 5 flavors, not 56.</span>
     <a href="icecream.html">Get the tasting kit</a>
@@ -143,6 +166,66 @@
     <label for="q">Jump to a flavor</label>
     <input id="q" type="search" placeholder="Type a flavor name, like Zanzibar, Blue Moon or cookie dough" autocomplete="off">
   </div>
+  <p class="indexlabel">All 56 flavors, A to Z</p>
+  <nav class="flavorindex" aria-label="All 56 flavors">
+      <a href="#banana-cream-pie">Banana Cream Pie</a>
+      <a href="#belgian-daydream">Belgian Daydream</a>
+      <a href="#birthday-cake">Birthday Cake</a>
+      <a href="#black-cherry-oat-cream">Black Cherry Oat Cream</a>
+      <a href="#blackberry-lemon-bar">Blackberry Lemon Bar</a>
+      <a href="#blue-moon">Blue Moon</a>
+      <a href="#blue-moon-oat-cream">Blue Moon Oat Cream</a>
+      <a href="#blueberry-cheesecake">Blueberry Cheesecake</a>
+      <a href="#butter-pecan">Butter Pecan</a>
+      <a href="#caramel-chaos">Caramel Chaos™</a>
+      <a href="#carrot-mango-italian-ice">Carrot Mango Italian Ice</a>
+      <a href="#chocolate">Chocolate</a>
+      <a href="#cookie-dough">Cookie Dough</a>
+      <a href="#cotton-candy-twist">Cotton Candy Twist</a>
+      <a href="#cr-appley-ever-after">Cr-Appley Ever After</a>
+      <a href="#door-county-cherry">Door County Cherry</a>
+      <a href="#espresso-almond-fudge">Espresso Almond Fudge</a>
+      <a href="#exhausted-parent">Exhausted Parent®</a>
+      <a href="#halleys-comet">Halley’s Comet®</a>
+      <a href="#heaps-of-love">Heaps of Love™</a>
+      <a href="#iced-latte-da">Iced Latte-Da®</a>
+      <a href="#key-lime-cheesecake">Key Lime Cheesecake</a>
+      <a href="#kitty-kitty-bang-bang">Kitty Kitty Bang Bang™</a>
+      <a href="#lemon-meringue">Lemon Meringue</a>
+      <a href="#matcha-green-tea">Matcha Green Tea</a>
+      <a href="#me-want-cookie">Me Want Cookie™</a>
+      <a href="#mint-avalanche">Mint Avalanche</a>
+      <a href="#mint-chip">Mint Chip</a>
+      <a href="#munchie-madness">Munchie Madness</a>
+      <a href="#nsa-cashews-caramel">NSA Cashews &amp; Caramel</a>
+      <a href="#nsa-pomegranate-swirl">NSA Pomegranate Swirl</a>
+      <a href="#party-animal">Party Animal™</a>
+      <a href="#pb-yay">PB &amp; Yay</a>
+      <a href="#peanut-butter-cookie-dough">Peanut Butter Cookie Dough</a>
+      <a href="#peppermint-stick">Peppermint Stick</a>
+      <a href="#pistachio-nut">Pistachio Nut</a>
+      <a href="#rainbow-sherbet">Rainbow Sherbet</a>
+      <a href="#raspberry-lemon-italian-ice">Raspberry Lemon Italian Ice</a>
+      <a href="#red-wine-chocolate-cake">Red Wine Chocolate Cake</a>
+      <a href="#rhubarb-crumble">Rhubarb Crumble</a>
+      <a href="#rocky-road">Rocky Road</a>
+      <a href="#root-beer-float">Root Beer Float</a>
+      <a href="#scotcheroo">Scotcheroo</a>
+      <a href="#smore-to-love">S’more to Love™</a>
+      <a href="#sticks-stones">Sticks &amp; Stones®</a>
+      <a href="#strawberry">Strawberry</a>
+      <a href="#strawberry-cheesecake">Strawberry Cheesecake</a>
+      <a href="#super-human">Super Human</a>
+      <a href="#this-just-got-serious">This $&amp;@! Just Got Serious®</a>
+      <a href="#turtle">Turtle</a>
+      <a href="#ultimate-oreo">Ultimate Oreo</a>
+      <a href="#ultimate-oreo-oat-cream">Ultimate Oreo Oat Cream</a>
+      <a href="#vanilla-bean">Vanilla Bean</a>
+      <a href="#yippee-skippee">Yippee Skippee®</a>
+      <a href="#zanzibar-chocolate">Zanzibar® Chocolate</a>
+      <a href="#zoreo">Zoreo</a>
+  </nav>
+
   <p class="count" id="count">Showing all 56 flavors</p>
 
   <div id="list">
@@ -373,6 +456,13 @@
   </div>
   <p class="noresult" id="noresult">No flavor by that name was tasted. The Commission regrets the omission and will consider it for a future investigation.</p>
 
+  <figure class="photo trophy">
+    <img src="double-scoop-award.png"
+         alt="The Monroe Street Tattler 2026 Double Scoop Award, a trophy of two ice cream cones on a pedestal, presented to Chocolate Shoppe on Monroe Street"
+         loading="lazy" decoding="async">
+    <figcaption>The 2026 Double Scoop Award, presented to Chocolate Shoppe.</figcaption>
+  </figure>
+
   <div class="box heavy">
     <h2>Final Commission Note</h2>
   <p>Not every flavor produced agreement. That was never really the point.</p>
@@ -428,5 +518,19 @@
   });
 })();
 </script>
+<script>
+(function(){
+  var q = document.getElementById('q');
+  var idx = document.querySelector('.flavorindex');
+  if (!q || !idx) return;
+  idx.addEventListener('click', function(e){
+    var a = e.target.closest('a');
+    if (!a || !q.value) return;
+    q.value = '';
+    q.dispatchEvent(new Event('input'));
+  });
+})();
+</script>
+
 </body>
 </html>
