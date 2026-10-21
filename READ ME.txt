@@ -1,0 +1,15 @@
+UPLOAD NOW
+==========
+Everything in this folder goes to the root of monroestreettattler.com.
+Drag all four files in at once. Nothing else needs to move.
+
+  september-2026.html   issue page: new title, description, self-canonical
+  index.html            homepage: Chocolate Shoppe feature block
+  sitemap.xml           new
+  robots.txt            new (points at the sitemap)
+
+After uploading, submit https://monroestreettattler.com/sitemap.xml
+in Google Search Console.
+
+This folder is a staging area. The master copies live in the issue folders.
+It gets emptied once the upload is confirmed.
