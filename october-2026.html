@@ -145,6 +145,22 @@
   .colophon { border-top:2px solid var(--ink); margin-top:44px; padding-top:18px;
               font-size:14px; color:var(--muted); text-align:center; }
   .colophon a { color:var(--ink); }
+  /* ---- reader support ---- */
+  nav.tabs a.payprint { color:#b3241c; font-weight:bold; }
+  nav.tabs a.payprint:hover { color:#111; border-bottom:2px solid #111; }
+  .payup { border:3px solid #b3241c; background:#fbf3f2; padding:20px 22px; margin:30px 0; }
+  .payup .payhead { font-family:Arial,sans-serif; font-weight:900; text-transform:uppercase;
+                    letter-spacing:.5px; font-size:20px; line-height:1.15; color:#b3241c; margin:0 0 12px; }
+  .payup p { font-size:15px; line-height:1.55; margin:0 0 12px; }
+  .paybtns { margin:16px 0 0; }
+  .paybtns a { display:block; width:100%; max-width:360px; text-align:center;
+               font-family:Arial,sans-serif; font-weight:bold; font-size:15px; text-transform:uppercase;
+               letter-spacing:.5px; text-decoration:none; padding:16px 18px; min-height:52px;
+               box-sizing:border-box; background:#b3241c; color:#fdfcf3; border:2px solid #b3241c; }
+  .paybtns a:hover { background:#111; border-color:#111; color:#fdfcf3; }
+  .payfine, .payup p.payfine, .block p.payfine { font-size:13.5px; color:#5a5a5a;
+            line-height:1.5; margin:12px 0 0; }
+  .payfine strong { color:#111; }
 </style>
 <!-- Cloudflare Web Analytics -->
 <script
@@ -163,6 +179,7 @@
     <a href="faq.html">FAQ</a>
     <a href="dog-map.html">Dog Map</a>
     <a href="/#contribute">Contribute</a>
+  <a class="payprint" href="https://ko-fi.com/monroestreettattler#checkoutModal" target="_blank" rel="noopener">&#9749; Buy Us a Coffee</a>
   </nav>
 
   <div class="issueline">Extra! &middot; Vol. 3, No. 8 &middot; October 2026 &middot; Free</div>
@@ -450,6 +467,18 @@
     <div class="lab">Advertisement</div>
     <img src="orange-tree-ad.jpg" alt="Orange Tree Imports, celebrating over 50 years on Monroe Street">
   </div>
+
+  <div class="payup">
+    <p class="payhead">The News Is Free. The Paper Is Not.</p>
+    <p>You just read the whole issue, free. Reader contributions are what keep the Tattler
+    printed and distributed around the neighborhood.</p>
+    <p>If the paper is worth something to you, chip in.</p>
+    <div class="paybtns">
+      <a class="pay1" href="https://ko-fi.com/monroestreettattler#checkoutModal" target="_blank" rel="noopener">&#9749; Buy Us a Coffee &rarr;</a>
+    </div>
+    <p class="payfine"><strong>One time or monthly.</strong> Both options are on the next screen.</p>
+  </div>
+
 
   <div class="colophon">
     <p><strong>The Monroe Street Tattler</strong> is printed monthly-ish and distributed free throughout the surrounding neighborhoods.</p>

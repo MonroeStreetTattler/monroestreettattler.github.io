@@ -78,6 +78,22 @@
     text-transform: uppercase; letter-spacing: 0.3px; margin: 12px 0 4px;
   }
   .sub-q:first-child { margin-top: 0; }
+  /* ---- reader support ---- */
+  nav.tabs a.payprint { color:#b3241c; font-weight:bold; }
+  nav.tabs a.payprint:hover { color:#111; border-bottom:2px solid #111; }
+  .payup { border:3px solid #b3241c; background:#fbf3f2; padding:20px 22px; margin:30px 0; }
+  .payup .payhead { font-family:Arial,sans-serif; font-weight:900; text-transform:uppercase;
+                    letter-spacing:.5px; font-size:20px; line-height:1.15; color:#b3241c; margin:0 0 12px; }
+  .payup p { font-size:15px; line-height:1.55; margin:0 0 12px; }
+  .paybtns { margin:16px 0 0; }
+  .paybtns a { display:block; width:100%; max-width:360px; text-align:center;
+               font-family:Arial,sans-serif; font-weight:bold; font-size:15px; text-transform:uppercase;
+               letter-spacing:.5px; text-decoration:none; padding:16px 18px; min-height:52px;
+               box-sizing:border-box; background:#b3241c; color:#fdfcf3; border:2px solid #b3241c; }
+  .paybtns a:hover { background:#111; border-color:#111; color:#fdfcf3; }
+  .payfine, .payup p.payfine, .block p.payfine { font-size:13.5px; color:#5a5a5a;
+            line-height:1.5; margin:12px 0 0; }
+  .payfine strong { color:#111; }
 </style>
 </head>
 
@@ -89,6 +105,7 @@
     <a href="faq.html" class="active">FAQ</a>
     <a href="/#contribute">Contribute</a>
     <a href="/#delivery">Get It Delivered</a>
+  <a class="payprint" href="https://ko-fi.com/monroestreettattler#checkoutModal" target="_blank" rel="noopener">&#9749; Buy Us a Coffee</a>
   </nav>
 
   <h1 class="masthead">Frequently Asked Questions</h1>
