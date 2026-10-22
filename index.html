@@ -4,258 +4,23 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>The Monroe Street Tattler | Neighborhood News, Monroe Street, Madison</title>
-<link rel="icon" type="image/x-icon" href="favicon.ico">
 <meta name="description" content="Hyperlocal news from Monroe Street in Madison, Wisconsin. Local food, neighborhood oddities and mildly over-investigated journalism.">
 <link rel="canonical" href="https://monroestreettattler.com/">
 <meta property="og:site_name" content="The Monroe Street Tattler">
 <meta property="og:title" content="The Monroe Street Tattler">
-<meta property="og:description" content="Local food. Neighborhood oddities. Mildly over-investigated journalism.">
+<meta property="og:description" content="Hyperlocal news from Monroe Street in Madison, Wisconsin. Local food, neighborhood oddities and mildly over-investigated journalism.">
 <meta property="og:image" content="https://monroestreettattler.com/homepage_og_image.png">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://monroestreettattler.com/">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="The Monroe Street Tattler">
-<meta name="twitter:description" content="Local food. Neighborhood oddities. Mildly over-investigated journalism.">
+<meta name="twitter:description" content="Hyperlocal news from Monroe Street in Madison, Wisconsin. Local food, neighborhood oddities and mildly over-investigated journalism.">
 <meta name="twitter:image" content="https://monroestreettattler.com/homepage_og_image.png">
-<style>
-  :root {
-    --paper: #fdfcf3;
-    --ink: #111;
-    --red: #b3241c;
-  }
-
-  * { box-sizing: border-box; }
-
-  body {
-    margin: 0;
-    background: #e4e2d8;
-    color: var(--ink);
-    font-family: Georgia, 'Times New Roman', serif;
-    line-height: 1.5;
-  }
-
-  .wrap {
-    max-width: 780px;
-    margin: 0 auto;
-    background: var(--paper);
-    min-height: 100vh;
-    padding: 0 26px 50px;
-    box-shadow: 0 0 40px rgba(0,0,0,0.15);
-  }
-
-  h1.masthead {
-    font-family: 'Times New Roman', Times, serif;
-    font-weight: 900;
-    text-align: center;
-    text-transform: uppercase;
-    letter-spacing: 0.2px;
-    white-space: nowrap;
-    font-size: clamp(18px, 6.5vw, 42px);
-    margin: 26px 0 6px;
-  }
-
-  @media (max-width: 430px) {
-    h1.masthead {
-      white-space: normal;
-      font-size: 30px;
-      line-height: 1.05;
-    }
-  }
-
-  .headline-tag {
-    text-align: center;
-    font-weight: bold;
-    font-size: clamp(12px, 3.6vw, 20px);
-    text-transform: uppercase;
-    letter-spacing: 0.3px;
-    margin: 0 0 6px;
-  }
-
-  .tagline {
-    text-align: center;
-    font-style: italic;
-    font-size: 13px;
-    margin: 0 0 4px;
-    border-top: 1px solid var(--ink);
-    border-bottom: 3px double var(--ink);
-    padding: 9px 0;
-    letter-spacing: 0.2px;
-  }
-
-  nav.tabs {
-    display: flex;
-    justify-content: center;
-    gap: 22px;
-    font-family: Arial, sans-serif;
-    font-weight: bold;
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: 0.8px;
-    padding: 12px 0 26px;
-    flex-wrap: wrap;
-  }
-
-  nav.tabs a {
-    color: var(--ink);
-    text-decoration: none;
-  }
-
-  nav.tabs a:hover {
-    color: var(--red);
-    border-bottom: 2px solid var(--red);
-  }
-
-  .block {
-    margin-bottom: 20px;
-    border: 1.5px solid var(--ink);
-    padding: 14px 18px;
-  }
-
-  .block-title {
-    font-family: Arial, sans-serif;
-    font-weight: bold;
-    font-size: 12px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    border-bottom: 1px solid var(--ink);
-    padding-bottom: 8px;
-    margin-bottom: 10px;
-  }
-
-  .block.accent {
-    border-color: var(--red);
-  }
-
-  .block.accent .block-title {
-    color: var(--red);
-    border-bottom-color: var(--red);
-  }
-
-  .edition-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 14px;
-    flex-wrap: wrap;
-  }
-
-  .edition-row .headline {
-    font-size: 18px;
-    font-weight: bold;
-    margin: 0;
-  }
-
-  .btn {
-    display: inline-block;
-    font-family: Arial, sans-serif;
-    font-weight: bold;
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    text-decoration: none;
-    color: var(--red);
-    border: 1.5px solid var(--red);
-    padding: 9px 16px;
-    white-space: nowrap;
-  }
-
-  .btn:hover {
-    background: var(--red);
-    color: var(--paper);
-  }
-
-  /* Primary call to action. Deliberately the loudest thing on the page. */
-  .block a.btn-signup,
-  .btn-signup {
-    display: inline-block;
-    font-family: Arial, sans-serif;
-    font-weight: 900;
-    font-size: 21px;
-    line-height: 1.15;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    text-decoration: none;
-    color: var(--paper);
-    background: var(--red);
-    border: 3px solid var(--red);
-    padding: 18px 34px;
-    margin: 4px 0 2px;
-  }
-
-  .block a.btn-signup:hover,
-  .btn-signup:hover {
-    background: var(--paper);
-    color: var(--red);
-  }
-
-  @media (max-width: 600px) {
-    .block a.btn-signup,
-    .btn-signup {
-      display: block;
-      font-size: 19px;
-      padding: 16px 20px;
-      text-align: center;
-    }
-  }
-
-  .block p {
-    margin: 0 0 10px;
-    font-size: 14px;
-  }
-
-  .block p:last-child {
-    margin-bottom: 0;
-  }
-
-  .block a {
-    color: var(--red);
-    font-weight: bold;
-  }
-
-  .fine {
-    font-size: 11px;
-    color: #666;
-  }
-
-  .section-divider {
-    text-align: center;
-    font-family: Arial, sans-serif;
-    font-weight: bold;
-    font-size: 10px;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-    color: #999;
-    margin: 34px 0 14px;
-  }
-
-  @media (max-width: 480px) {
-    .edition-row {
-      flex-direction: column;
-      align-items: flex-start;
-    }
-
-    nav.tabs {
-      gap: 14px;
-    }
-  }
-  /* ---- reader support ---- */
-  nav.tabs a.payprint { color:#b3241c; font-weight:bold; }
-  nav.tabs a.payprint:hover { color:#111; border-bottom:2px solid #111; }
-  .payup { border:3px solid #b3241c; background:#fbf3f2; padding:20px 22px; margin:30px 0; }
-  .payup .payhead { font-family:Arial,sans-serif; font-weight:900; text-transform:uppercase;
-                    letter-spacing:.5px; font-size:20px; line-height:1.15; color:#b3241c; margin:0 0 12px; }
-  .payup p { font-size:15px; line-height:1.55; margin:0 0 12px; }
-  .paybtns { margin:16px 0 0; }
-  .paybtns a { display:block; width:100%; max-width:360px; text-align:center;
-               font-family:Arial,sans-serif; font-weight:bold; font-size:15px; text-transform:uppercase;
-               letter-spacing:.5px; text-decoration:none; padding:16px 18px; min-height:52px;
-               box-sizing:border-box; background:#b3241c; color:#fdfcf3; border:2px solid #b3241c; }
-  .paybtns a:hover { background:#111; border-color:#111; color:#fdfcf3; }
-  .payfine, .payup p.payfine, .block p.payfine { font-size:13.5px; color:#5a5a5a;
-            line-height:1.5; margin:12px 0 0; }
-  .payfine strong { color:#111; }
-</style>
-
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;900&family=IBM+Plex+Mono:wght@400;600&display=swap">
+<link rel="stylesheet" href="tattler.css">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -282,7 +47,6 @@
   ]
 }
 </script>
-
 <!-- Cloudflare Web Analytics -->
 <script
   type="module"
@@ -290,472 +54,416 @@
   data-cf-beacon='{"token": "b4b7990d0c27478ea9b605f098b4ad3c"}'>
 </script>
 <!-- End Cloudflare Web Analytics -->
-
 </head>
-
 <body>
+<div class="sheet">
 
-<div class="wrap">
+<div class="tt-folio pad">
+  <span>Extra! &middot; Vol. 3, No. 8 &middot; October 2026</span>
+  <span class="fr">Not for Resale</span>
+  <span>Madison, Wisconsin</span>
+</div>
 
-  <h1 class="masthead">The Monroe Street Tattler</h1>
+<header class="tt-head pad">
+  <div class="tt-brand">
+    <h1>The Monroe Street Tattler</h1>
+    <p class="tag">Urgent Reports on Matters of Limited Public Importance</p>
+  </div>
+  <nav class="tt-nav">
+    <a href="october-2026.html">Latest Issue</a>
+    <a href="issues.html">Past Issues</a>
+    <a class="tt-sub" href="#delivery">Subscribe</a>
+    <a class="tt-coffee" href="https://ko-fi.com/monroestreettattler#checkoutModal" target="_blank" rel="noopener">&#9749; Buy Us a Coffee</a>
+  </nav>
+</header>
 
-  <p
-    class="headline-tag"
-    style="border-top: 1px solid var(--ink); border-bottom: 3px double var(--ink); padding: 10px 0; margin-top: 8px;">
-    Urgent Reports on Matters<br>
-    of Limited Public Importance
-  </p>
+<!-- ============ LEAD ============ -->
+<section class="lead pad">
+  <div class="leadgrid">
 
-  <div style="text-align: center; margin: 18px 0;">
-    <a
-      href="#"
-      onclick="openSubscribeModal(event)"
-      style="display: inline-block; background: var(--red); color: var(--paper); font-family: Arial, sans-serif; font-weight: 900; font-size: 15px; text-transform: uppercase; letter-spacing: 0.5px; text-decoration: none; padding: 14px 32px; border: 2px solid var(--ink);">
-      Subscribe &mdash; Never Miss an Issue
+    <a class="card leadtype" href="october-2026.html#cult">
+      <p class="slug">Flagship Feature &middot; Reader Submission &middot; October 2026</p>
+      <h3 class="hl">Cult Discovered on Monroe Street</h3>
+      <p class="dek">Local history takes a very strange turn.</p>
+      <span class="bar">Questions Remain. The Tattler Asked None of Them.</span>
+      <p class="pullq" style="margin:24px 0 0;font-size:clamp(19px,2.3vw,25px);">David knew enough about the house to establish that he was either telling the truth or had committed himself to an extremely specific form of fraud.</p>
+      <span class="readon">Read the October issue &rarr;</span>
+    </a>
+
+    <a class="card leadphoto" href="monkeys.html">
+      <div class="shot" style="aspect-ratio:5/4;"><img src="monkeys-bike-basket.jpg" alt="Five of the thirty-eight stuffed monkeys in an Orange Tree Imports tote in a bike basket, before deployment"></div>
+      <p class="slug" style="margin-top:14px;">The Great Monkey Escape of 2026</p>
+      <h3 class="hl">The Monkeys Are Loose Again</h3>
+      <p class="dek">38 winners. 38 monkeys. 38 new homes.</p>
+      <span class="readon">Hunt details and printable form &rarr;</span>
+    </a>
+
+  </div>
+</section>
+
+<!-- ============ BRIEFS ============ -->
+<section class="briefs pad">
+  <div class="railhead">
+    <h2>Also in the October Issue</h2>
+    <a class="more" href="october-2026.html">Read the issue &rarr;</a>
+  </div>
+  <div class="briefrow">
+    <a class="bi" href="october-2026.html#librarian">
+      <p class="slug">Shocking Tell All &middot; Part I</p>
+      <h3 class="hl">Librarian Breaks Silence</h3>
+      <p class="dek">Neighborhood unprepared.</p>
+    </a>
+    <a class="bi" href="october-2026.html#barb">
+      <p class="slug">Reader Mail</p>
+      <h3 class="hl">Romance in Crisis</h3>
+      <p class="dek">Dear Barb issues a verdict.</p>
+    </a>
+    <a class="bi" href="october-2026.html#listserv">
+      <p class="slug">Neighborhood Listserv</p>
+      <h3 class="hl">Listserv Once Again Saves the Day</h3>
+      <p class="dek">Neighborhood exhales.</p>
     </a>
   </div>
+</section>
 
-  <nav class="tabs">
-    <a href="#edition">Latest Issue</a>
-    <a href="#past">Past Issues</a>
-    <a href="#mailclub">Mail Club</a>
-    <a href="#support">Support</a>
+<!-- ============ TRIO ============ -->
+<section class="trio pad">
+
+  <a class="card" href="september-2026.html#cranes">
+    <div class="shot r43"><img src="cranes.jpg" alt="Sandhill cranes crossing a marked crosswalk at Edgewood Avenue on Monroe Street"></div>
+    <p class="slug" style="margin-top:12px;">Around the Neighborhood</p>
+    <h3 class="hl">Traffic Miracle on Monroe! Crane Family Demonstrates Proper Crosswalk Use</h3>
+  </a>
+
+  <a class="card" href="october-2026.html#lola">
+    <div class="shot r43"><img src="lola.jpg" alt="Lola, a grey and white pit bull, wearing duck-print pajamas on a porch"></div>
+    <p class="slug" style="margin-top:12px;">Featured Pet</p>
+    <h3 class="hl">Whatever Lola Wants, Lola Gets</h3>
+  </a>
+
+  <a class="card" href="october-2026.html#signs">
+    <div class="shot r43"><img src="sign-lemonade.jpg" alt="A hand-lettered FREE HOME-MADE LEMONADE sign stapled to a utility pole on Monroe Street"></div>
+    <p class="slug" style="margin-top:12px;">Public Messaging</p>
+    <h3 class="hl">Young Signmakers Take Control of Public Messaging</h3>
+  </a>
+
+</section>
+
+<!-- ============ THE TATTLER FILES ============ -->
+<section class="pad" style="padding-block:40px 0;">
+  <div class="railhead">
+    <h2>The Tattler Files</h2>
+    <a class="more" href="files.html">All files &rarr;</a>
+  </div>
+  <p class="dek" style="margin:-10px 0 4px;max-width:62ch;">
+    Some stories are too important to be forgotten. Others have simply gotten out of hand.
+  </p>
+</section>
+
+<!-- ---- Investigation one: the ice cream ---- -->
+<section class="invest pad">
+  <div class="investgrid">
+    <a class="card" href="56-flavors.html">
+      <div class="shot" style="aspect-ratio:4/3;"><img src="chocolate-shoppe-cups.jpg" alt="Two Chocolate Shoppe Ice Cream cups full of blue plastic tasting spoons on a wooden table at the Monroe Street shop"></div>
+    </a>
+    <div>
+      <p class="slug">Culinary Commission &middot; September 2026</p>
+      <h3 class="hl" style="font-size:clamp(25px,3.4vw,36px);"><a href="56-flavors.html" style="color:inherit;text-decoration:none;">We Tried Every Flavor at Chocolate Shoppe So You Don't Have To</a></h3>
+      <p class="dek" style="font-size:16.5px;">The complete tasting record behind The Monroe Street Ice Cream Investigation, published by The Monroe Street Tattler.</p>
+
+      <div class="tool">
+        <p class="toolhead">Looking for a particular flavor? Search all 56 and consult our findings before committing to a scoop.</p>
+        <div class="fsearch">
+          <label for="fq" style="position:absolute;left:-9999px;">Find a flavor</label>
+          <input id="fq" type="search" placeholder="Zanzibar, Blue Moon, cookie dough&hellip;" autocomplete="off">
+        </div>
+        <p class="fcount" id="fcount">All 56 flavors &middot; tap one to read its note</p>
+        <div class="fchips" id="fchips">
+        <a href="56-flavors.html#banana-cream-pie" data-n="banana cream pie">Banana Cream Pie</a>
+        <a href="56-flavors.html#belgian-daydream" data-n="belgian daydream">Belgian Daydream</a>
+        <a href="56-flavors.html#birthday-cake" data-n="birthday cake">Birthday Cake</a>
+        <a href="56-flavors.html#black-cherry-oat-cream" data-n="black cherry oat cream">Black Cherry Oat Cream</a>
+        <a href="56-flavors.html#blackberry-lemon-bar" data-n="blackberry lemon bar">Blackberry Lemon Bar</a>
+        <a href="56-flavors.html#blue-moon" data-n="blue moon">Blue Moon</a>
+        <a href="56-flavors.html#blue-moon-oat-cream" data-n="blue moon oat cream">Blue Moon Oat Cream</a>
+        <a href="56-flavors.html#blueberry-cheesecake" data-n="blueberry cheesecake">Blueberry Cheesecake</a>
+        <a href="56-flavors.html#butter-pecan" data-n="butter pecan">Butter Pecan</a>
+        <a href="56-flavors.html#caramel-chaos" data-n="caramel chaos™">Caramel Chaos™</a>
+        <a href="56-flavors.html#carrot-mango-italian-ice" data-n="carrot mango italian ice">Carrot Mango Italian Ice</a>
+        <a href="56-flavors.html#chocolate" data-n="chocolate">Chocolate</a>
+        <a href="56-flavors.html#cookie-dough" data-n="cookie dough">Cookie Dough</a>
+        <a href="56-flavors.html#cotton-candy-twist" data-n="cotton candy twist">Cotton Candy Twist</a>
+        <a href="56-flavors.html#cr-appley-ever-after" data-n="cr-appley ever after">Cr-Appley Ever After</a>
+        <a href="56-flavors.html#door-county-cherry" data-n="door county cherry">Door County Cherry</a>
+        <a href="56-flavors.html#espresso-almond-fudge" data-n="espresso almond fudge">Espresso Almond Fudge</a>
+        <a href="56-flavors.html#exhausted-parent" data-n="exhausted parent®">Exhausted Parent®</a>
+        <a href="56-flavors.html#halleys-comet" data-n="halley’s comet®">Halley’s Comet®</a>
+        <a href="56-flavors.html#heaps-of-love" data-n="heaps of love™">Heaps of Love™</a>
+        <a href="56-flavors.html#iced-latte-da" data-n="iced latte-da®">Iced Latte-Da®</a>
+        <a href="56-flavors.html#key-lime-cheesecake" data-n="key lime cheesecake">Key Lime Cheesecake</a>
+        <a href="56-flavors.html#kitty-kitty-bang-bang" data-n="kitty kitty bang bang™">Kitty Kitty Bang Bang™</a>
+        <a href="56-flavors.html#lemon-meringue" data-n="lemon meringue">Lemon Meringue</a>
+        <a href="56-flavors.html#matcha-green-tea" data-n="matcha green tea">Matcha Green Tea</a>
+        <a href="56-flavors.html#me-want-cookie" data-n="me want cookie™">Me Want Cookie™</a>
+        <a href="56-flavors.html#mint-avalanche" data-n="mint avalanche">Mint Avalanche</a>
+        <a href="56-flavors.html#mint-chip" data-n="mint chip">Mint Chip</a>
+        <a href="56-flavors.html#munchie-madness" data-n="munchie madness">Munchie Madness</a>
+        <a href="56-flavors.html#nsa-cashews-caramel" data-n="nsa cashews &amp; caramel">NSA Cashews &amp; Caramel</a>
+        <a href="56-flavors.html#nsa-pomegranate-swirl" data-n="nsa pomegranate swirl">NSA Pomegranate Swirl</a>
+        <a href="56-flavors.html#party-animal" data-n="party animal™">Party Animal™</a>
+        <a href="56-flavors.html#pb-yay" data-n="pb &amp; yay">PB &amp; Yay</a>
+        <a href="56-flavors.html#peanut-butter-cookie-dough" data-n="peanut butter cookie dough">Peanut Butter Cookie Dough</a>
+        <a href="56-flavors.html#peppermint-stick" data-n="peppermint stick">Peppermint Stick</a>
+        <a href="56-flavors.html#pistachio-nut" data-n="pistachio nut">Pistachio Nut</a>
+        <a href="56-flavors.html#rainbow-sherbet" data-n="rainbow sherbet">Rainbow Sherbet</a>
+        <a href="56-flavors.html#raspberry-lemon-italian-ice" data-n="raspberry lemon italian ice">Raspberry Lemon Italian Ice</a>
+        <a href="56-flavors.html#red-wine-chocolate-cake" data-n="red wine chocolate cake">Red Wine Chocolate Cake</a>
+        <a href="56-flavors.html#rhubarb-crumble" data-n="rhubarb crumble">Rhubarb Crumble</a>
+        <a href="56-flavors.html#rocky-road" data-n="rocky road">Rocky Road</a>
+        <a href="56-flavors.html#root-beer-float" data-n="root beer float">Root Beer Float</a>
+        <a href="56-flavors.html#scotcheroo" data-n="scotcheroo">Scotcheroo</a>
+        <a href="56-flavors.html#sticks-stones" data-n="sticks &amp; stones®">Sticks &amp; Stones®</a>
+        <a href="56-flavors.html#strawberry" data-n="strawberry">Strawberry</a>
+        <a href="56-flavors.html#strawberry-cheesecake" data-n="strawberry cheesecake">Strawberry Cheesecake</a>
+        <a href="56-flavors.html#super-human" data-n="super human">Super Human</a>
+        <a href="56-flavors.html#smore-to-love" data-n="s’more to love™">S’more to Love™</a>
+        <a href="56-flavors.html#this-just-got-serious" data-n="this $&amp;@! just got serious®">This $&amp;@! Just Got Serious®</a>
+        <a href="56-flavors.html#turtle" data-n="turtle">Turtle</a>
+        <a href="56-flavors.html#ultimate-oreo" data-n="ultimate oreo">Ultimate Oreo</a>
+        <a href="56-flavors.html#ultimate-oreo-oat-cream" data-n="ultimate oreo oat cream">Ultimate Oreo Oat Cream</a>
+        <a href="56-flavors.html#vanilla-bean" data-n="vanilla bean">Vanilla Bean</a>
+        <a href="56-flavors.html#yippee-skippee" data-n="yippee skippee®">Yippee Skippee®</a>
+        <a href="56-flavors.html#zanzibar-chocolate" data-n="zanzibar® chocolate">Zanzibar® Chocolate</a>
+        <a href="56-flavors.html#zoreo" data-n="zoreo">Zoreo</a>
+          </div>
+      </div>
+
+      <div class="award">
+        <img src="double-scoop-award-trophy.jpg" alt="The Tattler 2026 Double Scoop Award, a trophy of two ice cream cones on a pink pedestal, engraved for Chocolate Shoppe Monroe St">
+        <div>
+          <p class="cite">The Tattler 2026 Double Scoop Award</p>
+          <p>Chocolate Shoppe staff deserve our sincere thanks for allowing this operation to occur at all, and for doing so with extraordinary patience and good humor. In recognition of this, Chocolate Shoppe has been awarded the esteemed and coveted Tattler 2026 Double Scoop Award.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ---- Investigation two: the fries ---- -->
+<section class="invest pad">
+  <div class="investgrid">
+    <a class="card" href="fry-report.html">
+      <div class="shot" style="aspect-ratio:4/3;"><img src="fry-trophies-all.jpg" alt="All four Monroe Street Tattler 2026 Fry Awards in front of the Summer 2026 front page"></div>
+    </a>
+    <div>
+      <p class="slug">Special Culinary Investigation &middot; Summer 2026</p>
+      <h3 class="hl" style="font-size:clamp(25px,3.4vw,36px);"><a href="fry-report.html" style="color:inherit;text-decoration:none;">The Monroe Street French Fry Report</a></h3>
+      <p class="dek" style="font-size:16.5px;">The french fry report they didn't want you to read, until now.</p>
+
+      <div class="tool">
+        <p class="toolhead">After careful tasting, solemn deliberation, and the necessary application of Commission Discretion, the following recognitions are awarded:</p>
+        <div class="ledgrid">
+          <div>
+            <div class="ledrow"><span class="award">Excellence in Potato Character</span><span class="who">Mickie's Dairy Bar</span></div>
+            <div class="ledrow"><span class="award">Outstanding Achievement in Exterior Crispness</span><span class="who">Camp Cantina</span></div>
+            <div class="ledrow"><span class="award">Distinguished Service to the Dependable Basket</span><span class="who">Gates &amp; Brovi</span></div>
+          </div>
+          <div>
+            <div class="ledrow"><span class="award">Commissioner's Citation for Overall Distinction</span><span class="who">Stadium Takeout</span></div>
+            <a class="ledrow hon" href="laurel-tavern-peoples-fry-award.html" style="text-decoration:none;color:inherit;"><span class="award">The People's Fry Award &middot; 2026 Reader's Choice</span><span class="who">The Laurel Tavern</span></a>
+          </div>
+        </div>
+        <p style="margin:16px 0 0;"><a class="readon" href="fry-report.html">Read the full report &rarr;</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ---- the rest of the files ---- -->
+<section class="band files">
+  <div class="pad">
+    <div class="railhead">
+      <h2>Also in the Files</h2>
+      <a class="more" href="files.html">All files &rarr;</a>
+    </div>
+    <div class="filerow">
+      <a class="card" href="dog-map.html">
+        <div class="shot r11"><img src="dog-map-preview.jpg" alt="The Tattler's dog water bowl and treat map, showing marked bowls and treat jars along Monroe Street between Glenway Street and Lake Wingra"></div>
+        <p class="slug ondark" style="margin-top:12px;">Neighborhood Utility</p>
+        <h3 class="hl">Official Dog Water Bowl &amp; Treat Map</h3>
+        <p class="dek">A neighbor-submitted map of every known water bowl and treat jar around the broader neighborhood.</p>
+      </a>
+      <a class="card" href="september-2026.html#cranes">
+        <div class="shot r11"><img src="cranes.jpg" alt="Sandhill cranes crossing a marked crosswalk on Monroe Street"></div>
+        <p class="slug ondark" style="margin-top:12px;">Around the Neighborhood</p>
+        <h3 class="hl">Traffic Miracle on Monroe!</h3>
+        <p class="dek">Crane family demonstrates proper crosswalk use.</p>
+      </a>
+      <a class="card" href="september-2026.html#ninja">
+        <div class="shot r11"><img src="ninja.jpg" alt="A homemade ninja warrior course strung between trees in a front yard"></div>
+        <p class="slug ondark" style="margin-top:12px;">Backyard Athletics</p>
+        <h3 class="hl">Bad-Ass Parent Transforms Terrace Into Elite Training Facility</h3>
+      </a>
+      <a class="card" href="september-2026.html#puddin">
+        <div class="shot r11"><img src="puddin.jpg" alt="Puddin', a black and white speckled dog, sitting in tall grass"></div>
+        <p class="slug ondark" style="margin-top:12px;">Featured Pet</p>
+        <h3 class="hl">Puddin': Seen at Last</h3>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ARCHIVE ============ -->
+<section class="archive pad">
+  <div class="railhead">
+    <h2>The Complete Run</h2>
+    <a class="more" href="issues.html">Browse the archive &rarr;</a>
+  </div>
+
+  <div class="covers">
+    <a href="issues.html">
+      <img src="cover-october-2026.jpg" alt="October 2026 front page">
+      <p class="cm">October 2026 &middot; No. 8</p>
+      <h3>Cult Discovered on Monroe Street</h3>
+    </a>
+    <a href="issues.html">
+      <img src="cover-september-2026.jpg" alt="September 2026 front page">
+      <p class="cm">September 2026 &middot; No. 7</p>
+      <h3>We Tried Every Flavor at Chocolate Shoppe So You Don't Have To</h3>
+    </a>
+    <a href="issues.html">
+      <img src="cover-august-2026.jpg" alt="Summer 2026 front page">
+      <p class="cm">Summer 2026 &middot; No. 6</p>
+      <h3>Too Hot for Conventional Neighborhood Media</h3>
+    </a>
+    <div>
+      <div class="nextup">November<br>2026</div>
+      <p class="cm" style="margin-top:14px;">Next Issue</p>
+      <h3 style="color:#6b645c;">Coming soon</h3>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SUPPORT ============ -->
+<!-- ============ DELIVERY / SUBSCRIBE ============ -->
+<section class="delivery pad" id="delivery">
+  <div class="delgrid">
+    <div>
+      <h2>Never Miss an Issue</h2>
+      <p class="fine">For readers in the neighborhood.</p>
+      <div class="delopt">
+        <strong>Email me when a new issue drops.</strong>
+        <p>Fastest, easiest way to never miss one.</p>
+      </div>
+      <div class="delopt">
+        <strong>Physical delivery to my door?</strong>
+        <p>If you&rsquo;re in the neighborhood, yes &mdash; we now deliver.</p>
+      </div>
+    </div>
+    <div>
+      <p class="dek" style="margin-top:0;">Either way, one form covers it:</p>
+      <a class="delbtn" href="https://docs.google.com/forms/d/e/1FAIpQLSeVxx8iimNEeSg3KKIyF8Ckb3UIu6Lzlsk5xUpaeJJu8LRtlg/viewform" target="_blank" rel="noopener">Sign Up Here &rarr;</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ YARD SIGNS ============ -->
+<section class="signs pad">
+  <div class="signgrid">
+    <figure class="signpic">
+      <img src="tattler-yard-sign.jpg" alt="A Monroe Street Tattler yard sign reading MonroeStreetTattler.com, News so hyperlocal it's amazing anyone takes an interest, planted in a neighborhood lawn">
+    </figure>
+    <div>
+      <p class="slug">Neighborhood Signage</p>
+      <h2>We Have Yard Signs</h2>
+      <p>If you would like one for your yard, let us know and we will get one to you.</p>
+      <a class="signbtn" href="mailto:MonroeStreetTattler@gmail.com">Ask for a sign &rarr;</a>
+      <figure class="signcredit">
+        <img src="bobs-copy-shop-signs.jpg" alt="A stack of Monroe Street Tattler yard signs outside Bob's Copy Shop in Madison, Wisconsin">
+        <figcaption>Signs generously donated by <a href="https://www.bobscopyshop.com/" target="_blank" rel="noopener">Bob&rsquo;s Copy Shop</a>.</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section class="band support">
+  <div class="pad">
+    <div class="supgrid">
+      <div>
+        <p class="slug ondark">Reader Support</p>
+        <h2>The News Is Free.<br>The Paper Is Not.</h2>
+        <p>The Tattler costs nothing to read and nothing to pick up. Printing it is not free.
+        Neighborhood advertising covers a good part of that, and reader contributions help with the rest.</p>
+        <p>If this paper is worth something to you, chip in. It takes about thirty seconds.</p>
+      </div>
+      <div>
+        <a class="bigbtn" href="https://ko-fi.com/monroestreettattler#checkoutModal" target="_blank" rel="noopener">&#9749; Buy Us a Coffee</a>
+        <a class="subbtn" href="#delivery">Subscribe &mdash; Never Miss an Issue</a>
+        <p class="fine" style="margin-top:14px;">One time or monthly. Both options are on the next screen. Contributions go toward printing and getting the paper around the neighborhood.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FRONT OFFICE ============ -->
+<section class="office pad">
+  <div class="railhead"><h2>Notices from the Front Office</h2></div>
+  <div class="ogrid">
+    <div class="cell">
+      <p class="ch">Mail Club</p>
+      <p>For readers outside the neighborhood. The Mail Club does not exist yet. Add your name and we will find out whether it should.</p>
+      <p><a href="#">Add your name &rarr;</a></p>
+    </div>
+    <div class="cell">
+      <p class="ch">Delivery</p>
+      <p>Get the Tattler by email or free neighborhood delivery.</p>
+      <p><a href="#delivery">Sign up here &rarr;</a></p>
+    </div>
+    <div class="cell">
+      <p class="ch">News Tips</p>
+      <p>Tips, neighborhood lore and unexplained local developments to <a href="mailto:MonroeStreetTattler@gmail.com">MonroeStreetTattler@gmail.com</a>.</p>
+    </div>
+    <div class="cell">
+      <p class="ch">Stacks &amp; Ads</p>
+      <p>Find printed copies in Free Little Libraries and neighborhood businesses. Want to host a stack or run an ad? <a href="mailto:MonroeStreetTattler@gmail.com">Get in touch &rarr;</a></p>
+    </div>
+  </div>
+</section>
+
+<footer class="foot pad">
+  <div class="footnav">
+    <a href="files.html">The Tattler Files</a>
+    <a href="dog-map.html">Dog Map</a>
     <a href="faq.html">FAQ</a>
-  <a class="payprint" href="https://ko-fi.com/monroestreettattler#checkoutModal" target="_blank" rel="noopener">&#9749; Buy Us a Coffee</a>
-  </nav>
-
-  <div class="block accent" id="edition">
-    <div class="block-title">Read the Latest Issue</div>
-
-    <div class="edition-row">
-      <p class="headline">Cult Discovered on Monroe Street<br><span style="font-size: 13px; font-weight: normal; color: #666;">October 2026 &middot; Issue 3</span></p>
-
-      <a
-        class="btn"
-        href="october-2026.html"
-        id="edition-link">
-        Read the Issue &rarr;
-      </a>
-    </div>
-
-    <p style="margin-top:14px;">
-      Prefer the paper? <a href="october_2026_digital.pdf" target="_blank" rel="noopener">Download the printed issue</a>.
-    </p>
+    <a href="issues.html">Past Issues</a>
+    <a href="#delivery">Subscribe</a>
+    <a href="mailto:MonroeStreetTattler@gmail.com">Contact</a>
   </div>
-
-  <div class="block" id="support" style="border:3px solid #b3241c; background:#fbf3f2;">
-    <div class="block-title" style="color:#b3241c;">The News Is Free. The Paper Is Not.</div>
-
-    <p>
-      The Tattler costs nothing to read and nothing to pick up. Printing it is not free. Neighborhood advertising covers a good part of that,
-      and reader contributions help with the rest.
-    </p>
-
-    <p>
-      If this paper is worth something to you, chip in. It takes about thirty seconds.
-    </p>
-
-    <div class="paybtns">
-      <a class="pay1" href="https://ko-fi.com/monroestreettattler#checkoutModal" target="_blank" rel="noopener">&#9749; Buy Us a Coffee &rarr;</a>
-    </div>
-
-    <p class="payfine">
-      <strong>One time or monthly.</strong> Both options are on the next screen.
-      Contributions go toward printing and getting the paper around the neighborhood.
-    </p>
-  </div>
-
-  <div class="block accent" id="investigate">
-    <div class="block-title">The Great Monkey Escape of 2026</div>
-
-    <p>
-      Thirty-eight monkeys are loose again on Monroe Street, hiding in business windows all
-      October. Find any ten, write down their names and where you found them, and return your
-      tracking form to Orange Tree Imports by <strong>October 31</strong>. Thirty-eight winners.
-      Thirty-eight monkeys. Thirty-eight new homes.
-    </p>
-
-    <div style="display: flex; gap: 12px; flex-wrap: wrap;">
-      <a
-        class="btn"
-        href="monkeys.html">
-        Hunt Details &rarr;
-      </a>
-      <a
-        class="btn"
-        href="monkey-tracking-form.pdf"
-        target="_blank"
-        rel="noopener">
-        Print the Tracking Form &rarr;
-      </a>
-      <a
-        class="btn"
-        href="crossword-2.pdf"
-        target="_blank"
-        rel="noopener">
-        Print the Crossword &rarr;
-      </a>
-    </div>
-  </div>
-
-  <div class="block accent" id="flavors">
-    <div class="block-title">All 56 Chocolate Shoppe Flavors, Tasted and Reviewed</div>
-
-    <p>
-      Fifty-six flavors. One very ambitious tasting. The Monroe Street Tattler sampled every
-      flavor on the board at Chocolate Shoppe Ice Cream on Monroe Street. Explore our complete,
-      searchable guide to what we found.
-    </p>
-
-    <div style="display: flex; gap: 12px; flex-wrap: wrap;">
-      <a
-        class="btn"
-        href="56-flavors.html">
-        Explore All 56 Chocolate Shoppe Flavors &rarr;
-      </a>
-      <a
-        class="btn"
-        href="icecream.html">
-        Run Your Own Tasting Panel &rarr;
-      </a>
-    </div>
-  </div>
-
-  <div class="block" id="mailclub" style="border:2px solid #b3241c; background:#fbf3f2;">
-    <div class="block-title" style="color:#b3241c;">The Tattler Mail Club</div>
-
-    <p class="fine" style="margin-top:4px;">For readers outside the neighborhood.</p>
-
-    <p style="margin-top:4px;">
-      The Tattler is a printed newspaper for one neighborhood in Madison, Wisconsin.
-      People who do not live in that neighborhood have started asking for copies.
-    </p>
-
-    <p><strong>We are looking into involving the United States Postal Service.</strong></p>
-
-    <p>
-      The Mail Club does not exist yet. Add your name and we will find out
-      whether it should.
-    </p>
-
-    <p style="margin-top:16px;">
-      <a href="https://docs.google.com/forms/d/e/1FAIpQLSfoXOBCGPzldIf_H7eCOrNNoCErjMXlbBUdJJDg8okujF2Now/viewform?usp=dialog" target="_blank" rel="noopener"
-         style="display:inline-block; background:#b3241c; color:#fff;
-                font-family:Arial,sans-serif; font-weight:bold; text-transform:uppercase;
-                letter-spacing:.5px; font-size:14px; padding:13px 24px;
-                text-decoration:none; border-radius:2px;">
-        Add Your Name &rarr;
-      </a>
-    </p>
-
-    <p style="font-size:14px; color:#5a5a5a; margin-top:12px;">
-      No cost. No commitment. No guarantee this becomes a real thing.
-      We are simply counting people.
-    </p>
-  </div>
-
-  <!-- Past issues. The September page's nav links to /#past, so this anchor
-       has to exist or that link goes nowhere. -->
-  <div class="block" id="past">
-    <div class="block-title">Past Issues</div>
-
-    <div class="edition-row">
-      <p class="headline">The Monroe Street Ice Cream Investigation<br><span style="font-size: 13px; font-weight: normal; color: #666;">September 2026 &middot; Issue 2</span></p>
-
-      <a class="btn" href="september-2026.html">Read the Issue &rarr;</a>
-    </div>
-
-    <p style="margin-top:14px;">
-      <a href="september_2026_digital.pdf" target="_blank" rel="noopener">Download the printed issue</a>,
-      <a href="56-flavors.html">read all 56 flavors</a>, or
-      <a href="athome-family-panel.pdf" target="_blank" rel="noopener">print the At-Home Family Panel</a>
-      and
-      <a href="https://docs.google.com/forms/d/e/1FAIpQLSfIpeGFNoOInsQJGskPnJdH6CZlpxdR2ti4-zTWCQlpzuZOyQ/viewform" target="_blank" rel="noopener">submit your findings</a>.
-    </p>
-
-    <div class="edition-row" style="margin-top:26px;">
-      <p class="headline">The Monroe Street French Fry Report<br><span style="font-size: 13px; font-weight: normal; color: #666;">August 2026 &middot; Issue 1</span></p>
-
-      <a class="btn" href="august-2026.html">Read the Issue &rarr;</a>
-    </div>
-
-    <p style="margin-top:14px;">
-      <a href="monroe_street_tattler_digital.pdf" target="_blank" rel="noopener">Download the printed issue</a>.
-      Still open for submissions:
-      <a href="fry-field-report.pdf" target="_blank" rel="noopener">print the Fry Field Report</a>
-      and
-      <a href="https://docs.google.com/forms/d/e/1FAIpQLScwPPS4bPXABHhRzCUW1RVwL1r--G1tprex7jizt6nIt1USeA/viewform" target="_blank" rel="noopener">submit your own fry findings</a>.
-    </p>
-      <p class="payfine" style="margin-top:16px;">Every issue is free to read. Printing them is not. <a href="https://ko-fi.com/monroestreettattler#checkoutModal" target="_blank" rel="noopener" style="color:#b3241c; font-weight:bold;">Buy us a coffee &rarr;</a></p>
-  </div>
-
-  <div class="block accent" id="delivery">
-    <div class="block-title">Never Miss an Issue</div>
-
-    <p class="fine" style="margin-top:4px;">For readers in the neighborhood.</p>
-
-    <p>
-      <strong>Email me when a new issue drops.</strong>
-      Fastest, easiest way to never miss one.
-    </p>
-
-    <p>
-      <strong>Physical delivery to my door?</strong>
-      If you're in the neighborhood, yes &mdash; we now deliver.
-    </p>
-
-    <p>Either way, one form covers it:</p>
-
-    <p>
-      <a
-        class="btn-signup"
-        href="https://docs.google.com/forms/d/e/1FAIpQLSeVxx8iimNEeSg3KKIyF8Ckb3UIu6Lzlsk5xUpaeJJu8LRtlg/viewform"
-        id="delivery-form-link">
-        Sign Up Here &rarr;
-      </a>
-    </p>
-  </div>
-
-  <p class="section-divider">More About the Tattler</p>
-
-  <div class="block">
-    <div class="block-title">About the Tattler</div>
-
-    <p>
-      The Monroe Street Tattler is an occasional, unofficial neighborhood paper about local food,
-      neighborhood oddities, and the small details that make a place feel like itself.
-    </p>
-
-    <p>
-      The aim is simple: celebrate local places, notice small things, and help build the kind of
-      neighborhood spirit that comes from shared curiosity, good humor, and paying attention to
-      what's right in front of us.
-    </p>
-  </div>
-
-  <div class="block" id="support2">
-    <div class="block-title">Support the Tattler</div>
-
-    <p>
-      If you enjoyed the Tattler and want to say thanks, you can
-      <a href="https://ko-fi.com/monroestreettattler#checkoutModal" target="_blank" rel="noopener">
-        chip in once or become a recurring supporter
-      </a>. Your support helps cover printing, trophies, and whatever unnecessary investigation
-      comes next.
-    </p>
-
-    <p>Reading and sharing the paper helps too. That's the whole point.</p>
-  </div>
-
-  <div class="block" id="stack">
-    <div class="block-title">Host a Stack or Run an Ad</div>
-
-    <p>
-      <strong>Host a stack.</strong> If you run a shop, a counter, a waiting room or a porch
-      that gets foot traffic, the Tattler will happily leave a pile of papers with you.
-    </p>
-
-    <p>
-      <strong>Run an ad.</strong> Local businesses can buy space in the paper. Rates are modest,
-      the readership is extremely local, and the Tattler's independence is, as always, largely
-      theoretical.
-    </p>
-
-    <p>
-      Either one, same address &mdash;
-      <a href="mailto:MonroeStreetTattler@gmail.com">MonroeStreetTattler@gmail.com</a>.
-    </p>
-  </div>
-
-  <div class="block" id="contribute">
-    <div class="block-title">Send a News Tip or Write for Us</div>
-
-    <p>
-      The Tattler is always accepting leads, questions, tips, curiosities, and small matters that may
-      deserve more attention than they strictly require.
-    </p>
-
-    <p>
-      Know someone in the neighborhood worth interviewing? Have a local pro tip others should know?
-      Notice a tiny mystery, excellent sandwich, suspiciously beloved menu item, useful shortcut,
-      unusual sign, strong opinion, or oddly perfect overheard remark?
-    </p>
-
-    <p>
-      Send it our way &mdash;
-      <a href="https://docs.google.com/forms/d/e/1FAIpQLScXmhb9B3g1zwRgvul7itBW7eIDE3ihPYyLyRAy_kQo7Gid6w/viewform" target="_blank" rel="noopener">click here to report a news tip</a>
-      or email us directly at
-      <a href="mailto:MonroeStreetTattler@gmail.com">
-        MonroeStreetTattler@gmail.com
-      </a>.
-    </p>
-
-    <p class="fine">
-      Send whatever seems worth sharing. The Tattler will take it from there.
-    </p>
-  </div>
-
-  <div class="block accent">
-    <div class="block-title">Official Dog Water Bowl &amp; Treat Map</div>
-
-    <p>
-      The Tattler is mapping every known water bowl and treat jar around the neighborhood.
-      Know a spot? Please submit any you discover or already know about.
-    </p>
-
-    <p>
-      <a href="dog-map.html">View the map &rarr;</a>
-    </p>
-
-    <p>
-      <a href="#" onclick="openDogFormModal(event)">
-        Report a Dog Water Bowl or Treat Spot &rarr;
-      </a>
-    </p>
-  </div>
-
-  <div class="block">
-    <div class="block-title">Questions</div>
-
-    <p>
-      Is this real? Who runs this?
-      <a href="faq.html">Answers on the FAQ page &rarr;</a>
-    </p>
-  </div>
+  The Monroe Street Tattler &middot; Madison, Wisconsin<br>
+  MonroeStreetTattler.com &middot; <a href="mailto:MonroeStreetTattler@gmail.com">MonroeStreetTattler@gmail.com</a>
+</footer>
 
 </div>
 
-<script src="dog-form-modal.js"></script>
-
 <script>
-(function() {
-
-  const FORM_EMBED_URL =
-    'https://docs.google.com/forms/d/e/1FAIpQLSeVxx8iimNEeSg3KKIyF8Ckb3UIu6Lzlsk5xUpaeJJu8LRtlg/viewform?embedded=true';
-
-  const style = document.createElement('style');
-
-  style.textContent = `
-    .subform-overlay {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(17,17,17,0.75);
-      z-index: 1000;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .subform-overlay.open {
-      display: flex;
-    }
-
-    .subform-modal {
-      background: #fdfcf3;
-      width: 92%;
-      max-width: 640px;
-      height: 85vh;
-      max-height: 800px;
-      border: 3px solid #111;
-      position: relative;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .subform-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 12px 16px;
-      border-bottom: 2px solid #111;
-      font-family: Arial, sans-serif;
-      font-weight: bold;
-      font-size: 13px;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-
-    .subform-subtext {
-      padding: 10px 16px;
-      font-family: Georgia, serif;
-      font-size: 13px;
-      font-style: italic;
-      border-bottom: 1px solid #ccc;
-      color: #333;
-    }
-
-    .subform-close {
-      background: none;
-      border: none;
-      font-size: 22px;
-      cursor: pointer;
-      line-height: 1;
-      color: #111;
-      font-family: Arial, sans-serif;
-      padding: 0 4px;
-    }
-
-    .subform-close:hover {
-      color: #b3241c;
-    }
-
-    .subform-modal iframe {
-      flex: 1;
-      width: 100%;
-      border: none;
-    }
-  `;
-
-  document.head.appendChild(style);
-
-  const overlay = document.createElement('div');
-  overlay.className = 'subform-overlay';
-
-  overlay.innerHTML = `
-    <div class="subform-modal">
-      <div class="subform-header">
-        <span>Subscribe to the Tattler</span>
-        <button class="subform-close" aria-label="Close">&times;</button>
-      </div>
-      <iframe src="about:blank" title="Subscribe form"></iframe>
-    </div>
-  `;
-
-  document.body.appendChild(overlay);
-
-  const iframe = overlay.querySelector('iframe');
-  const closeBtn = overlay.querySelector('.subform-close');
-
-  window.openSubscribeModal = function(e) {
-    if (e) e.preventDefault();
-    iframe.src = FORM_EMBED_URL;
-    overlay.classList.add('open');
-  };
-
-  function closeModal() {
-    overlay.classList.remove('open');
-    iframe.src = 'about:blank';
-  }
-
-  closeBtn.addEventListener('click', closeModal);
-
-  overlay.addEventListener('click', function(e) {
-    if (e.target === overlay) {
-      closeModal();
-    }
+(function(){
+  var q=document.getElementById('fq'),
+      wrap=document.getElementById('fchips'),
+      count=document.getElementById('fcount');
+  if(!q||!wrap||!count) return;
+  var chips=Array.prototype.slice.call(wrap.querySelectorAll('a'));
+  q.addEventListener('input',function(){
+    var v=q.value.trim().toLowerCase(), shown=0;
+    chips.forEach(function(c){
+      var hit=!v||c.getAttribute('data-n').indexOf(v)!==-1;
+      c.classList.toggle('hide',!hit);
+      if(hit) shown++;
+    });
+    count.textContent=!v ? 'All 56 flavors · tap one to read its note'
+      : (shown===0 ? 'No flavor by that name was tasted'
+        : shown+(shown===1?' flavor matches':' flavors match')+' “'+q.value.trim()+'”');
   });
-
-  document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') {
-      closeModal();
-    }
-  });
-
 })();
 </script>
-
 </body>
 </html>

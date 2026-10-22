@@ -17,7 +17,61 @@
 <meta name="twitter:description" content="Pick five flavors. Swear the Oath of the Spoon. Issue your findings.">
 <meta name="twitter:image" content="https://monroestreettattler.com/september-2026_og.png">
 <link rel="icon" type="image/x-icon" href="favicon.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;900&family=IBM+Plex+Mono:wght@400;600&display=swap">
 <style>
+
+/* ===== Tattler site header (shared) ===== */
+.tt-folio,.tt-head{--tt-paper:#fdfcf3;--tt-ink:#14110f;--tt-red:#b3241c;--tt-muted:#6b645c;}
+.tt-folio *,.tt-head *{box-sizing:border-box;}
+.pad{padding-left:max(22px,env(safe-area-inset-left,0px));
+     padding-right:max(22px,env(safe-area-inset-right,0px));}
+/* ---------- folio ---------- */
+.tt-folio{background:var(--tt-ink);color:var(--tt-paper);font-family:'IBM Plex Mono',ui-monospace,'Courier New',monospace;
+  font-size:11px;letter-spacing:.06em;text-transform:uppercase;
+  display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;
+  padding-block:9px;}
+.tt-folio span{white-space:nowrap;}
+.tt-folio .fr{color:#e8b9b5;}
+
+/* ---------- masthead: compact horizontal bar ---------- */
+.tt-head{display:flex;align-items:flex-end;gap:22px 34px;flex-wrap:wrap;
+  padding-block:16px 13px;border-bottom:3px solid var(--tt-ink);}
+.tt-head .tt-brand{flex:1 1 320px;min-width:0;}
+.tt-head .wordmark{font-family:'Times New Roman',Times,serif;font-weight:900;text-transform:uppercase;
+  font-size:clamp(25px,4.3vw,47px);line-height:.94;letter-spacing:-.015em;margin:0;}
+.tt-head .tag{font-style:italic;color:var(--tt-muted);font-size:clamp(12px,1.25vw,14.5px);
+  margin:5px 0 0;}
+.tt-head nav.tt-nav{flex:0 1 auto;justify-content:flex-end;border-bottom:0;padding-block:0;
+  gap:5px 20px;}
+
+/* ---------- nav ---------- */
+nav.tt-nav{display:flex;align-items:center;gap:6px 22px;flex-wrap:wrap;
+  font-family:'IBM Plex Mono',ui-monospace,'Courier New',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;}
+nav.tt-nav a{color:var(--tt-ink);text-decoration:none;padding-bottom:2px;border-bottom:2px solid transparent;}
+nav.tt-nav a:hover,nav.tt-nav a:focus-visible{border-bottom-color:var(--tt-red);color:var(--tt-red);}
+nav.tt-nav a.tt-coffee{color:var(--tt-paper);background:var(--tt-red);border:0;
+  padding:7px 12px;font-weight:700;}
+nav.tt-nav a.tt-coffee:hover{background:var(--tt-ink);}
+
+/* ===== Tattler footer links (shared) ===== */
+.tt-footnav{background:#14110f;display:flex;justify-content:center;flex-wrap:wrap;
+  gap:8px 22px;font-family:'IBM Plex Mono',ui-monospace,'Courier New',monospace;
+  font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;padding:18px 22px;}
+.tt-footnav a{color:#d8d2c9;text-decoration:none;border-bottom:2px solid transparent;padding-bottom:2px;}
+.tt-footnav a:hover{color:#fff;border-bottom-color:#b3241c;}
+nav.tt-nav a.tt-sub{border:2px solid var(--tt-ink);padding:5px 11px;font-weight:700;color:var(--tt-ink);}
+nav.tt-nav a.tt-sub:hover{background:var(--tt-ink);color:var(--tt-paper);}
+
+
+
+@media (max-width:820px){ .tt-head nav.tt-nav{justify-content:flex-start;} }
+@media (max-width:640px){
+  .tt-folio{font-size:10px;justify-content:center;text-align:center;}
+  .tt-folio span{white-space:normal;}
+}
+
   :root { --paper:#fdfcf3; --ink:#111; --red:#b3241c; --muted:#5a5a5a; }
   * { box-sizing:border-box; }
   body { margin:0; background:#e4e2d8; color:var(--ink);
@@ -112,18 +166,24 @@
 <body>
 <div class="wrap">
 
-  <nav class="tabs">
-    <a href="/">Home</a>
-    <a href="/#edition">Latest Issue</a>
-    <a href="/#past">Past Issues</a>
-    <a href="dog-map.html">Dog Map</a>
-    <a href="faq.html">FAQ</a>
-  <a class="payprint" href="https://ko-fi.com/monroestreettattler#checkoutModal" target="_blank" rel="noopener">&#9749; Buy Us a Coffee</a>
-  </nav>
+<div class="tt-folio pad">
+  <span>Official Ice Cream Commission</span>
+  <span class="fr">Conduct Your Own Investigation</span>
+  <span>Madison, Wisconsin</span>
+</div>
 
-  <div class="issueline">Official Ice Cream Commission</div>
-  <div class="masthead">The Monroe Street Tattler</div>
-  <p class="tagline">News so hyperlocal, it's amazing anyone takes an interest.</p>
+<header class="tt-head pad">
+  <div class="tt-brand">
+    <div class="wordmark"><a href="/" style="color:inherit;text-decoration:none;">The Monroe Street Tattler</a></div>
+    <p class="tag">Urgent Reports on Matters of Limited Public Importance</p>
+  </div>
+  <nav class="tt-nav">
+    <a href="october-2026.html">Latest Issue</a>
+    <a href="issues.html">Past Issues</a>
+    <a class="tt-sub" href="index.html#delivery">Subscribe</a>
+    <a class="tt-coffee" href="https://ko-fi.com/monroestreettattler#checkoutModal" target="_blank" rel="noopener">&#9749; Buy Us a Coffee</a>
+  </nav>
+</header>
 
   <p class="reportname">The Family Ice Cream Investigation Kit</p>
   <h1 class="title">Conduct Your Own Investigation</h1>
@@ -179,6 +239,16 @@
     The Monroe Street Tattler &middot; Madison, Wisconsin &middot; MonroeStreetTattler.com</p>
   </footer>
 
+</div>
+
+<div class="tt-footnav">
+  <a href="index.html">Home</a>
+  <a href="files.html">The Tattler Files</a>
+  <a href="dog-map.html">Dog Map</a>
+  <a href="faq.html">FAQ</a>
+  <a href="issues.html">Past Issues</a>
+  <a href="index.html#delivery">Subscribe</a>
+  <a href="mailto:MonroeStreetTattler@gmail.com">Contact</a>
 </div>
 </body>
 </html>
