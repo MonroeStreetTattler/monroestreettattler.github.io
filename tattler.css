@@ -468,3 +468,31 @@ nav.tt-nav a.tt-sub:hover,nav.tt-nav a.tt-sub:focus-visible{background:var(--ink
 
 .signcredit figcaption a{color:var(--red);text-decoration:none;border-bottom:1px solid var(--red);}
 .signcredit figcaption a:hover{color:var(--ink);border-bottom-color:var(--ink);}
+
+/* ---------- image height guard ----------
+   A tall portrait photo run at full column width can render 1500px tall and
+   eat a whole screen. Nothing on the site renders taller than this; the image
+   scales by height instead and stays centred. */
+.heroshot img,.story img,.estab .pic img{max-height:560px;width:auto;max-width:100%;
+  margin-left:auto;margin-right:auto;}
+.heroshot{text-align:center;}
+.heroshot figcaption{text-align:left;}
+
+/* the Laurel feature reads better as photo beside citation than photo stacked on top */
+@media (min-width:760px){
+  .estab{display:grid;grid-template-columns:.85fr 1fr;align-items:stretch;}
+  .estab .pic{border-bottom:0;border-right:4px solid var(--ink);}
+  .estab .pic img{height:100%;width:100%;object-fit:cover;object-position:50% 50%;max-height:none;}
+}
+
+/* Past Issues: the library photo is a supporting picture, not a hero */
+.archintro{display:grid;grid-template-columns:1fr auto;gap:34px;align-items:center;
+  padding-bottom:6px;}
+.archintro .shotfig{margin:0;width:232px;}
+.archintro .shotfig img{width:100%;height:auto;display:block;border:1px solid var(--ink);max-height:none;}
+.archintro .shotfig figcaption{font-family:var(--mono);font-size:11.5px;line-height:1.5;
+  color:var(--muted);margin-top:9px;}
+@media (max-width:760px){
+  .archintro{grid-template-columns:1fr;gap:18px;}
+  .archintro .shotfig{width:100%;max-width:320px;}
+}
