@@ -1,0 +1,457 @@
+/* The Monroe Street Tattler: homepage.
+   This page's only stylesheet. The shared tattler.css and other pages are unaffected. */
+/* ============================================================
+   THE MONROE STREET TATTLER — front page, v2
+   Layout: a broadsheet grid at web scale. Full-bleed ink bands
+   break the cream page into registers; stories lead with photos.
+   ============================================================ */
+:root{color-scheme: light;
+  --paper:#fdfcf3;
+  --ink:#14110f;        /* warm black, not neutral — sits on cream */
+  --red:#b3241c;
+  --muted:#6b645c;
+  --rule:#d8d4c4;
+  --tint:#f4f1e4;
+
+  --display:'Archivo','Arial Black',Helvetica,sans-serif;
+  --mast:'Times New Roman',Times,serif;
+  --body:Georgia,'Times New Roman',serif;
+  --mono:'IBM Plex Mono',ui-monospace,'Courier New',monospace;}
+*{box-sizing:border-box;}
+html,body{margin:0;}
+body{background:var(--ink);color:var(--ink);font-family:var(--body);
+  line-height:1.5;-webkit-font-smoothing:antialiased;}
+.sheet{background:var(--paper);max-width:1180px;margin:0 auto;}
+.pad{padding-left:max(22px,env(safe-area-inset-left,0px));
+     padding-right:max(22px,env(safe-area-inset-right,0px));}
+/* ---------- folio ---------- */
+/* ---------- masthead: compact horizontal bar ---------- */
+.tt-head{display:flex;align-items:flex-end;gap:22px 34px;flex-wrap:wrap;
+  padding-block:16px 13px;border-bottom:3px solid var(--ink);}
+.tt-head .tt-brand{flex:1 1 320px;min-width:0;}
+.tt-head h1{font-family:var(--mast);font-weight:900;text-transform:uppercase;
+  font-size:clamp(25px,4.3vw,47px);line-height:.94;letter-spacing:-.015em;margin:0;}
+.tt-head .tag{font-style:italic;color:var(--muted);font-size:clamp(12px,1.25vw,14.5px);
+  margin:5px 0 0;}
+.tt-head nav.tt-nav{flex:0 1 auto;justify-content:flex-end;border-bottom:0;padding-block:0;
+  gap:5px 20px;}
+/* ---------- nav ---------- */
+nav.tt-nav{display:flex;align-items:center;gap:6px 22px;flex-wrap:wrap;
+  font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;}
+nav.tt-nav a{color:var(--ink);text-decoration:none;padding-bottom:2px;border-bottom:2px solid transparent;}
+nav.tt-nav a:hover,nav.tt-nav a:focus-visible{border-bottom-color:var(--red);color:var(--red);}
+nav.tt-nav a.tt-coffee{color:var(--paper);background:var(--red);border:0;
+  padding:7px 12px;font-weight:700;}
+nav.tt-nav a.tt-coffee:hover{background:var(--ink);}
+/* ---------- shared bits ---------- */
+.slug{font-family:var(--mono);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--red);margin:0 0 10px;}
+.slug.ondark{color:#f0a9a3;}
+.band{background:var(--ink);color:var(--paper);}
+.band .slug{color:#f0a9a3;}
+.railhead{display:flex;align-items:baseline;gap:16px;
+  border-bottom:2px solid var(--ink);padding-bottom:9px;margin:0 0 22px;}
+.railhead h2,.railhead h1{font-family:var(--display);font-weight:900;font-size:clamp(20px,2.4vw,27px);
+  letter-spacing:-.01em;margin:0;line-height:1;}
+.railhead .more{margin-left:auto;font-family:var(--mono);font-size:11.5px;
+  letter-spacing:.08em;text-transform:uppercase;color:var(--red);text-decoration:none;white-space:nowrap;}
+.railhead .more:hover{text-decoration:underline;}
+.band .railhead{border-bottom-color:#4a443d;}
+.band .railhead .more{color:#f0a9a3;}
+a.card{display:block;text-decoration:none;color:inherit;}
+.dek{font-size:15.5px;color:var(--muted);margin:9px 0 0;line-height:1.45;}
+.band .dek{color:#b9b1a7;}
+/* ---------- lead ---------- */
+/* ---------- three-up ---------- */
+/* ---------- ink band: the files ---------- */
+/* ---------- flavor machine ---------- */
+.fsearch{display:flex;gap:10px;flex-wrap:wrap;align-items:stretch;max-width:620px;}
+.fsearch input{flex:1 1 260px;min-width:0;font-family:var(--body);font-size:17px;
+  padding:14px 16px;border:2px solid var(--ink);background:var(--paper);color:var(--ink);}
+.fsearch input:focus{outline:3px solid var(--red);outline-offset:1px;}
+.fcount{font-family:var(--mono);font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--muted);margin:14px 0 10px;}
+.fchips{display:flex;flex-wrap:wrap;gap:7px;max-height:168px;overflow:auto;}
+.fchips a{font-family:var(--mono);font-size:12px;letter-spacing:.02em;text-decoration:none;
+  color:var(--ink);border:1px solid var(--rule);padding:6px 10px;background:var(--paper);}
+.fchips a:hover,.fchips a:focus-visible{border-color:var(--red);color:var(--red);}
+.fchips a.hide{display:none;}
+/* ---------- archive strip ---------- */
+.archive{padding-block:38px 42px;}
+.covers{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;align-items:start;}
+.covers img{width:100%;height:auto;display:block;border:1px solid var(--ink);
+  box-shadow:5px 5px 0 var(--ink);}
+.covers .cm{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--red);margin:14px 0 5px;}
+.covers h3{font-family:var(--display);font-weight:900;font-size:16px;line-height:1.1;margin:0;}
+.covers a{text-decoration:none;color:inherit;display:block;}
+.covers a:hover h3{color:var(--red);}
+/* ---------- support ---------- */
+.support{padding-block:40px 46px;}
+.supgrid{display:grid;grid-template-columns:1.3fr 1fr;gap:34px;align-items:center;}
+.support h2{font-family:var(--display);font-weight:900;font-size:clamp(28px,4.6vw,52px);
+  line-height:.98;letter-spacing:-.02em;margin:0 0 14px;text-wrap:balance;}
+.support p{font-size:16px;margin:0 0 12px;color:#d8d2c9;}
+.support .fine{font-size:13.5px;color:#9a938a;font-family:var(--mono);line-height:1.5;}
+.bigbtn{display:block;text-align:center;font-family:var(--display);font-weight:900;
+  font-size:19px;text-decoration:none;padding:22px 20px;background:var(--red);color:#fff;
+  border:3px solid var(--red);}
+.bigbtn:hover{background:var(--paper);color:var(--red);}
+.subbtn{display:block;text-align:center;font-family:var(--mono);font-size:12px;
+  letter-spacing:.1em;text-transform:uppercase;text-decoration:none;margin-top:12px;
+  padding:16px 20px;border:2px solid #6b645c;color:var(--paper);}
+.subbtn:hover{border-color:var(--paper);background:var(--paper);color:var(--ink);}
+/* ---------- office ---------- */
+.office{padding-block:36px 40px;}
+.ogrid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;
+  border-top:1px solid var(--ink);border-left:1px solid var(--ink);}
+.ogrid .cell{border-right:1px solid var(--ink);border-bottom:1px solid var(--ink);padding:18px;}
+.ogrid .ch{font-family:var(--mono);font-size:11px;letter-spacing:.09em;text-transform:uppercase;
+  color:var(--red);margin:0 0 8px;}
+.ogrid p{font-size:14px;margin:0 0 10px;overflow-wrap:anywhere;}
+.ogrid a{color:var(--ink);font-weight:bold;}
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important;}
+}
+/* ---------- responsive ---------- */
+@media (max-width:980px){
+  .covers{grid-template-columns:1fr 1fr;}
+  .ogrid{grid-template-columns:1fr 1fr;}
+  .supgrid{grid-template-columns:1fr;gap:24px;}
+}
+@media (max-width:620px){
+  .covers{grid-template-columns:1fr 1fr;gap:20px;}
+  .ogrid{grid-template-columns:1fr;}
+}
+/* ---------- typographic lead (story with no photograph) ---------- */
+a.card:hover .readon{color:var(--ink);border-bottom-color:var(--ink);}
+/* ---------- awards ledger ---------- */
+/* ---------- inner page: story ---------- */
+.fine{font-size:13px;color:var(--muted);}
+/* ---------- inner page: archive ---------- */
+@media (max-width:820px){
+  .tt-head nav.tt-nav{justify-content:flex-start;}
+}
+/* ---------- four-up recipients ---------- */
+/* ---------- file section: photo cards + a text rail ---------- */
+/* ---------- establishment feature (The Laurel) ---------- */
+/* ---------- framed investigation (a story and the tool that belongs to it) ---------- */
+.tool{margin:22px 0 0;background:var(--tint);border:1px solid var(--rule);
+  border-left:4px solid var(--ink);padding:18px 20px 20px;}
+.toolhead{font-family:var(--body);font-size:15.5px;line-height:1.45;color:var(--ink);
+  margin:0 0 14px;max-width:56ch;}
+.tool .fsearch{max-width:none;}
+.tool .fsearch input{font-size:16px;padding:12px 14px;}
+.tool .fcount{margin:12px 0 9px;}
+.tool .fchips{max-height:150px;}
+.tool .fchips a{background:var(--paper);}
+.tool .readon{display:inline-block;font-family:var(--mono);font-size:12px;
+  letter-spacing:.09em;text-transform:uppercase;color:var(--red);text-decoration:none;
+  border-bottom:2px solid var(--red);padding-bottom:3px;}
+.tool .readon:hover{color:var(--ink);border-bottom-color:var(--ink);}
+@media (max-width:620px){
+  .tool{padding:16px;}
+}
+/* ---------- nav: subscribe button ---------- */
+nav.tt-nav a.tt-sub{border:2px solid var(--ink);border-bottom-width:2px;padding:5px 11px;
+  font-weight:700;color:var(--ink);}
+nav.tt-nav a.tt-sub:hover,nav.tt-nav a.tt-sub:focus-visible{background:var(--ink);color:var(--paper);
+  border-color:var(--ink);}
+/* ---------- footer link row ---------- */
+/* ---------- delivery signup ---------- */
+.delivery{padding-block:38px 42px;border-top:3px solid var(--ink);}
+.delgrid{display:grid;grid-template-columns:1.1fr 1fr;gap:34px;align-items:start;}
+.delivery h2{font-family:var(--display);font-weight:900;font-size:clamp(28px,4.4vw,48px);
+  line-height:.98;letter-spacing:-.02em;margin:0 0 8px;text-wrap:balance;}
+.delivery .fine{font-family:var(--mono);font-size:11.5px;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--muted);margin:0 0 18px;}
+.delopt{border-top:1px solid var(--rule);padding:14px 0;}
+.delopt:last-of-type{border-bottom:1px solid var(--rule);}
+.delopt strong{font-family:var(--display);font-weight:900;font-size:16.5px;display:block;
+  margin-bottom:4px;}
+.delopt p{font-size:15.5px;color:var(--muted);margin:0;}
+.delbtn{display:block;text-align:center;font-family:var(--display);font-weight:900;font-size:18px;
+  text-decoration:none;padding:20px;background:var(--ink);color:var(--paper);
+  border:3px solid var(--ink);margin-top:18px;}
+.delbtn:hover{background:var(--paper);color:var(--ink);}
+@media (max-width:900px){
+  .delgrid{grid-template-columns:1fr;gap:22px;}
+}
+/* ---------- typographic tile inside the ink band ---------- */
+/* ---------- photo framing ----------
+   object-fit:cover crops from the centre by default, which decapitates
+   anything whose subject is not dead centre. Focal points below are set
+   per photograph, so a picture is framed the same way wherever it runs. */
+/* keep every monkey's face */
+/* ears in, pyjamas below */
+/* head and collar tag */
+/* the birds, not the sky */
+/* rig at top through the red disc */
+/* raised hands and faces */
+/* ---------- lead: typographic story + one photograph ---------- */
+/* ---------- briefs: a full-width bordered strip, as the issue pages use ---------- */
+/* ---------- a story's own award, set beside the citation ---------- */
+/* ---------- yard signs ---------- */
+.signs{padding-block:34px 38px;border-top:1px solid var(--rule);}
+.signgrid{display:grid;grid-template-columns:1.05fr 1fr;gap:34px;align-items:center;}
+.signs h2{font-family:var(--display);font-weight:900;font-size:clamp(26px,4vw,44px);
+  line-height:.98;letter-spacing:-.02em;margin:0 0 12px;text-wrap:balance;}
+.signs p{font-size:16.5px;margin:0 0 16px;max-width:42ch;}
+.signpic{margin:0;}
+.signpic img{width:100%;height:auto;display:block;border:1px solid var(--ink);}
+.signbtn{display:inline-block;font-family:var(--display);font-weight:900;font-size:16px;
+  text-decoration:none;padding:14px 20px;background:var(--ink);color:var(--paper);
+  border:3px solid var(--ink);}
+.signbtn:hover{background:var(--paper);color:var(--ink);}
+.signcredit{display:flex;gap:16px;align-items:center;margin:24px 0 0;
+  border-top:1px solid var(--rule);padding-top:16px;}
+.signcredit img{width:118px;height:auto;display:block;border:1px solid var(--ink);flex:0 0 auto;}
+.signcredit figcaption{font-family:var(--mono);font-size:12px;line-height:1.55;color:var(--muted);}
+@media (max-width:900px){
+  .signgrid{grid-template-columns:1fr;gap:22px;}
+}
+.signcredit figcaption a{color:var(--red);text-decoration:none;border-bottom:1px solid var(--red);}
+.signcredit figcaption a:hover{color:var(--ink);border-bottom-color:var(--ink);}
+/* ---------- image height guard ----------
+   A tall portrait photo run at full column width can render 1500px tall and
+   eat a whole screen. Nothing on the site renders taller than this; the image
+   scales by height instead and stays centred. */
+/* the Laurel feature reads better as photo beside citation than photo stacked on top */
+/* Past Issues: the library photo is a supporting picture, not a hero */
+/* ---------- tabloid evidence treatment ---------- */
+/* a readon outside a card still needs its rule */
+.readon{display:inline-block;margin-top:16px;font-family:var(--mono);font-size:12px;
+  letter-spacing:.09em;text-transform:uppercase;color:var(--red);text-decoration:none;
+  border-bottom:2px solid var(--red);padding-bottom:3px;}
+/* ---------- cover-style evidence box ---------- */
+/* trio cards respect portrait photographs */
+/* his raised hand stays in frame */
+/* ---------- the red "there is a story here" chip ---------- */
+.chip{display:inline-block;background:var(--red);color:#fff;font-family:var(--display);
+  font-weight:900;font-size:12.5px;letter-spacing:.055em;text-transform:uppercase;
+  padding:6px 11px;margin-left:8px;white-space:nowrap;vertical-align:baseline;
+  text-decoration:none;font-style:normal;}
+a.card:hover .chip{background:var(--ink);color:var(--paper);}
+a.chip:hover{background:var(--ink);color:var(--paper);}
+@media (max-width:430px){
+  .chip{font-size:11px;padding:5px 8px;letter-spacing:.04em;white-space:normal;}
+}
+/* ---------- front page: main column + rail ---------- */
+.front{padding-block:4px 0;}
+.frontgrid{display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:40px;align-items:start;}
+.frontmain > .slug{margin:0 0 8px;}
+.frontmain > .card{display:block;margin:0 0 18px;}
+@media (max-width:899px){
+  .frontgrid{grid-template-columns:minmax(0,1fr);gap:26px;}
+}
+.pgbox{background:var(--ink);color:var(--paper);padding:16px 20px 18px;}
+.pgdek{font-family:var(--body);font-style:italic;font-size:clamp(15px,1.75vw,21px);
+  color:#e4ded4;margin:12px 0 0;line-height:1.35;}
+/* the red bar is the cover's red bar, and it is also the button */
+/* --- 3. the photographic evidence box --- */
+/* --- the Also Inside rail --- */
+.railbar{background:var(--ink);color:var(--paper);font-family:var(--display);font-weight:900;
+  font-size:14px;letter-spacing:.09em;text-transform:uppercase;text-align:center;
+  padding:8px 10px;margin:0;}
+.rail{border:1px solid var(--ink);}
+.rail .ai{display:block;padding:13px 15px;border-bottom:1px solid var(--rule);
+  text-decoration:none;color:inherit;}
+.rail .ai:last-child{border-bottom:0;}
+.rail .ai h3{font-family:var(--display);font-weight:900;text-transform:uppercase;
+  font-size:17px;line-height:1.12;letter-spacing:-.01em;margin:0;}
+.rail .ai p{font-family:var(--body);font-style:italic;font-size:14.5px;line-height:1.35;
+  color:var(--ink);margin:5px 0 0;}
+.rail .ai:hover{background:var(--tint);}
+.rail .ai:hover h3{color:var(--red);}
+.rail .ai p.railbar{color:var(--paper);font-family:var(--display);font-style:normal;}
+/* the rail ends with the thing we actually want readers to do */
+/* --- the crossword bar, as the cover's footer runs it --- */
+/* ---------- a story row: small picture, type does the work ---------- */
+/* ---------- the pizza honors ---------- */
+/* ---------- typographic feature, no photograph ---------- */
+/* ---------- the monkey close-out ---------- */
+/* ---------- photo framing: focal points ---------- */
+/* ---------- long addresses must not push the page sideways ---------- */
+.ogrid p{overflow-wrap:anywhere;}
+.issue-entry{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;padding:18px 0;border-bottom:3px solid #14110f;margin-bottom:20px}
+.issue-entry .readon{margin:0;font-size:13px}
+.frontgrid{grid-template-columns:minmax(0,1fr) 250px;gap:24px}
+.frontmain{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:20px;align-content:start}
+.frontmain>.slug,.frontmain>.pgbox{grid-column:1/-1}
+.frontmain>.slug{margin:0}
+.front{padding-bottom:28px}
+.rail .ai h3{font-size:22px}
+.rail .ai p{font-size:16px}
+.tinyread{display:inline-block;color:#b3241c;font:12px/1.5 'IBM Plex Mono',monospace;letter-spacing:.05em;margin-top:12px;border-bottom:1px solid #b3241c}
+.wander{border-top:4px solid #14110f;padding-top:24px;padding-bottom:28px}
+.wander-heading{display:flex;gap:15px;justify-content:space-between;align-items:baseline;flex-wrap:wrap}
+.wander-heading h2{font:900 clamp(30px,5vw,52px)/1.05 Archivo,Arial,sans-serif;letter-spacing:-.03em;margin:0 0 22px}
+.wander-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0 26px;align-items:start}
+.wander-card{display:block;color:#14110f;text-decoration:none;border-top:1px solid #14110f;padding:18px 0 24px;min-width:0}
+.wander-card .slug{font-size:10px;line-height:1.5;margin:12px 0 7px}
+.wander-card h3{font:900 clamp(22px,2.5vw,31px)/1.08 Archivo,Arial,sans-serif;letter-spacing:-.025em;margin:0}
+.wander-card:hover h3{color:#b3241c}
+.wander-card img{display:block;width:100%;height:180px;object-fit:cover;border:1px solid #d8d4c4}
+.wander-deck{font:italic 17px/1.4 Georgia,serif;margin:10px 0 0}
+.wander-card.feature{grid-column:span 2}
+.wander-card.feature h3{font-size:clamp(28px,3.6vw,43px)}
+.wander-card.feature img{height:230px}
+.flavorfinder{margin:8px 0 25px;border-top:1px solid #d8d4c4;border-bottom:1px solid #d8d4c4;padding:16px 0}
+.flavorfinder summary{cursor:pointer;font:600 16px/1.5 Archivo,Arial,sans-serif;color:#b3241c}
+.flavorfinder .tool{margin-top:18px}
+.wander-card[href*="laurel"] img{object-position:50% 55%}
+.issue-entry span{font:12px/1.5 'IBM Plex Mono',monospace;color:#6b645c}
+.archive{border-top:3px solid #14110f}
+@media(max-width:900px){
+  .frontgrid{grid-template-columns:1fr}
+  .rail{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid #14110f}
+  .rail>.railbar{grid-column:1/-1}
+  .rail .ai{border-right:1px solid #d8d4c4}
+  .rail .ai h3{font-size:19px}
+  .wander-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .wander-card.feature{grid-column:span 1}
+  .wander-card.feature img{height:180px}
+  .wander-card.feature h3{font-size:30px}
+}
+@media(max-width:560px){
+  .frontmain{grid-template-columns:1fr}
+  .frontmain>*{grid-column:1!important}
+  .rail{grid-template-columns:1fr}
+  .rail>*{grid-column:1!important}
+  .rail .ai h3{font-size:21px}
+  .rail .ai{padding:16px}
+  .rail .ai p{font-size:16px}
+  .wander-grid{grid-template-columns:1fr}
+  .wander-card img,.wander-card.feature img{height:200px}
+  .wander-card h3,.wander-card.feature h3{font-size:28px}
+  .wander-card{padding:18px 0 22px}
+  .wander-card .slug{font-size:11px}
+  .wander-heading h2{margin-bottom:16px}
+  .wander-card .tinyread{margin-top:9px}
+}
+.wander-heading .more{color:#b3241c;text-decoration:none;border-bottom:1px solid #b3241c;font:12px/1.5 monospace}
+.wander-grid{display:block;columns:3;column-gap:26px}
+.wander-card{break-inside:avoid;page-break-inside:avoid}
+.wander-card.feature h3{font-size:34px}
+.wander-card.feature img{height:180px}
+@media(max-width:900px){
+  .wander-grid{columns:2}
+}
+@media(max-width:560px){
+  .wander-grid{columns:1}
+  .wander-card.feature h3{font-size:28px}
+  .wander-card.feature img{height:200px}
+}
+/* photo framing: each photograph framed for its actual subject */
+.wander-card img[src$="lola.jpg"]{height:auto;aspect-ratio:1/1;object-fit:cover;object-position:50% 15%}
+.wander-card.feature img[src$="chocolate-shoppe-cups.jpg"]{height:auto;aspect-ratio:16/10;object-fit:cover;object-position:50% 0%}
+.wander-card img[src$="ninja.jpg"]{height:auto;aspect-ratio:auto;object-fit:contain}
+.wander-card[href*="laurel"] img{height:auto;aspect-ratio:auto;object-fit:contain;object-position:50% 50%}
+.wander-card.feature img[src$="fry-trophies-all.jpg"]{height:auto;aspect-ratio:auto;object-fit:contain}
+.wander-card img[src$="dog-map-preview.jpg"]{height:auto;aspect-ratio:auto;object-fit:contain}
+.wander-card.feature img[src$="chocolate-shoppe-cups.jpg"]{height:auto;aspect-ratio:2.2/1;object-fit:cover;object-position:50% 0%}
+/* masthead: centered serif nameplate between strong rules */
+header.tt-head{display:block;text-align:center;border-top:5px solid #14110f;border-bottom:4px solid #14110f;padding-top:17px;padding-bottom:0}
+.tt-brand{width:100%;max-width:none;flex:none}
+.tt-brand h1{font-family:'Times New Roman',Times,serif;font-weight:900;text-transform:uppercase;letter-spacing:-.045em;line-height:.84;margin:0;padding:0;max-width:none}
+.tt-brand .mast-small{display:block;font-size:clamp(25px,5.8vw,67px);letter-spacing:-.035em;line-height:1.05}
+.tt-brand .mast-large{display:block;font-size:clamp(78px,16.5vw,194px);letter-spacing:-.045em;line-height:.8;margin-top:4px}
+.tt-brand .tag{font:italic clamp(12px,1.5vw,17px)/1.4 Georgia,serif;margin:17px 0 15px;text-align:center}
+header.tt-head .tt-nav{display:flex;justify-content:center;align-items:center;gap:24px;flex-wrap:wrap;max-width:none;width:100%;margin:0;padding:12px 0;border-top:1px solid #14110f}
+header.tt-head .tt-nav a{font-size:12px}
+@media(max-width:560px){
+  header.tt-head{padding-top:14px}
+  .tt-brand .mast-small{font-size:clamp(24px,6.7vw,35px)}
+  .tt-brand .mast-large{font-size:clamp(68px,21vw,112px)}
+  .tt-brand .tag{font-size:12px;margin:12px 0}
+  header.tt-head .tt-nav{gap:12px;padding:10px 0}
+  header.tt-head .tt-nav a{font-size:10px}
+  .tt-nav .tt-coffee{padding:7px 9px}
+}
+/* masthead: every word of the name at the same size and weight */
+.tt-brand .mast-small,.tt-brand .mast-large{display:block;font-size:clamp(38px,7.8vw,90px);font-weight:900;letter-spacing:-.04em;line-height:.95;margin:0}
+@media(max-width:560px){
+  .tt-brand .mast-small,.tt-brand .mast-large{font-size:clamp(24px,6.7vw,35px);letter-spacing:-.035em;line-height:1.02;margin:0}
+}
+.site-footer{padding:25px clamp(18px,4vw,46px);border-top:3px solid #14110f;background:#f4f1e4;font:12px/1.6 'IBM Plex Mono',monospace;color:#6b645c}
+.site-footer nav{display:flex;gap:12px 24px;flex-wrap:wrap;margin-top:14px}
+.site-footer a{color:#14110f;text-decoration:none;border-bottom:1px solid #d8d4c4;padding:5px 0}
+.site-footer a:hover{color:#b3241c;border-bottom-color:#b3241c}
+.advertise{border-top:3px solid #14110f;padding-top:30px;padding-bottom:34px}
+.advertise h2{font:900 clamp(28px,4.5vw,48px)/1.05 Archivo,Arial,sans-serif;letter-spacing:-.025em;margin:8px 0 18px}
+.advertise-hook{font:italic clamp(21px,2.6vw,29px)/1.3 Georgia,serif;max-width:40ch;margin:0 0 18px}
+.advertise-details{font:18px/1.6 Georgia,serif;max-width:66ch;margin:0}
+.advertise .readon{margin-top:18px}
+.advertise-email{margin:14px 0 0;font:16px/1.5 Georgia,serif;overflow-wrap:anywhere}
+.advertise-email a{color:#14110f;text-decoration:underline;text-decoration-color:#b3241c;text-underline-offset:4px}
+.current-front{display:block}
+.current-front .slug{margin:0 0 15px}
+.current-cult{font:900 clamp(35px,5.2vw,67px)/.96 Archivo,Arial,sans-serif;letter-spacing:-.03em;text-transform:uppercase;margin:0;color:#fdfcf3}
+.current-bar{font:900 13px/1.4 Archivo,Arial,sans-serif;text-transform:uppercase;letter-spacing:.03em;margin:20px 0 0;color:#fdfcf3}
+.current-monkeys{display:grid!important;grid-template-columns:1fr 1fr;gap:22px;margin-top:22px;padding-top:20px;border-top:3px solid #14110f}
+.current-monkeys img{display:block;width:100%;height:auto}
+.current-monkeys h3{font:900 clamp(26px,3vw,38px)/1.03 Archivo,Arial,sans-serif;margin:0}
+.current-crossword{display:block;border-top:2px solid #14110f;border-bottom:2px solid #14110f;text-align:center;padding:12px;margin-top:22px;color:#b3241c;font:12px/1.5 monospace}
+.covers{grid-template-columns:repeat(3,minmax(0,1fr))}
+@media(max-width:560px){
+  .current-monkeys{grid-template-columns:1fr}
+  .current-cult{font-size:43px}
+}
+.current-monkeys{align-items:center}
+.current-monkeys img{width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;object-position:50% 45%}
+.current-monkeys .monkey-faces{position:relative;aspect-ratio:4/3;overflow:hidden}
+.current-monkeys .monkey-faces img{position:absolute;width:170%;max-width:none;height:auto;aspect-ratio:auto;left:-27%;top:-62%;object-fit:initial}
+.wander-card img[src$="sign-lemonade.jpg"]{height:auto;aspect-ratio:1/1;object-fit:contain;background:#f4f1e4}
+.flavor-spotlight{display:grid;grid-template-columns:1fr 1.1fr;gap:28px;align-items:center;border-top:3px solid #14110f;border-bottom:3px solid #14110f;padding:24px 0;margin-bottom:24px}
+.flavor-photo{display:block;overflow:hidden;aspect-ratio:1.6/1}
+.flavor-photo img{display:block;width:100%;height:100%;object-fit:cover;object-position:50% 0%}
+.flavor-spotlight h3{font:900 clamp(27px,3.6vw,44px)/1.04 Archivo,Arial,sans-serif;letter-spacing:-.025em;margin:0}
+.flavor-spotlight h3 a{color:#14110f;text-decoration:none}
+.flavor-spotlight h3 a:hover{color:#b3241c}
+.flavor-proof{font:italic 17px/1.5 Georgia,serif;margin:15px 0 0}
+.flavor-proof a{color:#b3241c;text-decoration:none;border-bottom:1px solid #b3241c}
+.flavor-spotlight .slug{font-size:11px}
+@media(max-width:620px){
+  .flavor-spotlight{grid-template-columns:1fr;gap:18px}
+  .flavor-spotlight h3{font-size:30px}
+  .flavor-photo{aspect-ratio:2/1}
+}
+.scoop-note{font:13px/1.5 'IBM Plex Mono',monospace;margin:17px 0 0}
+.scoop-note a{color:#14110f;text-decoration:none;border-bottom:1px solid #b3241c}
+.flavor-proof{font-size:13px;margin-top:10px}
+@media(min-width:1000px){
+  .current-front{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:20px;align-items:start}
+  .current-front>.slug{grid-column:1/-1;margin:0}
+  .current-front>.pgbox{grid-column:1;padding:22px}
+  .current-cult{font-size:clamp(33px,3.6vw,50px)}
+  .current-front>.current-monkeys{grid-column:2;display:flex!important;flex-direction:column;align-items:stretch;margin:0;padding:0;border:0;gap:12px}
+  .current-monkeys .monkey-faces{width:100%;flex:none}
+  .current-monkeys h3{font-size:27px}
+  .current-monkeys .slug{font-size:10px;margin:0 0 6px}
+  .current-monkeys .wander-deck{font-size:16px;margin:8px 0 0}
+  .current-monkeys .tinyread{margin-top:8px}
+  .current-crossword{margin-top:16px;padding:9px}
+  .front{padding-bottom:18px}
+  .wander{padding-top:18px}
+}
+/* Publisher prefers large Cult lead, with monkeys underneath. */
+@media(min-width:1000px){
+  .current-front{display:block}
+  .current-front>.slug{margin:0 0 15px}
+  .current-front>.pgbox{padding:24px 28px}
+  .current-cult{font-size:clamp(35px,5.2vw,67px)}
+  .current-front>.current-monkeys{display:grid!important;grid-template-columns:1fr 1fr;align-items:center;gap:22px;margin-top:22px;padding-top:20px;border-top:3px solid #14110f}
+  .current-monkeys h3{font-size:clamp(26px,3vw,38px)}
+}
+.flavor-photo{aspect-ratio:2.5/1}
+.flavor-photo img{width:100%;height:100%;object-fit:cover;object-position:50% 0%}
+@media(max-width:620px){
+  .flavor-photo{aspect-ratio:2.5/1}
+}
+/* narrow phones: the lead column may shrink to the page, and the Cult headline
+   scales only below 390px so its longest word, DISCOVERED, still fits the box */
+@media(max-width:900px){.frontgrid{grid-template-columns:minmax(0,1fr)}}
+@media(max-width:389px){.current-cult{font-size:calc((100vw - 84px) * .14)}}
+/* narrow phones: the three cover headings may hyphenate or break a word that is
+   wider than its column (e.g. Conventional) instead of running past the page */
+@media(max-width:559px){.covers h3{hyphens:auto;-webkit-hyphens:auto;overflow-wrap:break-word}}
