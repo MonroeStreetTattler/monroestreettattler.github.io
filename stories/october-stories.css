@@ -1,0 +1,47 @@
+/* Standalone October 2026 story pages (stories/2026-10-*.html).
+   Loaded after the shared tattler.css. The pages are generated from
+   october-2026.html by _tools/build_october_stories.py; edit the issue, not the pages. */
+*{box-sizing:border-box}
+body{background:#fdfcf3;color:#14110f;margin:0}
+header.tt-head{display:block;text-align:center;max-width:1180px;margin:auto;padding:24px 28px 0;border-top:5px solid}
+.tt-folio{display:none}
+.wordmark{font:900 clamp(29px,4.3vw,57px)/.95 'Times New Roman',serif!important;letter-spacing:-.04em}
+.wordmark span{display:block}
+.tt-brand .tag{font:italic 14px Georgia;margin:18px 0 22px}
+.tt-head nav.tt-nav{display:flex;justify-content:center;gap:24px;border-top:1px solid;padding:15px 0;max-width:none;margin:0}
+.story-shell{max-width:1180px;margin:auto;padding:0 28px}
+.story-top{padding:38px 0 30px;border-block:4px solid}
+.story-top .kicker{font:11px/1.5 'IBM Plex Mono',monospace;color:#b3241c;letter-spacing:.1em;text-transform:uppercase}
+.story-top h1{font:900 clamp(40px,6.3vw,74px)/.98 Archivo,Arial,sans-serif;letter-spacing:-.04em;max-width:20ch;margin:18px 0}
+.story-top .deck{font:italic 22px/1.4 Georgia,serif;max-width:48ch;margin:16px 0}
+.story-top .byline{font:11px/1.6 'IBM Plex Mono',monospace;text-transform:uppercase}
+.story-text{max-width:720px;margin:36px auto;font:19px/1.72 Georgia,serif}
+.story-text p{margin:0 0 20px}
+.story-text figure{float:none;width:100%;max-width:none;margin:26px 0}
+.story-text figure img{display:block;width:100%;height:auto;max-height:620px;object-fit:contain}
+.story-text figcaption{font:11px/1.5 'IBM Plex Mono',monospace;margin-top:12px}
+.story-text .barb{border:0;padding:0;margin:0}
+.story-text .sig{text-align:right}
+.endmark{display:inline-block;width:10px;height:10px;background:#b3241c;margin-left:6px}
+.share-block{max-width:720px;margin:28px auto;border-top:1px solid #c9c0ae;padding-top:24px}
+.share-block button{display:flex;align-items:center;gap:9px;min-height:46px;border:1px solid;border-radius:30px;background:transparent;padding:12px 20px;font:600 14px Archivo;cursor:pointer}
+.share-block button[hidden],#share-manual[hidden]{display:none}
+/* arriving from the issue's "Share this story" link: keep the story's ending in view above the button */
+#share-story{scroll-margin-top:40vh}
+#share-status{font:12px/1.5 'IBM Plex Mono',monospace;margin-top:12px}
+#share-manual input{width:100%;padding:12px}
+.issue-links{max-width:720px;margin:28px auto;padding:23px 0;border-top:1px solid #c9c0ae;font:12px/1.8 'IBM Plex Mono',monospace}
+.issue-links a{display:block;margin-bottom:8px}
+.related{margin-top:40px;border-top:4px solid;padding:28px 0 45px}
+.related h2{font:900 32px Archivo;margin:0 0 20px}
+.related-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.related-grid a{display:block;text-decoration:none;border-top:1px solid;padding-top:15px}
+.related-grid h3{font:900 26px/1.05 Archivo;letter-spacing:-.02em;margin:10px 0}
+.related-grid p{font:11px 'IBM Plex Mono',monospace;color:#b3241c}
+a:focus-visible,button:focus-visible{outline:3px solid #b3241c;outline-offset:4px}
+/* house link colours (the reference fell back to browser blue) */
+.issue-links a{color:#b3241c}
+.issue-links a+a{color:#6b645c;text-underline-offset:3px}
+.related-grid a{color:#14110f}
+.related-grid a:hover h3{color:#b3241c}
+@media(max-width:620px){.story-shell{padding-inline:22px}.story-top{padding-block:28px}.story-top h1{font-size:43px}.story-top .deck{font-size:20px}.story-text{font-size:18px;line-height:1.7;margin-top:28px}.related-grid{grid-template-columns:1fr}.tt-head nav.tt-nav{gap:12px;flex-wrap:wrap}.tt-head nav a{font-size:10px}.story-top h1{overflow-wrap:break-word}}
