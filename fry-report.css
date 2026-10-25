@@ -78,3 +78,10 @@ a:focus-visible,button:focus-visible{outline:3px solid #b3241c;outline-offset:4p
 
 /* under 360px: the longest box-heading words and the email address would run past the page */
 @media(max-width:359px){.note h4{font-size:28px}.story>p{overflow-wrap:break-word}}
+
+/* READING-DETAILS-001: Share sits left in the reading column, at least 44px tall, with its
+   status and fallback link directly below */
+.share-row{justify-content:flex-start}
+.share-row button{min-height:46px}
+#share-status{text-align:left}
+.share-row,#share-status,#share-manual{max-width:720px;margin-left:auto;margin-right:auto}

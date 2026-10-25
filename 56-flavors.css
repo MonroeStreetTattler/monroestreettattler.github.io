@@ -100,3 +100,9 @@ header.tt-head{display:block;text-align:center;border-top:5px solid #14110f;bord
   .closing .box h2,.payup .payhead{font-size:22px}
 }
 @media (prefers-reduced-motion:reduce){.flavor,.flavor::before{transition:none}.flavor:hover::before{transform:none}}
+
+/* READING-DETAILS-001: red square at the end of the Final Commission Note; Share sits left
+   in the reading column with its status and fallback link directly below */
+.endmark{display:inline-block;width:10px;height:10px;background:#b3241c;margin-left:6px;vertical-align:baseline}
+.share-row{justify-content:flex-start}
+#share-status,.share-manual{text-align:left}
