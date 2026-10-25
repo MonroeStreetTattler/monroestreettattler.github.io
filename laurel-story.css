@@ -18,3 +18,13 @@ header.tt-head{display:block;text-align:center;border-top:5px solid #14110f;bord
 
 /* 621–783px: the photo's -40px bleed would run past the page edge; bleed only to the edge */
 @media (min-width:621px) and (max-width:783px){ .heroshot{margin-left:-28px;margin-right:-28px} }
+
+/* READING-DETAILS-001: a red square ends the reporting as it ends the ode; Share sits
+   left in the reading column, its status and fallback link directly below it, and the
+   complete-issue links follow under their own rule */
+.story .endmark{display:inline-block;width:9px;height:9px;background:#b3241c;margin-left:9px;vertical-align:baseline}
+.share-row{justify-content:flex-start;padding-bottom:12px}
+#share-status{margin:0}
+.issue-options{border-top:1px solid #d8d4c4;margin-top:24px;padding:20px 0 30px}
+.issue-options a{font:12px/1.5 'IBM Plex Mono',monospace;text-decoration:none}
+.issue-options .pdf-option{font-size:11px;color:#6b645c;text-decoration:underline;text-underline-offset:3px}
