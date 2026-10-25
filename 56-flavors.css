@@ -1,0 +1,102 @@
+/* 56 Flavors page: tabloid opening, full-width cups photo, numbered tasting notes,
+   share row and closing sections. Loaded after the page's own styles, on this page only. */
+body{background:#fdfcf3;color:#14110f}
+.wrap{max-width:1280px;padding:0;box-shadow:none;background:#fdfcf3}
+a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid #b3241c;outline-offset:3px}
+
+/* masthead: equal-size words, centered, as on the Laurel page */
+.tt-folio{display:none}
+header.tt-head{display:block;text-align:center;border-top:5px solid #14110f;border-bottom:4px solid #14110f;padding-top:22px;padding-bottom:0}
+.tt-head .tt-brand{width:100%}
+.tt-head .wordmark{font:900 clamp(26px,4.3vw,57px)/.95 'Times New Roman',Times,serif;letter-spacing:-.04em;text-transform:uppercase}
+.tt-head .wordmark span{display:block}
+.tt-head .tag{font:italic 14px/1.4 Georgia,serif;margin:14px 0 18px}
+.tt-head nav.tt-nav{justify-content:center;gap:8px 22px;padding:14px 0;border-top:1px solid #14110f}
+
+/* opening: red 56 beside the yellow headline panel */
+.hero{display:grid;grid-template-columns:.85fr 1.15fr;background:#f8d94f}
+.numberblock{display:flex;flex-direction:column;justify-content:center;padding:26px 32px;background:#b3241c;color:#fdfcf3;overflow:hidden}
+.numberblock .mega{display:block;font:900 clamp(170px,29vw,380px)/.78 Archivo,Arial,sans-serif;letter-spacing:-.105em;margin-left:-.025em}
+.numberblock .mono{font:11px/1.5 'IBM Plex Mono',monospace;letter-spacing:.16em;text-transform:uppercase;margin:24px 0 12px}
+.numberblock .evidence{font:12px/1.6 'IBM Plex Mono',monospace;border-top:1px solid #e5a39b;padding-top:14px;margin-top:12px;max-width:25ch}
+.hero .copy{padding:34px;display:flex;flex-direction:column;justify-content:center}
+.hero .reportname{font:10px/1.5 'IBM Plex Mono',monospace;letter-spacing:.1em;color:#14110f;text-align:left;margin:0}
+.hero h1.title{font:900 clamp(38px,4.4vw,58px)/.99 Archivo,Arial,sans-serif;letter-spacing:-.05em;text-transform:none;text-align:left;margin:12px 0 20px}
+.hero .orient{font-size:16px;line-height:1.6;color:#14110f;margin:0}
+.hero .orient a{color:inherit;font-weight:normal;text-underline-offset:4px}
+
+/* the cups photo: full width, cropped from the top so both logos and the spoons stay in */
+.photo.evidence-strip{margin:0;background:#14110f;color:#fdfcf3}
+.photo.evidence-strip img{border:0;width:100%;height:auto;aspect-ratio:2.45/1;object-fit:cover;object-position:center top}
+.photo.evidence-strip figcaption{margin:0;padding:18px 30px;color:#fdfcf3;text-transform:none;letter-spacing:0;font:italic 15px/1.5 Georgia,serif}
+.cap-kicker{display:block;font:normal 11px/1.5 'IBM Plex Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:#f8d94f;margin-bottom:4px}
+.cap-name{font:normal 900 27px/1.05 Archivo,Arial,sans-serif;letter-spacing:-.03em;color:#fdfcf3;text-decoration:none}
+.cap-name:hover{text-decoration:underline;text-underline-offset:4px}
+
+/* tasting notes */
+.notes{padding:36px 28px 50px}
+.joinbar{margin:0 0 34px;border-top:4px solid #14110f;border-bottom:1px solid #14110f;padding:16px 0}
+.joinbar span{font-size:16px}
+.joinbar a{font-family:Archivo,Arial,sans-serif;background:#14110f}
+.notetop{display:flex;flex-wrap:wrap;gap:6px 24px;justify-content:space-between;align-items:baseline;border-bottom:1px solid #14110f;padding-bottom:18px}
+.notetop h2{font:900 32px/1.05 Archivo,Arial,sans-serif;letter-spacing:-.035em;margin:0}
+.order-note{font:600 13px/1.4 'IBM Plex Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:#4f4942;margin:0}
+.searchbar{margin:26px 0 6px}
+.searchbar label,.indexlabel{font-family:'IBM Plex Mono',monospace;letter-spacing:.12em}
+.searchbar input{font-size:19px}
+.flavorindex a{font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:.04em}
+.count{font-family:'IBM Plex Mono',monospace;margin:14px 0 0}
+.notegrid{display:grid;grid-template-columns:1fr 1fr;gap:0 50px}
+.flavor{position:relative;padding:30px 12px 30px 66px;border-bottom:1px solid #c8bfb0;scroll-margin-top:20px;transition:background-color .2s}
+.flavor::before{content:attr(data-n);position:absolute;left:8px;top:35px;font:900 30px/1 Archivo,Arial,sans-serif;letter-spacing:-.06em;color:#b3241c;transition:transform .2s}
+.flavor h2{font:900 31px/1.05 Archivo,Arial,sans-serif;letter-spacing:-.035em;text-transform:none;max-width:18ch;margin:0 0 18px}
+.flavor p{font-size:18px;line-height:1.65;margin:0 0 15px}
+@media (hover:hover){.flavor:hover{background:#f8f2df}.flavor:hover::before{transform:translateY(-3px)}}
+.noresult{font-size:18px}
+
+/* everything after the notes: one readable column */
+.closing{max-width:820px;margin:0 auto;padding:0 28px 50px}
+.closing .box{border-color:#14110f;padding:24px 26px}
+.closing .box.heavy{border-width:4px}
+.closing .box h2,.payup .payhead{font-family:Archivo,Arial,sans-serif;letter-spacing:-.02em;font-size:26px;line-height:1.1}
+.closing .box p,.payup p{font-size:17px;line-height:1.65}
+.issuenav a{font-size:17px}
+.issuenav .issuenav-label{font-family:'IBM Plex Mono',monospace;letter-spacing:.12em}
+.btnrow a,.paybtns a{font-family:Archivo,Arial,sans-serif}
+
+/* share row, matching the Laurel page; the button stays hidden until story-share.js runs it */
+.share-row{border-top:1px solid #d8d4c4;margin-top:30px;padding:22px 0 8px;display:flex;justify-content:flex-end}
+.share-button{border:1px solid #14110f;border-radius:99px;background:transparent;color:#14110f;font:600 14px/1.2 Archivo,Arial,sans-serif;min-height:46px;padding:12px 20px;display:flex;align-items:center;gap:9px;cursor:pointer}
+.share-button:hover{background:#14110f;color:#fdfcf3}
+.share-button svg{width:18px;height:18px}
+.share-row [hidden],.share-manual[hidden]{display:none!important}
+#share-status{font:12px/1.4 'IBM Plex Mono',monospace;min-height:18px;text-align:right}
+.share-manual{margin:6px 0 0;text-align:right}
+.share-manual input{width:100%;max-width:560px;font:13px/1.4 'IBM Plex Mono',monospace;padding:9px 11px;border:1px solid #14110f;background:#fdfcf3;color:#14110f}
+
+@media (max-width:860px){.notegrid{grid-template-columns:1fr}}
+@media (max-width:620px){
+  .tt-head .wordmark{font-size:clamp(24px,7.4vw,35px)}
+  .tt-head .tag{font-size:12px}
+  .tt-head nav.tt-nav{gap:10px 14px;font-size:10.5px}
+  .hero{grid-template-columns:1fr}
+  .numberblock{display:grid;grid-template-columns:auto 1fr;align-items:end;padding:20px 22px}
+  .numberblock .mega{grid-row:1/3;font-size:155px;line-height:.85}
+  .numberblock .mono{font-size:10px;margin:0 0 12px 20px}
+  .numberblock .evidence{font-size:10px;margin:0 0 0 20px;padding-top:10px}
+  .hero .copy{padding:28px 22px}
+  .hero h1.title{font-size:clamp(34px,10.5vw,43px)}
+  .photo.evidence-strip img{aspect-ratio:2.2/1}
+  .photo.evidence-strip figcaption{padding:18px 22px}
+  .cap-name{font-size:24px}
+  .notes{padding:30px 22px 40px}
+  .notetop{display:block}
+  .notetop .order-note{margin-top:10px}
+  .flavor{padding:26px 0 26px 50px}
+  .flavor::before{left:0;top:30px;font-size:26px}
+  .flavor h2{font-size:28px}
+  .closing{padding:0 22px 40px}
+  .closing .box{padding:20px 18px}
+  .closing .box h2,.payup .payhead{font-size:22px}
+}
+@media (prefers-reduced-motion:reduce){.flavor,.flavor::before{transition:none}.flavor:hover::before{transform:none}}
