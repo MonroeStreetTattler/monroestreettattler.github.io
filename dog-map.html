@@ -8,14 +8,15 @@
 <link rel="canonical" href="https://monroestreettattler.com/dog-map.html">
 <meta property="og:site_name" content="The Monroe Street Tattler">
 <meta property="og:url" content="https://monroestreettattler.com/dog-map.html">
-<meta property="og:image" content="https://monroestreettattler.com/homepage_og_image.png">
+<meta property="og:image" content="https://monroestreettattler.com/dog-map-og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="The Monroe Street Tattler">
+<meta property="og:image:alt" content="The Monroe Street Tattler. Official Dog Water Bowl &amp; Treat Map. MonroeStreetTattler.com">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Official Monroe Street Tattler Dog Water Bowl &amp; Treat Map">
 <meta name="twitter:description" content="A neighbor-submitted map of every known dog water bowl and treat jar around Monroe Street in Madison, Wisconsin. Know a spot we're missing? Add it.">
-<meta name="twitter:image" content="https://monroestreettattler.com/homepage_og_image.png">
+<meta name="twitter:image" content="https://monroestreettattler.com/dog-map-og.png">
+<meta name="twitter:image:alt" content="The Monroe Street Tattler. Official Dog Water Bowl &amp; Treat Map. MonroeStreetTattler.com">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Official Monroe Street Tattler Dog Water Bowl &amp; Treat Map">
 <meta property="og:description" content="A neighbor-submitted map of every known dog water bowl and treat jar around Monroe Street in Madison, Wisconsin. Know a spot we're missing? Add it.">
@@ -159,6 +160,7 @@ nav.tt-nav a.tt-sub:hover{background:var(--tt-ink);color:var(--tt-paper);}
   .payfine strong { color:#111; }
 </style>
 <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "b4b7990d0c27478ea9b605f098b4ad3c"}'></script><!-- End Cloudflare Web Analytics -->
+<link rel="stylesheet" href="utility-share.css">
 </head>
 <body>
 <div class="wrap">
@@ -200,6 +202,8 @@ nav.tt-nav a.tt-sub:hover{background:var(--tt-ink);color:var(--tt-paper);}
 
   <h2 class="section">Every Known Spot</h2>
   <ul class="spot-list" id="spot-list"></ul>
+
+  <div class="utility-share"><button type="button" data-share-url="https://monroestreettattler.com/dog-map.html" data-share-title="Official Monroe Street Tattler Dog Water Bowl &amp; Treat Map" data-share-copied="Map link copied." aria-label="Share this map: Official Monroe Street Tattler Dog Water Bowl &amp; Treat Map" aria-controls="share-status" hidden><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M12 16V3m-4 4 4-4 4 4M5 12v8h14v-8"/></svg> Share this map</button><div id="share-status" role="status"></div><div id="share-manual" hidden><input readonly aria-label="Map link"></div></div>
 
   <div id="debug-panel"></div>
 
@@ -626,12 +630,13 @@ async function loadLiveSpots() {
 
 <div class="tt-footnav">
   <a href="index.html">Home</a>
-  <a href="files.html">The Tattler Files</a>
+  <a href="files.html">Explore stories</a>
   <a href="dog-map.html">Dog Map</a>
   <a href="faq.html">FAQ</a>
   <a href="issues.html">Past Issues</a>
   <a href="index.html#delivery">Subscribe</a>
   <a href="mailto:MonroeStreetTattler@gmail.com">Contact</a>
 </div>
+<script src="story-share.js" defer></script>
 </body>
 </html>

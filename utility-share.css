@@ -1,0 +1,9 @@
+/* One Share control near the end of the kit, map and Monkey Escape pages (story-share.js).
+   Styles these three blocks only; the pages' own styles are unchanged. */
+.utility-share{border-top:1px solid #d8d4c4;margin:28px 0;padding:22px 0}
+.utility-share button{display:inline-flex;align-items:center;gap:9px;min-height:46px;margin:0;border:1px solid #14110f;border-radius:30px;background:transparent;color:#14110f;padding:12px 20px;font:600 14px/1.2 Archivo,Arial,sans-serif;cursor:pointer}
+.utility-share button:hover{background:#14110f;color:#fdfcf3}
+.utility-share button:focus-visible{outline:3px solid #b3241c;outline-offset:4px}
+.utility-share button[hidden],.utility-share [id=share-manual][hidden]{display:none}
+.utility-share [id=share-status]{font:12px/1.5 'IBM Plex Mono',monospace;margin-top:12px}
+.utility-share [id=share-manual] input{display:block;width:100%;max-width:560px;margin-top:6px;padding:12px;border:1px solid #14110f;border-radius:0;background:#fff;color:#14110f;font:14px 'IBM Plex Mono',monospace}
