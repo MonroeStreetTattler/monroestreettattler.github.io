@@ -1,12 +1,15 @@
 /* Explore Stories: topic buttons and a title/hook search that narrow the story
    cards together. Everything stays on the page; nothing is sent anywhere.
-   Without JavaScript every card is shown and every link works. */
+   Without JavaScript every card is shown and every link works.
+   While a topic or search is narrowing the list, the grid is marked is-filtered so the
+   stylesheet can drop the grouped newspaper layout for a plain results grid. */
 (function () {
   var cards = Array.prototype.slice.call(document.querySelectorAll('.storycard'));
   var buttons = Array.prototype.slice.call(document.querySelectorAll('[data-filter]'));
   var search = document.getElementById('story-search');
   var count = document.getElementById('story-count');
   var empty = document.getElementById('empty');
+  var grid = document.querySelector('.storygrid');
   if (!cards.length || !search) return;
   var topic = 'all';
 
@@ -20,6 +23,7 @@
     });
     count.textContent = shown + (shown === 1 ? ' story' : ' stories') + ' to wander into';
     empty.hidden = shown > 0;
+    if (grid) grid.classList.toggle('is-filtered', topic !== 'all' || q !== '');
   }
 
   buttons.forEach(function (button) {
