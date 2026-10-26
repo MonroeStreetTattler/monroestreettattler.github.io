@@ -1,0 +1,69 @@
+{
+  "source": "october-2026.html",
+  "site": "https://monroestreettattler.com/",
+  "issue_title": "October 2026",
+  "pdf": "october_2026_digital.pdf",
+  "stories": [
+    {
+      "key": "cult",
+      "output": "stories/2026-10-cult-discovered.html",
+      "start": "<h3 class=\"section\" id=\"cult\">",
+      "through": "a piece of it finds its way back to the door.",
+      "next": "<h3 class=\"section\" id=\"monkeys\">",
+      "headline": "Cult Discovered on Monroe Street",
+      "headline_source": "cover",
+      "deck": "Local history takes a very strange turn.",
+      "deck_source": "issue",
+      "label": "A Tattler reader submission",
+      "card": "stories/2026-10-cult-discovered-og.png",
+      "card_kicker": "Reader submission · October 2026"
+    },
+    {
+      "key": "lola",
+      "output": "stories/2026-10-lola.html",
+      "start": "<h3 class=\"section\" id=\"lola\">",
+      "through": "The Tattler has not independently contacted all witnesses.",
+      "next": "<h3 class=\"section\" id=\"signs\">",
+      "excluded_after": "repeated in #signs",
+      "headline": "Lola Would Like to Address the Allegations",
+      "headline_source": "issue",
+      "deck": "Local pit bull accepts responsibility for pajamas and ongoing distrust of umbrellas",
+      "deck_source": "issue",
+      "label": "Featured Pet",
+      "card": "stories/2026-10-lola-og.png",
+      "card_kicker": "Featured Pet · October 2026",
+      "card_photo": "lola.jpg",
+      "card_photo_alt": "Lola, a grey and white pit bull, wearing duck-print pajamas on a porch"
+    },
+    {
+      "key": "librarian",
+      "output": "stories/2026-10-librarian.html",
+      "start": "<h3 class=\"section\" id=\"librarian\">",
+      "through": "<strong>Next month: Part II.",
+      "next": "<h3 class=\"section\" id=\"neighborhood\">",
+      "endmark_on": "it was perhaps the clearest answer of the interview.",
+      "headline": "Librarian Breaks Silence",
+      "headline_source": "cover",
+      "deck": "Part I of the Tattler's two-part librarian exposé",
+      "deck_source": "issue",
+      "label": "Shocking Tell All · Part I",
+      "card": "stories/2026-10-librarian-og.png",
+      "card_kicker": "Shocking Tell All · October 2026"
+    },
+    {
+      "key": "barb",
+      "output": "stories/2026-10-dear-barb.html",
+      "start": "<div class=\"barb\" id=\"barb\">",
+      "through": "<strong>Verdict: Shop elsewhere. Grieve privately.</strong>",
+      "next": "<h3 class=\"section\" id=\"crossword\">",
+      "endmark_on": "Verdict: Shop elsewhere. Grieve privately.",
+      "headline": "Romance in Crisis",
+      "headline_source": "cover",
+      "deck": "Dear Barb issues a verdict.",
+      "deck_source": "index.html",
+      "label": "Dear Barb",
+      "card": "stories/2026-10-dear-barb-og.png",
+      "card_kicker": "Dear Barb · October 2026"
+    }
+  ]
+}
