@@ -119,3 +119,51 @@ main{padding-inline:20px}
 .storycard img[src="laurel.jpg"],.storycard img[src="ninja.jpg"],.storycard img[src="dog-map-preview.jpg"]{aspect-ratio:auto;height:auto;object-fit:contain}
 .storycard img[src="fry_report_og_image.png"]{aspect-ratio:1200/630;object-fit:contain}
 .storycard img[src="cranes.jpg"]{object-position:50% 65%}
+
+/* Explore Stories newspaper rhythm (EXPLORE-LAYOUT-001). Everything below is scoped to
+   body.explore (files.html), so Past Issues is unaffected.
+   Text-only cards: cream and ink with rules, replacing the alternating red/yellow boxes. */
+.explore .storycard.typeonly,.explore .storycard.typeonly:nth-child(odd){background:none;color:inherit;padding:16px 0 22px;min-height:0;justify-content:flex-start;border-top:3px solid #14110f;border-bottom:1px solid #b9b1a3}
+.explore .storycard.typeonly .slug{color:#b3241c}
+.explore .storycard.typeonly h3{font-size:29px}
+.explore .xkit img{object-position:50% 0}
+/* the closing section: grouped layout while browsing everything (discovery.js marks the grid
+   is-filtered while a topic or search narrows it; then every card joins the plain grid) */
+.explore .storygrid:not(.is-filtered) .xgroup{grid-column:1/-1}
+.explore .storygrid.is-filtered .xgroup,.explore .storygrid.is-filtered .xside{display:contents}
+.explore .storygrid.is-filtered .xlabel,.explore .storygrid.is-filtered .xno{display:none}
+.explore .storygrid:not(.is-filtered) .xleadrow{display:grid;grid-template-columns:1.6fr 1fr;gap:30px;border-top:4px solid #14110f;border-bottom:1px solid #14110f;padding:10px 0 28px;margin-top:10px}
+.explore .storygrid:not(.is-filtered) .xlead{border:0;border-right:1px solid #d8d4c4;padding:20px 32px 24px 0}
+.explore .storygrid:not(.is-filtered) .xlead .slug{margin-bottom:8px}
+.explore .storygrid:not(.is-filtered) .xlead h3{font-size:clamp(42px,5.5vw,70px);max-width:650px}
+.explore .storygrid:not(.is-filtered) .xlead .tinyread{color:#b3241c}
+.explore .storygrid:not(.is-filtered) .xside{display:flex;flex-direction:column;justify-content:space-between;gap:24px;padding-top:20px}
+.explore .storygrid:not(.is-filtered) .xside .storycard{border:0;padding:0}
+.explore .storygrid:not(.is-filtered) .xside .storycard+.storycard{border-top:1px solid #d8d4c4;padding-top:24px}
+.explore .storygrid:not(.is-filtered) .xside h3{font-size:32px}
+.explore .storygrid:not(.is-filtered) .xmiddle{display:grid;grid-template-columns:2fr 1fr;gap:30px;padding:30px 0;border-bottom:4px solid #14110f}
+.explore .storygrid:not(.is-filtered) .xkit{display:grid;grid-template-columns:1fr 1.15fr;gap:25px;align-items:center;border:0;padding:0}
+.explore .storygrid:not(.is-filtered) .xkit img{aspect-ratio:16/9;margin:0}
+.explore .storygrid:not(.is-filtered) .xkit h3{font-size:34px}
+.explore .storycard.xpuzzle,.explore .storycard.xpuzzle:nth-child(odd){background:#14110f;color:#fdfcf3;padding:26px;border:0;justify-content:center}
+.explore .storycard.xpuzzle .slug{color:#f8d94f}
+.explore .storycard.xpuzzle h3{font-size:33px}
+.explore .xlabel{display:flex;justify-content:space-between;gap:16px;padding:18px 0;border-bottom:1px solid #14110f}
+.explore .xlabel .slug{margin:0}
+.explore .storygrid:not(.is-filtered) .xdispatches{display:grid;grid-template-columns:1fr 1fr;gap:0 35px;margin-top:-30px}
+.explore .storygrid:not(.is-filtered) .xdispatch{display:grid;grid-template-columns:26px 1fr;gap:10px;align-content:start;padding:25px 0;border-top:0;border-bottom:1px solid #d8d4c4}
+.explore .storygrid:not(.is-filtered) .xdispatch .slug{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.explore .xno{font:11px 'IBM Plex Mono',monospace;color:#b3241c;padding-top:6px}
+.explore .storygrid:not(.is-filtered) .xdispatch h3{font-size:28px;margin:0}
+.explore .storygrid:not(.is-filtered) .xdispatch .tinyread{grid-column:2;margin-top:0}
+.explore .storygrid:not(.is-filtered) .xmiddle,.explore .storygrid:not(.is-filtered) .xlabel{margin-top:-30px}
+@media(max-width:760px){.explore .storygrid:not(.is-filtered) .xleadrow,.explore .storygrid:not(.is-filtered) .xmiddle{grid-template-columns:1fr;gap:24px}
+.explore .storygrid:not(.is-filtered) .xlead{border-right:0;border-bottom:1px solid #d8d4c4;padding-right:0}
+.explore .storygrid:not(.is-filtered) .xside{padding-top:0}
+.explore .storygrid:not(.is-filtered) .xkit{grid-template-columns:1fr;gap:16px}
+.explore .storygrid:not(.is-filtered) .xkit h3{font-size:29px}
+.explore .storygrid:not(.is-filtered) .xmiddle,.explore .storygrid:not(.is-filtered) .xlabel,.explore .storygrid:not(.is-filtered) .xdispatches{margin-top:-24px}
+}
+@media(max-width:650px){.explore .storygrid:not(.is-filtered) .xdispatches{grid-template-columns:1fr}
+.explore .storygrid:not(.is-filtered) .xdispatch h3{font-size:27px}
+}
