@@ -1,0 +1,124 @@
+{
+  "site": "https://monroestreettattler.com/",
+  "issues": {
+    "september-2026.html": {"title": "September 2026", "month": "September", "pdf": "september_2026_digital.pdf"},
+    "august-2026.html": {"title": "August 2026", "month": "August", "pdf": "monroe_street_tattler_digital.pdf"}
+  },
+  "stories": [
+    {
+      "key": "prize-patrol",
+      "source": "september-2026.html",
+      "output": "stories/2026-09-prize-patrol.html",
+      "start": "<h3 class=\"section\" id=\"housecalls\">",
+      "next": "<h3 class=\"section\" id=\"giveaway\">",
+      "hook": "The Tattler Prize Patrol Hits the Streets",
+      "hook_source": "cover",
+      "endmark_on": "proudly displayed at winning establishments.",
+      "topic": "food"
+    },
+    {
+      "key": "puddin",
+      "source": "september-2026.html",
+      "output": "stories/2026-09-puddin.html",
+      "start": "<h3 class=\"section\" id=\"puddin\">",
+      "next": "<h3 class=\"section\" id=\"neighborhood\">",
+      "hook": "Rare Celebrity Sighting in Vilas",
+      "hook_source": "cover",
+      "endmark_on": "remains available for squirrel patrol, bun inspection and compliments.</p>",
+      "callout_after": "Featured Pet nomination box",
+      "topic": "animals"
+    },
+    {
+      "key": "gravy",
+      "source": "september-2026.html",
+      "output": "stories/2026-09-gravy.html",
+      "element": "<div class=\"box letter\" id=\"gravy\">",
+      "hook": "A Matter of Gravy Jurisdiction",
+      "hook_source": "cover",
+      "endmark_on": "may warrant the convening of a future Breakfast Commission.",
+      "topic": "food"
+    },
+    {
+      "key": "cranes",
+      "source": "september-2026.html",
+      "output": "stories/2026-09-cranes.html",
+      "element": "<div class=\"brf\" id=\"cranes\">",
+      "figure": "cranes.jpg",
+      "hook": "Rush Hour Miracle: Motorists Stunned",
+      "hook_source": "cover",
+      "endmark_on": "The cranes, having safely reached the other side, declined to comment.",
+      "topic": "animals"
+    },
+    {
+      "key": "dads",
+      "source": "september-2026.html",
+      "output": "stories/2026-09-dads.html",
+      "element": "<div class=\"brf\" id=\"dads\">",
+      "hook": "Dads Gone Wild! Shocks Neighborhood",
+      "hook_source": "cover",
+      "endmark_on": "shown up and remained for the entire duration.\"",
+      "topic": "oddities"
+    },
+    {
+      "key": "listserv",
+      "source": "september-2026.html",
+      "output": "stories/2026-09-listserv.html",
+      "element": "<div class=\"brf\" id=\"listserv\">",
+      "hook": "Listserv Finally Justifies Its Existence",
+      "hook_source": "cover",
+      "endmark_on": "No further updates at this time.",
+      "topic": "oddities"
+    },
+    {
+      "key": "ninja",
+      "source": "september-2026.html",
+      "output": "stories/2026-09-ninja.html",
+      "element": "<div class=\"brf\" id=\"ninja\">",
+      "figure": "ninja.jpg",
+      "hook": "Parenting Arms Race Enters Dangerous New Phase",
+      "hook_source": "cover",
+      "endmark_on": "though preparations appear well underway.",
+      "topic": "oddities"
+    },
+    {
+      "key": "yard-sign",
+      "source": "august-2026.html",
+      "output": "stories/2026-08-yard-sign.html",
+      "element": "<div class=\"brief\" id=\"yardsign\">",
+      "hook": "Governor's Race Yard Sign Enters Period of Instability",
+      "hook_source": "inner",
+      "endmark_on": "possibly\n      historical by Friday.",
+      "topic": "oddities"
+    },
+    {
+      "key": "bins",
+      "source": "august-2026.html",
+      "output": "stories/2026-08-bins.html",
+      "element": "<div class=\"brief\" id=\"bins\">",
+      "hook": "Curbside Bin Etiquette Enters Difficult New Phase",
+      "hook_source": "inner",
+      "endmark_on": "all sides appear confident.",
+      "topic": "oddities"
+    },
+    {
+      "key": "masks",
+      "source": "august-2026.html",
+      "output": "stories/2026-08-masks.html",
+      "element": "<div class=\"brief\" id=\"masks\">",
+      "hook": "Forgotten Masks Recalled to Active Duty",
+      "hook_source": "inner",
+      "endmark_on": "&ldquo;both practical and emotionally complicated.&rdquo;",
+      "topic": "oddities"
+    },
+    {
+      "key": "free-pile",
+      "source": "august-2026.html",
+      "output": "stories/2026-08-free-pile.html",
+      "element": "<div class=\"brief\" id=\"free-pile\">",
+      "hook": "Terrace Free Pile Raises Philosophical Questions",
+      "hook_source": "inner",
+      "endmark_on": "awaits further review.",
+      "topic": "oddities"
+    }
+  ]
+}
