@@ -6,12 +6,15 @@
    device's own share sheet. Elsewhere it copies the story link and says so. If
    copying is not possible, the link is shown ready to select. Closing the share
    sheet is not an error: nothing is copied and nothing is announced. Nothing is
-   ever posted automatically. Without JavaScript the button stays hidden. */
+   ever posted automatically. Without JavaScript the button stays hidden.
+   An optional data-share-copied attribute replaces the copy confirmation for
+   pages that are not stories (for example "Map link copied."). */
 (function () {
   var button = document.querySelector('button[data-share-url]');
   if (!button) return;
   var url = button.getAttribute('data-share-url');
   var title = button.getAttribute('data-share-title') || document.title;
+  var copied = button.getAttribute('data-share-copied') || 'Story link copied.';
   var status = document.getElementById(button.getAttribute('aria-controls'));
   var manual = document.getElementById('share-manual');
 
@@ -36,7 +39,7 @@
     }
     navigator.clipboard.writeText(url).then(function () {
       if (manual) manual.hidden = true;
-      say('Story link copied.');
+      say(copied);
     }, showLink);
   }
 
