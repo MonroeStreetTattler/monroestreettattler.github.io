@@ -161,6 +161,9 @@ def extract(issue, story, index_html):
         need(story["headline"] in cover, f"{story['key']}: headline is not a cover headline")
     if story["deck_source"] == "issue":
         need(facts["deck"] == story["deck"], f"{story['key']}: deck differs from the issue")
+    elif story["deck_source"] == "approved":
+        # a hook approved and published elsewhere that no longer appears on the homepage
+        need(story.get("deck_provenance"), f"{story['key']}: approved deck needs a provenance note")
     else:
         need(story["deck"] in text_of(index_html), f"{story['key']}: deck not on the homepage")
     return [b["raw"] for b in body], container is not None
@@ -291,7 +294,7 @@ def page(story, body, boxed, manifest):
     <p class="tag">Urgent Reports on Matters of Limited Public Importance</p>
   </div>
   <nav class="tt-nav">
-    <a href="../october-2026.html">Latest Issue</a>
+    <a href="../november-2026.html">Latest Issue</a>
     <a href="../issues.html">Past Issues</a>
     <a class="tt-sub" href="../index.html#delivery">Subscribe</a>
     <a class="tt-coffee" href="https://ko-fi.com/monroestreettattler#checkoutModal" target="_blank" rel="noopener">&#9749; Buy Us a Coffee</a>
