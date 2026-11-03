@@ -60,7 +60,8 @@
       "headline": "Romance in Crisis",
       "headline_source": "cover",
       "deck": "Dear Barb issues a verdict.",
-      "deck_source": "index.html",
+      "deck_source": "approved",
+      "deck_provenance": "Homepage and Explore Stories hook for Romance in Crisis, published with OCTOBER-STORIES-001 (PR #7); later homepage and directory designs no longer show decks",
       "label": "Dear Barb",
       "card": "stories/2026-10-dear-barb-og.png",
       "card_kicker": "Dear Barb · October 2026"
