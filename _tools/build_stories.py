@@ -308,9 +308,15 @@ STORY_CSS = """
 /* standalone story pages (generated) */
 .wrap p.storyorigin{ font-family:'IBM Plex Mono',ui-monospace,monospace; font-size:11.5px;
   letter-spacing:.08em; text-transform:uppercase; color:#6b645c; margin:18px 0 0; }
-.storyorigin a,.storyreturn a{ color:var(--ink); border-bottom:2px solid var(--red);
+.storyreturn a{ color:var(--ink); border-bottom:2px solid var(--red);
   text-decoration:none; }
-.storyorigin a:hover,.storyreturn a:hover{ color:var(--red); }
+.storyreturn a:hover{ color:var(--red); }
+.wrap p.storyinvite{ margin:10px 0 0; border-top:3px solid var(--red); border-bottom:1px solid var(--ink); }
+.storyinvite a{ display:flex; align-items:center; min-height:44px; box-sizing:border-box; padding:12px 2px;
+  font-family:Archivo,Arial,sans-serif; font-weight:900; font-size:17px; line-height:1.25;
+  letter-spacing:.02em; text-transform:uppercase; color:var(--ink); text-decoration:none; }
+.storyinvite a:hover{ color:var(--red); }
+.storyinvite a:focus-visible{ outline:3px solid var(--red); outline-offset:2px; }
 .storypage .story:first-of-type{ margin-top:16px; }
 .storypage h1.phead{ max-width:22ch; }
 .storypage .story.single .strip{ margin-bottom:6px; }
@@ -590,7 +596,8 @@ def build(root, manifest_path):
 
   {local(sitebar)}
 
-  <p class="storyorigin">From the {esc(m["issue_name"])} issue &middot; <a href="{esc(back)}">Read it in the complete paper</a></p>
+  <p class="storyorigin">From the {esc(m["issue_name"])} issue</p>
+  <p class="storyinvite"><a href="{esc(back)}">Read this in the complete {esc(m["issue_name"].split()[0])} paper &rarr;</a></p>
 
   {content}
 
