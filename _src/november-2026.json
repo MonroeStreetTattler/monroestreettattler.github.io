@@ -1,0 +1,136 @@
+{
+  "issue": "november-2026.html",
+  "issue_name": "November 2026",
+  "date_published": "2026-11-01",
+  "site": "https://monroestreettattler.com/",
+  "stories_dir": "stories",
+  "path_prefix": "2026-11-",
+  "units": [
+    {
+      "id": "traderjoes",
+      "slug": "trader-joes-at-20",
+      "discovery_headline": "Trader Joe’s: What Are They Hiding?",
+      "discovery_description": "Two Decades on Monroe Street. The Tattler Investigates.",
+      "article_headline": "Trader Joe's celebrates 20 years on Monroe Street.",
+      "heading": {"promote": "h3.phead"},
+      "og_image": "2026-11-trader-joes-at-20-og.png",
+      "og_image_alt": "The Monroe Street Tattler, November 2026. A Special Anniversary Investigation: Trader Joe’s, 20 years. What Are They Hiding? Two Decades on Monroe Street. The Tattler Investigates."
+    },
+    {
+      "id": "frozenpizza",
+      "slug": "frozen-pizza-taste-test",
+      "discovery_headline": "Trader Joe’s Frozen Pizzas Put on Trial",
+      "discovery_description": "Neighborhood jury delivers its verdict.",
+      "article_headline": "The Neighborhood Puts Trader Joe's Pizza to the Test",
+      "heading": {"promote": "h3.phead"},
+      "og_image": "2026-11-frozen-pizza-taste-test-og.png",
+      "og_image_alt": "The Monroe Street Tattler, November 2026. Also Inside: Trader Joe’s Frozen Pizzas Put on Trial. Neighborhood jury delivers its verdict."
+    },
+    {
+      "id": "jake",
+      "slug": "jakes-flower-beds",
+      "discovery_headline": "The Man Who Knows Where Everything Is Buried",
+      "discovery_description": "What does he know, and why is he talking now?",
+      "article_headline": "Local Man Would Like Us to Stop Putting Our Butts in His Flower Beds",
+      "heading": {"promote": "h3.phead"},
+      "og_image": "2026-11-jakes-flower-beds-og.png",
+      "og_image_alt": "The Monroe Street Tattler, November 2026. Also Inside: The Man Who Knows Where Everything Is Buried. What does he know, and why is he talking now?"
+    },
+    {
+      "id": "pizzagate",
+      "slug": "pizzagate",
+      "discovery_headline": "Monroe Street Pizzagate",
+      "discovery_description": "New revelations raise troubling questions.",
+      "article_headline": "Pizzagate",
+      "heading": {"promote": "h3.phead"},
+      "og_image": "2026-11-pizzagate-og.png",
+      "og_image_alt": "The Monroe Street Tattler, November 2026. Exclusive: Monroe Street Pizzagate. New revelations raise troubling questions."
+    },
+    {
+      "id": "librarians",
+      "slug": "librarians-part-two",
+      "discovery_headline": "Part II: Second Librarian Breaks Silence",
+      "discovery_description": "What they reveal may change how you see the library forever.",
+      "article_headline": "Part II of the Tattler's Two-Part Librarian Expose",
+      "heading": {"promote": "h3.phead"},
+      "og_image": "2026-11-librarians-part-two-og.png",
+      "og_image_alt": "The Monroe Street Tattler, November 2026. Also Inside: Part II. Second Librarian Breaks Silence. What they reveal may change how you see the library forever."
+    },
+    {
+      "id": "cranes",
+      "slug": "crane-crossing-mystery",
+      "discovery_headline": "Human Accomplice Emerges in Crane Crossing Mystery",
+      "discovery_description": "This remains a developing story.",
+      "article_headline": "Breaking: Human Accomplice Emerges in Monroe Street Crane Crossing Mystery",
+      "heading": {"promote": "div.h"},
+      "context": "parent",
+      "og_image": "2026-11-crane-crossing-mystery-og.png",
+      "og_image_alt": "The Monroe Street Tattler, November 2026. Also Inside: Human Accomplice Emerges in Crane Crossing Mystery. This remains a developing story."
+    },
+    {
+      "id": "littlefreelibrary",
+      "slug": "little-free-library-dumpster",
+      "discovery_headline": "Has the Little Free Library Movement Gone Too Far?",
+      "discovery_description": "An anonymous tipster came forward.",
+      "article_headline": "Little Free Library Mistaken for Little Free Dumpster",
+      "heading": {"promote": "div.h"},
+      "context": "parent",
+      "og_image": "2026-11-little-free-library-dumpster-og.png",
+      "og_image_alt": "The Monroe Street Tattler, November 2026. Photographic Evidence, The Item in Question: inside a neighborhood Little Free Library, where a bagged object sits among the books, circled in red. Has the Little Free Library Movement Gone Too Far? An anonymous tipster came forward."
+    },
+    {
+      "id": "bees",
+      "slug": "gregory-street-bees",
+      "discovery_headline": "Who Really Runs Gregory Street?",
+      "discovery_description": "Homemade signs suggest a shift in power.",
+      "article_headline": "Bees Assert Control Over Gregory Street",
+      "heading": {"promote": "div.h"},
+      "context": "parent",
+      "og_image": "2026-11-gregory-street-bees-og.png",
+      "og_image_alt": "The Monroe Street Tattler, November 2026. Also Inside: Who Really Runs Gregory Street? Homemade signs suggest a shift in power."
+    },
+    {
+      "id": "signmakers",
+      "slug": "young-signmakers",
+      "discovery_headline": "Child Labor Makes Comeback",
+      "discovery_description": "Authorities have yet to intervene.",
+      "article_headline": "Young Signmakers Show No Signs of Slowing Down",
+      "heading": {"promote": "div.h"},
+      "context": "parent",
+      "og_image": "2026-11-young-signmakers-og.png",
+      "og_image_alt": "The Monroe Street Tattler, November 2026. Also Inside: Child Labor Makes Comeback. Authorities have yet to intervene."
+    },
+    {
+      "id": "monkeys",
+      "slug": "monkey-escape-case-closed",
+      "discovery_headline": "Monroe Street Emerges From Month of Monkey Chaos!",
+      "discovery_description": "The aftermath. The fallout.",
+      "article_headline": "The Great Monkey Escape: Case Closed",
+      "heading": {"insert": "The Great Monkey Escape: Case Closed", "class": "phead"},
+      "context": "parent",
+      "og_image": "2026-11-monkey-escape-case-closed-og.png",
+      "og_image_alt": "The Monroe Street Tattler, November 2026. Also Inside: Monroe Street Emerges From Month of Monkey Chaos! The aftermath. The fallout."
+    },
+    {
+      "id": "dearbarb",
+      "slug": "dear-barb-thanksgiving",
+      "discovery_headline": "Dear Barb: “Take it to the grave.”",
+      "discovery_description": "Barb rules on an eleven-year Thanksgiving deception.",
+      "article_headline": "Dear Barb",
+      "heading": {"promote": "h3.phead"},
+      "og_image": "2026-11-dear-barb-thanksgiving-og.png",
+      "og_image_alt": "The Monroe Street Tattler, November 2026. Dear Barb: “Take it to the grave.” Barb rules on an eleven-year Thanksgiving deception."
+    },
+    {
+      "id": "tasteofindia",
+      "slug": "christmas-cards-taste-of-india",
+      "discovery_headline": "Local Restaurant Faces Holiday Onslaught!",
+      "discovery_description": "A coordinated effort is now underway.",
+      "article_headline": "Operation: Christmas Cards for Taste of India",
+      "heading": {"promote": "h3.phead"},
+      "exclude": ["div.advert", "div.strip"],
+      "og_image": "2026-11-christmas-cards-taste-of-india-og.png",
+      "og_image_alt": "The Monroe Street Tattler, November 2026. Also Inside: Local Restaurant Faces Holiday Onslaught! A coordinated effort is now underway."
+    }
+  ]
+}
