@@ -551,8 +551,31 @@ figcaption .cred{display:block;font-family:'IBM Plex Mono',ui-monospace,monospac
   data-cf-beacon='{"token": "b4b7990d0c27478ea9b605f098b4ad3c"}'>
 </script>
 <!-- End Cloudflare Web Analytics -->
+<style>
+  /* complete-paper cue, shown only when the paper is entered at a story */
+  .paper-context{ display:none; position:sticky; top:0; z-index:30; background:var(--paper);
+    border-bottom:3px solid var(--red); padding:11px max(22px,calc((100vw - 1140px)/2));
+    align-items:center; justify-content:space-between; gap:18px;
+    font:600 12px/1.4 'IBM Plex Mono',ui-monospace,monospace; color:var(--ink); box-shadow:0 2px 0 var(--paper); }
+  body:has(:target) .paper-context{ display:flex; }
+  html:has(body :target){ scroll-padding-top:92px; }
+  .paper-context a{ color:var(--red); white-space:nowrap; padding:14px 0; margin:-7px 0; text-underline-offset:3px; }
+  .paper-context a:focus-visible{ outline:2px solid var(--red); outline-offset:4px; }
+  .issue-pdf{ text-align:right; padding:3px 18px 6px; font:12px/1.5 'IBM Plex Mono',ui-monospace,monospace; }
+  .issue-pdf a{ color:#6b645c; text-underline-offset:4px; display:inline-block; padding:13px 0; }
+  .issue-pdf a:focus-visible{ outline:2px solid var(--red); outline-offset:4px; }
+  @media (max-width:620px){
+    .paper-context{ font-size:11px; gap:12px; padding:8px 16px; }
+    .paper-context span{ max-width:190px; }
+    .issue-pdf{ text-align:left; padding:1px 18px; }
+  }
+</style>
 </head>
 <body>
+<aside class="paper-context" aria-label="Complete paper navigation">
+  <span>You’re reading the complete November paper.</span>
+  <a href="november-2026.html">Start at the front ↑</a>
+</aside>
 <div class="wrap">
 
   <nav class="sitebar">
@@ -563,6 +586,7 @@ figcaption .cred{display:block;font-family:'IBM Plex Mono',ui-monospace,monospac
       <a href="https://ko-fi.com/monroestreettattler#checkoutModal" target="_blank" rel="noopener">&#9749; Buy Us a Coffee</a>
     </span>
   </nav>
+  <div class="issue-pdf"><a href="november_2026_digital.pdf">Download the November paper as a PDF ↓</a></div>
 
   <header class="cover">
     <div class="cfolio">

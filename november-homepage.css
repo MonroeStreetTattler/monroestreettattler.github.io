@@ -378,8 +378,6 @@ a.card.tjbox,.tjbox{display:grid;grid-template-columns:minmax(0,1fr) .33fr;gap:2
 /* ---------- photo framing: focal points ---------- */
 /* ---------- long addresses must not push the page sideways ---------- */
 .ogrid p{overflow-wrap:anywhere;}
-.issue-entry{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;padding:18px 0;border-bottom:3px solid #14110f;margin-bottom:20px}
-.issue-entry .readon{margin:0;font-size:13px}
 .frontgrid{grid-template-columns:minmax(0,1fr) 250px;gap:24px}
 .frontmain{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:20px;align-content:start}
 .frontmain>.slug,.frontmain>.pgbox{grid-column:1/-1}
@@ -419,7 +417,6 @@ a.card.tjbox{grid-template-columns:1fr;gap:12px}
 .flavorfinder summary{cursor:pointer;font:600 16px/1.5 Archivo,Arial,sans-serif;color:#b3241c}
 .flavorfinder .tool{margin-top:18px}
 .wander-card[href*="laurel"] img{object-position:50% 55%}
-.issue-entry span{font:12px/1.5 'IBM Plex Mono',monospace;color:#6b645c}
 .archive{border-top:3px solid #14110f}
 @media(max-width:900px){
   .frontgrid{grid-template-columns:1fr}
@@ -534,4 +531,18 @@ header.tt-head .tt-nav a{font-size:12px}
 @media(max-width:620px){
   .flavor-spotlight{grid-template-columns:1fr;gap:18px}
   .flavor-spotlight h3{font-size:30px}
+}
+
+/* ---------- complete-paper reading entrance ---------- */
+.paper-door{padding:23px 0 21px;border-top:7px solid #b3241c;border-bottom:3px solid #14110f;margin:20px 0 27px}
+.paper-door .paper-door-kicker{font:12px/1.5 'IBM Plex Mono',monospace;letter-spacing:.07em;text-transform:uppercase;color:#b3241c;margin:0 0 9px}
+.paper-door-main{display:block;font:900 clamp(28px,3.5vw,48px)/1.04 Archivo,Arial,sans-serif;text-transform:uppercase;letter-spacing:-.045em;text-decoration:none;color:#14110f}
+.paper-door-main span{color:#b3241c;white-space:nowrap}
+.door-break{display:none}
+.paper-door-main:hover{text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:5px}
+.paper-door a:focus-visible{outline:3px solid #b3241c;outline-offset:4px}
+@media (max-width:620px){
+  .paper-door{padding:18px 0 17px;margin-top:17px;margin-bottom:24px}
+  .paper-door-main{font-size:31px;line-height:1.07}
+  .door-break{display:block}
 }
