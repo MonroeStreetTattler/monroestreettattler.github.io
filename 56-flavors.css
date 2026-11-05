@@ -106,3 +106,19 @@ header.tt-head{display:block;text-align:center;border-top:5px solid #14110f;bord
 .endmark{display:inline-block;width:10px;height:10px;background:#b3241c;margin-left:6px;vertical-align:baseline}
 .share-row{justify-content:flex-start}
 #share-status,.share-manual{text-align:left}
+
+/* credited Chocolate Shoppe graphics beside five notes */
+.shoppe-feature{grid-column:1/-1;display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:40px;padding:38px 18px 38px 66px;align-items:center;border-bottom:2px solid #14110f}
+.shoppe-feature::before{top:44px}
+.shoppe-feature h2{font-size:clamp(32px,4vw,49px);max-width:14ch}
+.shoppe-feature p{font-size:19px}
+.shoppe-graphic{margin:0;min-width:0}
+.shoppe-graphic img{display:block;width:100%;height:auto;max-height:none;border:0}
+.shoppe-graphic figcaption{font:11px/1.5 'IBM Plex Mono',monospace;color:#6b645c;text-align:left;padding-top:10px}
+@media (max-width:620px){
+  .shoppe-feature{grid-template-columns:1fr;padding:28px 0 30px 0;gap:16px}
+  .shoppe-feature::before{display:none}
+  .shoppe-feature h2{font-size:34px}
+  .shoppe-feature p{font-size:18px}
+  .shoppe-graphic figcaption{font-size:10px}
+}
