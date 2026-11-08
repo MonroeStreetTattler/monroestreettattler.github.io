@@ -1,0 +1,42 @@
+{
+  "name": "Monroe Street corridor, provisional 2026",
+  "description": "Every point within radius_m of these street lines counts as in the area. The lines follow Monroe Street from the 1400 block to the 3650 block, then a short way out Nakoma Road and Odana Road. Points are U.S. Census Geocoder (TIGER/Line, Public_AR_Current) results for the listed addresses, fetched 2026-11-07. Widen or narrow the area by changing radius_m or adding lines; no code change is needed.",
+  "radius_m": 750,
+  "lines": [
+    {
+      "street": "Monroe Street",
+      "points": [
+        {"address": "1400 MONROE ST", "lat": 43.06819, "lon": -89.4123},
+        {"address": "1500 MONROE ST", "lat": 43.06781, "lon": -89.41287},
+        {"address": "1700 MONROE ST", "lat": 43.06596, "lon": -89.41563},
+        {"address": "1900 MONROE ST", "lat": 43.06462, "lon": -89.41762},
+        {"address": "2100 MONROE ST", "lat": 43.06283, "lon": -89.42039},
+        {"address": "2300 MONROE ST", "lat": 43.06078, "lon": -89.4236},
+        {"address": "2500 MONROE ST", "lat": 43.05828, "lon": -89.42737},
+        {"address": "2700 MONROE ST", "lat": 43.05724, "lon": -89.42892},
+        {"address": "2900 MONROE ST", "lat": 43.05614, "lon": -89.43058},
+        {"address": "3100 MONROE ST", "lat": 43.05504, "lon": -89.43223},
+        {"address": "3300 MONROE ST", "lat": 43.05393, "lon": -89.4339},
+        {"address": "3500 MONROE ST", "lat": 43.05289, "lon": -89.43545},
+        {"address": "3650 MONROE ST", "lat": 43.05184, "lon": -89.43708}
+      ]
+    },
+    {
+      "street": "Nakoma Road (a little of Nakoma)",
+      "points": [
+        {"address": "3650 MONROE ST", "lat": 43.05184, "lon": -89.43708},
+        {"address": "3700 NAKOMA RD", "lat": 43.05018, "lon": -89.43718},
+        {"address": "3900 NAKOMA RD", "lat": 43.04805, "lon": -89.43919}
+      ]
+    },
+    {
+      "street": "Odana Road (a little of Odana)",
+      "points": [
+        {"address": "3650 MONROE ST", "lat": 43.05184, "lon": -89.43708},
+        {"address": "3700 ODANA RD", "lat": 43.05142, "lon": -89.43959},
+        {"address": "3900 ODANA RD", "lat": 43.05119, "lon": -89.44335},
+        {"address": "4100 ODANA RD", "lat": 43.05107, "lon": -89.44439}
+      ]
+    }
+  ]
+}

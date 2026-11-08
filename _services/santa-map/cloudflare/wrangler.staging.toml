@@ -1,0 +1,36 @@
+# FREE STAGING ONLY. Santa map API test deployment; never the production service.
+# Use it explicitly in every command: `npx wrangler <command> -c wrangler.staging.toml`.
+# Production (wrangler.toml) gets its own new, empty database and its own secrets.
+# Nothing here is a secret; SANTA_CLIENT_SALT and SANTA_ADMIN_TOKEN are set with
+# `wrangler secret put … -c wrangler.staging.toml` and never written to a file.
+
+name = "santa-map-api-staging-2026"
+main = "src/index.js"
+compatibility_date = "2026-10-19"
+account_id = "36f5a20153594c112956a8350ac30969"
+
+# https://santa-map-api-staging-2026.monroestreettattler.workers.dev. No route, zone or
+# custom domain.
+workers_dev = true
+preview_urls = false
+
+[vars]
+SANTA_SEASON = "2026"
+SANTA_ALLOWED_ORIGINS = "https://monroestreettattler.com"
+SANTA_GEOCODER_DAILY = "1000"
+# Staging only: adds an X-Santa-D1 header with each request's D1 query and row counts,
+# for the budget checks. Production does not set it.
+SANTA_METRICS = "on"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "santa-map-staging-2026"
+database_id = "93b37a3e-31d2-4e65-8269-d3bb9e3c48a3"
+migrations_dir = "migrations"
+
+# No Cron Trigger in staging: the daily clean-up is tested locally, and staging keeps few
+# rate-limit rows.
+
+# No Workers Logs: invocation logs would keep visitors' IP addresses and request details.
+[observability]
+enabled = false

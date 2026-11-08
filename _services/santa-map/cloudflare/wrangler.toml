@@ -1,0 +1,33 @@
+# Santa map API on Cloudflare Workers Free + D1 Free. See README.md.
+# Nothing here is a secret. SANTA_CLIENT_SALT and SANTA_ADMIN_TOKEN are set with
+# `wrangler secret put` (or .dev.vars for local runs) and never written to this file.
+
+name = "santa-map-api"
+main = "src/index.js"
+compatibility_date = "2026-10-19"
+account_id = "36f5a20153594c112956a8350ac30969"
+
+# Served at https://santa-map-api.monroestreettattler.workers.dev. No custom domain,
+# route or DNS record.
+workers_dev = true
+preview_urls = false
+
+[vars]
+SANTA_SEASON = "2026"
+SANTA_ALLOWED_ORIGINS = "https://monroestreettattler.com"
+SANTA_GEOCODER_DAILY = "1000"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "santa-map"
+# Production database, created empty 2026-11-08. Never copy staging data into it.
+database_id = "3129ffd1-5845-4688-a2bb-6d753761db9e"
+migrations_dir = "migrations"
+
+# Once a day: forget rate-limit counts older than two days.
+[triggers]
+crons = ["17 9 * * *"]
+
+# No Workers Logs: invocation logs would keep visitors' IP addresses and request details.
+[observability]
+enabled = false

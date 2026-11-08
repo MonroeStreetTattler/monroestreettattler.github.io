@@ -1,0 +1,22 @@
+{
+  "name": "santa-map-cloudflare",
+  "private": true,
+  "description": "Cloudflare Workers + D1 adaptation of the Santa map API",
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "build:area": "python3 scripts/build_area.py",
+    "check:area": "python3 scripts/build_area.py --check",
+    "test": "node --test --test-concurrency=1 --test-timeout=180000 \"test/*.test.js\"",
+    "dev": "wrangler dev --local --port 8788",
+    "review": "node scripts/review-server.mjs",
+    "budget": "node scripts/budget.mjs",
+    "backup:production": "node scripts/backup-check.mjs --remote ~/SantaMapBackups/production --config wrangler.toml",
+    "backup:staging": "node scripts/backup-check.mjs --remote ~/SantaMapBackups/staging --config wrangler.staging.toml"
+  },
+  "devDependencies": {
+    "wrangler": "4.152.0"
+  }
+}
