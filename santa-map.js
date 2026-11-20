@@ -24,7 +24,7 @@
   var els = {
     count: $('match-count'), countLabel: $('match-label'), countNote: $('count-note'), otherCount: $('other-count'),
     toggle: $('other-toggle'), mapStatus: $('map-status'), list: $('santa-list'), listStatus: $('list-status'),
-    form: $('santa-form'), title: $('form-title'), otherNote: $('other-note'), confirm: $('confirm'),
+    form: $('santa-form'), title: $('form-title'), otherNote: $('other-note'),
     quantity: $('quantity'), description: $('description'), address: $('address'), find: $('find-address'),
     choices: $('choices'), preview: $('preview'), previewAddress: $('preview-address'), save: $('save'),
     status: $('form-status'), cancel: $('cancel'), done: $('done'), doneMessage: $('done-message'),
@@ -301,7 +301,7 @@
   }
 
   function clearInvalid() {
-    [els.address, els.description, els.confirm].forEach(function (f) { f.removeAttribute('aria-invalid'); });
+    [els.address, els.description].forEach(function (f) { f.removeAttribute('aria-invalid'); });
   }
 
   function errorText(err, during) {
@@ -371,7 +371,6 @@
     }
     var body = { category: place.kind, address: place.entered, idempotency_key: state.key };
     if (place.kind === 'matching') {
-      if (!els.confirm.checked) return invalid(els.confirm, 'Please confirm that the Santa matches the photo and is 12 feet tall.');
       body.confirm_match = true;
       body.quantity = parseInt(els.quantity.value, 10);
     } else {
@@ -463,7 +462,7 @@
     if (e.key === 'Enter') { e.preventDefault(); findAddress(); }
   });
   els.address.addEventListener('input', resetPreview);                          // a changed address must be found again
-  [els.quantity, els.description, els.confirm].forEach(function (f) {
+  [els.quantity, els.description].forEach(function (f) {
     f.addEventListener('change', function () { if (state.place) state.key = newKey(); });  // a changed report is a new attempt
   });
   els.form.addEventListener('submit', save);
