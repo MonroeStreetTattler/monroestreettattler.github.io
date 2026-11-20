@@ -105,16 +105,13 @@
     map = L.map('map', { scrollWheelZoom: false, zoomSnap: 0.25 });
     L.tileLayer(TILE_URL, { maxZoom: 19, attribution: ATTRIBUTION }).addTo(map);
     map.fitBounds(AREA_BOUNDS);
-    layers.area = L.layerGroup().addTo(map);
     layers.matching = L.layerGroup().addTo(map);
     layers.other = L.layerGroup();
   }
 
-  function drawArea(area) {
+  // The coverage area is not drawn; its bounds only frame the map.
+  function frameArea(area) {
     if (!map || !area || !area.rings) return;
-    layers.area.clearLayers();
-    L.polygon(area.rings, { color: '#b3241c', weight: 2, dashArray: '6 6', opacity: 0.8, fillColor: '#b3241c', fillOpacity: 0.05, interactive: false })
-      .addTo(layers.area);
     if (area.bounds) { AREA_BOUNDS = area.bounds; if (!state.loadedAt) map.fitBounds(AREA_BOUNDS); }
   }
 
@@ -490,7 +487,7 @@
   } catch (e) { /* leave it hidden */ }
 
   setUpMap();
-  api('GET', '/area').then(drawArea, function () {});
+  api('GET', '/area').then(frameArea, function () {});
   load();
   setInterval(function () { if (!document.hidden) load(); }, REFRESH_MS);
 })();
