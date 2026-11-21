@@ -60,6 +60,14 @@
   <p class="intro">Find inflatable Santas along Monroe Street and nearby blocks in Madison, Wisconsin. Explore neighbor-reported sightings, add one you’ve spotted, and help count the matching 12-foot Santas with the candy cane and green present.</p>
   <p class="intro" id="preseason-note" hidden>Santas start going up on Black Friday, November 27. Explore the map and come back as neighbors add sightings.</p>
 
+  <section class="reference" aria-labelledby="reference-heading">
+    <img src="assets/santa-map/santa-reference.png" width="300" height="450" alt="Reference Santa: red suit, raised candy cane, green present with red ribbon, black boots">
+    <div>
+      <h2 id="reference-heading">Help us find this Santa!</h2>
+      <p>The matching 12-foot Santas are a Monroe Street tradition. Spotted one? Add it to the neighborhood count.</p>
+    </div>
+  </section>
+
   <div class="actions" id="start-actions">
     <button class="primary" id="start-matching" type="button" aria-controls="santa-form">Found a match!</button>
     <button id="start-other" type="button" aria-controls="santa-form">Spotted a different Santa!</button>
@@ -80,14 +88,6 @@
   <label class="toggle"><input id="other-toggle" type="checkbox"> Show all Santas <span id="other-count"></span></label>
   <p class="legend"><span><img src="assets/santa-map/santa-matching.png" width="32" height="48" alt=""> Matching 12-foot Santa</span> <span><img src="assets/santa-map/santa-other.png" width="24" height="36" alt=""> Other Santa · Any other inflatable Santa design counts here.</span></p>
 
-  <section class="reference" aria-labelledby="reference-heading">
-    <img src="assets/santa-map/santa-reference.png" width="300" height="450" alt="Reference Santa: red suit, raised candy cane, green present with red ribbon, black boots">
-    <div>
-      <h2 id="reference-heading">Help us find this Santa!</h2>
-      <p>The matching 12-foot Santas are a Monroe Street tradition. Spotted one? Add it to the neighborhood count.</p>
-    </div>
-  </section>
-
   <noscript><p class="notice">Adding a Santa needs JavaScript. You can still read about the map below.</p></noscript>
 
   <form id="santa-form" hidden novalidate>
@@ -96,9 +96,6 @@
 
     <div class="matching-only">
       <p class="form-note">Let’s add it to the neighborhood count.</p>
-      <label class="field">How many matching Santas are at this address?
-        <select id="quantity"><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option></select>
-      </label>
     </div>
 
     <label class="field other-only" hidden>Tell us about your find

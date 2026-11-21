@@ -25,7 +25,7 @@
     count: $('match-count'), countLabel: $('match-label'), countNote: $('count-note'), otherCount: $('other-count'),
     toggle: $('other-toggle'), mapStatus: $('map-status'), list: $('santa-list'), listStatus: $('list-status'),
     form: $('santa-form'), title: $('form-title'), otherNote: $('other-note'),
-    quantity: $('quantity'), description: $('description'), address: $('address'), find: $('find-address'),
+    description: $('description'), address: $('address'), find: $('find-address'),
     choices: $('choices'), preview: $('preview'), previewAddress: $('preview-address'), save: $('save'),
     status: $('form-status'), cancel: $('cancel'), done: $('done'), doneMessage: $('done-message'),
     doneAddress: $('done-address'), addAnother: $('add-another'),
@@ -372,7 +372,7 @@
     var body = { category: place.kind, address: place.entered, idempotency_key: state.key };
     if (place.kind === 'matching') {
       body.confirm_match = true;
-      body.quantity = parseInt(els.quantity.value, 10);
+      body.quantity = 1;
     } else {
       if (els.description.value.trim().length < 3) return invalid(els.description, 'Please describe the Santa in a few words.');
       body.description = els.description.value;
@@ -462,9 +462,7 @@
     if (e.key === 'Enter') { e.preventDefault(); findAddress(); }
   });
   els.address.addEventListener('input', resetPreview);                          // a changed address must be found again
-  [els.quantity, els.description].forEach(function (f) {
-    f.addEventListener('change', function () { if (state.place) state.key = newKey(); });  // a changed report is a new attempt
-  });
+  els.description.addEventListener('change', function () { if (state.place) state.key = newKey(); });  // a changed report is a new attempt
   els.form.addEventListener('submit', save);
   els.cancel.addEventListener('click', function () {
     state.session++;
