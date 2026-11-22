@@ -299,7 +299,7 @@
       order: true, shop: 'clinic', door: true, displayWindow: true, style: 0 },
     { name: 'Sleighcamp Fitness', sign: ['SLEIGHCAMP', 'FITNESS'], brick: '#567565', windowPattern: '010011011001', trim: '#284940',
       order: true, shop: 'fitness', door: true, displayWindow: true, style: 0 },
-    { name: 'Garth’s Brew Bar', sign: ["GARTH'S", 'BREW BAR'], brick: '#915e47', windowPattern: '001111000101', trim: '#59372d',
+    { name: 'Bart’s Brew Bar', sign: ["BART'S", 'BREW BAR'], brick: '#915e47', windowPattern: '001111000101', trim: '#59372d',
       order: true, shop: 'brewbar', door: true, displayWindow: true, style: 0 },
   ];
   const LAUREL_TAVERN = {
@@ -351,8 +351,8 @@
     marketRoute = contentBlock === 3;
     schoolRoute = contentBlock === 4;
     const marketShops = [
-      { name: 'Mystery to Me', sign: ['MYSTERY TO ME', 'BOOKSTORE'], brick: '#825b49', windowPattern: '110001111000', trim: '#554052', door: true, displayWindow: true },
-      { name: 'Bakery', sign: ['BAKERY', ''], brick: '#657792', windowPattern: '001110011010', trim: '#434660', door: true, displayWindow: true },
+      { name: 'A Mystery to Read', sign: ['A MYSTERY', 'TO READ'], brick: '#825b49', windowPattern: '110001111000', trim: '#554052', door: true, displayWindow: true },
+      { name: 'Broom Bake Shop', sign: ['BROOM', 'BAKE SHOP'], brick: '#657792', windowPattern: '001110011010', trim: '#434660', door: true, displayWindow: true },
     ];
     const stops = marketRoute ? [
       ...marketShops, CORRIDOR[1], CORRIDOR[2],
