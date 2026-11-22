@@ -13,7 +13,7 @@
   let completedRun = false;
   try { completedRun = localStorage.getItem('santas-game-finished') === '1'; } catch (_) {}
   const replaysUnlocked = local || completedRun;
-  const speedRun = completedRun && options.has('speed');
+  const speedRun = options.has('speed') && (completedRun || (local && options.has('test')));
   const statsKey = speedRun ? 'santas-game-speed-stats' : 'santas-game-stats';
   const scoreApi = ['monroestreettattler.com', 'www.monroestreettattler.com', 'monroestreettattler.github.io'].includes(location.hostname)
     ? 'https://santas-game-beta.monroestreettattler.workers.dev' : '';
@@ -793,7 +793,8 @@
       if (AU.ctx.state !== 'running') return;
       const block = prototype ? activeBlock - 1 : S.blockShown;
       const arrangement = title ? TITLE_ARRANGEMENT : ARRANGEMENTS[block];
-      const interval = 60 / (track === BELLS ? BELLS.bpm : arrangement.bpm) / track.subdivisions;
+      const tempo = (track === BELLS ? BELLS.bpm : arrangement.bpm) * (speedRun && !title ? 2 : 1);
+      const interval = 60 / tempo / track.subdivisions;
       AU.next = Math.max(AU.next, AU.ctx.currentTime);
       while (AU.next < AU.ctx.currentTime + 0.15) {
         if (track === BELLS) scheduleCarolStep(AU.step, AU.next, interval);
@@ -886,7 +887,7 @@
   function speedNow() {
     if (S.craneCrossingAt !== null && S.time - S.craneCrossingAt < CRANE_CROSSING_TIME) return 0;
     if (trial) return 54;
-    if (prototype && (fullRun || practiceBlock)) return [35, 44, 52, 61, 70][activeBlock - 1] * (speedRun ? 1.3 : 1);
+    if (prototype && (fullRun || practiceBlock)) return speedRun ? 115 : [35, 44, 52, 61, 70][activeBlock - 1];
     let b = 0;
     for (let i = 0; i < ROUTE.blockStarts.length; i++) if (S.dist >= ROUTE.blockStarts[i]) b = i;
     return BLOCKS[b].speed;
@@ -1213,6 +1214,10 @@
 
     const crossedFinish = !prototype || S.dist >= finishLineX();
     if (S.target >= TOTAL && S.proj.length === 0 && crossedFinish) {
+      if (speedRun && fullRun && activeBlock < 5) {
+        gameOver();
+        return;
+      }
       if (S.endTimer === 0) { SFX.end(); S.banner = { text: 'FINISH!', t: 1.1 }; }
       S.endTimer += dt;
       if (S.endTimer > 1.05) gameOver();
@@ -2231,7 +2236,7 @@
   const finishLineX = () => LOTS.at(-1).lawnEnd + 54;
 
   function drawFinishLine(cam) {
-    if (!prototype) return;
+    if (!prototype || (speedRun && fullRun && activeBlock < 5)) return;
     const x = Math.round(finishLineX() - cam);
     if (x < -30 || x > W + 30) return;
     for (let row = 0; row < 5; row++) {
@@ -2976,7 +2981,7 @@
   function showSharedStats(stats) {
     sharedStats = stats;
     refreshHomeBoard();
-    if (state === 'over') renderScoreboard(els.end.querySelector('.sg-score-list'), 3);
+    if (state === 'over') renderFinalBoard();
   }
   async function loadSharedStats() {
     try {
@@ -3019,6 +3024,11 @@
     const plays = scoreApi ? sharedStats?.plays : readStats().plays;
     $('sg-play-count').textContent = plays === undefined ? '— plays' : plays.toLocaleString('en-US') + (plays === 1 ? ' play' : ' plays');
     renderScoreboard($('sg-home-board').querySelector('.sg-score-list'), 3);
+  }
+  function renderFinalBoard() {
+    const board = $('sg-final-board');
+    board.classList.toggle('sg-expanded-board', scoreSaved);
+    renderScoreboard(board.querySelector('.sg-score-list'), scoreSaved ? 10 : 3);
   }
   function recordPlay() {
     if (scoreApi) {
@@ -3084,7 +3094,7 @@
     }
     scoreSaved = true;
     $('sg-score-form').hidden = true;
-    renderScoreboard(els.end.querySelector('.sg-score-list'), 3);
+    renderFinalBoard();
     refreshHomeBoard();
     unlockReplays();
   });
@@ -3092,12 +3102,15 @@
     $('sg-score-form').hidden = true;
     unlockReplays();
   });
-  $('sg-next-block').addEventListener('click', () => {
-    if (state !== 'between') return;
+  function advanceBlock() {
     runTotals = { score: S.score, perfects: S.perfects, longest: S.longest, delivered: S.delivered };
     activeBlock++;
     configureRoute();
     startGame();
+  }
+  $('sg-next-block').addEventListener('click', () => {
+    if (state !== 'between') return;
+    advanceBlock();
     els.deliver.focus();
   });
   function renderFinalTally() {
@@ -3132,6 +3145,10 @@
     S.score = Math.max(0, S.score - fine);
     if (fullRun) blockTallies.push({ earned, fine, total: S.score });
     if (fullRun && activeBlock < 5) {
+      if (speedRun) {
+        advanceBlock();
+        return;
+      }
       state = 'between';
       $('sg-block-summary-title').textContent = 'Block ' + activeBlock + ' complete';
       $('sg-block-earned').textContent = '+' + earned.toLocaleString('en-US');
@@ -3157,7 +3174,7 @@
       $('sg-initials').value = '';
       $('sg-score-feedback').textContent = '';
       unlockReplays();
-      renderScoreboard(els.end.querySelector('.sg-score-list'), 3);
+      renderFinalBoard();
     }
     if (trial) {
       const key = 'santas-trial-best-' + trial;

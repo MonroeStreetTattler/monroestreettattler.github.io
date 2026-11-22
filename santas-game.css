@@ -339,7 +339,6 @@ html.sg-playing, html.sg-playing body { overflow: hidden; overscroll-behavior: n
 .sg-home-board .sg-score-list { display: flex; gap: 18px; padding-left: 12px; flex-wrap: wrap; }
 .sg-home-board .sg-score-list.sg-no-scores li { margin-left: -12px; }
 .sg-launch:has(.sg-home-board:not([hidden])) { gap: 9px; }
-.sg-main:has(.sg-home-board:not([hidden])) .sg-stage { width: min(100%, calc((100dvh - 310px) * 1.32)); }
 .sg-score-form { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; align-items: center; }
 .sg-score-form[hidden], #sg-replay-blocks[hidden] { display: none; }
 #sg-initials {
@@ -616,6 +615,23 @@ html.sg-playing, html.sg-playing body { overflow: hidden; overscroll-behavior: n
 .sg-finale #sg-final-board[hidden] { display: none; }
 .sg-finale #sg-final-board .sg-score-list { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; margin: 0; padding: 0; list-style: none; }
 .sg-finale #sg-final-board .sg-score-list li { padding: 0; }
+.sg-finale #sg-final-board.sg-expanded-board {
+  display: grid;
+  justify-content: stretch;
+  width: min(100%, 540px);
+  gap: 5px;
+  padding: 6px 12px;
+  border: 1px solid #697ba0;
+  background: var(--sg-deep);
+}
+.sg-finale #sg-final-board.sg-expanded-board .sg-score-list {
+  display: block;
+  columns: 2;
+  column-gap: 24px;
+  padding-inline-start: 24px;
+  list-style: decimal;
+}
+.sg-finale #sg-final-board.sg-expanded-board li { break-inside: avoid; }
 
 @media (max-width: 600px) {
   .sg-finale { gap: 4px; padding: 6px 8px 8px; }
@@ -629,4 +645,43 @@ html.sg-playing, html.sg-playing body { overflow: hidden; overscroll-behavior: n
 @media (min-width: 850px) {
   .sg-finale .sg-finale-trees { inset-inline: 12px; }
   .sg-finale .sg-finale-trees i { width: 105px; height: 168px; }
+}
+
+.sg-key-label { display: none; font: inherit; }
+@media (pointer: fine) {
+  .sg-key-label { display: inline; }
+  .sg-touch-label { display: none; }
+}
+
+/* Leave the full height below the header available to the playfield. */
+@media (min-width: 960px), (orientation: landscape) and (pointer: coarse) {
+  .sg-playing .sg-shell { max-width: none; }
+  .sg-playing .sg-main {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) clamp(116px, 18vw, 220px);
+    grid-template-rows: 1fr auto auto 1fr;
+    column-gap: 12px;
+    padding-inline: max(8px, env(safe-area-inset-left)) max(8px, env(safe-area-inset-right));
+    padding-bottom: env(safe-area-inset-bottom);
+    container-type: size;
+  }
+  .sg-playing .sg-main > .sg-stage {
+    grid-area: 1 / 1 / -1 / 2;
+    width: min(100%, calc(100cqh * 1.32));
+    margin: 0;
+    justify-self: end;
+  }
+  .sg-playing .sg-tools {
+    grid-area: 2 / 2;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 0 0 8px;
+  }
+  .sg-playing .sg-deliver {
+    grid-area: 3 / 2;
+    width: 100%;
+    margin: 0;
+    height: 76px;
+    font-size: clamp(16px, 2.4vw, 30px);
+  }
 }
