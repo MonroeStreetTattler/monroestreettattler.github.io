@@ -291,7 +291,7 @@
     { name: 'Blue bungalow', color: HOUSES[1], style: 1, frontage: 0.81, height: 0.84, feature: 'tree' },
     { name: 'Green bungalow', color: HOUSES[3], style: 0, frontage: 0.95, height: 1.07, feature: 'snowman', order: true },
     { name: 'Brown bungalow', color: HOUSES[0], style: 1, frontage: 1.2, height: 0.87 },
-    { name: 'Camp Cantina', color: HOUSES[5], style: 0, shop: 'cantina', order: true },
+    { name: 'Camp Quesadilla', color: HOUSES[5], style: 0, shop: 'cantina', order: true },
     { name: 'Ice Cream Shoppe', color: HOUSES[4], style: 1, roof: true, iceCream: true, lobPoints: 150, order: true },
   ];
   const CORRIDOR = [
@@ -1746,8 +1746,9 @@
       ctx.translate(0, STOREFRONT_DROP);
       R('#873e3a', sx - 32, 53, 64, 32);
       R('W', sx - 33, 50, 66, 3);
-      R('#f1d8a4', sx - 30, 57, 60, 10);
-      drawText(ctx, 'CAMP CANTINA', sx, 59, 'K', 1, 'center', null);
+      R('#f1d8a4', sx - 30, 54, 60, 15);
+      drawText(ctx, 'CAMP', sx, 56, 'K', 1, 'center', null);
+      drawText(ctx, 'QUESADILLA', sx, 62, 'K', 1, 'center', null);
       R('g', sx - 30, 69, 60, 4);
       R('N', sx - 25, 75, 30, 8);
       R('Y', sx - 23, 76, 11, 5);
