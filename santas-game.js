@@ -360,7 +360,7 @@
       { name: 'Wingrow School west lawn', center: wingrow.center - 26, w: 46, schoolLawn: true },
       { name: 'Wingrow School east lawn', center: wingrow.center + 26, w: 46, schoolLawn: true },
       { ...CORRIDOR[0], center: 674 },
-      { name: 'Orange Tree Imports', sign: ['ORANGE TREE', 'IMPORTS'], center: 757, w: 58,
+      { name: 'Orange You Glad Imports', sign: ['ORANGE YOU', 'GLAD IMPORTS'], center: 757, w: 58,
         shop: 'orangeTree', brick: '#a46a3d', trim: '#634730', windowPattern: '010011100101' },
       ...STOPS.slice(1, 4).map((stop, i) => ({ ...stop, center: 837 + i * 80 })),
       ...marketApartments[0],
