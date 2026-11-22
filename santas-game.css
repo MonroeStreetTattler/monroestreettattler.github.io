@@ -525,6 +525,33 @@ html.sg-playing, html.sg-playing body { overflow: hidden; overscroll-behavior: n
   }
 }
 
+.sg-landing-title { display: none; }
+.sg-main:has(.sg-launch:not([hidden])) .sg-stage {
+  position: relative;
+  width: min(100%, 820px, max(240px, calc((100dvh - 218px) * 1.9)));
+  aspect-ratio: 1200 / 630;
+  overflow: hidden;
+  container-type: inline-size;
+}
+.sg-main:has(.sg-launch:not([hidden])) .sg-stage canvas { height: 113.64%; }
+.sg-main:has(.sg-launch:not([hidden])) .sg-landing-title {
+  position: absolute;
+  inset: 8% auto auto 3.5%;
+  display: grid;
+  gap: 1cqw;
+  margin: 0;
+  color: #fff1c1;
+  font-size: 3cqw;
+  font-weight: 900;
+  line-height: 1;
+  pointer-events: none;
+}
+.sg-landing-title strong {
+  color: var(--sg-gold);
+  font-size: 9.4cqw;
+  text-shadow: 0.45cqw 0.45cqw #962230;
+}
+
 .sg-speed-link { color: var(--sg-gold); font-weight: 700; padding: 5px 8px; }
 
 .sg-finale {

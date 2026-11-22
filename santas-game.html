@@ -23,7 +23,7 @@
 <meta name="twitter:image:alt" content="Santas on More Street - The Game! The game’s pixel-art title screen shows inflatable Santas on snowy lawns and Santa’s sleigh against a full moon.">
 <meta name="theme-color" content="#0f1733">
 <link rel="icon" type="image/x-icon" href="favicon.ico">
-<link rel="stylesheet" href="santas-game.css?v=title-screen-review">
+<link rel="stylesheet" href="santas-game.css?v=game-landing">
 <!-- Cloudflare Web Analytics -->
 <script
   type="module"
@@ -62,6 +62,10 @@
 
     <div class="sg-stage">
       <canvas id="sg-canvas" width="198" height="150" role="img" aria-label="Santas on Monroe Street game screen"></canvas>
+      <p class="sg-landing-title" id="sg-launch-title">
+        <span>Santas on Monroe Street</span>
+        <strong>THE GAME!</strong>
+      </p>
     </div>
 
     <button id="sg-deliver" class="sg-deliver" type="button" aria-label="Press to throw" aria-keyshortcuts="Space">
@@ -69,7 +73,6 @@
     </button>
 
     <div class="sg-overlay sg-launch" id="sg-launch">
-      <p class="sg-ov-title" id="sg-launch-title">Santas on Monroe Street</p>
       <p class="sg-instructions" id="sg-instructions">Help deliver this year's inflatable Santas.</p>
       <p class="sg-score-feedback" id="sg-title-audio-hint" hidden></p>
       <button id="sg-play" class="sg-btn sg-btn-primary" type="button">Play</button>
