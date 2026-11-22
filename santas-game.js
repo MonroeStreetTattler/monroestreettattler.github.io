@@ -304,7 +304,7 @@
   ];
   const BLOCK_MOVERS = [
     [[8, { ...BONUS_CAR, speed: 0.7, catchWidth: 18, direction: -1 }]],
-    [[5, BONUS_CAR], [8, { ...MADISON_BUS, speed: 1.48 }], [20, { ...MADISON_BUS, speed: 1.65 }]],
+    [[5, { ...BONUS_CAR, catchWidth: 16 }], [8, { ...MADISON_BUS, speed: 1.48 }], [20, { ...MADISON_BUS, speed: 1.65 }]],
     [
       [5, { ...MADISON_BUS, speed: 1.7, catchWidth: 30 }],
       [11, BONUS_CAR],
@@ -912,6 +912,7 @@
   }
 
   const LOB_HOLD_MS = 230;
+  const ROOF_SHOT_FLIGHT = 0.38;
 
   function deliverySurface(lot, lob) {
     const high = !prototype || lob;
@@ -944,7 +945,7 @@
     const highArc = Math.min(94, (originY + targetY) / 2 - 12);
     S.proj.push({
       r, ox: fromX + (bus ? BUS_DRAW_OFFSET : 0), oy: originY,
-      lx: targetX, endY: targetY, t: 0, dur: surface?.type === 'bus' ? 0.38 : bus ? 0.78 : shotDuration(lob),
+      lx: targetX, endY: targetY, t: 0, dur: surface?.type === 'bus' ? ROOF_SHOT_FLIGHT : bus ? 0.78 : shotDuration(lob),
       arc: lob ? highArc : bus ? 74 : elevated ? 45 : 30,
     });
     S.kidToss = 0.25;
@@ -952,20 +953,28 @@
     else SFX.toss();
   }
 
+  function roofShotWindow(left, direction, vehicle, origin) {
+    const travel = direction * vehicle.speed;
+    const center = left + vehicle.length / 2;
+    const predictedCenter = center + travel * speedNow() * ROOF_SHOT_FLIGHT;
+    const offset = center - (origin + D);
+    const predictedOffset = predictedCenter - (origin + D);
+    const side = Math.sign(travel - 1);
+    return {
+      center: predictedCenter,
+      ready: Math.min(offset, predictedOffset) <= vehicle.catchWidth &&
+        Math.max(offset, predictedOffset) >= -vehicle.catchWidth,
+      passed: Math.min(side * offset, side * predictedOffset) > vehicle.catchWidth,
+    };
+  }
+
   function movingBonusTarget(origin) {
     if (S.target >= TOTAL) return null;
-    const landingX = origin + D;
-    const landingDistance = origin + speedNow() * 0.38;
-    const alignedRoofs = new Set();
-    eachRoofVehicle(origin, (left, _direction, vehicle) => {
-      if (Math.abs(left + vehicle.length / 2 - landingX) <= vehicle.catchWidth) alignedRoofs.add(vehicle.index);
-    });
     let target = null;
-    eachRoofVehicle(landingDistance, (left, direction, vehicle) => {
-      const center = left + vehicle.length / 2;
+    eachRoofVehicle(origin, (left, direction, vehicle) => {
       if (!vehicle.bonus || target || S.busBonuses[vehicle.index]) return;
-      if (!alignedRoofs.has(vehicle.index) && Math.abs(center - landingX) > vehicle.catchWidth) return;
-      target = { vehicle, direction, center };
+      const window = roofShotWindow(left, direction, vehicle, origin);
+      if (window.ready) target = { vehicle, direction, center: window.center };
     });
     return target;
   }
@@ -991,7 +1000,7 @@
     const origin = S.dist + extra;
     const reach = throwReach();
     const lx = origin + reach;
-    if (lob && tryMovingBonus(origin)) return true;
+    if (prototype && tryMovingBonus(origin)) return true;
     const lot = LOTS[S.target];
     const early = lx < lot.lawnStart - HEDGE - ARM;
     if (early && !prototype) { S.nudge = 0.25; return false; }
@@ -1845,10 +1854,16 @@
       }
       return;
     }
-    if (ready) R('W', left - 1, y - 1, width + 2, 11);
-    R(ready ? 'Y' : 'N', left, y, width, 9);
-    R(ready ? 'W' : 'Y', left, y, width, 1);
-    drawText(ctx, label, x, y + 2, ready ? 'K' : 'Y', 1, 'center', null);
+    R('N', left, y, width, 9);
+    R('Y', left, y, width, 1);
+    drawText(ctx, label, x, y + 2, 'Y', 1, 'center', null);
+    if (ready) {
+      R('N', x - 4, y - 8, 9, 4);
+      R('Y', x - 3, y - 7, 7, 1);
+      R('Y', x - 2, y - 6, 5, 1);
+      R('Y', x - 1, y - 5, 3, 1);
+      R('Y', x, y - 4, 1, 1);
+    }
   }
   function drawLobBonuses(lot, sx) {
     if (lot.lobPoints) {
@@ -2596,8 +2611,9 @@
     eachTrafficCar(S.dist, (left, car, direction) => drawCar(left - cam, car, direction));
   }
 
-  function drawMovingRoofBonus(center, roofY, vehicle, ready = false) {
+  function drawMovingRoofBonus(center, roofY, vehicle, windowPassed, ready) {
     const result = S.busBonuses[vehicle.index];
+    if (!vehicle.bonus || (windowPassed && !result)) return;
     const bounce = result?.landedAt == null ? Math.round(Math.abs(Math.sin(S.time * 4)) * 3) : 0;
     drawBonusBox(center, roofY - 14 - bounce, vehicle.bonus, result, undefined, ready);
     if (result?.landedAt != null) {
@@ -2856,6 +2872,8 @@
       const x = Math.round(left - cam);
       const { length, kind } = bus;
       const center = x + Math.floor(length / 2);
+      const ready = bus.index === aimedRoof;
+      const windowPassed = !ready && bus.bonus && roofShotWindow(left, direction, bus, S.dist).passed;
       if (kind === 'car' || kind === 'taxi') {
         drawCar(x, bus, direction);
         if (kind === 'taxi') {
@@ -2863,8 +2881,7 @@
           R('K', center - 4, y - 7, 8, 2);
           R('W', center - 3, y - 7, 5, 1);
           for (let checker = 3; checker < length - 3; checker += 3) R('K', x + checker, y + 4 + checker % 2, 2, 1);
-        } else drawMovingRoofBonus(center, carLaneY(direction) - 5, bus,
-          activeBlock === 1 && bus.index === aimedRoof);
+        } else drawMovingRoofBonus(center, carLaneY(direction) - 5, bus, windowPassed, ready);
         return;
       }
       const articulated = kind === 'brt';
@@ -2899,8 +2916,7 @@
       R('Y', front, 106, 6, 2);
       R('Y', x + (direction === 1 ? length - 3 : 1), 119, 2, 2);
       R('R', x + (direction === 1 ? 1 : length - 3), 119, 2, 2);
-      if (bus.bonus) drawMovingRoofBonus(center, 106, bus,
-        (kind === 'bus' || kind === 'brt') && bus.index === aimedRoof);
+      drawMovingRoofBonus(center, 106, bus, windowPassed, ready);
     });
     drawBusStopSigns(cam);
     drawStreetTraffic(cam);
