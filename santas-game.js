@@ -2908,7 +2908,7 @@
           continue;
         }
         const property = LOTS[lot];
-        const x = property.center - cam + (offset ?? (property.style ? 17 : -17));
+        const x = property.center - cam + (offset ?? (property.style ? 10 : -10));
         sign.hidden = x < -34 || x > W + 34;
         if (!sign.hidden) sign.style.left = (x / W * 100) + '%';
       }
