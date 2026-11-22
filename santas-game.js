@@ -24,14 +24,13 @@
   const trial = local && ['arcade', 'memory'].includes(options.get('trial')) ? 'arcade' : null;
   const fullRun = prototype && !practiceBlock && !demoBlock && !trial;
   let activeBlock = practiceBlock || demoBlock || 1;
-  let marketRoute, schoolRoute;
+  let contentBlock, marketRoute, schoolRoute;
   const BUS_DRAW_OFFSET = 35;
   const D = prototype ? 39 : 72;             // landing marker distance ahead of the anchor
   const HEDGE = 6;          // hedge width at each side of a lawn (near-miss zone)
   const ARM = 18;           // presses earlier than this before a lawn's hedge are ignored
   const LAWN_Y = 85, LAWN_B = 116, FOOT = 113, YARD_FOOT = 103;
   const STOREFRONT_DROP = 30, ICE_CREAM_ROOF = 33, ICE_CREAM_PARKING = 111;
-  const SHARE_URL = 'https://monroestreettattler.com/santas-game.html';
   const CAMEO_DELIVERIES = { 57: 'grinch', 88: 'gingerbread' };
 
   // Per-block tuning. Blocks get a little faster and lawns a little narrower.
@@ -294,8 +293,8 @@
     { name: 'Apartment balcony, second spot', center: 1103, w: 42, pairedBalcony: 2, order: true, style: 0 },
   ];
   const TRIAL_MOVERS = [
-    { stop: 6, kind: 'bus', length: 49, bonus: 300, catchWidth: 15, speed: 2.5 },
-    { stop: 4, kind: 'brt', length: 82, bonus: 400, catchWidth: 22, speed: 2.5 },
+    { stop: 6, kind: 'bus', length: 49, bonus: 300, catchWidth: 19, speed: 2.5 },
+    { stop: 4, kind: 'brt', length: 82, bonus: 400, catchWidth: 27, speed: 2.5 },
     { stop: 2, kind: 'plow', length: 44, bonus: 225, catchWidth: 14, speed: 2.1 },
   ];
   const BONUS_CAR = { kind: 'car', length: 25, color: 'R', bonus: 200, catchWidth: 12, speed: 1.45 };
@@ -307,9 +306,9 @@
     [[8, { ...BONUS_CAR, speed: 0.7, catchWidth: 18, direction: -1 }]],
     [[5, BONUS_CAR], [8, { ...MADISON_BUS, speed: 1.48 }], [20, { ...MADISON_BUS, speed: 1.65 }]],
     [
-      [5, { ...MADISON_BUS, speed: 1.7, catchWidth: 26 }],
+      [5, { ...MADISON_BUS, speed: 1.7, catchWidth: 30 }],
       [11, BONUS_CAR],
-      [18, { ...MADISON_BRT, speed: 0.95, catchWidth: 40 }],
+      [18, { ...MADISON_BRT, speed: 0.95, catchWidth: 45 }],
     ],
     [[4, BONUS_CAR], [11, { ...MADISON_BUS, speed: 1.25 }], [18, { ...MADISON_BRT, speed: 0.85 }], [30, BONUS_CAR]],
     [[6, { ...MADISON_BUS, speed: 1.5 }], [14, BONUS_CAR], [22, { ...MADISON_BRT, speed: 1.1 }], [33, { ...MADISON_BUS, speed: 0.9 }]],
@@ -322,8 +321,9 @@
   const FULL_ORDERS = BLOCK_DELIVERIES.reduce((total, places) => total + places, 0);
   let LOTS, TOTAL, orders, trafficStops, streetHazards, serviceVehicles, leadInStops, sceneryStops, busStops;
   function configureRoute() {
-    marketRoute = activeBlock === 3;
-    schoolRoute = activeBlock === 4;
+    contentBlock = [1, 2, 4, 3, 5][activeBlock - 1];
+    marketRoute = contentBlock === 3;
+    schoolRoute = contentBlock === 4;
     const marketShops = [
       { name: 'Mystery to Me', sign: ['MYSTERY TO ME', 'BOOKSTORE'], brick: '#825b49', windowPattern: '110001111000', trim: '#554052', door: true, displayWindow: true },
       { name: 'Bakery', sign: ['BAKERY', ''], brick: '#657792', windowPattern: '001110011010', trim: '#434660', door: true, displayWindow: true },
@@ -340,26 +340,26 @@
     ] : STOPS;
     LOTS = prototype ? stops.map((stop, i) => {
       const center = marketRoute ? (stop.center ?? [70, 150, 310, 391, 470][i])
-        : [301, 382, 488, 570, 673, 753][i] + (activeBlock === 1 ? -180 : activeBlock === 2 ? 220 : 0);
+        : [301, 382, 488, 570, 673, 753][i] + (contentBlock === 1 ? -180 : contentBlock === 2 ? 220 : 0);
       const w = stop.w ?? [62, 48, 64, 53, 58, 56][i % STOPS.length];
-      const neighborhood = activeBlock === 2 && i === 3
+      const neighborhood = contentBlock === 2 && i === 3
         ? { name: 'Soul Food', sign: ['SOUL', 'FOOD'], brick: '#825299', trim: '#462957', door: true, displayWindow: true }
         : stop === STOPS[4] ? { ...stop, shop: undefined, name: 'Red bungalow' }
         : stop === STOPS[5] || stop.plainBungalow ? { ...stop, roof: false, iceCream: false, lobPoints: 0, name: 'Lavender bungalow' }
         : stop;
       const cameo = marketRoute && stop.name === STOPS[2].name ? 'grinch' : schoolRoute && i === 5 ? 'gingerbread' : undefined;
 
-      const fratRoof = activeBlock === 2 && i === 0;
+      const fratRoof = contentBlock === 2 && i === 0;
       return { ...neighborhood, order: true, cameo,
-        blackSanta: marketRoute && stop.name === STOPS[1].name, overgrown: activeBlock === 1 && i === 3, seatedRoof: cameo === 'gingerbread',
+        blackSanta: marketRoute && stop.name === STOPS[1].name, overgrown: contentBlock === 1 && i === 3, seatedRoof: cameo === 'gingerbread',
         roof: fratRoof || neighborhood.roof, sidewaysRoof: fratRoof,
         lobPoints: fratRoof ? 150 : cameo === 'gingerbread' ? 175 : cameo === 'grinch' ? 150 : neighborhood.lobPoints,
         colonial: !marketRoute && i === 4 && !neighborhood.shop,
-        snowmanTarget: activeBlock === 1 && stop.feature === 'snowman',
-        fratYard: activeBlock === 2 && i < 2,
-        stumbleDirection: activeBlock === 2 && i === 0 ? -1 : undefined,
-        stumbleY: activeBlock === 2 && i === 0 ? LAWN_B : undefined,
-        wobblyTailgater: activeBlock === 2 && i === 1, pongTable: activeBlock === 2 && i === 0, hedgeScreen: activeBlock === 2 && i === 2, n: i + 1, center, w, lawnStart: center - w / 2, lawnEnd: center + w / 2, perfect: 10 };
+        snowmanTarget: contentBlock === 1 && stop.feature === 'snowman',
+        fratYard: contentBlock === 2 && i < 2,
+        stumbleDirection: contentBlock === 2 && i === 0 ? -1 : undefined,
+        stumbleY: contentBlock === 2 && i === 0 ? LAWN_B : undefined,
+        wobblyTailgater: contentBlock === 2 && i === 1, pongTable: contentBlock === 2 && i === 0, hedgeScreen: contentBlock === 2 && i === 2, n: i + 1, center, w, lawnStart: center - w / 2, lawnEnd: center + w / 2, perfect: 10 };
     }) : ROUTE.lots;
 
     if (schoolRoute && prototype && !trial) {
@@ -371,43 +371,43 @@
     }
 
     if (fullRun || practiceBlock) {
-      const count = BLOCK_DELIVERIES[activeBlock - 1] - LOTS.length - (schoolRoute ? 2 : 0);
-      const random = mulberry32(20261221 + activeBlock);
+      const count = BLOCK_DELIVERIES[contentBlock - 1] - LOTS.length - (schoolRoute ? 2 : 0);
+      const random = mulberry32(20261221 + contentBlock);
       let center = LOTS.at(-1).center;
       let nextBusiness = 0;
-      const laterBusinesses = activeBlock === 2 ? [STOPS[4], STOPS[5]]
-        : activeBlock === 4 ? [LAUREL_TAVERN] : [];
+      const laterBusinesses = contentBlock === 2 ? [STOPS[4], STOPS[5]]
+        : contentBlock === 4 ? [LAUREL_TAVERN] : [];
       for (let i = 0; i < count; i++) {
         const style = i % 2;
-        const doubleYard = activeBlock === 2 && (i === 2 || i === 3) ? i - 1 : 0;
+        const doubleYard = contentBlock === 2 && (i === 2 || i === 3) ? i - 1 : 0;
         const w = doubleYard ? 46 : 45 + Math.floor(random() * 19);
-        center += doubleYard === 2 ? 46 : activeBlock >= 3 ? 69 + Math.floor(random() * 16) : 77 + Math.floor(random() * 28);
-        const color = HOUSES[(i * 5 + activeBlock) % HOUSES.length];
+        center += doubleYard === 2 ? 46 : contentBlock >= 3 ? 69 + Math.floor(random() * 16) : 77 + Math.floor(random() * 28);
+        const color = HOUSES[(i * 5 + contentBlock) % HOUSES.length];
         const shop = i >= 4 + nextBusiness * 3 ? laterBusinesses[nextBusiness] : null;
         if (shop) nextBusiness++;
-        const residence = !shop && activeBlock > 3 && i % 5 === 1
+        const residence = !shop && contentBlock > 3 && i % 5 === 1
           ? (i % 2 ? 'apartment' : 'condo') : null;
         const snowmanTarget = !shop && !residence && !marketRoute &&
-          (i % 7 === 5 || (activeBlock === 5 && [3, 9, 14, 18].includes(i)));
+          (i % 7 === 5 || (contentBlock === 5 && [3, 9, 14, 18].includes(i)));
         const number = LOTS.length + 1;
         LOTS.push({
           name: residence ? (residence === 'apartment' ? 'Brick apartments ' : 'Condos ') + number : 'House ' + number,
           ...shop, residence, doubleYard, balcony: Boolean(residence),
-          ...(!shop && !residence && EXTRA_ROOF_STOPS[activeBlock - 1].includes(i) ? { roof: true, lobPoints: 125 } : {}),
+          ...(!shop && !residence && EXTRA_ROOF_STOPS[contentBlock - 1].includes(i) ? { roof: true, lobPoints: 125 } : {}),
           colonial: !residence && !shop && i % 7 === 1,
           cottage: !residence && !shop && i % 7 === 4,
           n: LOTS.length + 1, order: true, center, w, style, color,
           frontage: 0.82 + random() * 0.32, height: 0.82 + random() * 0.32,
           feature: snowmanTarget ? 'snowman' : i % 7 === 2 ? 'tree' : undefined,
-          yardResident: activeBlock === 1 && i === 4,
-          blackSanta: (activeBlock === 1 && i === 2) || (activeBlock === 4 && i === 7) || (activeBlock === 5 && i === 15),
-          overgrown: activeBlock === 4 && i === 3,
-          showpieceTree: activeBlock === 1 && i === count - 1,
-          deciduousLights: activeBlock === 5 && i === count - 2,
-          giantSanta: activeBlock === 5 && i === 8,
+          yardResident: contentBlock === 1 && i === 4,
+          blackSanta: (contentBlock === 1 && i === 2) || (contentBlock === 4 && i === 7) || (contentBlock === 5 && i === 15),
+          overgrown: contentBlock === 4 && i === 3,
+          showpieceTree: contentBlock === 1 && i === count - 1,
+          deciduousLights: contentBlock === 5 && i === count - 2,
+          giantSanta: contentBlock === 5 && i === 8,
           snowmanTarget,
           lawnStart: center - w / 2, lawnEnd: center + w / 2,
-          perfect: 10 - Math.floor((activeBlock - 1) / 2),
+          perfect: 10 - Math.floor((contentBlock - 1) / 2),
         });
       }
     }
@@ -436,36 +436,36 @@
     orders = prototype ? LOTS.filter(lot => lot.order).length : TOTAL;
     const trafficLots = trial ? [6]
       : schoolRoute ? [1, 3, 5, 8, 12, 15, 17, 21, 25, 29, 32]
-      : activeBlock === 1 ? [4, 7, 10]
-      : activeBlock === 3 ? [10, 15, 24]
-      : activeBlock === 5 ? [4, 13, 20, 29, 38] : [];
+      : contentBlock === 1 ? [4, 7, 10]
+      : contentBlock === 3 ? [10, 15, 24]
+      : contentBlock === 5 ? [4, 13, 20, 29, 38] : [];
     trafficStops = prototype ? LOTS.filter(lot => trafficLots.includes(lot.n)) : [];
     const hazardPlan = trial ? [[2, 'walker'], [4, 'turkey'], [7, 'dog']]
-      : activeBlock === 1 ? [[3, 'walker'], [5, 'dog'], [7, 'family'], [8, 'walker'], [10, 'dog'], [12, 'family'], [FIRST_TURKEY_STOP, 'turkey'], [17, 'cat']]
-      : activeBlock === 2 ? [[3, 'walker'], [6, 'dog'], [7, 'walker'], [10, 'family'], [12, 'dog'], [17, 'turkey'], [20, 'walker']]
-      : activeBlock === 3 ? [[3, 'family'], [6, 'walker'], [9, 'dog'], [11, 'kids'], [14, 'dog'], [17, 'family'], [19, 'dog'], [25, 'cat']]
-      : activeBlock === 4 ? [[2, 'kids'], [6, 'dog'], [9, 'family'], [11, 'dog'], [14, 'kids'], [17, 'dog'], [20, 'family'], [24, 'walker']]
+      : contentBlock === 1 ? [[3, 'walker'], [5, 'dog'], [7, 'family'], [8, 'walker'], [10, 'dog'], [12, 'family'], [FIRST_TURKEY_STOP, 'turkey'], [17, 'cat']]
+      : contentBlock === 2 ? [[3, 'walker'], [6, 'dog'], [7, 'walker'], [10, 'family'], [12, 'dog'], [17, 'turkey'], [20, 'walker']]
+      : contentBlock === 3 ? [[3, 'family'], [6, 'walker'], [9, 'dog'], [11, 'kids'], [14, 'dog'], [17, 'family'], [19, 'dog'], [25, 'cat']]
+      : contentBlock === 4 ? [[2, 'kids'], [6, 'dog'], [9, 'family'], [11, 'dog'], [14, 'kids'], [17, 'dog'], [20, 'family'], [24, 'walker']]
       : [[5, 'crane'], [8, 'dog'], [11, 'family'], [14, 'walker'], [18, 'crane'], [20, 'dog'], [23, 'dog'], [25, 'family']];
     streetHazards = !prototype ? [] : hazardPlan
       .filter(([n]) => n <= LOTS.length)
       .map(([n, kind], i) => ({
-        anchor: LOTS[n - 1].center - D, kind, direction: (activeBlock === 1 && kind === 'turkey') || i % 2 ? -1 : 1, variant: (n + activeBlock) % 3,
-        tumbling: (activeBlock === 3 && n === 9 && kind === 'dog') || (activeBlock === 5 && n === 18 && kind === 'crane'),
+        anchor: LOTS[n - 1].center - D, kind, direction: (contentBlock === 1 && kind === 'turkey') || i % 2 ? -1 : 1, variant: (n + contentBlock) % 3,
+        tumbling: (contentBlock === 3 && n === 9 && kind === 'dog') || (contentBlock === 5 && n === 18 && kind === 'crane'),
       }));
-    const vehiclePlan = activeBlock === 4 ? [[16, 'van'], [26, 'van'], [31, 'van']]
-      : activeBlock === 5 ? [[6, 'van'], [10, 'truck'], [15, 'van'], [19, 'truck'], [24, 'van'], [28, 'truck']]
+    const vehiclePlan = contentBlock === 4 ? [[16, 'van'], [26, 'van'], [31, 'van']]
+      : contentBlock === 5 ? [[6, 'van'], [10, 'truck'], [15, 'van'], [19, 'truck'], [24, 'van'], [28, 'truck']]
       : [];
     serviceVehicles = !prototype ? [] : vehiclePlan
       .filter(([n]) => n <= LOTS.length)
       .map(([n, kind], i) => ({ anchor: LOTS[n - 1].center - D, kind, length: kind === 'truck' ? 39 : 33,
         direction: Math.floor(i / 2) % 2 ? -1 : 1 }));
-    leadInStops = trial || activeBlock === 1 || schoolRoute ? []
-      : activeBlock === 2 ? openingLandmarks : marketRoute ? [traderSnow] : [apartment, laterHouse];
+    leadInStops = trial || contentBlock === 1 || schoolRoute ? []
+      : contentBlock === 2 ? openingLandmarks : marketRoute ? [traderSnow] : [apartment, laterHouse];
     sceneryStops = leadInStops;
     const movers = trial ? TRIAL_MOVERS.map(vehicle => [vehicle.stop + 1, vehicle])
-      : prototype ? BLOCK_MOVERS[activeBlock - 1] : [];
+      : prototype ? BLOCK_MOVERS[contentBlock - 1] : [];
     busStops = movers.filter(([stop]) => stop <= TOTAL).map(([stop, vehicle]) => ({ lot: LOTS[stop - 1], vehicle }));
-    if (activeBlock === 2 && !trial) busStops.push(...STADIUM_TRAFFIC);
+    if (contentBlock === 2 && !trial) busStops.push(...STADIUM_TRAFFIC);
   }
   const cars = [
     { offset: -66, length: 22, color: 'R' },
@@ -587,8 +587,7 @@
   const titleContext = titleArt.getContext('2d');
   const els = {
     launch: $('sg-launch'), play: $('sg-play'), paused: $('sg-paused'), resume: $('sg-resume'),
-    end: $('sg-end'), again: $('sg-again'), share: $('sg-share'), shareBox: $('sg-share-box'),
-    shareText: $('sg-share-text'), shareNote: $('sg-share-note'), copy: $('sg-copy'),
+    end: $('sg-end'), again: $('sg-again'),
     deliver: $('sg-deliver'), pause: $('sg-pause'), mute: $('sg-mute'),
     fScore: $('sg-final-score'), fPerfect: $('sg-final-perfect'), fStreak: $('sg-final-streak'), fDelivered: $('sg-final-delivered'),
     live: $('sg-live'),
@@ -785,13 +784,13 @@
   function musicStart(delay = 0) {
     if (!AU.ctx || AU.timer) return;
     const title = state === 'title';
-    const track = title ? HOUSETOP : activeBlock === 5 ? BELLS : activeBlock === 3 ? HOUSETOP : MARCH;
+    const track = title ? HOUSETOP : activeBlock === 5 ? BELLS : marketRoute ? HOUSETOP : MARCH;
     AU.music.gain.setTargetAtTime(title ? 0.24 : 0.29, AU.ctx.currentTime, 0.03);
     AU.step = 0;
     AU.next = AU.ctx.currentTime + 0.04 + delay;
     AU.timer = setInterval(() => {
       if (AU.ctx.state !== 'running') return;
-      const block = prototype ? activeBlock - 1 : S.blockShown;
+      const block = prototype ? contentBlock - 1 : S.blockShown;
       const arrangement = title ? TITLE_ARRANGEMENT : ARRANGEMENTS[block];
       const tempo = (track === BELLS ? BELLS.bpm : arrangement.bpm) * (speedRun && !title ? 2 : 1);
       const interval = 60 / tempo / track.subdivisions;
@@ -866,7 +865,7 @@
   // ---------- Game state ----------
   let state = 'title';      // title | playing | paused | over
   let S = null;
-  const blockTallies = [];
+  let runLitter = 0;
   let runTotals = { score: 0, perfects: 0, longest: 0, delivered: 0 };
   let scoreSaved = false;
   let countedRun = false;
@@ -944,24 +943,32 @@
     else SFX.toss();
   }
 
-  function tryMovingBonus(origin, landingX) {
+  function movingBonusTarget(origin) {
+    if (S.target >= TOTAL) return null;
+    const landingX = origin + D;
     const landingDistance = origin + speedNow() * 0.38;
     const alignedRoofs = new Set();
     eachRoofVehicle(origin, (left, _direction, vehicle) => {
       if (Math.abs(left + vehicle.length / 2 - landingX) <= vehicle.catchWidth) alignedRoofs.add(vehicle.index);
     });
-    let caught = false;
+    let target = null;
     eachRoofVehicle(landingDistance, (left, direction, vehicle) => {
       const center = left + vehicle.length / 2;
-      if (!vehicle.bonus || caught || S.busBonuses[vehicle.index]) return;
+      if (!vehicle.bonus || target || S.busBonuses[vehicle.index]) return;
       if (!alignedRoofs.has(vehicle.index) && Math.abs(center - landingX) > vehicle.catchWidth) return;
-      const surface = { type: 'bus', base: vehicle.kind === 'car' ? carLaneY(direction) - 5 : 106, center };
-      const r = { kind: 'busbonus', vehicleKind: vehicle.kind, landedAt: null, points: vehicle.bonus, lx: center, surface };
-      S.busBonuses[vehicle.index] = r;
-      throwBox(r, origin, true, surface);
-      caught = true;
+      target = { vehicle, direction, center };
     });
-    return caught;
+    return target;
+  }
+  function tryMovingBonus(origin) {
+    const target = movingBonusTarget(origin);
+    if (!target) return false;
+    const { vehicle, direction, center } = target;
+    const surface = { type: 'bus', base: vehicle.kind === 'car' ? carLaneY(direction) - 5 : 106, center };
+    const result = { kind: 'busbonus', vehicleKind: vehicle.kind, landedAt: null, points: vehicle.bonus, lx: center, surface };
+    S.busBonuses[vehicle.index] = result;
+    throwBox(result, origin, true, surface);
+    return true;
   }
 
   // Judge at release time, independent of the next frame.
@@ -975,7 +982,7 @@
     const origin = S.dist + extra;
     const reach = throwReach();
     const lx = origin + reach;
-    if (lob && tryMovingBonus(origin, origin + D)) return true;
+    if (lob && tryMovingBonus(origin)) return true;
     const lot = LOTS[S.target];
     const early = lx < lot.lawnStart - HEDGE - ARM;
     if (early && !prototype) { S.nudge = 0.25; return false; }
@@ -1146,7 +1153,7 @@
     S.time += dt;
     if (S.introSeconds && S.time >= S.introSeconds) { $('sg-ready').hidden = true; S.introSeconds = 0; }
     S.dist += speedNow() * dt;
-    if (activeBlock === 4 && prototype && !trial && S.craneCrossingAt === null && S.dist >= CRANE_CROSSING_X - 63) {
+    if (schoolRoute && prototype && !trial && S.craneCrossingAt === null && S.dist >= CRANE_CROSSING_X - 63) {
       S.craneCrossingAt = S.time;
     }
 
@@ -1173,7 +1180,7 @@
         hitStadiumFans(p);
         hitRisingTurkey(p);
       }
-      if (activeBlock === 3 || activeBlock === 5) hitRisingAnimal(p);
+      if (marketRoute || activeBlock === 5) hitRisingAnimal(p);
       if (p.t >= p.dur && !p.done) {
         p.done = true;
         land(p.r, p);
@@ -1805,7 +1812,7 @@
     }
   }
 
-  function drawBonusBox(x, y, bonus, collected, label = '+' + bonus) {
+  function drawBonusBox(x, y, bonus, collected, label = '+' + bonus, ready = false) {
     const width = Math.max(23, textWidth(label) + 4);
     const left = x - Math.floor(width / 2);
     if (collected?.landedAt != null) {
@@ -1818,9 +1825,10 @@
       }
       return;
     }
-    R('N', left, y, width, 9);
-    R('Y', left, y, width, 1);
-    drawText(ctx, label, x, y + 2, 'Y', 1, 'center', null);
+    if (ready) R('W', left - 1, y - 1, width + 2, 11);
+    R(ready ? 'Y' : 'N', left, y, width, 9);
+    R(ready ? 'W' : 'Y', left, y, width, 1);
+    drawText(ctx, label, x, y + 2, ready ? 'K' : 'Y', 1, 'center', null);
   }
   function drawLobBonuses(lot, sx) {
     if (lot.lobPoints) {
@@ -2075,7 +2083,7 @@
       R('w', x, y, width, 1);
     }
     if (building.residence) drawHouse(building, sx);
-    if (lot.overgrown) drawOvergrownYard(lx, lot.w, lot.n + activeBlock * 100);
+    if (lot.overgrown) drawOvergrownYard(lx, lot.w, lot.n + contentBlock * 100);
     if (lot.showpieceTree) drawDeciduousLights(sx + 16, 104, true);
     if (lot.deciduousLights) drawDeciduousLights(sx + 12, 109);
     if (lot.yardResident) {
@@ -2097,7 +2105,7 @@
       R('b', sx + 29, 68, 8, 2);
       R('b', sx + 18, 65, 2, 8);
       R('b', sx + 36, 60, 2, 10);
-    } else if (lot.feature === 'snowman' && !lot.hedgeScreen && activeBlock !== 3) {
+    } else if (lot.feature === 'snowman' && !lot.hedgeScreen && !marketRoute) {
       const x = lot.snowmanTarget ? sx - 4 : sx - 16;
       const y = lot.snowmanTarget ? YARD_FOOT : 97;
       const r = S.results[lot.n - 1];
@@ -2498,7 +2506,7 @@
   }
 
   function drawMotorcycleGang(cam) {
-    if (activeBlock !== 4 || trial) return;
+    if (!schoolRoute || trial) return;
     const anchor = LOTS[12]?.center;
     if (anchor === undefined) return;
     const distance = S.dist - anchor;
@@ -2517,7 +2525,7 @@
   }
 
   function drawCraneCrossing(cam) {
-    if (activeBlock !== 4 || S.craneCrossingAt === null) return;
+    if (!schoolRoute || S.craneCrossingAt === null) return;
     const elapsed = S.time - S.craneCrossingAt;
     if (elapsed > CRANE_CROSSING_TIME) return;
     for (const [index, delay] of [0, 0.42].entries()) {
@@ -2529,7 +2537,7 @@
   }
 
   function drawBusStopSigns(cam) {
-    const positions = activeBlock === 3 ? [268] : [];
+    const positions = marketRoute ? [268] : [];
     for (const position of positions) {
       const x = position - cam;
       if (x < -10 || x > W + 10) continue;
@@ -2551,10 +2559,10 @@
     eachTrafficCar(S.dist, (left, car, direction) => drawCar(left - cam, car, direction));
   }
 
-  function drawMovingRoofBonus(center, roofY, vehicle) {
+  function drawMovingRoofBonus(center, roofY, vehicle, ready = false) {
     const result = S.busBonuses[vehicle.index];
     const bounce = result?.landedAt == null ? Math.round(Math.abs(Math.sin(S.time * 4)) * 3) : 0;
-    drawBonusBox(center, roofY - 14 - bounce, vehicle.bonus, result);
+    drawBonusBox(center, roofY - 14 - bounce, vehicle.bonus, result, undefined, ready);
     if (result?.landedAt != null) {
       const height = Math.max(2, Math.round(19 * Math.min(1, (S.time - result.landedAt) / 0.35)));
       ctx.drawImage(SPR.santa, center - 7, roofY - height, 14, height);
@@ -2805,6 +2813,8 @@
     for (const r of S.leadInResults) if (r.landedAt !== null) drawInflatable(r, cam);
     for (const lot of LOTS) if (lot.hedgeScreen) drawHedgeScreen(lot, cam);
     if (!prototype && (state === 'playing' || state === 'paused')) drawMarker(cam);
+    const aimedRoof = state === 'playing' && els.deliver.classList.contains('is-charged')
+      ? movingBonusTarget(S.dist)?.vehicle.index : undefined;
     eachRoofVehicle(S.dist, (left, direction, bus) => {
       const x = Math.round(left - cam);
       const { length, kind } = bus;
@@ -2851,7 +2861,8 @@
       R('Y', front, 106, 6, 2);
       R('Y', x + (direction === 1 ? length - 3 : 1), 119, 2, 2);
       R('R', x + (direction === 1 ? 1 : length - 3), 119, 2, 2);
-      if (bus.bonus) drawMovingRoofBonus(center, 106, bus);
+      if (bus.bonus) drawMovingRoofBonus(center, 106, bus,
+        (kind === 'bus' || kind === 'brt') && bus.index === aimedRoof);
     });
     drawBusStopSigns(cam);
     drawStreetTraffic(cam);
@@ -2920,11 +2931,11 @@
     state = 'playing';
     $('sg-block-summary').hidden = true;
     els.launch.hidden = true; els.end.hidden = true; els.paused.hidden = true; $('sg-ready').hidden = true;
-    els.shareBox.hidden = true;
     els.pause.disabled = false;
     els.pause.textContent = 'Pause';
     els.deliver.disabled = false;
     document.documentElement.classList.add('sg-playing');
+    if (matchMedia('(pointer: fine)').matches) els.deliver.focus({ preventScroll: true });
     if (AU.ctx && AU.ctx.state === 'suspended') AU.ctx.resume();
     musicStop(); musicStart(openingCue ? 2.2 : 0);
     showLevelIntro();
@@ -2981,7 +2992,7 @@
   function showSharedStats(stats) {
     sharedStats = stats;
     refreshHomeBoard();
-    if (state === 'over') renderFinalBoard();
+    if (state === 'over' && !$('sg-final-board').hidden) renderFinalBoard();
   }
   async function loadSharedStats() {
     try {
@@ -3027,8 +3038,7 @@
   }
   function renderFinalBoard() {
     const board = $('sg-final-board');
-    board.classList.toggle('sg-expanded-board', scoreSaved);
-    renderScoreboard(board.querySelector('.sg-score-list'), scoreSaved ? 10 : 3);
+    renderScoreboard(board.querySelector('.sg-score-list'), 10);
   }
   function recordPlay() {
     if (scoreApi) {
@@ -3048,8 +3058,6 @@
   function unlockReplays() {
     completedRun = true;
     try { localStorage.setItem('santas-game-finished', '1'); } catch (_) {}
-    $('sg-replay-blocks').hidden = false;
-    $('sg-speed-run').hidden = false;
   }
   $('sg-score-form').addEventListener('submit', async event => {
     event.preventDefault();
@@ -3068,7 +3076,7 @@
       const id = runId;
       const tally = {
         id, mode: scoreMode, initials, score: S.score, delivered: S.delivered,
-        perfects: S.perfects, longest: S.longest, litter: blockTallies.reduce((count, block) => count + block.fine / LITTER_FINE, 0),
+        perfects: S.perfects, longest: S.longest, litter: runLitter,
       };
       savingScore = true;
       $('sg-score-feedback').textContent = 'Saving score…';
@@ -3077,7 +3085,6 @@
         const stats = await scoreRequest('/scores', tally);
         if (runId !== id) return;
         showSharedStats(stats);
-        $('sg-score-feedback').textContent = 'Score saved to the leaderboard.';
       } catch {
         if (runId === id) $('sg-score-feedback').textContent = 'Could not reach the leaderboard. Try saving again.';
         return;
@@ -3090,17 +3097,23 @@
       stats.scores.sort((a, b) => b.score - a.score);
       stats.scores.length = Math.min(stats.scores.length, 10);
       writeStats(stats);
-      $('sg-score-feedback').textContent = 'Score saved in this browser.';
     }
     scoreSaved = true;
-    $('sg-score-form').hidden = true;
-    renderFinalBoard();
+    showFinalLeaderboard();
     refreshHomeBoard();
-    unlockReplays();
   });
-  $('sg-skip-score').addEventListener('click', () => {
+  function showFinalLeaderboard() {
     $('sg-score-form').hidden = true;
-    unlockReplays();
+    $('sg-score-feedback').textContent = '';
+    $('sg-end-title').textContent = 'Leaderboard';
+    $('sg-final-board').hidden = false;
+    renderFinalBoard();
+    $('sg-final-actions').hidden = false;
+    $('sg-speed-run').hidden = false;
+    $('sg-end-title').focus({ preventScroll: true });
+  }
+  $('sg-skip-score').addEventListener('click', () => {
+    if (!savingScore) showFinalLeaderboard();
   });
   function advanceBlock() {
     runTotals = { score: S.score, perfects: S.perfects, longest: S.longest, delivered: S.delivered };
@@ -3113,26 +3126,6 @@
     advanceBlock();
     els.deliver.focus();
   });
-  function renderFinalTally() {
-    const rows = $('sg-finale-rows');
-    rows.replaceChildren();
-    for (const [index, tally] of blockTallies.entries()) {
-      const row = document.createElement('tr');
-      row.style.setProperty('--row', index);
-      const heading = document.createElement('th');
-      heading.scope = 'row';
-      heading.textContent = 'Block ' + (index + 1);
-      row.append(heading);
-      for (const value of ['+' + tally.earned.toLocaleString('en-US'), tally.fine ? '−' + tally.fine.toLocaleString('en-US') : '0',
-        tally.total.toLocaleString('en-US')]) {
-        const cell = document.createElement('td');
-        cell.textContent = value;
-        row.append(cell);
-      }
-      rows.append(row);
-    }
-  }
-
   function gameOver() {
     cancelThrow();
     document.documentElement.classList.remove('sg-playing');
@@ -3143,7 +3136,7 @@
     const fine = count * LITTER_FINE;
     const litterLabel = count ? 'Littering fine (' + count + (count === 1 ? ' dud)' : ' duds)') : 'Littering fine';
     S.score = Math.max(0, S.score - fine);
-    if (fullRun) blockTallies.push({ earned, fine, total: S.score });
+    if (fullRun) runLitter += count;
     if (fullRun && activeBlock < 5) {
       if (speedRun) {
         advanceBlock();
@@ -3166,15 +3159,13 @@
     if (fullRun) {
       els.end.classList.add('sg-finale');
       $('sg-end-title').textContent = 'Christmas Delivery Complete!';
-      $('sg-finale-tally').hidden = false;
-      renderFinalTally();
       scoreSaved = false;
       $('sg-score-form').hidden = false;
-      $('sg-final-board').hidden = false;
+      $('sg-final-board').hidden = true;
+      $('sg-final-actions').hidden = true;
       $('sg-initials').value = '';
       $('sg-score-feedback').textContent = '';
       unlockReplays();
-      renderFinalBoard();
     }
     if (trial) {
       const key = 'santas-trial-best-' + trial;
@@ -3187,7 +3178,7 @@
         + Math.max(best, S.score).toLocaleString('en-US');
     }
     if (practiceBlock) $('sg-replay-blocks').hidden = !completedRun;
-    $('sg-exit').hidden = false;
+    $('sg-exit').hidden = fullRun;
     els.fScore.textContent = S.score.toLocaleString('en-US');
     els.fPerfect.textContent = S.perfects;
     els.fStreak.textContent = S.longest;
@@ -3200,39 +3191,22 @@
     else els.again.focus();
   }
 
-  function shareText() {
-    return 'I scored ' + S.score.toLocaleString('en-US') + ' on Santas on Monroe Street with ' + S.perfects + ' perfect landings. ' + SHARE_URL;
-  }
-  async function share() {
-    const text = shareText();
-    const isLive = location.hostname === 'monroestreettattler.com' || location.hostname === 'www.monroestreettattler.com';
-    if (isLive && navigator.share) {
-      try { await navigator.share({ title: 'Santas on Monroe Street', text: text.replace(' ' + SHARE_URL, ''), url: SHARE_URL }); return; }
-      catch (e) { if (e && e.name === 'AbortError') return; }
-    }
-    els.shareText.value = text;
-    els.shareNote.textContent = isLive ? 'Copy and share:' : 'Local test preview of the share message:';
-    els.shareBox.hidden = false;
-    els.shareText.focus(); els.shareText.select();
-  }
-  async function copyShare() {
-    const text = els.shareText.value;
-    try { await navigator.clipboard.writeText(text); els.copy.textContent = 'Copied'; }
-    catch (e) { els.shareText.select(); try { document.execCommand('copy'); els.copy.textContent = 'Copied'; } catch (e2) { els.copy.textContent = 'Select and copy'; } }
-    setTimeout(() => { els.copy.textContent = 'Copy'; }, 1600);
-  }
-
   // ---------- Input ----------
   let heldThrow = null;
+  let chargeTimer;
   function beginThrow(source, timestamp) {
     if (state !== 'playing' || heldThrow || S.target >= TOTAL) return false;
     heldThrow = { source, timestamp };
     els.deliver.classList.add('is-down');
+    if (prototype) {
+      chargeTimer = setTimeout(() => els.deliver.classList.add('is-charged'), LOB_HOLD_MS);
+    }
     return true;
   }
   function cancelThrow() {
     heldThrow = null;
-    els.deliver.classList.remove('is-down');
+    clearTimeout(chargeTimer);
+    els.deliver.classList.remove('is-down', 'is-charged');
   }
   function releaseThrow(source, timestamp) {
     if (heldThrow?.source !== source) return;
@@ -3256,7 +3230,7 @@
       if (state === 'playing') { e.preventDefault(); pauseGame(); }
       else if (state === 'paused') { e.preventDefault(); resumeGame(); }
     }
-    if ((e.key === 'm' || e.key === 'M') && !e.metaKey && !e.ctrlKey && !(e.target instanceof HTMLInputElement) && document.activeElement !== els.shareText) setMuted(!AU.muted);
+    if ((e.key === 'm' || e.key === 'M') && !e.metaKey && !e.ctrlKey && !(e.target instanceof HTMLInputElement)) setMuted(!AU.muted);
   });
   document.addEventListener('keyup', e => {
     const key = e.code === 'Space' || e.key === ' ' ? 'Space' : e.key;
@@ -3266,17 +3240,25 @@
   });
   window.addEventListener('blur', pauseGame);
   document.addEventListener('visibilitychange', () => { if (document.hidden) pauseGame(); });
-  els.deliver.addEventListener('pointerdown', e => {
-    if (e.pointerType === 'mouse' && e.button !== 0) return;
-    e.preventDefault();
-    if (beginThrow(e.pointerId, e.timeStamp)) els.deliver.setPointerCapture(e.pointerId);
-  });
-  els.deliver.addEventListener('pointerup', e => {
-    e.preventDefault();
-    releaseThrow(e.pointerId, e.timeStamp);
-  });
-  for (const event of ['pointercancel', 'lostpointercapture']) {
-    els.deliver.addEventListener(event, e => { if (heldThrow?.source === e.pointerId) cancelThrow(); });
+  for (const surface of [els.deliver, canvas]) {
+    surface.addEventListener('pointerdown', e => {
+      if (e.pointerType === 'mouse' && e.button !== 0) return;
+      if (surface === canvas) {
+        if (e.pointerType !== 'touch') return;
+        const bounds = canvas.getBoundingClientRect();
+        if (e.clientY < bounds.top + bounds.height * 2 / 3) return;
+      }
+      e.preventDefault();
+      if (beginThrow(e.pointerId, e.timeStamp)) surface.setPointerCapture(e.pointerId);
+    });
+    surface.addEventListener('pointerup', e => {
+      if (heldThrow?.source !== e.pointerId) return;
+      e.preventDefault();
+      releaseThrow(e.pointerId, e.timeStamp);
+    });
+    for (const event of ['pointercancel', 'lostpointercapture']) {
+      surface.addEventListener(event, e => { if (heldThrow?.source === e.pointerId) cancelThrow(); });
+    }
   }
   els.deliver.addEventListener('click', e => {
     if (e.detail === 0 && !heldThrow) deliver(e.timeStamp);
@@ -3286,9 +3268,13 @@
   stage.addEventListener('touchmove', (e) => { if (state === 'playing') e.preventDefault(); }, { passive: false });
   els.play.addEventListener('click', () => startGame(prototype && activeBlock === 1 && !trial));
   els.again.addEventListener('click', () => {
+    if (speedRun && fullRun) {
+      location.assign('santas-game.html');
+      return;
+    }
     if (fullRun) {
       activeBlock = 1;
-      blockTallies.length = 0;
+      runLitter = 0;
       runTotals = { score: 0, perfects: 0, longest: 0, delivered: 0 };
       configureRoute();
       countedRun = false;
@@ -3317,8 +3303,6 @@
   document.addEventListener('pointerup', handleAudioGesture, true);
   document.addEventListener('click', handleAudioGesture, true);
   document.addEventListener('keydown', handleAudioGesture, true);
-  els.share.addEventListener('click', share);
-  els.copy.addEventListener('click', copyShare);
 
   // ---------- Boot ----------
   SPR.santa = makeSprite(SANTA);
@@ -3342,8 +3326,8 @@
   }
   if (local && demoBlock) {
     for (const [id, href, label] of [
-      ['sg-other-route', marketRoute ? '?block=1' : '?block=3', marketRoute ? 'Try Block 1' : 'Try Block 3'],
-      ['sg-school-route', schoolRoute ? '?block=1' : '?block=4', schoolRoute ? 'Try Block 1' : 'Try Block 4'],
+      ['sg-other-route', marketRoute ? '?block=1' : '?block=4', marketRoute ? 'Try Block 1' : 'Try Block 4'],
+      ['sg-school-route', schoolRoute ? '?block=1' : '?block=3', schoolRoute ? 'Try Block 1' : 'Try Block 3'],
     ]) {
       const link = $(id);
       link.href = href;
@@ -3356,11 +3340,9 @@
     const preview = practiceBlock || demoBlock || (fullRun ? 'full' : null);
     if (preview) $('sg-preview-' + preview).setAttribute('aria-current', 'page');
   }
-  if (prototype) els.share.hidden = !fullRun;
   $('sg-home-board').hidden = !fullRun;
   $('sg-title-replays').hidden = !fullRun || !completedRun;
   $('sg-title-speed-run').hidden = !completedRun;
-  if (completedRun) $('sg-speed-run').hidden = false;
   if (fullRun) {
     refreshHomeBoard();
     if (scoreApi) loadSharedStats();

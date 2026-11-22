@@ -23,7 +23,7 @@
 <meta name="twitter:image:alt" content="Santas on More Street - The Game! The game’s pixel-art title screen shows inflatable Santas on snowy lawns and Santa’s sleigh against a full moon.">
 <meta name="theme-color" content="#0f1733">
 <link rel="icon" type="image/x-icon" href="favicon.ico">
-<link rel="stylesheet" href="santas-game.css?v=wide-playfield">
+<link rel="stylesheet" href="santas-game.css?v=clean-finale">
 <!-- Cloudflare Web Analytics -->
 <script
   type="module"
@@ -113,17 +113,7 @@
       <div class="sg-finale-garland" aria-hidden="true"></div>
       <div class="sg-finale-trees" aria-hidden="true"><i></i><i></i></div>
       <h2 class="sg-ov-title" id="sg-end-title" tabindex="-1">Route complete</h2>
-      <form id="sg-score-form" class="sg-score-form" hidden>
-        <label for="sg-initials">Enter your initials</label>
-        <input id="sg-initials" maxlength="3" size="3" placeholder="ABC" autocapitalize="characters" autocomplete="off" required>
-        <button type="submit" class="sg-btn sg-btn-small">Save score</button>
-        <button type="button" id="sg-skip-score" class="sg-btn sg-btn-small">Skip</button>
-      </form>
       <div class="sg-finale-results">
-        <table class="sg-finale-tally" id="sg-finale-tally" aria-label="Scores by block" hidden>
-          <thead><tr><th scope="col">Block</th><th scope="col">Earned</th><th scope="col">Litter</th><th scope="col">Total</th></tr></thead>
-          <tbody id="sg-finale-rows"></tbody>
-        </table>
         <dl class="sg-stats">
           <div class="sg-stat sg-stat-big"><dt>Total score</dt><dd id="sg-final-score">0</dd></div>
           <div class="sg-stat"><dt>Perfect landings</dt><dd id="sg-final-perfect">0</dd></div>
@@ -131,12 +121,21 @@
           <div class="sg-stat"><dt>Santas delivered</dt><dd id="sg-final-delivered">0</dd></div>
         </dl>
       </div>
+      <form id="sg-score-form" class="sg-score-form" hidden>
+        <label for="sg-initials">Enter your initials</label>
+        <input id="sg-initials" maxlength="3" size="3" placeholder="ABC" autocapitalize="characters" autocomplete="off" required>
+        <button type="submit" class="sg-btn sg-btn-small">Save score</button>
+        <button type="button" id="sg-skip-score" class="sg-btn sg-btn-small">Skip</button>
+      </form>
       <p id="sg-final-litter" class="sg-score-feedback" hidden></p>
       <p id="sg-trial-record" class="sg-score-feedback"></p>
       <p id="sg-score-feedback" class="sg-score-feedback" role="status"></p>
-      <div class="sg-actions">
-        <button id="sg-again" class="sg-btn sg-btn-primary" type="button">Play again</button>
-        <button id="sg-share" class="sg-btn" type="button">Share score</button>
+      <section id="sg-final-board" class="sg-expanded-board" aria-label="High scores" hidden>
+        <ol class="sg-score-list"></ol>
+      </section>
+      <div class="sg-actions" id="sg-final-actions">
+        <button id="sg-again" class="sg-btn sg-btn-primary" type="button">Play Again</button>
+        <a class="sg-btn" id="sg-speed-run" href="?speed" hidden>Speed Run</a>
       </div>
       <a id="sg-other-route" href="?block=3" hidden>Try Block 3</a>
       <a id="sg-school-route" href="?block=4" hidden>Try Block 4</a>
@@ -145,24 +144,12 @@
         <a href="?practice=1">1</a><a href="?practice=2">2</a><a href="?practice=3">3</a>
         <a href="?practice=4">4</a><a href="?practice=5">5</a>
       </div>
-      <div class="sg-finale-links">
-        <a class="sg-speed-link" id="sg-speed-run" href="?speed" hidden>Speed Run</a>
-        <a id="sg-exit" href="santas-game.html" hidden>Exit to title</a>
-      </div>
-      <section id="sg-final-board" aria-label="High scores" hidden>
-        <strong>High scores</strong>
-        <ol class="sg-score-list"></ol>
-      </section>
-      <div id="sg-share-box" class="sg-share-box" hidden>
-        <p id="sg-share-note" class="sg-share-note"></p>
-        <textarea id="sg-share-text" readonly rows="3" aria-label="Share message"></textarea>
-        <button id="sg-copy" class="sg-btn sg-btn-small" type="button">Copy</button>
-      </div>
+      <a id="sg-exit" href="santas-game.html" hidden>Exit to title</a>
     </div>
 
     <p id="sg-live" class="sg-hidden" aria-live="polite"></p>
   </main>
 </div>
-<script src="santas-game.js?v=speed-run-continuous"></script>
+<script src="santas-game.js?v=bus-roof-cue"></script>
 </body>
 </html>
