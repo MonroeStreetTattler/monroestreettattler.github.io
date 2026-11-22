@@ -368,7 +368,7 @@
         shop: 'tricycle', brick: '#647654', trim: '#344638', windowPattern: '101100011010' },
       ...marketApartments[1], ...marketApartments[2],
       { name: 'Corner condos roof', center: 1418, w: 45, apartmentRoof: true, roofBase: 36, lobPoints: 200, cameo: 'kaiju' },
-      { ...STOPS[0], center: 1492, w: 58 },
+      { name: 'The Monroe Street Tattler', shop: 'newsroom', center: 1492, w: 70 },
     ] : STOPS;
     LOTS = prototype ? stops.map((stop, i) => {
       const center = marketRoute ? (stop.center ?? [70, 150, 310, 391, 470][i])
@@ -1682,7 +1682,66 @@
     paint('R', x - 1, y + 2, 3, 2);
   }
 
+  function drawNewsroom(lot, sx) {
+    const x = Math.round(sx);
+    const delivery = S.results[lot.n - 1];
+    const watching = delivery?.landedAt != null && delivery.points && S.time - delivery.landedAt < 0.75;
+    const frame = watching ? 0 : Math.floor(S.time * 6) % 4;
+    R('#864539', x - 38, 45, 76, 69);
+    R('W', x - 40, 42, 80, 3);
+    R('#602d2f', x - 38, 45, 76, 4);
+    for (let y = 51; y <= 110; y += 6) R('#a25a47', x - 37, y, 74, 1);
+    drawPorchLights(x - 36, 47, 72, lot.n);
+    R('K', x - 37, 54, 74, 23);
+    R('#fff1cc', x - 36, 55, 72, 21);
+    drawText(ctx, 'THE MONROE STREET', x, 57, 'K', 1, 'center', null);
+    drawText(ctx, 'TATTLER', x, 65, 'K', 1, 'center', null);
+    R('r', x - 18, 73, 36, 1);
+    for (const side of [-34, -4]) {
+      R('#e2c193', x + side, 80, 28, 27);
+      R('#4d3039', x + side + 1, 81, 26, 25);
+      R('#f6cd80', x + side + 2, 82, 24, 23);
+      R('#dca561', x + side + 3, 84, 22, 2);
+      R('#995e45', x + side + 2, 99, 24, 6);
+      R('W', x + side, 106, 28, 2);
+    }
+    // Reporter, typewriter, and a sheet reaching out of the carriage.
+    R('#3b413b', x - 30, 101, 19, 3);
+    R('u', x - 28, 93, 6, 8);
+    R('S', x - 28, 88, 5, 5);
+    R('K', x - 29, 87, 6, 2);
+    R('K', x - 25, 90, 1, 1);
+    if (watching) R('K', x - 28, 90, 1, 1);
+    R('S', x - 23, 96 - frame % 2, 5, 2);
+    R('K', x - 20, 97, 8, 4);
+    R('w', x - 19, 98, 6, 1);
+    R('W', x - 16, 91 - (frame > 1 ? 1 : 0), 3, 6);
+    // Editor and the oversized proof, with columns and a red pencil.
+    R('r', x + 1, 93, 6, 10);
+    R('S', x + 1, 87, 5, 6);
+    R('b', x, 86, 7, 2);
+    R('K', x + 4, 89, 2, 1);
+    const proof = frame > 1 ? 1 : 0;
+    R('#ffefce', x + 7, 90 + proof, 13, 13);
+    R('K', x + 8, 92 + proof, 11, 1);
+    R('r', x + 8, 94 + proof, 11, 1);
+    for (let line = 0; line < 3; line++) {
+      R('k', x + 8, 96 + proof + line * 2, 4, 1);
+      R('k', x + 14, 96 + proof + line * 2, 4, 1);
+    }
+    R('S', x + 6, 96 + proof, 2, 2);
+    R('K', x + 26, 82, 10, 32);
+    R('#e4b162', x + 27, 84, 8, 12);
+    R('g', x + 29, 90, 4, 4);
+    R('Y', x + 33, 102, 1, 1);
+    R('w', x - 39, 113, 78, 3);
+  }
+
   function drawHouse(lot, sx) {
+    if (lot.shop === 'newsroom') {
+      drawNewsroom(lot, sx);
+      return;
+    }
     if (lot.residence) {
       const buildingTop = lot.residence === 'apartment' ? 25 : 38;
       const width = lot.residence === 'apartment' ? 63 : 68;
@@ -3108,6 +3167,7 @@
   ]);
   let localStats = { plays: 0, scores: [] };
   let sharedStats = null;
+  const FINAL_SCORE_LIMIT = 25;
   let runId = null;
   let recordingPlay = null;
   let savingScore = false;
@@ -3165,11 +3225,12 @@
   function refreshHomeBoard() {
     const plays = scoreApi ? sharedStats?.plays : readStats().plays;
     $('sg-play-count').textContent = plays === undefined ? '— plays' : plays.toLocaleString('en-US') + (plays === 1 ? ' play' : ' plays');
-    renderScoreboard($('sg-home-board').querySelector('.sg-score-list'), 3);
+    renderScoreboard($('sg-home-board').querySelector('.sg-score-list'), 5);
   }
   function renderFinalBoard() {
-    const board = $('sg-final-board');
-    renderScoreboard(board.querySelector('.sg-score-list'), 10);
+    const list = $('sg-final-board').querySelector('.sg-score-list');
+    renderScoreboard(list, FINAL_SCORE_LIMIT);
+    list.style.setProperty('--score-rows', Math.ceil(list.childElementCount / 2));
   }
   function recordPlay() {
     if (scoreApi) {
@@ -3226,7 +3287,7 @@
       const stats = readStats();
       stats.scores.push({ initials, score: S.score });
       stats.scores.sort((a, b) => b.score - a.score);
-      stats.scores.length = Math.min(stats.scores.length, 10);
+      stats.scores.length = Math.min(stats.scores.length, FINAL_SCORE_LIMIT);
       writeStats(stats);
     }
     scoreSaved = true;

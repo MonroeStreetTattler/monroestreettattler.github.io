@@ -14,7 +14,7 @@ const integerInRange = (value, max) => Number.isSafeInteger(value) && value >= 0
 async function board(db, mode) {
   const [count, scores] = await db.batch([
     db.prepare('SELECT plays FROM play_counts WHERE mode = ?').bind(mode),
-    db.prepare('SELECT initials, score, delivered FROM runs WHERE mode = ? AND score IS NOT NULL ORDER BY score DESC, finished_at, id LIMIT 10').bind(mode),
+    db.prepare('SELECT initials, score, delivered FROM runs WHERE mode = ? AND score IS NOT NULL ORDER BY score DESC, finished_at, id LIMIT 25').bind(mode),
   ]);
   return { plays: count.results[0]?.plays ?? 0, scores: scores.results };
 }

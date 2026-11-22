@@ -662,14 +662,20 @@ html.sg-playing, html.sg-playing body { overflow: hidden; overscroll-behavior: n
   background: var(--sg-deep);
 }
 .sg-finale #sg-final-board.sg-expanded-board .sg-score-list {
-  display: block;
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-rows: repeat(var(--score-rows, 1), max-content);
+  grid-auto-columns: minmax(0, 1fr);
+  gap: 0 36px;
   max-height: clamp(106px, calc(100dvh - 255px), 325px);
   overflow-y: auto;
-  padding-inline-start: 46px;
+  padding-inline-start: 36px;
   list-style: decimal;
+  font-size: 14px;
+  line-height: 1.25;
 }
-.sg-finale #sg-final-board.sg-expanded-board li { padding: 5px 6px; }
-.sg-finale #sg-final-board.sg-expanded-board li + li { border-top: 1px solid #ffffff24; }
+.sg-finale #sg-final-board.sg-expanded-board li { padding: 3px 0; border-bottom: 1px solid #ffffff24; }
+.sg-finale #sg-final-board.sg-expanded-board .sg-score-list:not(.sg-no-scores) li:first-child { color: var(--sg-gold); }
 
 @media (max-width: 600px) {
   .sg-finale { gap: 4px; padding: 6px 8px 8px; }
