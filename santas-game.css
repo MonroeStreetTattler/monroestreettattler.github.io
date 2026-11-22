@@ -84,6 +84,7 @@ html.sg-playing, html.sg-playing body { overflow: hidden; overscroll-behavior: n
 
 /* The 198x150 canvas scales to fit, keeping its pixels square and crisp. */
 .sg-stage {
+  position: relative;
   width: min(100%, calc((100dvh - 190px) * 1.32));
   aspect-ratio: 33 / 25;
   flex: none;
@@ -100,6 +101,60 @@ html.sg-playing, html.sg-playing body { overflow: hidden; overscroll-behavior: n
   image-rendering: pixelated;
   image-rendering: crisp-edges;
 }
+.sg-yard-signs {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  container-type: inline-size;
+}
+.sg-yard-sign {
+  position: absolute;
+  top: 63%;
+  width: max(13.5%, 76px);
+  transform: translateX(-50%);
+}
+.sg-yard-sign[hidden] { display: none; }
+.sg-yard-sign::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 18%;
+  right: 18%;
+  height: max(0.7cqw, 5px);
+  border-inline: max(0.23cqw, 1px) solid #54483a;
+}
+.sg-tree-house-sign {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: max(0.55cqw, 3px);
+  padding: max(0.35cqw, 3px);
+  border: max(0.2cqw, 1px) solid #27231f;
+  background: #fffdf7;
+  color: #201d1b;
+  text-align: center;
+}
+.sg-tree-house-sign img {
+  width: 16%;
+  mix-blend-mode: multiply;
+}
+.sg-tree-house-sign strong { display: block; font: 600 max(1.55cqw, 8px)/1 Georgia, serif; }
+.sg-tree-house-sign small {
+  display: block;
+  margin-top: 2px;
+  font: 700 max(0.76cqw, 5px)/1 Arial, sans-serif;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+.sg-tattler-sign img, .sg-shoppe-billboard img { display: block; width: 100%; height: auto; }
+.sg-shoppe-billboard {
+  top: auto;
+  bottom: 33%;
+  width: 15%;
+  border: max(0.25cqw, 1px) solid #432d35;
+}
+.sg-shoppe-billboard::after { height: max(1.2cqw, 5px); }
 
 .sg-deliver {
   position: relative;

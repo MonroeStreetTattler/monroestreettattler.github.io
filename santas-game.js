@@ -187,6 +187,32 @@
     '..bssssssbbbbbbbbssssssssb...',
     '...bbbbbb........bbbbbbbb....',
   ];
+  const ROOFTOP_KAIJU = [
+    '.......................KK....',
+    '...................KKKKggK...',
+    '.................KKggggggKKK.',
+    '...........KYK..KggTTggWggggK',
+    '..........KYYK.KgTTTggggggggK',
+    '..........KYYKKgTTggggKKKKKK.',
+    '.........KYKKKgTTggKKYYK.....',
+    '........KYYKgTTggKYYYKK......',
+    '.......KYYKgTTggRRRRK........',
+    '......KYYKgTTggRWWRgK........',
+    '......KYKgTTggRRRgKKKK.......',
+    '.....KYYKgTTgRRgKKggggK......',
+    '.....KYKgTTggRRggKKTTKK......',
+    '.....KKgTTggggYggK.KK........',
+    '....KggTTggggYYYgK...........',
+    '...KggTTggggYYYYgK...........',
+    '..KggTTggggYYYYggK...........',
+    '.KggTTTgggggYYggggK..........',
+    'KggTTTggggggggggggK..........',
+    'KKggggggggKgggKggggK.........',
+    '..KKKKKKKKKgggKgggggK........',
+    '..........KgggKKggggK........',
+    '..........KggTTTKggTTTK......',
+    '..........KKKKKKKKKKKKK......',
+  ];
   const SPR = {};
 
   // ---------- 3x5 pixel font ----------
@@ -307,7 +333,7 @@
     [[5, { ...BONUS_CAR, catchWidth: 16 }], [8, { ...MADISON_BUS, speed: 1.48 }], [20, { ...MADISON_BUS, speed: 1.65 }]],
     [
       [5, { ...MADISON_BUS, speed: 1.7, catchWidth: 30 }],
-      [11, BONUS_CAR],
+      [12, BONUS_CAR],
       [18, { ...MADISON_BRT, speed: 0.95, catchWidth: 45 }],
     ],
     [[4, BONUS_CAR], [11, { ...MADISON_BUS, speed: 1.25 }], [18, { ...MADISON_BRT, speed: 0.85 }], [30, BONUS_CAR]],
@@ -333,12 +359,14 @@
       { name: 'Creando', sign: ['CREANDO', ''], shop: 'creando', brick: '#8c6855', trim: '#4b3e55', windowPattern: '101000111110', door: true, displayWindow: true },
       { name: 'Wingrow School west lawn', center: wingrow.center - 26, w: 46, schoolLawn: true },
       { name: 'Wingrow School east lawn', center: wingrow.center + 26, w: 46, schoolLawn: true },
-      { ...CORRIDOR[0], center: 674 }, ...STOPS.slice(0, 4).map((stop, i) => ({ ...stop, center: 757 + i * 80 })),
+      { ...CORRIDOR[0], center: 674 },
+      { name: 'Orange Tree Imports', sign: ['ORANGE TREE', 'IMPORTS'], center: 757, w: 58,
+        shop: 'orangeTree', brick: '#a46a3d', trim: '#634730', windowPattern: '010011100101' },
+      ...STOPS.slice(1, 4).map((stop, i) => ({ ...stop, center: 837 + i * 80 })),
       ...marketApartments[0], { ...STOPS[5], center: 1170, plainBungalow: true },
       ...marketApartments[1], ...marketApartments[2],
-      { name: 'Corner condos roof', center: 1418, w: 45, apartmentRoof: true, roofBase: 36, lobPoints: 200 },
-      { name: 'Orange Tree Imports', sign: ['ORANGE TREE', 'IMPORTS'], center: 1492, w: 58,
-        shop: 'orangeTree', brick: '#a46a3d', trim: '#634730', windowPattern: '010011100101' },
+      { name: 'Corner condos roof', center: 1418, w: 45, apartmentRoof: true, roofBase: 36, lobPoints: 200, cameo: 'kaiju' },
+      { ...STOPS[0], center: 1492, w: 58 },
     ] : STOPS;
     LOTS = prototype ? stops.map((stop, i) => {
       const center = marketRoute ? (stop.center ?? [70, 150, 310, 391, 470][i])
@@ -349,7 +377,7 @@
         : stop === STOPS[4] ? { ...stop, shop: undefined, name: 'Red bungalow' }
         : stop === STOPS[5] || stop.plainBungalow ? { ...stop, roof: false, iceCream: false, lobPoints: 0, name: 'Lavender bungalow' }
         : stop;
-      const cameo = marketRoute && stop.name === STOPS[2].name ? 'grinch' : schoolRoute && i === 5 ? 'gingerbread' : undefined;
+      const cameo = marketRoute && stop.name === STOPS[2].name ? 'grinch' : schoolRoute && i === 5 ? 'gingerbread' : neighborhood.cameo;
 
       const fratRoof = contentBlock === 2 && i === 0;
       return { ...neighborhood, order: true, cameo,
@@ -583,6 +611,11 @@
   // ---------- DOM ----------
   const $ = (id) => document.getElementById(id);
   const canvas = $('sg-canvas');
+  const yardSigns = document.querySelector('.sg-yard-signs');
+  const signLots = Array.from(yardSigns.children, sign => ({
+    sign, block: Number(sign.dataset.block || 1), lot: Number(sign.dataset.lot) - 1,
+    offset: sign.dataset.offset === undefined ? null : Number(sign.dataset.offset),
+  }));
   let ctx = canvas.getContext('2d');
   ctx.imageSmoothingEnabled = false;
   const titleArt = document.createElement('canvas');
@@ -838,6 +871,11 @@
     miss() { const t = now(); tone('square', 150, t, 0.28, 0.22, null, 70); },
     cameo() { const t = now() + 0.25; [72, 76, 79, 84, 88, 91].forEach((m, i) => bell(m, t + i * 0.08, 0.35)); },
     block() { const t = now(); [72, 79, 84].forEach((m, i) => tone('square', hz(m), t + i * 0.09, 0.1, 0.2)); },
+    kaiju() {
+      const t = now();
+      tone('sawtooth', 145, t, 0.38, 0.36, null, 52);
+      hiss(t + 0.04, 0.28, 0.22, 1550);
+    },
     poof() { const t = now(); hiss(t, 0.3, 0.35, 2500); },
     windGust() {
       const t = now();
@@ -1025,7 +1063,7 @@
     if (upperLanding && !lob) return 'miss';
     const ad = Math.abs(lx - (upperLanding ? deliverySurface(lot, true).center : lot.center));
     if (upperLanding) return ad <= 7 ? 'perfect' : ad <= 18 ? 'hit' : 'miss';
-    const precisionLob = lob && (deliverySurface(lot, true).type !== 'yard' || lot.lobPoints);
+    const precisionLob = lob && deliverySurface(lot, true).type !== 'yard';
     const half = precisionLob ? Math.min(18, lot.w / 2) : lot.w / 2;
     if (ad <= (precisionLob ? Math.min(7, lot.perfect) : lot.perfect)) return 'perfect';
     if (ad <= half) return 'hit';
@@ -1042,10 +1080,11 @@
     if (prototype && thrown && !lot.order && (!trial || onProperty)) kind = 'wrong';
     const surface = onProperty ? deliverySurface(lot, lob) : null;
     const clean = kind === 'perfect' || kind === 'hit';
-    const cameo = clean && lob ? lot.cameo : undefined;
+    const grinchYard = clean && lot.cameo === 'grinch' && surface?.type === 'yard';
+    const cameo = clean && (lob || grinchYard) ? lot.cameo : undefined;
     const squash = clean && surface?.type === 'yard' && lot.snowmanTarget && Math.abs(lx - lot.center) <= 10;
     const catSquash = clean && surface?.type === 'yard' && lot.yardCat && Math.abs(lx - lot.center) <= 10;
-    const lobBonus = clean && lob ? (lot.lobPoints || 0) : 0;
+    const lobBonus = clean && (lob || grinchYard) ? (lot.lobPoints || 0) : 0;
     const pairedBalcony = clean && lot.pairedBalcony && surface?.type === 'balcony';
     if (pairedBalcony && lot.pairedBalcony === 1) S.firstBalconyAt = S.time;
     const doubleBalcony = pairedBalcony && lot.pairedBalcony === 2 && S.results[lot.n - 2]?.surface?.type === 'balcony' && S.firstBalconyAt !== null && S.time - S.firstBalconyAt <= 1.8;
@@ -1096,7 +1135,14 @@
       r.residentBonk = true;
       pop(lot.center, 72, 'BONK!', 'Y', 1, 0.15);
     }
-    if (r.cameo) { for (let i = 0; i < 22; i++) S.parts.push({ x: r.lx, y: FOOT - 20, vx: (i - 11) * 5, vy: -40 - (i % 4) * 8, t: 0, c: i % 3 ? 'Y' : 'U' }); SFX.cameo(); }
+    if (r.cameo) {
+      const y = r.cameo === 'kaiju' ? r.surface.base : FOOT - 20;
+      for (let i = 0; i < 22; i++) {
+        S.parts.push({ x: r.lx, y, vx: (i - 11) * 5, vy: -40 - (i % 4) * 8, t: 0, c: i % 3 ? 'Y' : 'U' });
+      }
+      if (r.cameo === 'kaiju') SFX.kaiju();
+      else SFX.cameo();
+    }
     if (r.doubleSanta) {
       pop(lot.center - 23, 46, 'DOUBLE SANTA!', 'Y', 1);
       flashTrialBonus(lot.center - 23, 76, DOUBLE_YARD_POINTS, r.streak);
@@ -2244,6 +2290,15 @@
       if (lot.sidewaysRoof && surface.type === 'roof') {
         const length = Math.max(2, Math.round(SPR.santaSide.width * Math.min(1, k)));
         ctx.drawImage(SPR.santaSide, Math.round(surface.center - cam - length / 2), surface.base - SPR.santaSide.height + 1, length, SPR.santaSide.height);
+      } else if (r.inflatable === 'kaiju' && surface.type === 'roof') {
+        const walk = Math.max(0, age - 0.2) * 4.8;
+        const stride = Math.round(9 * Math.sin(walk));
+        const lift = Math.round(2 * Math.abs(Math.sin(walk * 3)));
+        ctx.save();
+        ctx.translate(x + Math.floor(width / 2) + stride, surface.base - lift);
+        ctx.scale(Math.cos(walk) < 0 ? -1 : 1, 1);
+        ctx.drawImage(spr, -Math.floor(width / 2), 1 - h, width, h);
+        ctx.restore();
       } else {
         ctx.drawImage(spr, x, surface.base - h + 1, width, h);
       }
@@ -2843,6 +2898,21 @@
   function render() {
     const titleScene = state === 'title';
     const cam = Math.round(S.dist - VX);
+    const showSigns = prototype && !trial && signLots.some(({ block }) => block === activeBlock) &&
+      (state === 'playing' || state === 'paused');
+    yardSigns.hidden = !showSigns;
+    if (showSigns) {
+      for (const { sign, block, lot, offset } of signLots) {
+        if (block !== activeBlock || !LOTS[lot]) {
+          sign.hidden = true;
+          continue;
+        }
+        const property = LOTS[lot];
+        const x = property.center - cam + (offset ?? (property.style ? 17 : -17));
+        sign.hidden = x < -34 || x > W + 34;
+        if (!sign.hidden) sign.style.left = (x / W * 100) + '%';
+      }
+    }
     ctx.imageSmoothingEnabled = false;
     if (titleScene) {
       drawTitleStreet();
@@ -2908,7 +2978,7 @@
       for (const offset of [7, length - 13]) R('K', x + offset, 122, 5, 5);
       if (articulated) R('K', center + 8, 122, 5, 5);
       if (kind !== 'plow') {
-        const label = kind === 'brt' ? 'MADISON BRT' : 'MADISON BUS';
+        const label = kind === 'brt' ? 'MADISON BRT' : activeBlock === 2 ? 'TATTLER' : 'MADISON BUS';
         const labelWidth = textWidth(label) + 4;
         R('#111c34', center - Math.ceil(labelWidth / 2), 116, labelWidth, 7);
         drawText(ctx, label, center, 117, '#ffffff', 1, 'center', null);
@@ -3370,6 +3440,7 @@
   SPR.icon = makeSprite(ICON);
   SPR.grinch = makeSprite(GRINCH);
   SPR.gingerbread = makeSprite(GINGERBREAD);
+  SPR.kaiju = makeSprite(ROOFTOP_KAIJU, { ...PAL, g: '#1f7780', T: '#55afa0', Y: '#e6d58e' });
   SPR.santaSide = (() => { const c = document.createElement('canvas'); c.width = SPR.santa.height; c.height = SPR.santa.width; const x = c.getContext('2d'); x.translate(c.width, 0); x.rotate(Math.PI / 2); x.drawImage(SPR.santa, 0, 0); return c; })();
   setMuted(AU.muted);
   els.deliver.disabled = true;
