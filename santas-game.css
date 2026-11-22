@@ -337,7 +337,8 @@ html.sg-playing, html.sg-playing body { overflow: hidden; overscroll-behavior: n
 }
 .sg-score-feedback { margin: 0; }
 .sg-score-feedback:empty { display: none; }
-#sg-replay-blocks { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 7px; }
+#sg-replay-blocks summary { cursor: pointer; width: fit-content; margin-inline: auto; padding: 8px 12px; }
+#sg-replay-blocks > div { display: flex; flex-wrap: wrap; justify-content: center; gap: 7px; }
 #sg-replay-blocks a {
   display: grid;
   place-items: center;
@@ -546,15 +547,17 @@ html.sg-playing, html.sg-playing body { overflow: hidden; overscroll-behavior: n
 .sg-finale .sg-stat:not(.sg-stat-big),
 .sg-finale:has(#sg-score-form[hidden]) .sg-finale-results,
 .sg-finale .sg-actions[hidden] { display: none; }
-.sg-finale .sg-stat-big dd { font-size: clamp(34px, 9vw, 60px); }
+.sg-finale .sg-stat-big dd { font-size: clamp(22px, 5vw, 30px); }
+.sg-finale:has(#sg-score-form:not([hidden])) .sg-ov-title { font-size: clamp(15px, 3.8vw, 23px); }
+.sg-finale #sg-speed-run { text-decoration: none; }
 
 .sg-finale .sg-score-form:not([hidden]) {
   display: grid;
-  grid-template-columns: auto auto auto;
+  grid-template-columns: auto auto;
   align-items: center;
   justify-items: center;
-  gap: 5px 8px;
-  padding: 7px 10px 9px;
+  gap: 9px 12px;
+  padding: 12px 14px;
   border: 2px solid var(--sg-gold);
   background: #642b41;
   box-shadow: 0 0 0 2px #ffd44740;
@@ -564,16 +567,24 @@ html.sg-playing, html.sg-playing body { overflow: hidden; overscroll-behavior: n
   grid-column: 1 / -1;
   color: #fff0ba;
   font-weight: 900;
-  font-size: clamp(15px, 4vw, 20px);
+  font-size: clamp(27px, 7vw, 46px);
+  line-height: 1.08;
   text-transform: uppercase;
 }
 .sg-finale .sg-score-form:focus-within { animation: none; }
 .sg-finale .sg-score-form button[type="submit"] {
-  background: var(--sg-gold);
-  color: #241e2c;
-  border-color: #fff1c1;
+  color: var(--sg-snow);
+  grid-column: 1;
+  justify-self: end;
 }
-.sg-finale #sg-initials { width: 68px; text-align: center; font-weight: 900; }
+.sg-finale #sg-skip-score { justify-self: start; }
+.sg-finale #sg-initials {
+  grid-column: 1 / -1;
+  width: 104px;
+  text-align: center;
+  font-size: 24px;
+  font-weight: 900;
+}
 @keyframes sg-initials-pulse {
   50% { box-shadow: 0 0 0 4px #ffd44766, 0 0 16px #ffd44766; }
 }
@@ -596,17 +607,17 @@ html.sg-playing, html.sg-playing body { overflow: hidden; overscroll-behavior: n
 }
 .sg-finale #sg-final-board.sg-expanded-board .sg-score-list {
   display: block;
-  columns: 2;
-  column-gap: 24px;
-  padding-inline-start: 24px;
+  max-height: clamp(106px, calc(100dvh - 255px), 325px);
+  overflow-y: auto;
+  padding-inline-start: 46px;
   list-style: decimal;
 }
-.sg-finale #sg-final-board.sg-expanded-board li { break-inside: avoid; }
+.sg-finale #sg-final-board.sg-expanded-board li { padding: 5px 6px; }
+.sg-finale #sg-final-board.sg-expanded-board li + li { border-top: 1px solid #ffffff24; }
 
 @media (max-width: 600px) {
   .sg-finale { gap: 4px; padding: 6px 8px 8px; }
   .sg-finale .sg-finale-garland { height: 20px; }
-  .sg-finale .sg-stat-big dd { font-size: 34px; }
   .sg-finale .sg-score-feedback { font-size: 12px; text-align: center; }
 }
 @media (min-width: 850px) {

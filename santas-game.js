@@ -337,6 +337,8 @@
       ...marketApartments[0], { ...STOPS[5], center: 1170, plainBungalow: true },
       ...marketApartments[1], ...marketApartments[2],
       { name: 'Corner condos roof', center: 1418, w: 45, apartmentRoof: true, roofBase: 36, lobPoints: 200 },
+      { name: 'Orange Tree Imports', sign: ['ORANGE TREE', 'IMPORTS'], center: 1492, w: 58,
+        shop: 'orangeTree', brick: '#a46a3d', trim: '#634730', windowPattern: '010011100101' },
     ] : STOPS;
     LOTS = prototype ? stops.map((stop, i) => {
       const center = marketRoute ? (stop.center ?? [70, 150, 310, 391, 470][i])
@@ -400,11 +402,13 @@
           frontage: 0.82 + random() * 0.32, height: 0.82 + random() * 0.32,
           feature: snowmanTarget ? 'snowman' : i % 7 === 2 ? 'tree' : undefined,
           yardResident: contentBlock === 1 && i === 4,
+          yardCat: schoolRoute && i === 8,
           blackSanta: (contentBlock === 1 && i === 2) || (contentBlock === 4 && i === 7) || (contentBlock === 5 && i === 15),
           overgrown: contentBlock === 4 && i === 3,
           showpieceTree: contentBlock === 1 && i === count - 1,
           deciduousLights: contentBlock === 5 && i === count - 2,
           giantSanta: contentBlock === 5 && i === 8,
+          gustYard: contentBlock === 5 && (i === 10 || i === 17),
           snowmanTarget,
           lawnStart: center - w / 2, lawnEnd: center + w / 2,
           perfect: 10 - Math.floor((contentBlock - 1) / 2),
@@ -444,13 +448,13 @@
       : contentBlock === 1 ? [[3, 'walker'], [5, 'dog'], [7, 'family'], [8, 'walker'], [10, 'dog'], [12, 'family'], [FIRST_TURKEY_STOP, 'turkey'], [17, 'cat']]
       : contentBlock === 2 ? [[3, 'walker'], [6, 'dog'], [7, 'walker'], [10, 'family'], [12, 'dog'], [17, 'turkey'], [20, 'walker']]
       : contentBlock === 3 ? [[3, 'family'], [6, 'walker'], [9, 'dog'], [11, 'kids'], [14, 'dog'], [17, 'family'], [19, 'dog'], [25, 'cat']]
-      : contentBlock === 4 ? [[2, 'kids'], [6, 'dog'], [9, 'family'], [11, 'dog'], [14, 'kids'], [17, 'dog'], [20, 'family'], [24, 'walker']]
+      : contentBlock === 4 ? [[2, 'kids'], [6, 'dog'], [9, 'family'], [11, 'dog'], [14, 'kids'], [17, 'dog'], [20, 'family'], [24, 'walker'], [12, 'cat']]
       : [[5, 'crane'], [8, 'dog'], [11, 'family'], [14, 'walker'], [18, 'crane'], [20, 'dog'], [23, 'dog'], [25, 'family']];
     streetHazards = !prototype ? [] : hazardPlan
       .filter(([n]) => n <= LOTS.length)
       .map(([n, kind], i) => ({
         anchor: LOTS[n - 1].center - D, kind, direction: (contentBlock === 1 && kind === 'turkey') || i % 2 ? -1 : 1, variant: (n + contentBlock) % 3,
-        tumbling: (contentBlock === 3 && n === 9 && kind === 'dog') || (contentBlock === 5 && n === 18 && kind === 'crane'),
+        tumbling: (contentBlock === 3 && n === 9 && kind === 'dog') || (schoolRoute && kind === 'cat') || (contentBlock === 5 && n === 18 && kind === 'crane'),
       }));
     const vehiclePlan = contentBlock === 4 ? [[16, 'van'], [26, 'van'], [31, 'van']]
       : contentBlock === 5 ? [[6, 'van'], [10, 'truck'], [15, 'van'], [19, 'truck'], [24, 'van'], [28, 'truck']]
@@ -835,6 +839,11 @@
     cameo() { const t = now() + 0.25; [72, 76, 79, 84, 88, 91].forEach((m, i) => bell(m, t + i * 0.08, 0.35)); },
     block() { const t = now(); [72, 79, 84].forEach((m, i) => tone('square', hz(m), t + i * 0.09, 0.1, 0.2)); },
     poof() { const t = now(); hiss(t, 0.3, 0.35, 2500); },
+    windGust() {
+      const t = now();
+      hiss(t, 0.48, 0.38, 1050);
+      hiss(t + 0.11, 0.32, 0.27, 2150);
+    },
     inflatablePop() { hiss(now(), 0.19, 0.42, 2100); },
     turkeyBonk() {
       const t = now();
@@ -858,7 +867,7 @@
     if (!m) unlockAudio();
     if (AU.master) AU.master.gain.setTargetAtTime(m ? 0 : 0.9, AU.ctx.currentTime, 0.02);
     els.mute.setAttribute('aria-pressed', String(m));
-    els.mute.textContent = m ? 'Sound off' : 'Sound on';
+    els.mute.textContent = m ? 'Unmute Sound' : 'Mute Sound';
     try { localStorage.setItem('santas-game-muted', m ? '1' : '0'); } catch (e) { /* ignore */ }
   }
 
@@ -1026,6 +1035,7 @@
     const clean = kind === 'perfect' || kind === 'hit';
     const cameo = clean && lob ? lot.cameo : undefined;
     const squash = clean && surface?.type === 'yard' && lot.snowmanTarget && Math.abs(lx - lot.center) <= 10;
+    const catSquash = clean && surface?.type === 'yard' && lot.yardCat && Math.abs(lx - lot.center) <= 10;
     const lobBonus = clean && lob ? (lot.lobPoints || 0) : 0;
     const pairedBalcony = clean && lot.pairedBalcony && surface?.type === 'balcony';
     if (pairedBalcony && lot.pairedBalcony === 1) S.firstBalconyAt = S.time;
@@ -1043,7 +1053,7 @@
     } else if (kind === 'hit') {
       S.streak = 0; S.delivered++; points = HIT_POINTS;
     } else if (!prototype || thrown || lot.order) { S.streak = 0; }
-    const r = { n: lot.n, kind, landing, surface, lobBonus, doubleBalcony, doubleSanta, squash, inflatable: cameo || (clean && lot.blackSanta && surface?.type === 'yard' ? 'blackSanta' : 'santa'), points, streak: S.streak, lx, side: Math.sign(lx - lot.center) || 1, landedAt: null,
+    const r = { n: lot.n, kind, landing, surface, lobBonus, doubleBalcony, doubleSanta, squash, catSquash, inflatable: cameo || (clean && lot.blackSanta && surface?.type === 'yard' ? 'blackSanta' : 'santa'), points, streak: S.streak, lx, side: Math.sign(lx - lot.center) || 1, landedAt: null,
       cameo };
     if (advance) S.results[lot.n - 1] = r;
     else if (kind === 'hedge') S.leadInResults.push(r);
@@ -1082,7 +1092,7 @@
       pop(lot.center - 23, 46, 'DOUBLE SANTA!', 'Y', 1);
       flashTrialBonus(lot.center - 23, 76, DOUBLE_YARD_POINTS, r.streak);
     }
-    if (r.squash) {
+    if (r.squash || r.catSquash) {
       pop(lot.center, r.surface.base - 28, 'SQUASH!', 'W', 1, 0.1);
       SFX.poof();
     }
@@ -1180,7 +1190,7 @@
         hitStadiumFans(p);
         hitRisingTurkey(p);
       }
-      if (marketRoute || activeBlock === 5) hitRisingAnimal(p);
+      if (marketRoute || schoolRoute || activeBlock === 5) hitRisingAnimal(p);
       if (p.t >= p.dur && !p.done) {
         p.done = true;
         land(p.r, p);
@@ -1204,6 +1214,16 @@
       popInflatable(chase.result, SFX.turkeyTip);
     }
     if (activeBlock === 5) {
+      for (const r of S.results) {
+        if (r?.landedAt == null || !LOTS[r.n - 1].gustYard || r.surface?.type !== 'yard' ||
+            !r.points || r.tippedAt !== undefined || S.time - r.landedAt < 0.38) continue;
+        r.tippedAt = S.time;
+        for (let i = 0; i < 13; i++) {
+          S.parts.push({ x: r.lx - 23 + i % 5 * 4, y: r.surface.base - 5 - i % 7 * 4,
+            vx: 86 + i * 5, vy: -13 - i % 4 * 4, t: 0, c: i % 3 ? 'w' : 'W' });
+        }
+        SFX.windGust();
+      }
       const r = S.results[YARD_CRANE_STOP - 1];
       if (r?.landedAt != null && r.surface?.type === 'yard' && r.points && r.poppedAt === undefined &&
           S.time - r.landedAt >= CRANE_POP_DELAY) {
@@ -2125,6 +2145,18 @@
       const side = lot.style ? 1 : -1;
       drawChristmasTree(Math.round(sx) + side * 33, LAWN_Y + (lot.style ? 18 : 9), lot.n || 0);
     }
+    if (lot.yardCat) {
+      const result = S.results[lot.n - 1];
+      const age = result?.catSquash && result.landedAt != null ? S.time - result.landedAt : -1;
+      if (age >= 0 && age < 0.65) {
+        R('#bf6b3a', sx - 10, YARD_FOOT - 2, 22, 3);
+        R('#e99650', sx + 8, YARD_FOOT - 3, 5, 3);
+        R('K', sx + 11, YARD_FOOT - 2, 1, 1);
+      } else {
+        const retreat = Math.max(0, age - 0.65);
+        if (retreat < 0.9) drawCat(sx - 6 + retreat * 44, YARD_FOOT, Math.floor(retreat * 12) % 2);
+      }
+    }
     if (!building.residence) drawHedge(lot.style ? lx + lot.w : lx - HEDGE);
     if (card && lot.hedgeScreen) drawHedgeScreen(lot, cam);
     if (!card && lot.n > 0 && lot.order) drawLobBonuses(lot, sx);
@@ -2180,8 +2212,8 @@
     if (landed && r.tippedAt !== undefined) {
       const fall = Math.min(1, (S.time - r.tippedAt) / 0.26);
       ctx.save();
-      ctx.translate(Math.round(r.lx - cam), surface.base);
-      ctx.rotate(-Math.PI / 2 * fall);
+      ctx.translate(Math.round(r.lx - cam + (lot.gustYard ? 10 * fall : 0)), surface.base);
+      ctx.rotate((lot.gustYard ? 1 : -1) * Math.PI / 2 * fall);
       ctx.drawImage(spr, -Math.floor(spr.width / 2), -spr.height);
       ctx.restore();
       return;
@@ -2349,6 +2381,7 @@
       ctx.scale(animal.direction, 1);
       ctx.rotate(fall * Math.PI / 2);
       if (animal.kind === 'dog') drawLeashedDog(-12, 0, 0, animal.variant, false);
+      else if (animal.kind === 'cat') drawCat(-6, 0, 0);
       else drawCrane(-5, 0, 0);
       ctx.restore();
     }
@@ -2442,6 +2475,19 @@
     ctx.restore();
   }
 
+  function drawCat(x, y, step) {
+    R('#bf6b3a', x + 2, y - 5, 8, 5);
+    R('#e99650', x + 7, y - 7, 5, 5);
+    R('#e99650', x + 7, y - 8, 1, 2);
+    R('#e99650', x + 10, y - 8, 1, 2);
+    R('K', x + 10, y - 6, 1, 1);
+    R('#e99650', x, y - 7 - step, 1, 5);
+    R('#e99650', x + 1, y - 4, 2, 1);
+    R('#a95035', x + 4, y - 5, 1, 4);
+    R('#bf6b3a', x + 3 + step, y, 1, 2);
+    R('#bf6b3a', x + 8 - step, y, 1, 2);
+  }
+
   function drawStreetHazards(cam) {
     eachStreetHazard(S.dist, (left, kind, direction, variant, pace, hazard) => {
       const worldX = Math.round(left - cam);
@@ -2453,16 +2499,7 @@
       if (kind === 'turkey') {
         drawTurkey(x, y, step);
       } else if (kind === 'cat') {
-        R('#bf6b3a', x + 2, y - 5, 8, 5);
-        R('#e99650', x + 7, y - 7, 5, 5);
-        R('#e99650', x + 7, y - 8, 1, 2);
-        R('#e99650', x + 10, y - 8, 1, 2);
-        R('K', x + 10, y - 6, 1, 1);
-        R('#e99650', x, y - 7 - step, 1, 5);
-        R('#e99650', x + 1, y - 4, 2, 1);
-        R('#a95035', x + 4, y - 5, 1, 4);
-        R('#bf6b3a', x + 3 + step, y, 1, 2);
-        R('#bf6b3a', x + 8 - step, y, 1, 2);
+        if (!S.fallenAnimals.has(hazard)) drawCat(x, y, step);
       } else if (kind === 'crane') {
         if (!S.fallenAnimals.has(hazard)) drawCrane(x, y, step);
       } else {
@@ -2813,7 +2850,7 @@
     for (const r of S.leadInResults) if (r.landedAt !== null) drawInflatable(r, cam);
     for (const lot of LOTS) if (lot.hedgeScreen) drawHedgeScreen(lot, cam);
     if (!prototype && (state === 'playing' || state === 'paused')) drawMarker(cam);
-    const aimedRoof = state === 'playing' && els.deliver.classList.contains('is-charged')
+    const aimedRoof = state === 'playing'
       ? movingBonusTarget(S.dist)?.vehicle.index : undefined;
     eachRoofVehicle(S.dist, (left, direction, bus) => {
       const x = Math.round(left - cam);
@@ -2826,7 +2863,8 @@
           R('K', center - 4, y - 7, 8, 2);
           R('W', center - 3, y - 7, 5, 1);
           for (let checker = 3; checker < length - 3; checker += 3) R('K', x + checker, y + 4 + checker % 2, 2, 1);
-        } else drawMovingRoofBonus(center, carLaneY(direction) - 5, bus);
+        } else drawMovingRoofBonus(center, carLaneY(direction) - 5, bus,
+          activeBlock === 1 && bus.index === aimedRoof);
         return;
       }
       const articulated = kind === 'brt';
@@ -3110,6 +3148,7 @@
     renderFinalBoard();
     $('sg-final-actions').hidden = false;
     $('sg-speed-run').hidden = false;
+    $('sg-replay-blocks').hidden = false;
     $('sg-end-title').focus({ preventScroll: true });
   }
   $('sg-skip-score').addEventListener('click', () => {
@@ -3163,6 +3202,8 @@
       $('sg-score-form').hidden = false;
       $('sg-final-board').hidden = true;
       $('sg-final-actions').hidden = true;
+      $('sg-replay-blocks').hidden = true;
+      $('sg-replay-blocks').open = false;
       $('sg-initials').value = '';
       $('sg-score-feedback').textContent = '';
       unlockReplays();
@@ -3348,8 +3389,12 @@
     if (scoreApi) loadSharedStats();
   }
   requestAnimationFrame(frame);
-  startTitleMusic();
-  updateTitleAudioHint();
+  if (speedRun) {
+    startGame();
+  } else {
+    startTitleMusic();
+    updateTitleAudioHint();
+  }
 
   // ---------- Local test hook (only with ?test in the URL) ----------
   if (local && new URLSearchParams(location.search).has('test')) {
