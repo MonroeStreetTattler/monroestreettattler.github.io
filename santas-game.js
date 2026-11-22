@@ -356,14 +356,16 @@
     ];
     const stops = marketRoute ? [
       ...marketShops, CORRIDOR[1], CORRIDOR[2],
-      { name: 'Creando', sign: ['CREANDO', ''], shop: 'creando', brick: '#8c6855', trim: '#4b3e55', windowPattern: '101000111110', door: true, displayWindow: true },
+      { name: 'Crayando', sign: ['CRAYANDO', ''], shop: 'creando', brick: '#8c6855', trim: '#4b3e55', windowPattern: '101000111110', door: true, displayWindow: true },
       { name: 'Wingrow School west lawn', center: wingrow.center - 26, w: 46, schoolLawn: true },
       { name: 'Wingrow School east lawn', center: wingrow.center + 26, w: 46, schoolLawn: true },
       { ...CORRIDOR[0], center: 674 },
       { name: 'Orange Tree Imports', sign: ['ORANGE TREE', 'IMPORTS'], center: 757, w: 58,
         shop: 'orangeTree', brick: '#a46a3d', trim: '#634730', windowPattern: '010011100101' },
       ...STOPS.slice(1, 4).map((stop, i) => ({ ...stop, center: 837 + i * 80 })),
-      ...marketApartments[0], { ...STOPS[5], center: 1170, plainBungalow: true },
+      ...marketApartments[0],
+      { name: 'Destination Tricycle', sign: ['DESTINATION', 'TRICYCLE'], center: 1170, w: 58,
+        shop: 'tricycle', brick: '#647654', trim: '#344638', windowPattern: '101100011010' },
       ...marketApartments[1], ...marketApartments[2],
       { name: 'Corner condos roof', center: 1418, w: 45, apartmentRoof: true, roofBase: 36, lobPoints: 200, cameo: 'kaiju' },
       { ...STOPS[0], center: 1492, w: 58 },
@@ -406,6 +408,10 @@
       let center = LOTS.at(-1).center;
       let nextBusiness = 0;
       const laterBusinesses = contentBlock === 2 ? [STOPS[4], STOPS[5]]
+        : marketRoute ? [
+          { name: 'Zip, Dang It!', sign: ['ZIP,', 'DANG IT!'], shop: 'zip', brick: '#7c5368', trim: '#503648', windowPattern: '110010010110' },
+          { name: 'Taste of Vindaloo', sign: ['TASTE OF', 'VINDALOO'], shop: 'vindaloo', brick: '#9a6b42', trim: '#623e28', windowPattern: '011000110001' },
+        ]
         : contentBlock === 4 ? [LAUREL_TAVERN] : [];
       for (let i = 0; i < count; i++) {
         const style = i % 2;

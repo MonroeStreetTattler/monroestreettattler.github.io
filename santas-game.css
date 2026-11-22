@@ -377,8 +377,9 @@ html.sg-playing, html.sg-playing body { overflow: hidden; overscroll-behavior: n
 .sg-score-list { margin: 5px 0 0; padding: 0 0 0 23px; text-align: left; }
 .sg-score-list li { padding: 2px 0; }
 .sg-score-list.sg-no-scores li { list-style: none; }
-.sg-home-board .sg-score-list { display: flex; gap: 18px; padding-left: 12px; flex-wrap: wrap; }
-.sg-home-board .sg-score-list.sg-no-scores li { margin-left: -12px; }
+.sg-home-board .sg-score-list:not(.sg-no-scores) li:first-child { color: var(--sg-gold); }
+.sg-home-board .sg-score-list li + li { border-top: 1px solid #ffffff24; }
+.sg-home-board .sg-score-list.sg-no-scores { padding-left: 0; }
 .sg-launch:has(.sg-home-board:not([hidden])) { gap: 9px; }
 .sg-score-form { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; align-items: center; }
 .sg-score-form[hidden], #sg-replay-blocks[hidden] { display: none; }
