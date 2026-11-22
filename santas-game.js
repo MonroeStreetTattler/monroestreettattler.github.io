@@ -594,12 +594,12 @@
     live: $('sg-live'),
   };
 
-  // ---------- Audio (WebAudio chiptune; starts only after Play) ----------
+  // ---------- Audio (WebAudio chiptune) ----------
   const AU = { ctx: null, master: null, music: null, sfx: null, muted: false, next: 0, step: 0, timer: null };
   try { AU.muted = localStorage.getItem('santas-game-muted') === '1'; } catch (e) { /* storage unavailable */ }
   const hz = (m) => 440 * Math.pow(2, (m - 69) / 12);
   function audioInit() {
-    if (AU.ctx) { if (AU.ctx.state === 'suspended') AU.ctx.resume(); return; }
+    if (AU.ctx) return;
     const AC = window.AudioContext || window.webkitAudioContext;
     if (!AC) return;
     AU.ctx = new AC();
@@ -609,6 +609,16 @@
     AU.sfx = AU.ctx.createGain(); AU.sfx.gain.value = 0.32; AU.sfx.connect(AU.master);
     const len = AU.ctx.sampleRate * 0.4; AU.noise = AU.ctx.createBuffer(1, len, AU.ctx.sampleRate);
     const d = AU.noise.getChannelData(0); for (let i = 0; i < len; i++) d[i] = Math.random() * 2 - 1;
+  }
+  function unlockAudio() {
+    if (AU.muted) return;
+    if (navigator.audioSession && navigator.audioSession.type !== 'playback') {
+      try { navigator.audioSession.type = 'playback'; } catch { /* keep the browser default */ }
+    }
+    audioInit();
+    if (AU.ctx && AU.ctx.state !== 'running' && AU.ctx.state !== 'closed') {
+      AU.ctx.resume().catch(updateTitleAudioHint);
+    }
   }
   function tone(type, freq, t, dur, vol, dest, slide) {
     if (!AU.ctx) return;
@@ -845,6 +855,7 @@
   };
   function setMuted(m) {
     AU.muted = m;
+    if (!m) unlockAudio();
     if (AU.master) AU.master.gain.setTargetAtTime(m ? 0 : 0.9, AU.ctx.currentTime, 0.02);
     els.mute.setAttribute('aria-pressed', String(m));
     els.mute.textContent = m ? 'Sound off' : 'Sound on';
@@ -2965,7 +2976,7 @@
   function showSharedStats(stats) {
     sharedStats = stats;
     refreshHomeBoard();
-    if (state === 'over') renderScoreboard(els.end.querySelector('.sg-score-list'), 10);
+    if (state === 'over') renderScoreboard(els.end.querySelector('.sg-score-list'), 3);
   }
   async function loadSharedStats() {
     try {
@@ -3073,7 +3084,7 @@
     }
     scoreSaved = true;
     $('sg-score-form').hidden = true;
-    renderScoreboard(els.end.querySelector('.sg-score-list'), 10);
+    renderScoreboard(els.end.querySelector('.sg-score-list'), 3);
     refreshHomeBoard();
     unlockReplays();
   });
@@ -3146,7 +3157,7 @@
       $('sg-initials').value = '';
       $('sg-score-feedback').textContent = '';
       unlockReplays();
-      renderScoreboard(els.end.querySelector('.sg-score-list'), 10);
+      renderScoreboard(els.end.querySelector('.sg-score-list'), 3);
     }
     if (trial) {
       const key = 'santas-trial-best-' + trial;
@@ -3269,7 +3280,7 @@
   });
   els.resume.addEventListener('click', resumeGame);
   els.pause.addEventListener('click', () => (state === 'paused' ? resumeGame() : pauseGame()));
-  els.mute.addEventListener('click', () => { audioInit(); setMuted(!AU.muted); });
+  els.mute.addEventListener('click', () => setMuted(!AU.muted));
   function updateTitleAudioHint() {
     const hint = $('sg-title-audio-hint');
     hint.hidden = state !== 'title' || !AU.ctx || (!AU.muted && AU.ctx.state === 'running');
@@ -3280,9 +3291,15 @@
     audioInit();
     musicStart();
   }
-  document.addEventListener('pointerup', startTitleMusic);
-  document.addEventListener('click', startTitleMusic);
-  document.addEventListener('keydown', startTitleMusic);
+  function handleAudioGesture(event) {
+    if (!event.isTrusted) return;
+    unlockAudio();
+    startTitleMusic();
+  }
+  document.addEventListener('touchend', handleAudioGesture, { capture: true, passive: true });
+  document.addEventListener('pointerup', handleAudioGesture, true);
+  document.addEventListener('click', handleAudioGesture, true);
+  document.addEventListener('keydown', handleAudioGesture, true);
   els.share.addEventListener('click', share);
   els.copy.addEventListener('click', copyShare);
 

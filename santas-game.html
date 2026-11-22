@@ -10,20 +10,20 @@
 <meta property="og:site_name" content="The Monroe Street Tattler">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://monroestreettattler.com/santas-game.html">
-<meta property="og:title" content="Santas on Monroe Street: The Game">
+<meta property="og:title" content="Santas on More Street - The Game!">
 <meta property="og:description" content="Toss inflatable Santas into snowy yards and lob for trick-shot bonuses across five Monroe Street blocks.">
-<meta property="og:image" content="https://monroestreettattler.com/assets/santas-game/santas-game-share.png">
+<meta property="og:image" content="https://monroestreettattler.com/assets/santas-game/santas-game-share.png?v=title-screen">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="The words Santas on Monroe Street beside a pixel-art night scene of snowy bungalows, an inflatable Santa on a lawn and a sleigh on the street. MonroeStreetTattler.com">
+<meta property="og:image:alt" content="Santas on More Street - The Game! The game’s pixel-art title screen shows inflatable Santas on snowy lawns and Santa’s sleigh against a full moon.">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Santas on Monroe Street: The Game">
+<meta name="twitter:title" content="Santas on More Street - The Game!">
 <meta name="twitter:description" content="Toss inflatable Santas into snowy yards and lob for trick-shot bonuses across five Monroe Street blocks.">
-<meta name="twitter:image" content="https://monroestreettattler.com/assets/santas-game/santas-game-share.png">
-<meta name="twitter:image:alt" content="The words Santas on Monroe Street beside a pixel-art night scene of snowy bungalows, an inflatable Santa on a lawn and a sleigh on the street. MonroeStreetTattler.com">
+<meta name="twitter:image" content="https://monroestreettattler.com/assets/santas-game/santas-game-share.png?v=title-screen">
+<meta name="twitter:image:alt" content="Santas on More Street - The Game! The game’s pixel-art title screen shows inflatable Santas on snowy lawns and Santa’s sleigh against a full moon.">
 <meta name="theme-color" content="#0f1733">
 <link rel="icon" type="image/x-icon" href="favicon.ico">
-<link rel="stylesheet" href="santas-game.css?v=finish-line-speed-run">
+<link rel="stylesheet" href="santas-game.css?v=title-screen-review">
 <!-- Cloudflare Web Analytics -->
 <script
   type="module"
@@ -110,23 +110,25 @@
       <div class="sg-finale-garland" aria-hidden="true"></div>
       <div class="sg-finale-trees" aria-hidden="true"><i></i><i></i></div>
       <h2 class="sg-ov-title" id="sg-end-title" tabindex="-1">Route complete</h2>
-      <table class="sg-finale-tally" id="sg-finale-tally" aria-label="Scores by block" hidden>
-        <thead><tr><th scope="col">Block</th><th scope="col">Earned</th><th scope="col">Litter</th><th scope="col">Total</th></tr></thead>
-        <tbody id="sg-finale-rows"></tbody>
-      </table>
-      <dl class="sg-stats">
-        <div class="sg-stat sg-stat-big"><dt>Total score</dt><dd id="sg-final-score">0</dd></div>
-        <div class="sg-stat"><dt>Perfect landings</dt><dd id="sg-final-perfect">0</dd></div>
-        <div class="sg-stat"><dt>Longest streak</dt><dd id="sg-final-streak">0</dd></div>
-        <div class="sg-stat"><dt>Santas delivered</dt><dd id="sg-final-delivered">0</dd></div>
-      </dl>
-      <p id="sg-final-litter" class="sg-score-feedback" hidden></p>
       <form id="sg-score-form" class="sg-score-form" hidden>
-        <label for="sg-initials">Your initials</label>
-        <input id="sg-initials" maxlength="3" size="3" autocapitalize="characters" autocomplete="off" required>
+        <label for="sg-initials">Enter your initials</label>
+        <input id="sg-initials" maxlength="3" size="3" placeholder="ABC" autocapitalize="characters" autocomplete="off" required>
         <button type="submit" class="sg-btn sg-btn-small">Save score</button>
         <button type="button" id="sg-skip-score" class="sg-btn sg-btn-small">Skip</button>
       </form>
+      <div class="sg-finale-results">
+        <table class="sg-finale-tally" id="sg-finale-tally" aria-label="Scores by block" hidden>
+          <thead><tr><th scope="col">Block</th><th scope="col">Earned</th><th scope="col">Litter</th><th scope="col">Total</th></tr></thead>
+          <tbody id="sg-finale-rows"></tbody>
+        </table>
+        <dl class="sg-stats">
+          <div class="sg-stat sg-stat-big"><dt>Total score</dt><dd id="sg-final-score">0</dd></div>
+          <div class="sg-stat"><dt>Perfect landings</dt><dd id="sg-final-perfect">0</dd></div>
+          <div class="sg-stat"><dt>Longest streak</dt><dd id="sg-final-streak">0</dd></div>
+          <div class="sg-stat"><dt>Santas delivered</dt><dd id="sg-final-delivered">0</dd></div>
+        </dl>
+      </div>
+      <p id="sg-final-litter" class="sg-score-feedback" hidden></p>
       <p id="sg-trial-record" class="sg-score-feedback"></p>
       <p id="sg-score-feedback" class="sg-score-feedback" role="status"></p>
       <div class="sg-actions">
@@ -140,8 +142,10 @@
         <a href="?practice=1">1</a><a href="?practice=2">2</a><a href="?practice=3">3</a>
         <a href="?practice=4">4</a><a href="?practice=5">5</a>
       </div>
-      <a class="sg-speed-link" id="sg-speed-run" href="?speed" hidden>Speed Run</a>
-      <a id="sg-exit" href="santas-game.html" hidden>Exit to title</a>
+      <div class="sg-finale-links">
+        <a class="sg-speed-link" id="sg-speed-run" href="?speed" hidden>Speed Run</a>
+        <a id="sg-exit" href="santas-game.html" hidden>Exit to title</a>
+      </div>
       <section id="sg-final-board" aria-label="High scores" hidden>
         <strong>High scores</strong>
         <ol class="sg-score-list"></ol>
@@ -156,6 +160,6 @@
     <p id="sg-live" class="sg-hidden" aria-live="polite"></p>
   </main>
 </div>
-<script src="santas-game.js?v=beta-title-audio-cue"></script>
+<script src="santas-game.js?v=title-screen-review"></script>
 </body>
 </html>
