@@ -603,6 +603,7 @@
     const AC = window.AudioContext || window.webkitAudioContext;
     if (!AC) return;
     AU.ctx = new AC();
+    AU.ctx.addEventListener('statechange', updateTitleAudioHint);
     AU.master = AU.ctx.createGain(); AU.master.gain.value = AU.muted ? 0 : 0.9; AU.master.connect(AU.ctx.destination);
     AU.music = AU.ctx.createGain(); AU.music.gain.value = 0.29; AU.music.connect(AU.master);
     AU.sfx = AU.ctx.createGain(); AU.sfx.gain.value = 0.32; AU.sfx.connect(AU.master);
@@ -3269,6 +3270,11 @@
   els.resume.addEventListener('click', resumeGame);
   els.pause.addEventListener('click', () => (state === 'paused' ? resumeGame() : pauseGame()));
   els.mute.addEventListener('click', () => { audioInit(); setMuted(!AU.muted); });
+  function updateTitleAudioHint() {
+    const hint = $('sg-title-audio-hint');
+    hint.hidden = state !== 'title' || !AU.ctx || (!AU.muted && AU.ctx.state === 'running');
+    hint.textContent = AU.muted ? 'Sound is off. You can turn it on during play.' : 'Tap the artwork for music.';
+  }
   function startTitleMusic() {
     if (state !== 'title' || AU.muted || (AU.ctx?.state === 'running' && AU.timer)) return;
     audioInit();
@@ -3327,6 +3333,7 @@
   }
   requestAnimationFrame(frame);
   startTitleMusic();
+  updateTitleAudioHint();
 
   // ---------- Local test hook (only with ?test in the URL) ----------
   if (local && new URLSearchParams(location.search).has('test')) {
