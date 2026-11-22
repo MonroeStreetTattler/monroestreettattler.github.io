@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Santas on Monroe Street: The Game | The Monroe Street Tattler</title>
+<meta name="description" content="Toss inflatable Santas into snowy yards and lob for trick-shot bonuses across five Monroe Street blocks. A pixel-art game from The Monroe Street Tattler.">
+<link rel="canonical" href="https://monroestreettattler.com/santas-game.html">
+<meta property="og:site_name" content="The Monroe Street Tattler">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://monroestreettattler.com/santas-game.html">
+<meta property="og:title" content="Santas on Monroe Street: The Game">
+<meta property="og:description" content="Toss inflatable Santas into snowy yards and lob for trick-shot bonuses across five Monroe Street blocks.">
+<meta property="og:image" content="https://monroestreettattler.com/assets/santas-game/santas-game-share.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="The words Santas on Monroe Street beside a pixel-art night scene of snowy bungalows, an inflatable Santa on a lawn and a sleigh on the street. MonroeStreetTattler.com">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Santas on Monroe Street: The Game">
+<meta name="twitter:description" content="Toss inflatable Santas into snowy yards and lob for trick-shot bonuses across five Monroe Street blocks.">
+<meta name="twitter:image" content="https://monroestreettattler.com/assets/santas-game/santas-game-share.png">
+<meta name="twitter:image:alt" content="The words Santas on Monroe Street beside a pixel-art night scene of snowy bungalows, an inflatable Santa on a lawn and a sleigh on the street. MonroeStreetTattler.com">
+<meta name="theme-color" content="#0f1733">
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+<link rel="stylesheet" href="santas-game.css?v=finish-line-speed-run">
+<!-- Cloudflare Web Analytics -->
+<script
+  type="module"
+  src="https://static.cloudflareinsights.com/beacon.min.js"
+  data-cf-beacon='{"token": "b4b7990d0c27478ea9b605f098b4ad3c"}'>
+</script>
+<!-- End Cloudflare Web Analytics -->
+</head>
+<body class="sg-page">
+<div class="sg-shell">
+  <header class="sg-bar">
+    <a class="sg-home" href="/">The Monroe Street Tattler</a>
+    <nav class="sg-nav" aria-label="Tattler">
+      <a href="november-2026.html">Latest Issue</a>
+      <a href="issues.html">Past Issues</a>
+    </nav>
+  </header>
+
+  <nav class="sg-preview-levels" id="sg-preview-levels" aria-label="Preview level selection" hidden>
+    <span>Preview</span>
+    <a href="santas-game.html" id="sg-preview-full">Full game</a>
+    <a href="?practice=1" id="sg-preview-1" aria-label="Block 1">1</a>
+    <a href="?practice=2" id="sg-preview-2" aria-label="Block 2">2</a>
+    <a href="?practice=3" id="sg-preview-3" aria-label="Block 3">3</a>
+    <a href="?practice=4" id="sg-preview-4" aria-label="Block 4">4</a>
+    <a href="?practice=5" id="sg-preview-5" aria-label="Block 5">5</a>
+  </nav>
+
+  <h1 class="sg-hidden">Santas on Monroe Street</h1>
+
+  <main class="sg-main">
+    <div class="sg-tools">
+      <button id="sg-pause" class="sg-tool" type="button">Pause</button>
+      <button id="sg-mute" class="sg-tool" type="button" aria-pressed="false">Sound on</button>
+    </div>
+
+    <div class="sg-stage">
+      <canvas id="sg-canvas" width="198" height="150" role="img" aria-label="Santas on Monroe Street game screen"></canvas>
+    </div>
+
+    <button id="sg-deliver" class="sg-deliver" type="button" aria-label="Press to throw" aria-keyshortcuts="Space">
+      <span class="sg-press-face">Press</span>
+    </button>
+
+    <div class="sg-overlay sg-launch" id="sg-launch">
+      <p class="sg-ov-title" id="sg-launch-title">Santas on Monroe Street</p>
+      <p class="sg-instructions" id="sg-instructions">Help deliver this year's inflatable Santas.</p>
+      <button id="sg-play" class="sg-btn sg-btn-primary" type="button">Play</button>
+      <section class="sg-home-board" id="sg-home-board" aria-label="High scores" hidden>
+        <div class="sg-board-header"><strong>High scores</strong><span id="sg-play-count">0 plays</span></div>
+        <ol class="sg-score-list"></ol>
+      </section>
+      <a class="sg-speed-link" id="sg-title-speed-run" href="?speed" hidden>Speed Run</a>
+      <details id="sg-title-replays" class="sg-title-replays" hidden>
+        <summary>Replay a block</summary>
+        <div><a href="?practice=1">1</a><a href="?practice=2">2</a><a href="?practice=3">3</a>
+          <a href="?practice=4">4</a><a href="?practice=5">5</a></div>
+      </details>
+    </div>
+
+    <div class="sg-overlay sg-ready" id="sg-ready" role="status" hidden>
+      <p class="sg-ready-title">Get ready!</p>
+      <p class="sg-ready-load" id="sg-ready-load"></p>
+    </div>
+
+    <div class="sg-overlay" id="sg-paused" hidden>
+      <p class="sg-ov-title">Paused</p>
+      <button id="sg-resume" class="sg-btn sg-btn-primary" type="button">Resume</button>
+      <a class="sg-exit-link" href="santas-game.html">Exit to title</a>
+    </div>
+
+    <div class="sg-overlay sg-block-summary" id="sg-block-summary" hidden>
+      <p class="sg-ov-title" id="sg-block-summary-title"></p>
+      <dl class="sg-tally">
+        <div><dt>Delivery points</dt><dd id="sg-block-earned"></dd></div>
+        <div><dt id="sg-block-litter-label">Littering fine</dt><dd id="sg-block-fine"></dd></div>
+        <div><dt>Run total</dt><dd id="sg-block-total"></dd></div>
+      </dl>
+      <button id="sg-next-block" class="sg-btn sg-btn-primary" type="button">Next block</button>
+    </div>
+
+    <div class="sg-overlay sg-end" id="sg-end" hidden>
+      <div class="sg-finale-garland" aria-hidden="true"></div>
+      <div class="sg-finale-trees" aria-hidden="true"><i></i><i></i></div>
+      <h2 class="sg-ov-title" id="sg-end-title" tabindex="-1">Route complete</h2>
+      <table class="sg-finale-tally" id="sg-finale-tally" aria-label="Scores by block" hidden>
+        <thead><tr><th scope="col">Block</th><th scope="col">Earned</th><th scope="col">Litter</th><th scope="col">Total</th></tr></thead>
+        <tbody id="sg-finale-rows"></tbody>
+      </table>
+      <dl class="sg-stats">
+        <div class="sg-stat sg-stat-big"><dt>Total score</dt><dd id="sg-final-score">0</dd></div>
+        <div class="sg-stat"><dt>Perfect landings</dt><dd id="sg-final-perfect">0</dd></div>
+        <div class="sg-stat"><dt>Longest streak</dt><dd id="sg-final-streak">0</dd></div>
+        <div class="sg-stat"><dt>Santas delivered</dt><dd id="sg-final-delivered">0</dd></div>
+      </dl>
+      <p id="sg-final-litter" class="sg-score-feedback" hidden></p>
+      <form id="sg-score-form" class="sg-score-form" hidden>
+        <label for="sg-initials">Your initials</label>
+        <input id="sg-initials" maxlength="3" size="3" autocapitalize="characters" autocomplete="off" required>
+        <button type="submit" class="sg-btn sg-btn-small">Save score</button>
+        <button type="button" id="sg-skip-score" class="sg-btn sg-btn-small">Skip</button>
+      </form>
+      <p id="sg-trial-record" class="sg-score-feedback"></p>
+      <p id="sg-score-feedback" class="sg-score-feedback" role="status"></p>
+      <div class="sg-actions">
+        <button id="sg-again" class="sg-btn sg-btn-primary" type="button">Play again</button>
+        <button id="sg-share" class="sg-btn" type="button">Share score</button>
+      </div>
+      <a id="sg-other-route" href="?block=3" hidden>Try Block 3</a>
+      <a id="sg-school-route" href="?block=4" hidden>Try Block 4</a>
+      <div id="sg-replay-blocks" aria-label="Replay a block" hidden>
+        <span>Replay a block</span>
+        <a href="?practice=1">1</a><a href="?practice=2">2</a><a href="?practice=3">3</a>
+        <a href="?practice=4">4</a><a href="?practice=5">5</a>
+      </div>
+      <a class="sg-speed-link" id="sg-speed-run" href="?speed" hidden>Speed Run</a>
+      <a id="sg-exit" href="santas-game.html" hidden>Exit to title</a>
+      <section id="sg-final-board" aria-label="High scores" hidden>
+        <strong>High scores</strong>
+        <ol class="sg-score-list"></ol>
+      </section>
+      <div id="sg-share-box" class="sg-share-box" hidden>
+        <p id="sg-share-note" class="sg-share-note"></p>
+        <textarea id="sg-share-text" readonly rows="3" aria-label="Share message"></textarea>
+        <button id="sg-copy" class="sg-btn sg-btn-small" type="button">Copy</button>
+      </div>
+    </div>
+
+    <p id="sg-live" class="sg-hidden" aria-live="polite"></p>
+  </main>
+</div>
+<script src="santas-game.js?v=beta-2026-11-21"></script>
+</body>
+</html>

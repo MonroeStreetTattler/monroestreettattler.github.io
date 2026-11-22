@@ -1,0 +1,15 @@
+name = "santas-game-beta"
+main = "worker.mjs"
+compatibility_date = "2026-11-21"
+account_id = "36f5a20153594c112956a8350ac30969"
+workers_dev = true
+preview_urls = false
+
+[[d1_databases]]
+binding = "DB"
+database_name = "santas-game-beta"
+database_id = "d40e3932-cb5c-4aca-bb2c-314e5d95620b"
+migrations_dir = "migrations"
+
+[observability]
+enabled = false
