@@ -2948,6 +2948,59 @@
     R('A', 0, 130, W, H - 130);
   }
 
+  function drawHolidaySkeleton(cam) {
+    const left = LOTS[5];
+    const right = LOTS[6];
+    if (!left || !right) return;
+    const x = Math.round((left.lawnEnd + right.lawnStart) / 2 - cam);
+    if (x < -15 || x > W + 15) return;
+    const y = LAWN_Y + 2;
+    const scale = 0.8;
+    const paint = (color, px, py, width, height) => R(color,
+      x + Math.round((px - x) * scale), y + Math.round((py - y) * scale),
+      Math.max(1, Math.round(width * scale)), Math.max(1, Math.round(height * scale)));
+    paint('#bdd1ee', x - 12, y, 24, 2);
+    // A dark outline keeps the bones readable against the snow.
+    paint('N', x - 8, y - 24, 6, 25);
+    paint('N', x + 2, y - 24, 6, 25);
+    for (const dx of [-7, 3]) {
+      paint('W', x + dx, y - 23, 4, 11);
+      paint('w', x + dx, y - 11, 4, 3);
+      paint('W', x + dx, y - 8, 3, 8);
+      paint('W', x + dx - 1, y - 2, 6, 2);
+    }
+    paint('w', x - 7, y - 26, 14, 5);
+    paint('N', x - 3, y - 25, 6, 2);
+    paint('w', x - 2, y - 43, 4, 19);
+    for (const dy of [-42, -38, -34, -30]) {
+      const inset = dy === -30 ? 2 : 0;
+      paint('W', x - 7 + inset, y + dy, 14 - inset * 2, 2);
+      paint('w', x - 8 + inset, y + dy + 1, 2, 2);
+      paint('w', x + 6 - inset, y + dy + 1, 2, 2);
+    }
+    paint('w', x - 10, y - 43, 20, 2);
+    paint('W', x - 12, y - 41, 3, 10);
+    paint('w', x - 14, y - 32, 3, 10);
+    paint('W', x - 15, y - 23, 4, 3);
+    paint('W', x + 9, y - 40, 3, 8);
+    paint('w', x + 11, y - 33, 3, 9);
+    paint('W', x + 12, y - 25, 4, 3);
+    // Skull and Santa hat.
+    paint('N', x - 8, y - 57, 16, 12);
+    paint('W', x - 7, y - 55, 14, 8);
+    paint('w', x - 5, y - 47, 10, 3);
+    paint('N', x - 5, y - 53, 4, 3);
+    paint('N', x + 1, y - 53, 4, 3);
+    paint('N', x - 1, y - 49, 2, 1);
+    for (const dx of [-3, 0, 3]) paint('N', x + dx, y - 46, 1, 1);
+    paint('r', x - 7, y - 61, 13, 6);
+    paint('R', x - 5, y - 64, 10, 6);
+    paint('R', x - 1, y - 66, 9, 3);
+    paint('R', x + 6, y - 64, 4, 5);
+    paint('W', x + 8, y - 61, 4, 4);
+    paint('W', x - 8, y - 58, 15, 3);
+  }
+
   function drawSnowSquall() {
     for (const [x, alpha] of [[134, 0.07], [150, 0.06], [167, 0.06], [183, 0.06]]) {
       R('rgba(201, 221, 240, ' + alpha + ')', x, 12, W - x, 129);
@@ -2993,6 +3046,7 @@
     if (schoolRoute) drawHedgewood(cam);
     for (const d of prototype ? [] : ROUTE.decor) drawLot(d, cam, false);
     for (const lot of LOTS) drawLot(lot, cam, !prototype && (state === 'playing' || state === 'paused') && lot.n - 1 === S.target);
+    if (prototype && !trial && activeBlock === 1) drawHolidaySkeleton(cam);
     if (activeBlock === 2 && !trial) {
       for (const lot of leadInStops) drawFratYard(lot, cam);
       for (const lot of LOTS) drawFratYard(lot, cam);
