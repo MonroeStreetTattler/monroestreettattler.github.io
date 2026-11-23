@@ -23,7 +23,7 @@
 <meta name="twitter:image:alt" content="Santas on More Street - The Game! The game’s pixel-art title screen shows inflatable Santas on snowy lawns and Santa’s sleigh against a full moon.">
 <meta name="theme-color" content="#0f1733">
 <link rel="icon" type="image/x-icon" href="favicon.ico">
-<link rel="stylesheet" href="santas-game.css?v=finale-two-columns">
+<link rel="stylesheet" href="santas-game.css?v=pixel-support-button">
 <!-- Cloudflare Web Analytics -->
 <script
   type="module"
@@ -99,6 +99,9 @@
         <div class="sg-board-header"><strong>High scores</strong><span id="sg-play-count">0 plays</span></div>
         <ol class="sg-score-list"></ol>
       </section>
+      <button class="sg-btn sg-btn-small sg-share-button" type="button" data-share-game><span class="sg-share-icon" aria-hidden="true"></span>Share This Game</button>
+      <p class="sg-score-feedback" role="status" id="sg-title-share-status"></p>
+      <input class="sg-share-url" aria-label="Game link" readonly hidden>
       <a class="sg-speed-link" id="sg-title-speed-run" href="?speed" hidden>Speed Run</a>
       <details id="sg-title-replays" class="sg-title-replays" hidden>
         <summary>Replay a block</summary>
@@ -166,12 +169,18 @@
           <a href="?practice=5" aria-label="Block 5">5</a>
         </div>
       </details>
+      <div class="sg-finale-support" id="sg-finale-support" hidden>
+        <button class="sg-btn sg-btn-small sg-share-button" type="button" data-share-game><span class="sg-share-icon" aria-hidden="true"></span>Share This Game</button>
+        <p class="sg-score-feedback" role="status" id="sg-finale-share-status"></p>
+        <input class="sg-share-url" aria-label="Game link" readonly hidden>
+        <a class="sg-btn sg-btn-small sg-support-button" href="https://ko-fi.com/monroestreettattler#checkoutModal" target="_blank" rel="noopener"><span class="sg-bill-icon" aria-hidden="true">$</span>Support the Tattler</a>
+      </div>
       <a id="sg-exit" href="santas-game.html" hidden>Exit to title</a>
     </div>
 
     <p id="sg-live" class="sg-hidden" aria-live="polite"></p>
   </main>
 </div>
-<script src="santas-game.js?v=natural-vehicle-shots"></script>
+<script src="santas-game.js?v=share-and-support"></script>
 </body>
 </html>

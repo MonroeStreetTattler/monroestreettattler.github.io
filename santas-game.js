@@ -3359,6 +3359,7 @@
     $('sg-final-board').hidden = false;
     renderFinalBoard();
     $('sg-final-actions').hidden = false;
+    $('sg-finale-support').hidden = false;
     $('sg-speed-run').hidden = false;
     $('sg-replay-blocks').hidden = false;
     $('sg-end-title').focus({ preventScroll: true });
@@ -3414,6 +3415,9 @@
       $('sg-score-form').hidden = false;
       $('sg-final-board').hidden = true;
       $('sg-final-actions').hidden = true;
+      $('sg-finale-support').hidden = true;
+      $('sg-finale-share-status').textContent = '';
+      $('sg-finale-support').querySelector('.sg-share-url').hidden = true;
       $('sg-replay-blocks').hidden = true;
       $('sg-replay-blocks').open = false;
       $('sg-initials').value = '';
@@ -3442,6 +3446,34 @@
       $('sg-end-title').focus({ preventScroll: true });
     }
     else els.again.focus();
+  }
+
+  for (const button of document.querySelectorAll('[data-share-game]')) {
+    button.addEventListener('click', async () => {
+      const url = document.querySelector('link[rel="canonical"]').href;
+      const container = button.closest('.sg-finale-support, .sg-launch');
+      const status = container.querySelector('[id$="share-status"]');
+      const field = container.querySelector('.sg-share-url');
+      status.textContent = '';
+      field.hidden = true;
+      if (navigator.share) {
+        try {
+          await navigator.share({ title: 'Santas on Monroe Street: The Game!', url });
+          return;
+        } catch (error) {
+          if (error.name === 'AbortError') return;
+        }
+      }
+      try {
+        await navigator.clipboard.writeText(url);
+        status.textContent = 'Game link copied.';
+      } catch {
+        field.value = url;
+        field.hidden = false;
+        field.select();
+        status.textContent = 'Copy the game link below.';
+      }
+    });
   }
 
   // ---------- Input ----------
