@@ -397,6 +397,7 @@ html.sg-playing, html.sg-playing body { overflow: hidden; overscroll-behavior: n
 .sg-finale-support > p { margin: 0; }
 .sg-finale-support a { text-decoration: none; }
 .sg-share-url:not([hidden]) { width: min(100%, 340px); padding: 6px; font: inherit; }
+.sg-quick-ready .sg-ready-title { font-size: clamp(16px, 4vw, 30px); }
 .sg-share-button, .sg-support-button { display: inline-flex; align-items: center; justify-content: center; gap: 8px; }
 .sg-bill-icon {
   display: grid;

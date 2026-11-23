@@ -3189,17 +3189,18 @@
     showLevelIntro();
   }
   function showLevelIntro() {
-    if (!prototype || trial) return;
-    const name = schoolRoute ? 'School’s Out at Hedgewood' : activeBlock === 5 ? 'Snow Squall'
-      : activeBlock === 1 ? 'Get ready!' : '';
-    if (!name) return;
+    if (!prototype || trial || (speedRun && activeBlock > 1)) return;
+    const name = schoolRoute ? 'School’s Out at Hedgewood' : activeBlock === 5 ? 'Snow Squall' : 'Get ready!';
     const ready = $('sg-ready');
     ready.classList.toggle('sg-school-ready', schoolRoute || activeBlock === 5);
     ready.classList.toggle('sg-hedgewood-banner', schoolRoute);
+    ready.classList.toggle('sg-quick-ready', activeBlock > 1);
     ready.querySelector('.sg-ready-title').textContent = name;
     $('sg-ready-load').textContent = '';
+    S.introSeconds = activeBlock === 1 ? 1.8 : 1.15;
+    const beforeFirstDelivery = LOTS[0].lawnStart - D - 12;
+    S.dist = Math.min(0, beforeFirstDelivery - speedNow() * S.introSeconds);
     ready.hidden = false;
-    S.introSeconds = schoolRoute ? 2.4 : 1.8;
   }
   function pauseGame() {
     if (state !== 'playing') return;
