@@ -395,11 +395,13 @@
     }) : ROUTE.lots;
 
     if (schoolRoute && prototype && !trial) {
-      const openingHouses = [100, 197].map((center, index) => ({
-        ...STOPS[index], center, w: 58, lawnStart: center - 29, lawnEnd: center + 29,
+      const openingApartments = [100, 197].map((center, index) => ({
+        name: index === 0 ? 'Brick apartments' : 'Corner condos',
+        residence: index === 0 ? 'apartment' : 'condo',
+        balcony: true, center, w: 58, lawnStart: center - 29, lawnEnd: center + 29,
         order: true, perfect: 10, n: index + 1,
       }));
-      LOTS = [...openingHouses, ...LOTS.map(lot => ({ ...lot, n: lot.n + openingHouses.length }))];
+      LOTS = [...openingApartments, ...LOTS.map(lot => ({ ...lot, n: lot.n + openingApartments.length }))];
     }
 
     if (fullRun || practiceBlock) {
@@ -939,7 +941,10 @@
   function speedNow() {
     if (S.craneCrossingAt !== null && S.time - S.craneCrossingAt < CRANE_CROSSING_TIME) return 0;
     if (trial) return 54;
-    if (prototype && (fullRun || practiceBlock)) return speedRun ? 115 : [35, 44, 52, 61, 70][activeBlock - 1];
+    if (prototype && (fullRun || practiceBlock)) {
+      if (speedRun) return activeBlock === 5 ? 145 : 115;
+      return [35, 44, 52, 61, 70][activeBlock - 1];
+    }
     let b = 0;
     for (let i = 0; i < ROUTE.blockStarts.length; i++) if (S.dist >= ROUTE.blockStarts[i]) b = i;
     return BLOCKS[b].speed;
@@ -1001,14 +1006,13 @@
     const travel = direction * vehicle.speed;
     const center = left + vehicle.length / 2;
     const predictedCenter = center + travel * speedNow() * ROOF_SHOT_FLIGHT;
-    const offset = center - (origin + D);
     const predictedOffset = predictedCenter - (origin + D);
     const side = Math.sign(travel - 1);
+    const reach = Math.min(vehicle.catchWidth, vehicle.kind === 'car' ? 12 : 17);
     return {
       center: predictedCenter,
-      ready: Math.min(offset, predictedOffset) <= vehicle.catchWidth &&
-        Math.max(offset, predictedOffset) >= -vehicle.catchWidth,
-      passed: Math.min(side * offset, side * predictedOffset) > vehicle.catchWidth,
+      ready: Math.abs(predictedOffset) <= reach,
+      passed: side * predictedOffset > reach,
     };
   }
 
@@ -3046,7 +3050,7 @@
     if (schoolRoute) drawHedgewood(cam);
     for (const d of prototype ? [] : ROUTE.decor) drawLot(d, cam, false);
     for (const lot of LOTS) drawLot(lot, cam, !prototype && (state === 'playing' || state === 'paused') && lot.n - 1 === S.target);
-    if (prototype && !trial && activeBlock === 1) drawHolidaySkeleton(cam);
+    if (prototype && !trial && schoolRoute) drawHolidaySkeleton(cam);
     if (activeBlock === 2 && !trial) {
       for (const lot of leadInStops) drawFratYard(lot, cam);
       for (const lot of LOTS) drawFratYard(lot, cam);
