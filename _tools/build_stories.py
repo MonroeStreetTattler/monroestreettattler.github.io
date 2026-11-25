@@ -354,6 +354,28 @@ STORY_CSS = """
 """
 
 
+# Only for manifests that ask for related stories or an Explore link (December
+# onward), so pages built from older manifests stay byte-for-byte unchanged.
+PATHS_CSS = """
+/* focused paths from the end of a story (generated) */
+.storyrelated{ border-top:3px solid var(--ink); margin:30px 0 0; padding:12px 0 0; }
+.wrap .storyrelated .lab{ font-family:'IBM Plex Mono',ui-monospace,monospace; font-size:11px;
+  letter-spacing:.1em; text-transform:uppercase; color:#6b645c; margin:0 0 4px; }
+.storyrelated a{ display:block; color:var(--ink); text-decoration:none; padding:12px 0;
+  border-bottom:1px solid var(--rule); min-height:44px; }
+.storyrelated .ttl{ display:block; font-family:Archivo,Arial,sans-serif; font-weight:900;
+  font-size:17px; line-height:1.15; text-transform:uppercase; }
+.storyrelated .dek{ display:block; font-style:italic; font-size:15px; line-height:1.35; margin-top:3px; }
+.storyrelated a:hover .ttl{ color:var(--red); }
+.storyrelated a:focus-visible,.storyexplore a:focus-visible{ outline:3px solid var(--red); outline-offset:2px; }
+.wrap p.storyexplore{ font-family:Archivo,Arial,sans-serif; font-weight:900; font-size:14px;
+  letter-spacing:.04em; text-transform:uppercase; margin:16px 0 0; }
+.storyexplore a{ display:inline-block; padding:10px 0; color:var(--ink); border-bottom:2px solid var(--red);
+  text-decoration:none; }
+.storyexplore a:hover{ color:var(--red); }
+"""
+
+
 SHARE_ICON = ('<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" '
               'stroke-width="1.7" aria-hidden="true"><path d="M12 16V3m-4 4 4-4 4 4M5 12v8h14v-8"/></svg>')
 
@@ -387,6 +409,13 @@ def load_manifest(path):
             raise BuildError(f'unit {u["id"]}: slug must be lowercase-hyphenated')
         seen_ids.add(u['id'])
         seen_slugs.add(u['slug'])
+    for u in m['units']:
+        for rid in u.get('related', []):
+            if rid not in seen_ids or rid == u['id']:
+                raise BuildError(f'unit {u["id"]}: related story "{rid}" is not another unit')
+    explore = m.get('explore')
+    if explore is not None and not (isinstance(explore, dict) and explore.get('href') and explore.get('label')):
+        raise BuildError('manifest "explore" needs "href" and "label"')
     return m
 
 
@@ -553,6 +582,25 @@ def build(root, manifest_path):
             nav += navlink(units[idx + 1], 'next', 'Next story &rarr;')
         back = f'../{issue_file}#{u["id"]}'
 
+        # optional focused paths: related stories from this issue and the Explore page
+        by_id = {v['id']: v for v in units}
+        paths_html = ''
+        if u.get('related'):
+            items = ''.join(
+                f'\n    <a href="{esc(m["path_prefix"] + by_id[r]["slug"] + ".html")}">'
+                f'<span class="ttl">{esc(by_id[r]["discovery_headline"])}</span>'
+                f'<span class="dek">{esc(by_id[r]["discovery_description"])}</span></a>'
+                for r in u['related'])
+            paths_html += (f'\n\n  <nav class="storyrelated" aria-label="Related stories">'
+                           f'\n    <p class="lab">Related stories</p>{items}\n  </nav>')
+        explore = m.get('explore')
+        if explore:
+            if not os.path.exists(os.path.join(root, explore['href'])):
+                problems.append(f'{where}: Explore link {explore["href"]} does not exist in the site')
+            paths_html += (f'\n\n  <p class="storyexplore"><a href="../{esc(explore["href"])}">'
+                           f'{esc(explore["label"])} &rarr;</a></p>')
+        paths_css = f'\n<style>{PATHS_CSS}</style>' if (m.get('explore') or any(v.get('related') for v in units)) else ''
+
         support = [c for c in payup.children
                    if matches(c, 'p.payhead') or matches(c, 'div.paybtns') or matches(c, 'p.payfine')]
         support_html = '\n  <div class="payup">' + ''.join('\n    ' + local(c) for c in support) + '\n  </div>'
@@ -586,7 +634,7 @@ def build(root, manifest_path):
 {jsonld(ld)}
 </script>
 {text[style.start:style.end]}
-<style>{STORY_CSS}</style>
+<style>{STORY_CSS}</style>{paths_css}
 <!-- Cloudflare Web Analytics -->
 {text[beacon[0].start:beacon[0].end]}
 <!-- End Cloudflare Web Analytics -->
@@ -603,7 +651,7 @@ def build(root, manifest_path):
 
   <div class="share-block"><button id="share-story" type="button" data-share-url="{esc(url)}" data-share-title="{esc(u["discovery_headline"])}" aria-label="Share this story: {esc(u["discovery_headline"])}" aria-controls="share-status" hidden>{SHARE_ICON} Share this story</button><p id="share-status" role="status"></p><div id="share-manual" hidden><input readonly aria-label="Story link"></div></div>
 
-  <p class="storyreturn"><a href="{esc(back)}">&larr; Back to this story in the complete {esc(m["issue_name"])} issue</a></p>
+  <p class="storyreturn"><a href="{esc(back)}">&larr; Back to this story in the complete {esc(m["issue_name"])} issue</a></p>{paths_html}
 
   <nav class="storynav" aria-label="More stories from the {esc(m["issue_name"])} issue">{nav}
   </nav>

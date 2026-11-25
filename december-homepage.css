@@ -1,0 +1,62 @@
+/* December 2026 homepage (DEC-RELEASE-001): the season finale's front page.
+   Loaded after november-homepage.css; only .dec-* rules plus the five-cover run. */
+.dec-head{--dh:Arial,'Helvetica Neue',Helvetica,'Liberation Sans',sans-serif;color:#14110f;padding-top:14px;padding-bottom:0}
+.dec-nav{justify-content:flex-start;padding:2px 0 14px}
+.dec-nav a{font-weight:600}
+.dec-folio{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:6px 16px;
+  font:700 clamp(10px,1.15vw,13px)/1.3 var(--dh);letter-spacing:.12em;text-transform:uppercase;
+  border-top:3px solid #14110f;border-bottom:1px solid #14110f;padding:7px 0}
+.dec-folio .mo{color:#b3241c}
+.dec-folio .hl{background:#14110f;color:#fdfcf3;padding:3px 10px;letter-spacing:.16em}
+.dec-mast{font-family:'Times New Roman',Times,serif;font-weight:700;text-transform:uppercase;text-align:center;
+  font-size:clamp(17px,5.6vw,64px);line-height:1;letter-spacing:-.01em;margin:12px 0 0;white-space:nowrap}
+.dec-tag{text-align:center;font-style:italic;font-size:clamp(12px,1.4vw,16px);margin:6px 0 0;padding-bottom:10px;
+  border-bottom:3px solid #14110f}
+.dec-edition{text-align:center;font:700 clamp(12px,2.4vw,26px)/1.2 var(--dh);color:#b3241c;letter-spacing:.2em;
+  text-transform:uppercase;margin:3px 0 0;padding:8px 0 7px;border-top:1px solid #14110f;border-bottom:3px solid #14110f}
+
+.dec-front{--dh:Arial,'Helvetica Neue',Helvetica,'Liberation Sans',sans-serif;padding-top:26px;padding-bottom:30px;color:#14110f}
+.dec-grid{display:grid;grid-template-columns:minmax(0,1.97fr) minmax(0,1fr);gap:18px;align-items:start}
+.dec-front a{text-decoration:none}
+.dec-front a:focus-visible{outline:3px solid #b3241c;outline-offset:3px}
+
+.dec-game{background:#14110f}
+.dec-gamelink{display:block;color:#fdfcf3}
+.dec-gamelink img{display:block;width:100%;height:auto;background:#0f1a45}
+.dec-gband{display:block;padding:14px 14px 16px}
+.dec-gtag{display:block;font:700 12px/1.3 var(--dh);letter-spacing:.06em;text-transform:uppercase}
+.dec-ghead{display:block;font:700 clamp(21px,2.9vw,31px)/1.08 var(--dh);text-transform:uppercase;letter-spacing:.01em;margin-top:8px}
+.dec-gdeck{display:block;font-style:italic;font-size:clamp(14px,1.4vw,16px);line-height:1.35;margin-top:14px;color:#e9e3d8}
+.dec-gamelink:hover .dec-ghead{color:#f3b4ae}
+.dec-play{display:flex;align-items:center;justify-content:center;gap:12px;min-height:52px;background:#b3241c;color:#fff;
+  font:700 clamp(16px,1.8vw,20px)/1.2 var(--dh);letter-spacing:.06em;text-transform:uppercase;padding:12px}
+.dec-play:hover{background:#8f1a14}
+
+.dec-side{display:flex;flex-direction:column;gap:16px}
+.dec-box{display:block;border:2px solid #14110f;padding:10px 12px 12px;color:#14110f;background:#fdfcf3}
+.dec-kick{display:block;font:700 13px/1.3 var(--dh);color:#b3241c;letter-spacing:.02em;text-transform:uppercase}
+.dec-bhead{display:block;font:700 clamp(19px,2vw,22px)/1.15 var(--dh);margin-top:4px}
+.dec-tracker img{display:block;width:100%;max-width:240px;height:auto;margin:10px auto 0;border:1px solid #d8d4c4}
+.dec-go{display:block;font:700 13px/1.3 var(--dh);color:#b3241c;letter-spacing:.04em;text-transform:uppercase;margin-top:10px}
+.dec-box:hover .dec-bhead{color:#b3241c}
+.dec-keyes{border-width:3px 0;padding:12px 0}
+.dec-keyes .dec-bhead{text-transform:uppercase;font-size:clamp(18px,1.9vw,21px)}
+.dec-crisis{display:block;background:#b3241c;color:#fff;padding:12px 12px 10px}
+.dec-chead{display:block;font:700 clamp(34px,3.9vw,44px)/.95 var(--dh);text-transform:uppercase;letter-spacing:-.01em}
+.dec-cdeck{display:block;font-style:italic;font-size:15px;line-height:1.4;margin-top:12px;padding-top:10px;
+  border-top:1px solid rgba(255,255,255,.6)}
+.dec-read{display:block;text-align:right;font:700 13px/1.3 var(--dh);letter-spacing:.04em;text-transform:uppercase;margin-top:6px}
+.dec-crisis:hover{background:#8f1a14}
+
+.dec-next{border-top:2px solid #14110f;margin-top:26px;padding-top:12px;display:flex;flex-direction:column;align-items:flex-start;gap:2px}
+.dec-issue{color:#b3241c;font:700 clamp(21px,2.5vw,26px)/1.3 Georgia,'Times New Roman',serif;padding:6px 0}
+.dec-wander{color:#14110f;font:700 17px/1.3 Georgia,'Times New Roman',serif;padding:8px 0}
+.dec-issue:hover,.dec-wander:hover{text-decoration:underline;text-underline-offset:4px}
+
+@media (max-width:760px){
+  .dec-grid{grid-template-columns:minmax(0,1fr);gap:16px}
+  .dec-nav{gap:6px 16px}
+}
+
+/* The Complete Run: December joins the four earlier covers on one row */
+@media (min-width:900px){ .covers{grid-template-columns:repeat(5,1fr);gap:20px} }
