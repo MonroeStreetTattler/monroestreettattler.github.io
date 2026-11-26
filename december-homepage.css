@@ -60,3 +60,6 @@
 
 /* The Complete Run: December joins the four earlier covers on one row */
 @media (min-width:900px){ .covers{grid-template-columns:repeat(5,1fr);gap:20px} }
+
+/* Keep wandering: December cards lead, ahead of the September flavor spotlight */
+.dec-wandergrid{margin-bottom:24px}

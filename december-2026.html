@@ -298,6 +298,15 @@ ol.clues b{ font-family:Arial,sans-serif; font-size:13px; }
   text-transform:uppercase; padding:18px 22px; }
 .tt-footnav a{ color:#d8d2c9; text-decoration:none; border-bottom:2px solid transparent; padding:6px 0 2px; }
 .tt-footnav a:hover{ color:#fff; border-bottom-color:#b3241c; }
+/* Reader Potpourri landing: a short contents list for the cover's "They Sent Us What?!" jump */
+.briefnav{ text-align:left; margin:4px 0 6px; }
+.briefnav-k{ font-family:var(--head); font-weight:700; font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:var(--red); margin:0 0 4px; }
+.briefnav ul{ list-style:none; margin:0; padding:0; }
+.briefnav li{ border-top:1px solid var(--rule); }
+.briefnav li:first-child{ border-top:0; }
+.briefnav a{ display:block; padding:9px 0; font-family:var(--head); font-weight:700; font-size:17px; line-height:1.25; color:var(--ink); text-decoration:none; }
+.briefnav a::after{ content:"\00a0\2192"; color:var(--red); }
+.briefnav a:hover{ color:var(--red); }
 </style>
 <script type="application/ld+json">
 {
@@ -310,7 +319,7 @@ ol.clues b{ font-family:Arial,sans-serif; font-size:13px; }
       "mainEntityOfPage": "https://monroestreettattler.com/december-2026.html",
       "inLanguage": "en-US",
       "isAccessibleForFree": true,
-      "datePublished": "2026-12-01",
+      "datePublished": "2026-11-25",
       "author": {"@type": "Organization", "name": "The Monroe Street Tattler"},
       "publisher": {
         "@type": "NewsMediaOrganization",
@@ -644,6 +653,15 @@ ol.clues b{ font-family:Arial,sans-serif; font-size:13px; }
   <div class="sectionhead">
     <h2 class="phead caps">Reader Potpourri</h2>
     <p class="pdeck">An assortment of things our readers insisted we know.</p>
+    <nav class="briefnav" aria-label="In Reader Potpourri">
+      <p class="briefnav-k">In this section</p>
+      <ul>
+        <li><a href="#salon">Neighborhood Business Defies Traffic Logic</a></li>
+        <li><a href="#leafpile">Ignorance Is Bliss</a></li>
+        <li><a href="#missedconnection">Missed Connections</a></li>
+        <li><a href="#phillysanta">Santa Takes Up Post in West Philadelphia</a></li>
+      </ul>
+    </nav>
   </div>
 
   <div class="brief" id="salon">
