@@ -11,9 +11,12 @@
    pages that are not stories (for example "Map link copied.").
    Each button reports to the status element named by its aria-controls and shows
    its link in the element named by data-share-manual (default "share-manual"), so
-   a page with two buttons gives each its own pair of IDs. */
+   a page with two buttons gives each its own pair of IDs.
+   A link can carry the same data-share-* attributes (the issue pages do this):
+   with JavaScript it shares like a button; without it, the link still goes to
+   the story page and its Share button. */
 (function () {
-  var buttons = document.querySelectorAll('button[data-share-url]');
+  var buttons = document.querySelectorAll('button[data-share-url], a[data-share-url]');
   for (var i = 0; i < buttons.length; i++) setUp(buttons[i]);
 
   function setUp(button) {
@@ -48,7 +51,8 @@
       }, showLink);
     }
 
-    button.addEventListener('click', function () {
+    button.addEventListener('click', function (event) {
+      if (button.tagName === 'A') event.preventDefault();
       say('');
       if (navigator.share) {
         // called straight from the click, while the browser still counts it as the reader's action

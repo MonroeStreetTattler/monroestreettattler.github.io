@@ -208,8 +208,6 @@ a.playstrip:hover{ background:#8f1a14; }
   .crail a.ai{ padding:12px 0; }
 }
 
-.continue{ display:flex; align-items:center; gap:10px; font-family:var(--head); font-weight:700;
-  font-size:15px; letter-spacing:.06em; text-transform:uppercase; color:var(--red); margin:26px 0 0; }
 
 /* ---------------- the printed pages, on screen ---------------- */
 .story{ margin:0 0 44px; scroll-margin-top:12px; }
@@ -367,6 +365,33 @@ ol.clues b{ font-family:Arial,sans-serif; font-size:13px; }
 .briefnav a{ display:block; padding:9px 0; font-family:var(--head); font-weight:700; font-size:17px; line-height:1.25; color:var(--ink); text-decoration:none; }
 .briefnav a::after{ content:"\00a0\2192"; color:var(--red); }
 .briefnav a:hover{ color:var(--red); }
+/* DEC-READING-002: Play Now button and share controls (story-share.js) */
+.story p.playcta{ display:flex; align-items:center; gap:12px; margin:18px 0 6px; }
+.story p.playcta a.playnow{ flex:1; display:flex; align-items:center; justify-content:center; gap:12px; min-height:52px;
+  background:var(--red); color:#fff; border-bottom:0; padding:12px; text-decoration:none;
+  font:700 clamp(16px,1.8vw,20px)/1.2 Arial,'Helvetica Neue',Helvetica,'Liberation Sans',sans-serif;
+  letter-spacing:.06em; text-transform:uppercase; }
+.story p.playcta a.playnow:hover{ background:#8f1a14; }
+.story p.playcta a.playnow:focus-visible{ outline:3px solid var(--ink); outline-offset:3px; }
+.story p.sharetop{ font-family:'IBM Plex Mono',ui-monospace,monospace; font-size:11px; letter-spacing:.1em;
+  text-transform:uppercase; margin:-4px 0 14px; }
+.story p.sharetop a{ color:#6b645c; border-bottom:1px solid #d8d4c4; padding:12px 0 1px; display:inline-block; }
+.story p.sharetop a:hover{ color:var(--red); border-bottom-color:var(--red); }
+.sharestatus{ display:block; font-family:'IBM Plex Mono',ui-monospace,monospace; font-size:12px; letter-spacing:0;
+  text-transform:none; line-height:1.5; margin:4px 0 0; color:var(--ink); }
+.sharestatus:empty{ display:none; }
+.sharemanual{ display:block; text-transform:none; letter-spacing:0; }
+.sharemanual[hidden]{ display:none; }
+.sharemanual input{ display:block; width:100%; max-width:560px; margin-top:6px; padding:12px; border:1px solid var(--ink);
+  border-radius:0; background:#fff; color:var(--ink); font:14px 'IBM Plex Mono',ui-monospace,monospace; }
+.shareissue{ margin:10px 0 16px; }
+.shareissue-end{ border-top:1px solid var(--rule); margin:30px 0 0; padding-top:20px; }
+.shareissue button{ display:inline-flex; align-items:center; gap:9px; min-height:44px; margin:0;
+  border:1px solid var(--ink); border-radius:30px; background:transparent; color:var(--ink);
+  padding:10px 18px; font:600 14px/1.2 Archivo,Arial,sans-serif; cursor:pointer; }
+.shareissue button:hover{ background:var(--ink); color:var(--paper); }
+.shareissue button:focus-visible{ outline:3px solid var(--red); outline-offset:4px; }
+.shareissue button[hidden]{ display:none; }
 </style>
 <style>
 /* standalone story pages (generated) */
@@ -434,6 +459,17 @@ ol.clues b{ font-family:Arial,sans-serif; font-size:13px; }
   text-decoration:none; }
 .storyexplore a:hover{ color:var(--red); }
 </style>
+<style>
+/* a second Share button under the headline (generated) */
+.share-block.share-top{ border-top:0; margin:2px 0 18px; padding-top:0; }
+.wrap .share-block #share-status-top{ font-family:'IBM Plex Mono',ui-monospace,monospace; font-size:12px;
+  line-height:1.5; margin:10px 0 0; }
+.share-block #share-status-top:empty{ display:none; }
+.share-block #share-manual-top[hidden]{ display:none; }
+.share-block #share-manual-top input{ display:block; width:100%; max-width:560px; margin-top:6px; padding:12px;
+  border:1px solid var(--ink); border-radius:0; background:#fff; color:var(--ink);
+  font:14px 'IBM Plex Mono',ui-monospace,monospace; }
+</style>
 <!-- Cloudflare Web Analytics -->
 <script
   type="module"
@@ -462,6 +498,7 @@ ol.clues b{ font-family:Arial,sans-serif; font-size:13px; }
   <div class="strip"><span>The Monroe Street Tattler</span><span class="r">BadgerBOTS Team 1306</span></div>
   <h1 class="phead">BadgerBOTS are building something big</h1>
   <p class="pdeck">Inside the student-led team competing on the world stage.</p>
+  <div class="share-block share-top"><button id="share-story-top" type="button" data-share-url="https://monroestreettattler.com/stories/2026-12-badgerbots.html" data-share-title="Neighborhood Teens Caught!!… In the Act of Engineering!" aria-label="Share this story: Neighborhood Teens Caught!!… In the Act of Engineering!" aria-controls="share-status-top" data-share-manual="share-manual-top" hidden><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M12 16V3m-4 4 4-4 4 4M5 12v8h14v-8"/></svg> Share this story</button><p id="share-status-top" role="status"></p><div id="share-manual-top" hidden><input readonly aria-label="Story link"></div></div>
   <figure class="figright"><img src="../assets/december-2026/badgerbots-gimli-pit.jpg" width="1600" height="853" alt="Gimli, Team 1306’s robot, in the pit: a black box with GIMLI in white letters on a blue bumper marked 1306" loading="lazy" decoding="async"></figure>
   <p>There are teenagers in our neighborhood spending their time designing machines in CAD, cutting metal, wiring electronics, programming control systems and repairing broken mechanisms under pressure.</p>
   <p>Then they send the finished robot out to compete.</p>
