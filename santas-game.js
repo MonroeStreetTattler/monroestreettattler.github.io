@@ -344,7 +344,8 @@
   const LITTER_FINE = 60;
   const EXTRA_ROOF_STOPS = [[3, 7, 10], [14], [3, 7], [9, 13, 24], [2, 10, 23, 28, 34]];
   const BLOCK_DELIVERIES = [18, 24, 30, 36, 42];
-  const FULL_ORDERS = BLOCK_DELIVERIES.reduce((total, places) => total + places, 0);
+  const BLOCK_TWO_OPENING_HOMES = 4;
+  const FULL_ORDERS = BLOCK_DELIVERIES.reduce((total, places) => total + places, BLOCK_TWO_OPENING_HOMES);
   let LOTS, TOTAL, orders, trafficStops, streetHazards, serviceVehicles, leadInStops, sceneryStops, busStops;
   function configureRoute() {
     contentBlock = [1, 2, 4, 3, 5][activeBlock - 1];
@@ -398,7 +399,7 @@
       const openingApartments = [100, 197].map((center, index) => ({
         name: index === 0 ? 'Brick apartments' : 'Corner condos',
         residence: index === 0 ? 'apartment' : 'condo',
-        balcony: true, center, w: 58, lawnStart: center - 29, lawnEnd: center + 29,
+        balcony: true, balconyHint: true, lobPoints: 125, center, w: 58, lawnStart: center - 29, lawnEnd: center + 29,
         order: true, perfect: 10, n: index + 1,
       }));
       LOTS = [...openingApartments, ...LOTS.map(lot => ({ ...lot, n: lot.n + openingApartments.length }))];
@@ -500,12 +501,21 @@
       .map(([n, kind], i) => ({ anchor: LOTS[n - 1].center - D, kind, length: kind === 'truck' ? 39 : 33,
         direction: Math.floor(i / 2) % 2 ? -1 : 1 }));
     leadInStops = trial || contentBlock === 1 || schoolRoute ? []
-      : contentBlock === 2 ? openingLandmarks : marketRoute ? [traderSnow] : [apartment, laterHouse];
+      : contentBlock === 2 ? [openingLandmarks[2]] : marketRoute ? [traderSnow] : [apartment, laterHouse];
     sceneryStops = leadInStops;
     const movers = trial ? TRIAL_MOVERS.map(vehicle => [vehicle.stop + 1, vehicle])
       : prototype ? BLOCK_MOVERS[contentBlock - 1] : [];
     busStops = movers.filter(([stop]) => stop <= TOTAL).map(([stop, vehicle]) => ({ lot: LOTS[stop - 1], vehicle }));
-    if (contentBlock === 2 && !trial) busStops.push(...STADIUM_TRAFFIC);
+    if (contentBlock === 2 && !trial) {
+      busStops.push(...STADIUM_TRAFFIC);
+      // Keep vehicle and pedestrian placements tied to the original route.
+      const openingHomes = openingLandmarks.filter(lot => !lot.closed).map(lot => ({
+        ...lot, order: true, perfect: 10, openingHome: true,
+      }));
+      LOTS = [...openingHomes, ...LOTS].map((lot, index) => ({ ...lot, n: index + 1 }));
+      TOTAL = LOTS.length;
+      orders += openingHomes.length;
+    }
   }
   const cars = [
     { offset: -66, length: 22, color: 'R' },
@@ -556,7 +566,7 @@
     walker: [0.14, 0.23, 0.32], family: [0.10, 0.17, 0.24],
   };
   const FIRST_TURKEY_STOP = 15, TURKEY_SPRINT_TIME = 0.42;
-  const YARD_TURKEY_STOPS = [13, 15];
+  const YARD_TURKEY_STOPS = [13, 15].map(stop => stop + BLOCK_TWO_OPENING_HOMES);
   const TURKEY_TIP_DELAY = 0.61;
   const YARD_CRANE_STOP = 14, CRANE_POP_DELAY = 0.56;
   const CRANE_CROSSING_X = 2700, CRANE_CROSSING_TIME = 3.8;
@@ -1603,6 +1613,7 @@
       R('Y', x + wx + 1, 69, 8, 8);
     }
     R('N', x - 8, 68, 16, 17);
+    R('#2a583b', x - 57, 85, 114, 29);
     R('O', x - 10, 85, 20, 31);
     R('w', x - 54, 113, 106, 3);
     drawPorchLights(x - 56, 51, 112, 1);
@@ -1637,9 +1648,6 @@
       drawChristmasTree(x + 37, 106, 3);
       drawLot(laterHouse, cam, false);
       return;
-    }
-    for (const stop of openingLandmarks) {
-      if (stop.pongTable || stop.fratYard) drawLot(stop, cam, false);
     }
     const stadium = openingLandmarks[2].center - cam;
     R('#234b36', stadium - 49, 82, 98, 33);
@@ -1985,10 +1993,11 @@
     if (lot.lobPoints) {
       const r = S.results[lot.n - 1];
       const surface = deliverySurface(lot, true);
-      const roofHint = (activeBlock === 1 || activeBlock === 5) && surface.type === 'roof';
+      const label = surface.type === 'roof' ? 'ROOF +' + lot.lobPoints
+        : lot.balconyHint ? 'BALCONY +' + lot.lobPoints : undefined;
       const bounce = surface.type === 'roof' && !r?.pickup ? Math.round(Math.abs(Math.sin(S.time * 4)) * 3) : 0;
       drawBonusBox(sx + (surface.center ?? lot.center) - lot.center, surface.base - 11 - bounce, lot.lobPoints,
-        r?.pickup ? r : null, roofHint ? 'ROOF +' + lot.lobPoints : undefined);
+        r?.pickup ? r : null, label);
     }
     if (lot.pairedBalcony === 1 && !lot.lobPoints) {
       const r = S.results[lot.n];
@@ -2291,7 +2300,7 @@
     if (!building.residence) drawHedge(lot.style ? lx + lot.w : lx - HEDGE);
     if (card && lot.hedgeScreen) drawHedgeScreen(lot, cam);
     if (!card && lot.n > 0 && lot.order) drawLobBonuses(lot, sx);
-    if (!card && prototype && lot.n === 2 && sx + 49 < W + 20) {
+    if (!card && prototype && !lot.openingHome && lot.n === (activeBlock === 2 ? 2 + BLOCK_TWO_OPENING_HOMES : 2) && sx + 49 < W + 20) {
       R('b', sx + 48, 69, 3, 34);
       R('b', sx + 39, 72, 12, 2);
       R('b', sx + 40, 64, 2, 10);
@@ -3190,7 +3199,7 @@
   }
   function showLevelIntro() {
     if (!prototype || trial || (speedRun && activeBlock > 1)) return;
-    const name = schoolRoute ? 'School’s Out at Hedgewood' : activeBlock === 5 ? 'Snow Squall' : 'Get ready!';
+    const name = schoolRoute ? 'Get Ready! · School’s Out at Hedgewood' : activeBlock === 5 ? 'Get Ready! · Snow Squall' : 'Get ready!';
     const ready = $('sg-ready');
     ready.classList.toggle('sg-school-ready', schoolRoute || activeBlock === 5);
     ready.classList.toggle('sg-hedgewood-banner', schoolRoute);
@@ -3198,7 +3207,7 @@
     ready.querySelector('.sg-ready-title').textContent = name;
     $('sg-ready-load').textContent = '';
     S.introSeconds = activeBlock === 1 ? 1.8 : 1.15;
-    const beforeFirstDelivery = LOTS[0].lawnStart - D - 12;
+    const beforeFirstDelivery = LOTS[0].lawnStart - D - HEDGE - ARM - 2;
     S.dist = Math.min(0, beforeFirstDelivery - speedNow() * S.introSeconds);
     ready.hidden = false;
   }
