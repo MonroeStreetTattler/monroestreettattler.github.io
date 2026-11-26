@@ -5,6 +5,7 @@
 """
 import hashlib
 import json
+import re
 import os
 import shutil
 import struct
@@ -307,6 +308,65 @@ class PathsTests(Fixture):
             self.build()
 
 
+class ShareTopTests(Fixture):
+    """A second Share control under the headline is opt-in per manifest ("share_top")."""
+
+    def with_top_links(self, alpha_href='stories/t-alpha.html#share-story'):
+        issue = ISSUE.replace(
+            '<h3 class="phead">Alpha headline</h3>\n',
+            '<h3 class="phead">Alpha headline</h3>\n'
+            f'  <p class="sharetop"><a href="{alpha_href}" data-share-url="x">Share this story</a>'
+            '<span id="share-status-alpha-top" role="status"></span></p>\n')
+        for uid in ('gamma', 'delta'):
+            issue = issue.replace(
+                f'<div class="h">{uid.capitalize()} headline</div>\n',
+                f'<div class="h">{uid.capitalize()} headline</div>\n'
+                f'    <p class="sharetop"><a href="stories/t-{uid}.html#share-story">Share this story</a></p>\n')
+        self.write('issue.html', issue)
+        m = json.loads(json.dumps(MANIFEST))
+        m['share_top'] = True
+        self.write_manifest(m)
+
+    def test_without_share_top_pages_keep_one_button(self):
+        page = self.build()['stories/t-alpha.html']
+        self.assertNotIn('share-story-top', page)
+        self.assertNotIn('share-top', page)
+
+    def test_headline_link_becomes_a_story_share_button_in_place(self):
+        self.with_top_links()
+        for path, page in self.build().items():
+            self.assertEqual(page.count('id="share-story-top"'), 1, path)
+            self.assertEqual(page.count('id="share-story"'), 1, path)
+            self.assertNotIn('class="sharetop"', page, path)
+            self.assertNotIn('class="sharelink"', page, path)
+            ids = re.findall(r'\bid="([^"]+)"', page)
+            self.assertEqual(len(ids), len(set(ids)), path)
+        page = self.build()['stories/t-alpha.html']
+        self.assertIn('aria-controls="share-status-top" data-share-manual="share-manual-top"', page)
+        self.assertIn('data-share-url="https://example.org/stories/t-alpha.html"', page)
+        self.assertLess(page.index('<h1 class="phead">Alpha headline</h1>'), page.index('id="share-story-top"'))
+        self.assertLess(page.index('id="share-story-top"'), page.index('Alpha body'))
+        self.assertIn('.share-block.share-top', page)
+
+    def test_opt_in_needs_the_headline_link(self):
+        m = json.loads(json.dumps(MANIFEST))
+        m['share_top'] = True
+        self.write_manifest(m)
+        with self.assertRaisesRegex(bs.BuildError, 'expected one headline share link'):
+            self.build()
+
+    def test_headline_link_without_opt_in_fails(self):
+        self.with_top_links()
+        self.write_manifest(MANIFEST)
+        with self.assertRaisesRegex(bs.BuildError, 'no "share_top"'):
+            self.build()
+
+    def test_headline_link_must_match_the_story(self):
+        self.with_top_links(alpha_href='stories/t-gamma.html#share-story')
+        with self.assertRaisesRegex(bs.BuildError, 'headline share link points at'):
+            self.build()
+
+
 class CheckModeTests(Fixture):
     def test_check_reports_stale_then_clean(self):
         self.assertEqual(bs.main(['manifest.json', '--root', self.root, '--check']), 1)  # missing
@@ -376,6 +436,11 @@ class DecemberTests(unittest.TestCase):
             self.assertIn('class="storyrelated"', page, path)
             self.assertIn('href="../december-2026.html#', page, path)
             self.assertIn('<a href="../files.html">Explore stories &rarr;</a>', page, path)
+
+    def test_every_page_offers_share_under_the_headline_and_at_the_end(self):
+        for path, page in bs.build(SITE_ROOT, self.MANIFEST).items():
+            self.assertEqual(page.count('data-share-url="https://monroestreettattler.com/' + path + '"'), 2, path)
+            self.assertLess(page.index('id="share-story-top"'), page.index('id="share-story"'), path)
 
 
 if __name__ == '__main__':

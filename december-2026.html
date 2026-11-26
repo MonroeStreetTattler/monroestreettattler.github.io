@@ -148,8 +148,6 @@ a.playstrip:hover{ background:#8f1a14; }
   .crail a.ai{ padding:12px 0; }
 }
 
-.continue{ display:flex; align-items:center; gap:10px; font-family:var(--head); font-weight:700;
-  font-size:15px; letter-spacing:.06em; text-transform:uppercase; color:var(--red); margin:26px 0 0; }
 
 /* ---------------- the printed pages, on screen ---------------- */
 .story{ margin:0 0 44px; scroll-margin-top:12px; }
@@ -307,6 +305,33 @@ ol.clues b{ font-family:Arial,sans-serif; font-size:13px; }
 .briefnav a{ display:block; padding:9px 0; font-family:var(--head); font-weight:700; font-size:17px; line-height:1.25; color:var(--ink); text-decoration:none; }
 .briefnav a::after{ content:"\00a0\2192"; color:var(--red); }
 .briefnav a:hover{ color:var(--red); }
+/* DEC-READING-002: Play Now button and share controls (story-share.js) */
+.story p.playcta{ display:flex; align-items:center; gap:12px; margin:18px 0 6px; }
+.story p.playcta a.playnow{ flex:1; display:flex; align-items:center; justify-content:center; gap:12px; min-height:52px;
+  background:var(--red); color:#fff; border-bottom:0; padding:12px; text-decoration:none;
+  font:700 clamp(16px,1.8vw,20px)/1.2 Arial,'Helvetica Neue',Helvetica,'Liberation Sans',sans-serif;
+  letter-spacing:.06em; text-transform:uppercase; }
+.story p.playcta a.playnow:hover{ background:#8f1a14; }
+.story p.playcta a.playnow:focus-visible{ outline:3px solid var(--ink); outline-offset:3px; }
+.story p.sharetop{ font-family:'IBM Plex Mono',ui-monospace,monospace; font-size:11px; letter-spacing:.1em;
+  text-transform:uppercase; margin:-4px 0 14px; }
+.story p.sharetop a{ color:#6b645c; border-bottom:1px solid #d8d4c4; padding:12px 0 1px; display:inline-block; }
+.story p.sharetop a:hover{ color:var(--red); border-bottom-color:var(--red); }
+.sharestatus{ display:block; font-family:'IBM Plex Mono',ui-monospace,monospace; font-size:12px; letter-spacing:0;
+  text-transform:none; line-height:1.5; margin:4px 0 0; color:var(--ink); }
+.sharestatus:empty{ display:none; }
+.sharemanual{ display:block; text-transform:none; letter-spacing:0; }
+.sharemanual[hidden]{ display:none; }
+.sharemanual input{ display:block; width:100%; max-width:560px; margin-top:6px; padding:12px; border:1px solid var(--ink);
+  border-radius:0; background:#fff; color:var(--ink); font:14px 'IBM Plex Mono',ui-monospace,monospace; }
+.shareissue{ margin:10px 0 16px; }
+.shareissue-end{ border-top:1px solid var(--rule); margin:30px 0 0; padding-top:20px; }
+.shareissue button{ display:inline-flex; align-items:center; gap:9px; min-height:44px; margin:0;
+  border:1px solid var(--ink); border-radius:30px; background:transparent; color:var(--ink);
+  padding:10px 18px; font:600 14px/1.2 Archivo,Arial,sans-serif; cursor:pointer; }
+.shareissue button:hover{ background:var(--ink); color:var(--paper); }
+.shareissue button:focus-visible{ outline:3px solid var(--red); outline-offset:4px; }
+.shareissue button[hidden]{ display:none; }
 </style>
 <script type="application/ld+json">
 {
@@ -364,6 +389,7 @@ ol.clues b{ font-family:Arial,sans-serif; font-size:13px; }
     </span>
   </nav>
   <div class="issue-pdf"><a href="december_2026_digital.pdf">Download the December paper as a PDF ↓</a></div>
+  <div class="shareissue shareissue-top"><button type="button" id="share-issue-top" data-share-url="https://monroestreettattler.com/december-2026.html" data-share-title="Christmas in Crisis! The December Tattler" data-share-copied="Issue link copied." aria-label="Share this issue: The Monroe Street Tattler, December 2026" aria-controls="share-issue-status-top" data-share-manual="share-issue-manual-top" hidden><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M12 16V3m-4 4 4-4 4 4M5 12v8h14v-8"/></svg> Share this issue</button><p class="sharestatus" id="share-issue-status-top" role="status"></p><div class="sharemanual" id="share-issue-manual-top" hidden><input readonly aria-label="Link to the December 2026 issue"></div></div>
 
   <header class="cover">
     <div class="cfolio">
@@ -397,7 +423,7 @@ ol.clues b{ font-family:Arial,sans-serif; font-size:13px; }
               <span class="pref">Page 2</span>
             </div>
           </a>
-          <a class="playstrip" href="santas-game.html">Play Free at MonroeStreetTattler.com</a>
+          <a class="playstrip" href="santas-game.html">Play Now</a>
         </div>
       </div>
 
@@ -425,22 +451,22 @@ ol.clues b{ font-family:Arial,sans-serif; font-size:13px; }
     <p class="cfoot">MonroeStreetTattler.com</p>
   </header>
 
-  <p class="continue"><span aria-hidden="true">&darr;</span> Continue into the issue in newspaper order</p>
-
   <section class="story" id="game">
   <div class="strip"><span>The Monroe Street Tattler</span><span class="r">Santas on Monroe Street</span></div>
   <h2 class="phead">Santa delivery goes digital</h2>
   <p class="pdeck">New video game puts the neighborhood's inflatable Santa supply in your hands.</p>
+  <p class="sharetop"><a href="stories/2026-12-santas-on-monroe-street-game.html#share-story" data-share-url="https://monroestreettattler.com/stories/2026-12-santas-on-monroe-street-game.html" data-share-title="Grand Theft Auto VI Faces Unexpected Low-Budget Rival" aria-label="Share this story: Grand Theft Auto VI Faces Unexpected Low-Budget Rival" aria-controls="share-status-game-top" data-share-manual="share-manual-game-top">Share this story &rarr;</a><span class="sharestatus" id="share-status-game-top" role="status"></span><span class="sharemanual" id="share-manual-game-top" hidden><input readonly aria-label="Link to Grand Theft Auto VI Faces Unexpected Low-Budget Rival"></span></p>
   <figure class="figwide"><img src="assets/december-2026/santas-on-monroe-street-gameplay.png" width="1920" height="1025" alt="Gameplay from Santas on Monroe Street: an elf in a sleigh with a sack of Santas drives past snowy houses and the Lauren Tavern, with an inflatable Santa on a lawn, the score, block number and delivery count across the top and a red Deliver button" loading="lazy" decoding="async"><figcaption>Elf takes in the sights and serves up the joy, one Santa at a time.</figcaption></figure>
   <p>The Tattler is proud to introduce Santas on Monroe Street, a new video game for players of all skill levels. Deliver inflatable Santas around the neighborhood, navigate local happenings, and rack up points as you chase the high score.</p>
-  <p class="cta"><a href="santas-game.html">Play it today at MonroeStreetTattler.com.</a><span class="endmark r" aria-hidden="true"></span></p>
-  <p class="sharelink"><a href="stories/2026-12-santas-on-monroe-street-game.html#share-story" aria-label="Share this story: Grand Theft Auto VI Faces Unexpected Low-Budget Rival">Share this story &rarr;</a></p>
+  <p class="cta playcta"><a class="playnow" href="santas-game.html">Play Now <span aria-hidden="true">&rarr;</span></a><span class="endmark r" aria-hidden="true"></span></p>
+  <p class="sharelink"><a href="stories/2026-12-santas-on-monroe-street-game.html#share-story" data-share-url="https://monroestreettattler.com/stories/2026-12-santas-on-monroe-street-game.html" data-share-title="Grand Theft Auto VI Faces Unexpected Low-Budget Rival" aria-label="Share this story: Grand Theft Auto VI Faces Unexpected Low-Budget Rival" aria-controls="share-status-game-end" data-share-manual="share-manual-game-end">Share this story &rarr;</a><span class="sharestatus" id="share-status-game-end" role="status"></span><span class="sharemanual" id="share-manual-game-end" hidden><input readonly aria-label="Link to Grand Theft Auto VI Faces Unexpected Low-Budget Rival"></span></p>
   </section>
 
   <section class="story" id="census">
   <div class="notebox">
     <h2 class="phead">Census officially underway</h2>
     <p class="pdeck">The Tattler invites the neighborhood to take part in the official count of inflatable Santas.</p>
+    <p class="sharetop"><a href="stories/2026-12-santa-census.html#share-story" data-share-url="https://monroestreettattler.com/stories/2026-12-santa-census.html" data-share-title="Local Population Explodes; Officials Scramble" aria-label="Share this story: Local Population Explodes; Officials Scramble" aria-controls="share-status-census-top" data-share-manual="share-manual-census-top">Share this story &rarr;</a><span class="sharestatus" id="share-status-census-top" role="status"></span><span class="sharemanual" id="share-manual-census-top" hidden><input readonly aria-label="Link to Local Population Explodes; Officials Scramble"></span></p>
     <div class="splitbox">
       <figure><img src="assets/december-2026/santa-tracker-map.png" width="1774" height="887" alt="A street map of Monroe Street, Odana Road, Nakoma Road and Lake Wingra with inflatable Santa markers along Monroe Street" loading="lazy" decoding="async"></figure>
       <div>
@@ -449,7 +475,7 @@ ol.clues b{ font-family:Arial,sans-serif; font-size:13px; }
         <p class="cta"><a href="santa-map.html">Please go to MonroeStreetTattler.com and enter any inflatable Santa you spot in the Santa Tracker.</a><span class="endmark r" aria-hidden="true"></span></p>
       </div>
     </div>
-    <p class="sharelink"><a href="stories/2026-12-santa-census.html#share-story" aria-label="Share this story: Local Population Explodes; Officials Scramble">Share this story &rarr;</a></p>
+    <p class="sharelink"><a href="stories/2026-12-santa-census.html#share-story" data-share-url="https://monroestreettattler.com/stories/2026-12-santa-census.html" data-share-title="Local Population Explodes; Officials Scramble" aria-label="Share this story: Local Population Explodes; Officials Scramble" aria-controls="share-status-census-end" data-share-manual="share-manual-census-end">Share this story &rarr;</a><span class="sharestatus" id="share-status-census-end" role="status"></span><span class="sharemanual" id="share-manual-census-end" hidden><input readonly aria-label="Link to Local Population Explodes; Officials Scramble"></span></p>
   </div>
   <p class="folio">Page 2</p>
   </section>
@@ -458,6 +484,7 @@ ol.clues b{ font-family:Arial,sans-serif; font-size:13px; }
   <div class="strip"><span>The Monroe Street Tattler</span><span class="r">BadgerBOTS Team 1306</span></div>
   <h2 class="phead">BadgerBOTS are building something big</h2>
   <p class="pdeck">Inside the student-led team competing on the world stage.</p>
+  <p class="sharetop"><a href="stories/2026-12-badgerbots.html#share-story" data-share-url="https://monroestreettattler.com/stories/2026-12-badgerbots.html" data-share-title="Neighborhood Teens Caught!!… In the Act of Engineering!" aria-label="Share this story: Neighborhood Teens Caught!!… In the Act of Engineering!" aria-controls="share-status-badgerbots-top" data-share-manual="share-manual-badgerbots-top">Share this story &rarr;</a><span class="sharestatus" id="share-status-badgerbots-top" role="status"></span><span class="sharemanual" id="share-manual-badgerbots-top" hidden><input readonly aria-label="Link to Neighborhood Teens Caught!!… In the Act of Engineering!"></span></p>
   <figure class="figright"><img src="assets/december-2026/badgerbots-gimli-pit.jpg" width="1600" height="853" alt="Gimli, Team 1306’s robot, in the pit: a black box with GIMLI in white letters on a blue bumper marked 1306" loading="lazy" decoding="async"></figure>
   <p>There are teenagers in our neighborhood spending their time designing machines in CAD, cutting metal, wiring electronics, programming control systems and repairing broken mechanisms under pressure.</p>
   <p>Then they send the finished robot out to compete.</p>
@@ -513,7 +540,7 @@ ol.clues b{ font-family:Arial,sans-serif; font-size:13px; }
   <p>Their goal for this season is simple: get even better.</p>
   <p>After seeing what they built last year, that seems worth paying attention to.</p>
   <p><strong>LEARN MORE:</strong> Find Team 1306 BadgerBOTS, their robots, competitions, summer programs and information about joining the team at <a href="https://teams.badgerbots.org/team1306" target="_blank" rel="noopener">teams.badgerbots.org/team1306</a>.<span class="endmark" aria-hidden="true"></span></p>
-  <p class="sharelink"><a href="stories/2026-12-badgerbots.html#share-story" aria-label="Share this story: Neighborhood Teens Caught!!… In the Act of Engineering!">Share this story &rarr;</a></p>
+  <p class="sharelink"><a href="stories/2026-12-badgerbots.html#share-story" data-share-url="https://monroestreettattler.com/stories/2026-12-badgerbots.html" data-share-title="Neighborhood Teens Caught!!… In the Act of Engineering!" aria-label="Share this story: Neighborhood Teens Caught!!… In the Act of Engineering!" aria-controls="share-status-badgerbots-end" data-share-manual="share-manual-badgerbots-end">Share this story &rarr;</a><span class="sharestatus" id="share-status-badgerbots-end" role="status"></span><span class="sharemanual" id="share-manual-badgerbots-end" hidden><input readonly aria-label="Link to Neighborhood Teens Caught!!… In the Act of Engineering!"></span></p>
   <p class="folio">Pages 3&ndash;4</p>
   </section>
 
@@ -522,6 +549,7 @@ ol.clues b{ font-family:Arial,sans-serif; font-size:13px; }
   <p class="kick">You in danger, girl!</p>
   <h2 class="phead caps">Santa Population on Brink of Collapse</h2>
   <p class="pdeck">A Tattler investigation reveals an existential threat to Monroe Street's most recognizable inflatables.</p>
+  <p class="sharetop"><a href="stories/2026-12-christmas-in-crisis.html#share-story" data-share-url="https://monroestreettattler.com/stories/2026-12-christmas-in-crisis.html" data-share-title="Christmas in Crisis!" aria-label="Share this story: Christmas in Crisis!" aria-controls="share-status-christmas-top" data-share-manual="share-manual-christmas-top">Share this story &rarr;</a><span class="sharestatus" id="share-status-christmas-top" role="status"></span><span class="sharemanual" id="share-manual-christmas-top" hidden><input readonly aria-label="Link to Christmas in Crisis!"></span></p>
   <p>Every December, Monroe Street undergoes a remarkable transformation as identical inflatable Santas appear up and down the street, creating one of Madison's more subtle, yet well-known, holiday traditions.</p>
   <p>Naturally, the Monroe Street Tattler felt obligated to find some untold angle on the story.</p>
   <figure class="figright"><img src="assets/december-2026/santa-endangered-model.jpg" width="430" height="594" alt="A grainy black-and-white close-up of the 12-foot inflatable Santa, fully inflated" loading="lazy" decoding="async"><figcaption>The endangered model, seen here in full inflation.</figcaption></figure>
@@ -545,21 +573,23 @@ ol.clues b{ font-family:Arial,sans-serif; font-size:13px; }
     <p>117 Wrangler Dr #100, Coppell, TX 75019</p>
     <p>Santa of concern &ldquo;12' Inflatable Santa with Gift&rdquo;</p>
   </div>
-  <p class="sharelink"><a href="stories/2026-12-christmas-in-crisis.html#share-story" aria-label="Share this story: Christmas in Crisis!">Share this story &rarr;</a></p>
+  <p class="sharelink"><a href="stories/2026-12-christmas-in-crisis.html#share-story" data-share-url="https://monroestreettattler.com/stories/2026-12-christmas-in-crisis.html" data-share-title="Christmas in Crisis!" aria-label="Share this story: Christmas in Crisis!" aria-controls="share-status-christmas-end" data-share-manual="share-manual-christmas-end">Share this story &rarr;</a><span class="sharestatus" id="share-status-christmas-end" role="status"></span><span class="sharemanual" id="share-manual-christmas-end" hidden><input readonly aria-label="Link to Christmas in Crisis!"></span></p>
   <p class="folio">Page 5</p>
   </section>
 
   <section class="story notice" id="missingchild">
   <div class="strip"><span>Public Notice</span><span class="r">The Monroe Street Tattler</span></div>
   <h2 class="phead vh">Have You Seen Me?</h2>
+  <p class="sharetop"><a href="stories/2026-12-missing-child-found.html#share-story" data-share-url="https://monroestreettattler.com/stories/2026-12-missing-child-found.html" data-share-title="Missing Child Found. Parents Not Looking." aria-label="Share this story: Missing Child Found. Parents Not Looking." aria-controls="share-status-missingchild-top" data-share-manual="share-manual-missingchild-top">Share this story &rarr;</a><span class="sharestatus" id="share-status-missingchild-top" role="status"></span><span class="sharemanual" id="share-manual-missingchild-top" hidden><input readonly aria-label="Link to Missing Child Found. Parents Not Looking."></span></p>
   <figure><img src="assets/december-2026/missing-child-public-notice.jpg" width="1024" height="1536" alt="A Monroe Street Tattler public notice. Have you seen me? Missing child found. Parents not looking. A photo shows a large baby doll with wild hair and a floral dress sitting on a rock beneath the Glenwood Children’s Park sign. Last seen sitting on a rock, Glenwood Children’s Park. Unusually large doll. Floral dress. Bare feet. Refused to answer questions. No reward currently offered." loading="lazy" decoding="async"></figure>
-  <p class="sharelink"><a href="stories/2026-12-missing-child-found.html#share-story" aria-label="Share this story: Missing Child Found. Parents Not Looking.">Share this story &rarr;</a></p>
+  <p class="sharelink"><a href="stories/2026-12-missing-child-found.html#share-story" data-share-url="https://monroestreettattler.com/stories/2026-12-missing-child-found.html" data-share-title="Missing Child Found. Parents Not Looking." aria-label="Share this story: Missing Child Found. Parents Not Looking." aria-controls="share-status-missingchild-end" data-share-manual="share-manual-missingchild-end">Share this story &rarr;</a><span class="sharestatus" id="share-status-missingchild-end" role="status"></span><span class="sharemanual" id="share-manual-missingchild-end" hidden><input readonly aria-label="Link to Missing Child Found. Parents Not Looking."></span></p>
   <p class="folio">Page 6</p>
   </section>
 
   <section class="story" id="sauna">
   <div class="strip"><span>The Monroe Street Tattler</span><span class="r">Wellness</span></div>
   <h2 class="phead">Sauna opens amid growing demand for unpleasant temperatures</h2>
+  <p class="sharetop"><a href="stories/2026-12-madison-saunas.html#share-story" data-share-url="https://monroestreettattler.com/stories/2026-12-madison-saunas.html" data-share-title="Manosphere Makes Neighborhood Debut" aria-label="Share this story: Manosphere Makes Neighborhood Debut" aria-controls="share-status-sauna-top" data-share-manual="share-manual-sauna-top">Share this story &rarr;</a><span class="sharestatus" id="share-status-sauna-top" role="status"></span><span class="sharemanual" id="share-manual-sauna-top" hidden><input readonly aria-label="Link to Manosphere Makes Neighborhood Debut"></span></p>
   <p>It started with a podcast. Then came the electrolytes, creatine, and a Whoop armband. Now your husband talks about &ldquo;recovery&rdquo; despite having done nothing particularly strenuous. He's tracking his sleep, monitoring his cortisol, and has developed strong opinions about inflammation.</p>
   <p>Fortunately, Madison Saunas, a new sauna near Lake Wingra, has opened, providing a place for him to sit in extreme temperatures and discuss optimal recovery protocols with others who listened to the same podcast. Sessions can be booked online, allowing recovery to be scheduled well in advance of any actual exertion.</p>
   <p>Whether this represents a welcome addition to neighborhood wellness or simply the latest stage of the male midlife crisis remains to be seen.</p>
@@ -575,7 +605,7 @@ ol.clues b{ font-family:Arial,sans-serif; font-size:13px; }
     <img src="assets/december-2026/ad-madison-saunas-hypothetical.jpg" width="1125" height="1500" alt="A hypothetical advertisement: Your husband listened to a podcast. Now he needs a sauna. Madison Saunas, at Wingra Boats on Lake Wingra, madisonsaunas.com, 824 Knickerbocker St., Madison. Open to everyone. Even people who don’t listen to podcasts." loading="lazy" decoding="async">
     <p class="adlab">Hypothetical advertisement</p>
   </div>
-  <p class="sharelink"><a href="stories/2026-12-madison-saunas.html#share-story" aria-label="Share this story: Manosphere Makes Neighborhood Debut">Share this story &rarr;</a></p>
+  <p class="sharelink"><a href="stories/2026-12-madison-saunas.html#share-story" data-share-url="https://monroestreettattler.com/stories/2026-12-madison-saunas.html" data-share-title="Manosphere Makes Neighborhood Debut" aria-label="Share this story: Manosphere Makes Neighborhood Debut" aria-controls="share-status-sauna-end" data-share-manual="share-manual-sauna-end">Share this story &rarr;</a><span class="sharestatus" id="share-status-sauna-end" role="status"></span><span class="sharemanual" id="share-manual-sauna-end" hidden><input readonly aria-label="Link to Manosphere Makes Neighborhood Debut"></span></p>
   <figure class="figwide issue-only" id="puddin"><img src="assets/december-2026/monkey-with-puddin.jpg" width="1512" height="1068" alt="A small black-and-white dog lying on a pink cushion by a window beside a stuffed monkey from the Monkey Hunt" loading="lazy" decoding="async"><figcaption>A Monkey Hunt adoptee settles into its new home. It's already sharing the best seat in the house with the family dog.</figcaption></figure>
   <p class="folio">Page 7</p>
   </section>
@@ -586,21 +616,23 @@ ol.clues b{ font-family:Arial,sans-serif; font-size:13px; }
 
   <div class="brief" id="patrick">
     <h3 class="bh">Newest member of neighborhood watch: Patrick Booping</h3>
+    <p class="sharetop"><a href="stories/2026-12-keyes-window-peeper.html#share-story" data-share-url="https://monroestreettattler.com/stories/2026-12-keyes-window-peeper.html" data-share-title="Keyes Window Peeper Given Official Title" aria-label="Share this story: Keyes Window Peeper Given Official Title" aria-controls="share-status-patrick-top" data-share-manual="share-manual-patrick-top">Share this story &rarr;</a><span class="sharestatus" id="share-status-patrick-top" role="status"></span><span class="sharemanual" id="share-manual-patrick-top" hidden><input readonly aria-label="Link to Keyes Window Peeper Given Official Title"></span></p>
     <figure class="figright"><img src="assets/december-2026/patrick-booping-neighborhood-watch.jpg" width="661" height="638" alt="Patrick Booping, a lop-eared rabbit, sits on a couch by a window keeping watch over the street" loading="lazy" decoding="async"></figure>
     <p>Don't be alarmed if you're walking down Keyes Avenue and spot a furry face staring you down through a fogged window. It's just your neighborhood officer reporting for duty: Patrick Booping!</p>
     <p>Let Patrick know if you'd like to lend a helping paw to his patrol team or have any suspicious activity you'd like him to investigate. He's committed to keeping the neighborhood safe and informed.</p>
     <p><em>His motto: &ldquo;Eliminate snooping with Officer Booping.&rdquo;</em><span class="endmark" aria-hidden="true"></span></p>
     <div class="clearfix"></div>
-    <p class="sharelink"><a href="stories/2026-12-keyes-window-peeper.html#share-story" aria-label="Share this story: Keyes Window Peeper Given Official Title">Share this story &rarr;</a></p>
+    <p class="sharelink"><a href="stories/2026-12-keyes-window-peeper.html#share-story" data-share-url="https://monroestreettattler.com/stories/2026-12-keyes-window-peeper.html" data-share-title="Keyes Window Peeper Given Official Title" aria-label="Share this story: Keyes Window Peeper Given Official Title" aria-controls="share-status-patrick-end" data-share-manual="share-manual-patrick-end">Share this story &rarr;</a><span class="sharestatus" id="share-status-patrick-end" role="status"></span><span class="sharemanual" id="share-manual-patrick-end" hidden><input readonly aria-label="Link to Keyes Window Peeper Given Official Title"></span></p>
   </div>
 
   <div class="brief" id="jackolanterns">
     <h3 class="bh">Former porch fixtures face a grim future</h3>
+    <p class="sharetop"><a href="stories/2026-12-jack-o-lanterns.html#share-story" data-share-url="https://monroestreettattler.com/stories/2026-12-jack-o-lanterns.html" data-share-title="Capital Punishment Appears Back on the Table" aria-label="Share this story: Capital Punishment Appears Back on the Table" aria-controls="share-status-jackolanterns-top" data-share-manual="share-manual-jackolanterns-top">Share this story &rarr;</a><span class="sharestatus" id="share-status-jackolanterns-top" role="status"></span><span class="sharemanual" id="share-manual-jackolanterns-top" hidden><input readonly aria-label="Link to Capital Punishment Appears Back on the Table"></span></p>
     <figure class="figright"><img src="assets/december-2026/jack-o-lanterns-grim-future.jpg" width="1200" height="1600" alt="Four sagging carved jack-o’-lanterns huddled on a leaf-covered terrace beside city trash carts at the curb" loading="lazy" decoding="async"></figure>
     <p class="sub">Once-cherished Halloween decorations left to contemplate their final hours</p>
     <p>Former Halloween favorites were discovered huddled together, their faces contorted in anguish as they await their inevitable fate. Neighbors appear unmoved.<span class="endmark" aria-hidden="true"></span></p>
     <div class="clearfix"></div>
-    <p class="sharelink"><a href="stories/2026-12-jack-o-lanterns.html#share-story" aria-label="Share this story: Capital Punishment Appears Back on the Table">Share this story &rarr;</a></p>
+    <p class="sharelink"><a href="stories/2026-12-jack-o-lanterns.html#share-story" data-share-url="https://monroestreettattler.com/stories/2026-12-jack-o-lanterns.html" data-share-title="Capital Punishment Appears Back on the Table" aria-label="Share this story: Capital Punishment Appears Back on the Table" aria-controls="share-status-jackolanterns-end" data-share-manual="share-manual-jackolanterns-end">Share this story &rarr;</a><span class="sharestatus" id="share-status-jackolanterns-end" role="status"></span><span class="sharemanual" id="share-manual-jackolanterns-end" hidden><input readonly aria-label="Link to Capital Punishment Appears Back on the Table"></span></p>
   </div>
 
   <div class="answers" id="answers">
@@ -615,6 +647,7 @@ ol.clues b{ font-family:Arial,sans-serif; font-size:13px; }
   <div class="strip"><span>The Monroe Street Tattler</span><span class="r">Dear Barb</span></div>
   <h2 class="phead center">Dear Barb</h2>
   <p class="pdeck center">Season's greetings. Mind your manners.</p>
+  <p class="sharetop"><a href="stories/2026-12-dear-barb.html#share-story" data-share-url="https://monroestreettattler.com/stories/2026-12-dear-barb.html" data-share-title="Dear Barb" aria-label="Share this story: Dear Barb" aria-controls="share-status-dearbarb-top" data-share-manual="share-manual-dearbarb-top">Share this story &rarr;</a><span class="sharestatus" id="share-status-dearbarb-top" role="status"></span><span class="sharemanual" id="share-manual-dearbarb-top" hidden><input readonly aria-label="Link to Dear Barb"></span></p>
   <div class="letter">
     <p class="q"><span class="lh">Dear Barb:</span> Every year, our extended family gets together the weekend before Christmas so everyone can spend Christmas Day with their own families. It's a lovely tradition, except my mother insists on making a formal seating chart, even though nearly the same twelve people have attended for the past fifteen years. Last year, she separated my husband and me because she said we were &ldquo;getting too comfortable.&rdquo; Is this normal?</p>
     <p class="q">- Displaced</p>
@@ -634,7 +667,7 @@ ol.clues b{ font-family:Arial,sans-serif; font-size:13px; }
     <p>There is no reason the friendship cannot continue. You simply know a little more about the person than you did before.</p>
     <p class="verdict">Verdict: Keep the friend. Put the gift in the basement. Give Von Maur six months.</p>
   </div>
-  <p class="sharelink"><a href="stories/2026-12-dear-barb.html#share-story" aria-label="Share this story: Dear Barb">Share this story &rarr;</a></p>
+  <p class="sharelink"><a href="stories/2026-12-dear-barb.html#share-story" data-share-url="https://monroestreettattler.com/stories/2026-12-dear-barb.html" data-share-title="Dear Barb" aria-label="Share this story: Dear Barb" aria-controls="share-status-dearbarb-end" data-share-manual="share-manual-dearbarb-end">Share this story &rarr;</a><span class="sharestatus" id="share-status-dearbarb-end" role="status"></span><span class="sharemanual" id="share-manual-dearbarb-end" hidden><input readonly aria-label="Link to Dear Barb"></span></p>
   <div class="issue-only" id="treehouse">
     <div class="advert">
       <a href="https://treehousearborscience.com/" target="_blank" rel="noopener"><img src="assets/december-2026/ad-tree-house-arbor-science.png" width="718" height="1578" alt="Tree House Arbor Science. Ask your trees about us. TreeHouseArborScience.com, (608) 234-5935, Madison, WI" loading="lazy" decoding="async"></a>
@@ -667,21 +700,24 @@ ol.clues b{ font-family:Arial,sans-serif; font-size:13px; }
   <div class="brief" id="salon">
     <h3 class="bh">Neighborhood hair salon defies traffic logic</h3>
     <p class="bdeck">Motorists continue to attempt drive-through service at an establishment that offers none.</p>
+    <p class="sharetop"><a href="stories/2026-12-hair-salon-traffic-logic.html#share-story" data-share-url="https://monroestreettattler.com/stories/2026-12-hair-salon-traffic-logic.html" data-share-title="Neighborhood Business Defies Traffic Logic" aria-label="Share this story: Neighborhood Business Defies Traffic Logic" aria-controls="share-status-salon-top" data-share-manual="share-manual-salon-top">Share this story &rarr;</a><span class="sharestatus" id="share-status-salon-top" role="status"></span><span class="sharemanual" id="share-manual-salon-top" hidden><input readonly aria-label="Link to Neighborhood Business Defies Traffic Logic"></span></p>
     <p>A Monroe Street resident of 20 years has written to the Tattler seeking help with a longstanding mystery: Just how many times has a vehicle crashed into the Fritz &amp; Associates building?</p>
     <p>The reader recalls at least three incidents over the past two decades, an impressive figure for a building that, despite being well off the road, reportedly continues to attract vehicles.</p>
     <p>The Tattler is seeking assistance in reconstructing this troubling history. Do you remember an incident? Have photographs? Know how or why these vehicles managed to reach the building in the first place?<span class="endmark" aria-hidden="true"></span></p>
-    <p class="sharelink"><a href="stories/2026-12-hair-salon-traffic-logic.html#share-story" aria-label="Share this story: Neighborhood Business Defies Traffic Logic">Share this story &rarr;</a></p>
+    <p class="sharelink"><a href="stories/2026-12-hair-salon-traffic-logic.html#share-story" data-share-url="https://monroestreettattler.com/stories/2026-12-hair-salon-traffic-logic.html" data-share-title="Neighborhood Business Defies Traffic Logic" aria-label="Share this story: Neighborhood Business Defies Traffic Logic" aria-controls="share-status-salon-end" data-share-manual="share-manual-salon-end">Share this story &rarr;</a><span class="sharestatus" id="share-status-salon-end" role="status"></span><span class="sharemanual" id="share-manual-salon-end" hidden><input readonly aria-label="Link to Neighborhood Business Defies Traffic Logic"></span></p>
   </div>
 
   <div class="brief" id="leafpile">
     <h3 class="bh">An unfortunate truth about a beloved terrace leaf pile</h3>
+    <p class="sharetop"><a href="stories/2026-12-terrace-leaf-pile.html#share-story" data-share-url="https://monroestreettattler.com/stories/2026-12-terrace-leaf-pile.html" data-share-title="Ignorance Is Bliss" aria-label="Share this story: Ignorance Is Bliss" aria-controls="share-status-leafpile-top" data-share-manual="share-manual-leafpile-top">Share this story &rarr;</a><span class="sharestatus" id="share-status-leafpile-top" role="status"></span><span class="sharemanual" id="share-manual-leafpile-top" hidden><input readonly aria-label="Link to Ignorance Is Bliss"></span></p>
     <p class="bdeck">While walking my dog, I saw a heartwarming fall scene: a small child playing in a leaf pile on their terrace. They had some toy trucks (one dump, one bucket) and were industriously moving leaves to and fro. I could almost imagine the story the tike's brain was writing. Truly endearing.</p>
     <p class="bdeck">Do you think this child knows that my dog, and who knows how many others, has peed in that leaf pile?<span class="endmark" aria-hidden="true"></span></p>
-    <p class="sharelink"><a href="stories/2026-12-terrace-leaf-pile.html#share-story" aria-label="Share this story: Ignorance Is Bliss">Share this story &rarr;</a></p>
+    <p class="sharelink"><a href="stories/2026-12-terrace-leaf-pile.html#share-story" data-share-url="https://monroestreettattler.com/stories/2026-12-terrace-leaf-pile.html" data-share-title="Ignorance Is Bliss" aria-label="Share this story: Ignorance Is Bliss" aria-controls="share-status-leafpile-end" data-share-manual="share-manual-leafpile-end">Share this story &rarr;</a><span class="sharestatus" id="share-status-leafpile-end" role="status"></span><span class="sharemanual" id="share-manual-leafpile-end" hidden><input readonly aria-label="Link to Ignorance Is Bliss"></span></p>
   </div>
 
   <div class="brief" id="missedconnection">
     <h3 class="bh">Missed connection</h3>
+    <p class="sharetop"><a href="stories/2026-12-missed-connection.html#share-story" data-share-url="https://monroestreettattler.com/stories/2026-12-missed-connection.html" data-share-title="Missed Connections" aria-label="Share this story: Missed Connections" aria-controls="share-status-missedconnection-top" data-share-manual="share-manual-missedconnection-top">Share this story &rarr;</a><span class="sharestatus" id="share-status-missedconnection-top" role="status"></span><span class="sharemanual" id="share-manual-missedconnection-top" hidden><input readonly aria-label="Link to Missed Connections"></span></p>
     <figure class="figright"><img src="assets/december-2026/ruthie-the-plant.jpg" width="1201" height="1600" alt="Ruthie the plant, a spiky succulent in a white pot, on a windowsill beside a desk organizer" loading="lazy" decoding="async"><figcaption>Ruthie, purchased from Trader Joe's, promises to be easy and so far remains alive.</figcaption></figure>
     <p><span class="lab">You:</span> Man innocently walking your dog on Monroe Street.</p>
     <p><span class="lab">Us:</span> Family of three that asked your dog's name so we could give it to our new plant.</p>
@@ -692,19 +728,20 @@ ol.clues b{ font-family:Arial,sans-serif; font-size:13px; }
     <p>The Tattler takes all Missed Connections seriously. RIP Craigslist Missed Connections.</p>
     <p>Please keep Ruthie the Plant alive through publication. It would complicate matters considerably if we had to run this as an obituary.<span class="endmark" aria-hidden="true"></span></p>
     <div class="clearfix"></div>
-    <p class="sharelink"><a href="stories/2026-12-missed-connection.html#share-story" aria-label="Share this story: Missed Connections">Share this story &rarr;</a></p>
+    <p class="sharelink"><a href="stories/2026-12-missed-connection.html#share-story" data-share-url="https://monroestreettattler.com/stories/2026-12-missed-connection.html" data-share-title="Missed Connections" aria-label="Share this story: Missed Connections" aria-controls="share-status-missedconnection-end" data-share-manual="share-manual-missedconnection-end">Share this story &rarr;</a><span class="sharestatus" id="share-status-missedconnection-end" role="status"></span><span class="sharemanual" id="share-manual-missedconnection-end" hidden><input readonly aria-label="Link to Missed Connections"></span></p>
   </div>
 
   <p class="contd">Reader Potpourri continued from page 10</p>
 
   <div class="brief" id="phillysanta">
     <h3 class="bh">Santa takes up post in West Philadelphia</h3>
+    <p class="sharetop"><a href="stories/2026-12-west-philadelphia-santa.html#share-story" data-share-url="https://monroestreettattler.com/stories/2026-12-west-philadelphia-santa.html" data-share-title="Santa Takes Up Post in West Philadelphia" aria-label="Share this story: Santa Takes Up Post in West Philadelphia" aria-controls="share-status-phillysanta-top" data-share-manual="share-manual-phillysanta-top">Share this story &rarr;</a><span class="sharestatus" id="share-status-phillysanta-top" role="status"></span><span class="sharemanual" id="share-manual-phillysanta-top" hidden><input readonly aria-label="Link to Santa Takes Up Post in West Philadelphia"></span></p>
     <figure class="figleft"><img src="assets/december-2026/philly-santa-florence-avenue.jpg" width="1200" height="1600" alt="An inflatable Santa with a candy cane and green sack in the small front yard of a West Philadelphia row home under a blue sky" loading="lazy" decoding="async"></figure>
     <p>A Saintly Samaritan of Monroe Street facilitated a cross country Santa exchange that brought joy and good tidings to the streets of West Philadelphia. On Florence Ave, which boasts historic row homes with historically small yards, this Monroe Street emissary stands tall, a beacon of light to help all through the dark winter months. One passerby observed, &ldquo;Just one Santa is the talk of our block, I can't imagine what a whole street of Santas would look like!&rdquo; Her associate chimed in, &ldquo;Tanta!&rdquo; And all was well in the neighborhood.</p>
     <p>The homeowners who were bestowed this blessed, billowing bearer of gifts expressed their gratitude to the joy makers of Monroe Street. &ldquo;Our winters aren't even that long or cold, but he really helps with the January-February slump.&rdquo; A warm glow and welcoming wave are wonderful for wandering eyes and whimsical whiners alike. A neighbor observed, &ldquo;Halloween is the big to do in our neighborhood, but for little kids it's a lot of sugar and scares. Santa is sweet without all the emotional swings.&rdquo;</p>
     <p>In coming months you may find yourself waxing eloquent about the fireside chats of your childhood. Or feeling crunched by the pressures of late stage capitalism. The Tattler and this Philadelphia correspondent remind you breathe, be present, and forget the presents. Welcome what comes.<span class="endmark r" aria-hidden="true"></span></p>
     <div class="clearfix"></div>
-    <p class="sharelink"><a href="stories/2026-12-west-philadelphia-santa.html#share-story" aria-label="Share this story: Santa Takes Up Post in West Philadelphia">Share this story &rarr;</a></p>
+    <p class="sharelink"><a href="stories/2026-12-west-philadelphia-santa.html#share-story" data-share-url="https://monroestreettattler.com/stories/2026-12-west-philadelphia-santa.html" data-share-title="Santa Takes Up Post in West Philadelphia" aria-label="Share this story: Santa Takes Up Post in West Philadelphia" aria-controls="share-status-phillysanta-end" data-share-manual="share-manual-phillysanta-end">Share this story &rarr;</a><span class="sharestatus" id="share-status-phillysanta-end" role="status"></span><span class="sharemanual" id="share-manual-phillysanta-end" hidden><input readonly aria-label="Link to Santa Takes Up Post in West Philadelphia"></span></p>
   </div>
 
   <div class="adrow issue-only" id="popcorn">
@@ -788,6 +825,8 @@ ol.clues b{ font-family:Arial,sans-serif; font-size:13px; }
   <p class="folio">Page 12</p>
   </section>
 
+  <div class="shareissue shareissue-end"><button type="button" id="share-issue-end" data-share-url="https://monroestreettattler.com/december-2026.html" data-share-title="Christmas in Crisis! The December Tattler" data-share-copied="Issue link copied." aria-label="Share this issue: The Monroe Street Tattler, December 2026" aria-controls="share-issue-status-end" data-share-manual="share-issue-manual-end" hidden><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M12 16V3m-4 4 4-4 4 4M5 12v8h14v-8"/></svg> Share this issue</button><p class="sharestatus" id="share-issue-status-end" role="status"></p><div class="sharemanual" id="share-issue-manual-end" hidden><input readonly aria-label="Link to the December 2026 issue"></div></div>
+
   <div class="issuenav">
     <div class="issuenav-label">More from the Tattler</div>
     <a href="files.html">Explore stories &mdash; Keep wandering</a>
@@ -828,5 +867,6 @@ ol.clues b{ font-family:Arial,sans-serif; font-size:13px; }
   <a href="index.html#delivery">Subscribe</a>
   <a href="mailto:MonroeStreetTattler@gmail.com">Contact</a>
 </div>
+<script src="story-share.js" defer></script>
 </body>
 </html>

@@ -5,6 +5,7 @@
   "site": "https://monroestreettattler.com/",
   "stories_dir": "stories",
   "path_prefix": "2026-12-",
+  "share_top": true,
   "explore": {
     "href": "files.html",
     "label": "Explore stories"

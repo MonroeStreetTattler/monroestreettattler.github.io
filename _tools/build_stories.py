@@ -235,11 +235,13 @@ def rewrite_tag_attrs(node, args):
     return new, changed
 
 
-def copy_relocated(text, node, args, remove=(), rename=None, attrs_override=None):
+def copy_relocated(text, node, args, remove=(), rename=None, attrs_override=None, replace=()):
     """Source of `node` with links rewritten for stories/, `remove` subtrees
-    dropped and, optionally, one descendant renamed (e.g. h3 -> h1)."""
+    dropped, `replace` subtrees swapped for (node, html) markup in place and,
+    optionally, one descendant renamed (e.g. h3 -> h1)."""
     edits = []
-    removed = [(n.start, n.end) for n in remove]
+    removed = [(n.start, n.end) for n in remove] + [(n.start, n.end) for n, _ in replace]
+    swaps = {(n.start, n.end): markup for n, markup in replace}
 
     def inside_removed(n):
         return any(s <= n.start and n.end <= e for s, e in removed)
@@ -258,6 +260,7 @@ def copy_relocated(text, node, args, remove=(), rename=None, attrs_override=None
         if changed:
             edits.append((n.start, n.open_end, start_tag(tag, attrs)))
     for s, e in removed:
+        s0, e0 = s, e
         # take the removed element's own line with it
         nl = text.rfind('\n', node.start, s)
         line_start = nl + 1 if nl != -1 else s
@@ -265,6 +268,11 @@ def copy_relocated(text, node, args, remove=(), rename=None, attrs_override=None
             s = line_start
             if text[e:e + 1] == '\n':
                 e += 1
+        markup = swaps.get((s0, e0))
+        if markup is not None:
+            # keep the element's own indentation and line
+            edits.append((s0, e0, markup))
+            continue
         edits.append((s, e, ''))
     out = text[node.start:node.end]
     base = node.start
@@ -376,6 +384,32 @@ PATHS_CSS = """
 """
 
 
+# Only for manifests with "share_top" (December onward): the Share button under the headline.
+SHARE_TOP_CSS = """
+/* a second Share button under the headline (generated) */
+.share-block.share-top{ border-top:0; margin:2px 0 18px; padding-top:0; }
+.wrap .share-block #share-status-top{ font-family:'IBM Plex Mono',ui-monospace,monospace; font-size:12px;
+  line-height:1.5; margin:10px 0 0; }
+.share-block #share-status-top:empty{ display:none; }
+.share-block #share-manual-top[hidden]{ display:none; }
+.share-block #share-manual-top input{ display:block; width:100%; max-width:560px; margin-top:6px; padding:12px;
+  border:1px solid var(--ink); border-radius:0; background:#fff; color:var(--ink);
+  font:14px 'IBM Plex Mono',ui-monospace,monospace; }
+"""
+
+
+def share_button(url, headline, suffix=''):
+    """A story page's Share button with its own status and fallback link (story-share.js).
+    The end-of-story button keeps the historic IDs (share-story, share-status, share-manual)."""
+    manual = f' data-share-manual="share-manual{suffix}"' if suffix else ''
+    cls = 'share-block share-top' if suffix else 'share-block'
+    return (f'<div class="{cls}"><button id="share-story{suffix}" type="button" data-share-url="{esc(url)}" '
+            f'data-share-title="{esc(headline)}" aria-label="Share this story: {esc(headline)}" '
+            f'aria-controls="share-status{suffix}"{manual} hidden>{SHARE_ICON} Share this story</button>'
+            f'<p id="share-status{suffix}" role="status"></p><div id="share-manual{suffix}" hidden>'
+            f'<input readonly aria-label="Story link"></div></div>')
+
+
 SHARE_ICON = ('<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" '
               'stroke-width="1.7" aria-hidden="true"><path d="M12 16V3m-4 4 4-4 4 4M5 12v8h14v-8"/></svg>')
 
@@ -413,6 +447,8 @@ def load_manifest(path):
         for rid in u.get('related', []):
             if rid not in seen_ids or rid == u['id']:
                 raise BuildError(f'unit {u["id"]}: related story "{rid}" is not another unit')
+    if 'share_top' in m and not isinstance(m['share_top'], bool):
+        raise BuildError('manifest "share_top" must be true or false')
     explore = m.get('explore')
     if explore is not None and not (isinstance(explore, dict) and explore.get('href') and explore.get('label')):
         raise BuildError('manifest "explore" needs "href" and "label"')
@@ -485,6 +521,19 @@ def build(root, manifest_path):
             raise BuildError(f'{where}: share link points at {share_href}, '
                              f'expected {path_for(u)}#share-story')
         remove = list(shares)
+        # December onward (manifest "share_top"): a second issue share link sits under
+        # the headline; the story page gets its own Share button in the same place
+        tops = select(node, 'p.sharetop')
+        replace = []
+        if m.get('share_top'):
+            if len(tops) != 1:
+                raise BuildError(f'{where}: expected one headline share link in the issue, found {len(tops)}')
+            top_href = select(tops[0], 'a')[0].get('href')
+            if top_href != share_href:
+                raise BuildError(f'{where}: headline share link points at {top_href}, expected {share_href}')
+            replace = [(tops[0], share_button(site + path_for(u), u['discovery_headline'], '-top'))]
+        elif tops:
+            raise BuildError(f'{where}: headline share link found but the manifest has no "share_top"')
         for sel in u.get('exclude', []):
             found = select(node, sel)
             if not found:
@@ -505,7 +554,8 @@ def build(root, manifest_path):
         else:
             raise BuildError(f'{where}: heading needs "promote" or "insert"')
 
-        fragment = copy_relocated(text, node, args, remove=remove, rename=rename)
+        fragment = copy_relocated(text, node, args, remove=remove, rename=rename, replace=replace)
+        plain = copy_relocated(text, node, args, remove=remove + [n for n, _ in replace], rename=rename)
         if u.get('context') == 'parent':
             parent = node.parent
             if parent is None or not matches(parent, 'section.story'):
@@ -523,8 +573,8 @@ def build(root, manifest_path):
 
         # body text must match the issue unit exactly
         issue_text = visible_text(copy_relocated(text, node, (set(), set(), '', root, []),
-                                                 remove=remove))
-        page_text = visible_text(fragment)
+                                                 remove=remove + [n for n, _ in replace]))
+        page_text = visible_text(plain)
         if issue_text != page_text:
             raise BuildError(f'{where}: story text differs from the issue')
 
@@ -600,6 +650,8 @@ def build(root, manifest_path):
             paths_html += (f'\n\n  <p class="storyexplore"><a href="../{esc(explore["href"])}">'
                            f'{esc(explore["label"])} &rarr;</a></p>')
         paths_css = f'\n<style>{PATHS_CSS}</style>' if (m.get('explore') or any(v.get('related') for v in units)) else ''
+        if m.get('share_top'):
+            paths_css += f'\n<style>{SHARE_TOP_CSS}</style>'
 
         support = [c for c in payup.children
                    if matches(c, 'p.payhead') or matches(c, 'div.paybtns') or matches(c, 'p.payfine')]
@@ -649,7 +701,7 @@ def build(root, manifest_path):
 
   {content}
 
-  <div class="share-block"><button id="share-story" type="button" data-share-url="{esc(url)}" data-share-title="{esc(u["discovery_headline"])}" aria-label="Share this story: {esc(u["discovery_headline"])}" aria-controls="share-status" hidden>{SHARE_ICON} Share this story</button><p id="share-status" role="status"></p><div id="share-manual" hidden><input readonly aria-label="Story link"></div></div>
+  {share_button(url, u["discovery_headline"])}
 
   <p class="storyreturn"><a href="{esc(back)}">&larr; Back to this story in the complete {esc(m["issue_name"])} issue</a></p>{paths_html}
 
