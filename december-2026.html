@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>December 2026 Issue: Christmas in Crisis! | Monroe Street Tattler</title>
+<meta name="description" content="A special season finale edition. Is this the end of Christmas on Monroe Street? Plus a blockbuster game, an emergency census and Dear Barb.">
+<link rel="canonical" href="https://monroestreettattler.com/december-2026.html">
+<link rel="icon" href="favicon.ico">
+
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="The Monroe Street Tattler">
+<meta property="og:url" content="https://monroestreettattler.com/december-2026.html">
+<meta property="og:title" content="Christmas in Crisis! The December Tattler">
+<meta property="og:description" content="A special season finale edition. Is this the end of Christmas on Monroe Street?">
+<meta property="og:image" content="https://monroestreettattler.com/december-2026-og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="The Monroe Street Tattler, December 2026. A Special Season Finale Edition. Christmas in Crisis! Is this the end of Christmas on Monroe Street?">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Christmas in Crisis! The December Tattler">
+<meta name="twitter:description" content="A special season finale edition. Is this the end of Christmas on Monroe Street?">
+<meta name="twitter:image" content="https://monroestreettattler.com/december-2026-og.png">
+<meta name="twitter:image:alt" content="The Monroe Street Tattler, December 2026. A Special Season Finale Edition. Christmas in Crisis! Is this the end of Christmas on Monroe Street?">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;900&family=IBM+Plex+Mono:wght@400;600&display=swap">
+<style>
+/* ================= December 2026: the season finale =================
+   One newspaper in HTML, built like November: the front page is rebuilt
+   from the printed cover, then every page runs on in printed order. Story
+   pages under stories/ are generated from this file by
+   _tools/build_stories.py with _src/december-2026.json. ============== */
+:root{ --paper:#fdfcf3; --ink:#14110f; --red:#b3241c; --muted:#5a5a5a; --rule:#d8d4c4;
+  --tint:#f4f1e4; --navy:#0f1a45; --head:Arial,'Helvetica Neue',Helvetica,'Liberation Sans',sans-serif; }
+*{ box-sizing:border-box; }
+html{ scroll-behavior:auto; }
+body{ margin:0; background:#e4e2d8; color:var(--ink); font-family:Georgia,'Times New Roman',serif;
+  line-height:1.55; }
+.wrap{ max-width:900px; margin:0 auto; background:var(--paper); min-height:100vh;
+  padding:0 26px 60px; box-shadow:0 0 40px rgba(0,0,0,.15); }
+@media (max-width:560px){ .wrap{ padding:0 16px 48px; } }
+.wrap p{ font-size:17px; margin:0 0 14px; }
+img{ max-width:100%; }
+.vh{ position:absolute!important; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0);
+  clip-path:inset(50%); white-space:nowrap; }
+a:focus-visible{ outline:3px solid var(--red); outline-offset:3px; }
+
+/* site bar and the small PDF link, as in November */
+.sitebar{ display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px 20px;
+  font-family:'IBM Plex Mono',ui-monospace,monospace; font-size:11.5px; letter-spacing:.08em;
+  text-transform:uppercase; padding:12px 0; border-bottom:1px solid var(--rule); }
+.sitebar a{ color:var(--muted); text-decoration:none; margin-right:18px; display:inline-block; padding:6px 0; }
+.sitebar span a:last-child{ margin-right:0; }
+.sitebar a:hover{ color:var(--red); }
+.issue-pdf{ text-align:right; padding:3px 0 6px; font:12px/1.5 'IBM Plex Mono',ui-monospace,monospace; }
+.wrap .issue-pdf{ margin:0; font-size:12px; }
+.issue-pdf a{ color:#6b645c; text-underline-offset:4px; display:inline-block; padding:13px 0; }
+@media (max-width:620px){ .issue-pdf{ text-align:left; padding:1px 0; } }
+
+/* complete-paper cue, shown only when the paper is entered at a story */
+.paper-context{ display:none; position:sticky; top:0; z-index:30; background:var(--paper);
+  border-bottom:3px solid var(--red); padding:11px max(22px,calc((100vw - 1140px)/2));
+  align-items:center; justify-content:space-between; gap:18px;
+  font:600 12px/1.4 'IBM Plex Mono',ui-monospace,monospace; color:var(--ink); }
+body:has(:target) .paper-context{ display:flex; }
+html:has(body :target){ scroll-padding-top:92px; }
+.paper-context a{ color:var(--red); white-space:nowrap; padding:14px 0; margin:-7px 0; text-underline-offset:3px; }
+@media (max-width:620px){ .paper-context{ font-size:11px; gap:12px; padding:8px 16px; }
+  .paper-context span{ max-width:190px; } }
+
+/* ---------------- the front page ---------------- */
+.cover{ padding:18px 0 0; margin:0 0 10px; }
+.cfolio{ display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:6px 16px;
+  font-family:var(--head); font-weight:700; font-size:clamp(10px,1.2vw,13px);
+  letter-spacing:.1em; text-transform:uppercase; border-top:3px solid var(--ink);
+  border-bottom:1px solid var(--ink); padding:6px 0; }
+.cfolio .mo{ color:var(--red); }
+.cfolio .hl{ background:var(--ink); color:var(--paper); padding:3px 10px; letter-spacing:.14em; }
+.cmast{ font-family:'Times New Roman',Times,serif; font-weight:700; text-transform:uppercase;
+  font-size:clamp(16px,5.4vw,50px); line-height:1; letter-spacing:-.01em; text-align:center;
+  margin:12px 0 0; white-space:nowrap; }
+.ctag{ text-align:center; font-style:italic; font-size:clamp(12px,1.5vw,15px)!important;
+  margin:6px 0 0!important; padding-bottom:10px; border-bottom:3px solid var(--ink); }
+.cedition{ text-align:center; font-family:var(--head); font-weight:700; color:var(--red);
+  font-size:clamp(12px,2.4vw,22px)!important; letter-spacing:.2em; text-transform:uppercase;
+  border-top:1px solid var(--ink); border-bottom:3px solid var(--ink); margin:3px 0 0!important;
+  padding:8px 0 7px; line-height:1.2; }
+.cgrid{ display:grid; grid-template-columns:minmax(0,1.6fr) minmax(0,1fr); gap:24px;
+  margin-top:14px; align-items:start; }
+.pref{ display:inline-block; background:var(--ink); color:var(--paper); font-family:var(--head);
+  font-weight:900; font-size:11.5px; letter-spacing:.1em; text-transform:uppercase; padding:3px 8px;
+  white-space:nowrap; font-style:normal; vertical-align:1px; }
+.pref.r{ background:var(--red); color:#fff; }
+.pg{ color:var(--red); font-family:Georgia,serif; font-weight:700; font-style:normal; font-size:13px;
+  letter-spacing:.02em; text-transform:uppercase; white-space:nowrap; }
+
+a.crisis{ display:block; background:var(--red); color:#fff; text-decoration:none; padding:14px 18px 14px; }
+.crisis h2{ font-family:var(--head); font-weight:700; text-transform:uppercase; margin:0;
+  font-size:clamp(40px,8.2vw,74px); line-height:.9; letter-spacing:-.025em; }
+.wrap .crisis p{ font-style:italic; font-size:clamp(15px,2vw,20px); line-height:1.3; margin:12px 0 0;
+  border-top:1px solid rgba(255,255,255,.55); padding-top:10px; }
+.crisis .pref{ display:block; width:max-content; margin:10px 0 0 auto; font-size:13px; padding:5px 12px;
+  letter-spacing:.14em; }
+a.crisis:hover{ background:#8f1a14; }
+
+a.mano{ display:block; color:inherit; text-decoration:none; border-top:3px solid var(--ink);
+  border-bottom:3px solid var(--ink); margin:16px 0 0; padding:12px 0 10px; }
+.mano h2{ font-family:var(--head); font-weight:700; text-transform:uppercase; margin:0;
+  font-size:clamp(22px,3.6vw,33px); line-height:1.02; letter-spacing:-.015em; }
+.wrap .mano p{ font-style:italic; font-size:15px; margin:6px 0 0; }
+.mano .pref{ background:var(--red); color:#fff; margin-left:6px; font-size:10.5px; }
+a.mano:hover h2{ color:var(--red); }
+
+.gamebox{ border:2px solid var(--ink); margin:16px 0 0; background:var(--ink); }
+a.gamelink{ display:block; color:var(--paper); text-decoration:none; }
+.gamelink img{ display:block; width:100%; height:auto; background:var(--navy); }
+.gband{ padding:10px 14px 12px; position:relative; }
+.gtag{ display:inline-block; background:var(--red); color:#fff; font-family:var(--head);
+  font-weight:900; font-size:11px; letter-spacing:.16em; text-transform:uppercase; padding:3px 8px; }
+.gband h2{ font-family:var(--head); font-weight:700; text-transform:uppercase;
+  font-size:clamp(19px,3.3vw,30px); line-height:1.02; letter-spacing:-.015em; margin:6px 0 0; color:var(--paper); }
+.wrap .gband p{ font-style:italic; font-size:15px; line-height:1.35; margin:8px 0 0; color:#e9e3d8; }
+.gband .pref{ display:block; width:max-content; margin:6px 0 0 auto; background:var(--red); color:#fff; }
+a.gamelink:hover h2{ color:#f3b4ae; }
+a.playstrip{ display:block; background:var(--red); color:#fff; text-align:center; text-decoration:none;
+  font-family:var(--head); font-weight:700; font-size:clamp(11px,1.6vw,14px);
+  letter-spacing:.14em; text-transform:uppercase; padding:12px 10px; min-height:44px; line-height:1.3; }
+a.playstrip:hover{ background:#8f1a14; }
+
+.crail{ border-bottom:3px solid var(--ink); }
+.railbar{ background:var(--red); color:#fff; font-family:var(--head); font-weight:700;
+  font-size:14px; letter-spacing:.2em; text-transform:uppercase; text-align:center; padding:5px 10px; margin:0!important; }
+.crail a.ai{ display:block; padding:10px 0 9px; border-bottom:1px solid var(--rule); color:inherit; text-decoration:none; }
+.crail a.ai:last-child{ border-bottom:0; }
+.crail .ai h3{ font-family:var(--head); font-weight:700; text-transform:uppercase;
+  font-size:16px; line-height:1.12; margin:0; }
+.wrap .crail .ai p{ font-style:italic; font-size:14px; line-height:1.32; margin:4px 0 0; }
+.crail .ai .pg{ margin-top:2px; display:inline-block; }
+.crail .ai.solo .pg{ display:block; margin-top:3px; }
+.crail .split{ border-top:3px solid var(--ink); }
+.crail a.ai:hover h3{ color:var(--red); }
+.cfoot{ text-align:center; font-family:'Times New Roman',Times,serif; font-weight:700;
+  font-size:clamp(14px,1.7vw,18px)!important; border-top:3px solid var(--ink); margin:16px 0 0!important; padding-top:8px; }
+@media (max-width:760px){
+  .cgrid{ grid-template-columns:minmax(0,1fr); gap:18px; }
+  .crail .ai h3{ font-size:17px; }
+  .crail a.ai{ padding:12px 0; }
+}
+
+.continue{ display:flex; align-items:center; gap:10px; font-family:var(--head); font-weight:700;
+  font-size:15px; letter-spacing:.06em; text-transform:uppercase; color:var(--red); margin:26px 0 0; }
+
+/* ---------------- the printed pages, on screen ---------------- */
+.story{ margin:0 0 44px; scroll-margin-top:12px; }
+.story:first-of-type{ margin-top:30px; }
+.story .strip{ display:flex; justify-content:space-between; align-items:baseline; gap:14px;
+  font-family:var(--head); font-weight:700; font-size:12px; letter-spacing:.06em;
+  text-transform:uppercase; padding-bottom:5px; border-bottom:2.5px solid var(--ink); margin:0 0 12px; }
+.story .strip .r{ color:var(--red); letter-spacing:.1em; text-align:right; }
+.story .contd{ font-family:var(--head); font-weight:700; font-size:12px; letter-spacing:.08em;
+  text-transform:uppercase; border-bottom:3px double var(--ink); padding:0 0 6px; margin:30px 0 16px; }
+.story .kick{ font-style:italic; font-size:clamp(20px,2.6vw,26px); margin:6px 0 0; }
+.story .phead{ font-family:var(--head); font-weight:700; font-size:clamp(28px,5vw,48px);
+  line-height:1.02; letter-spacing:-.025em; margin:6px 0 0; text-wrap:balance; }
+.story .phead.caps{ text-transform:uppercase; }
+.story .phead.center,.story .pdeck.center{ text-align:center; }
+.story .pdeck{ font-style:italic; font-size:clamp(16px,2vw,20px); line-height:1.32; margin:8px 0 16px;
+  padding-bottom:12px; border-bottom:3px double var(--ink); }
+.story .psub{ font-family:var(--head); font-weight:700; font-size:16px; letter-spacing:.04em;
+  text-transform:uppercase; margin:24px 0 6px; line-height:1.15; }
+.story p{ max-width:68ch; }
+.story p a,.brief p a,.notebox p a{ color:var(--ink); text-decoration:none; border-bottom:2px solid var(--red); padding-bottom:1px; }
+.story p a:hover{ color:var(--red); }
+.endmark{ display:inline-block; width:8px; height:8px; background:var(--ink); margin-left:6px; vertical-align:baseline; }
+.endmark.r{ background:var(--red); }
+.pullrule{ border-top:1.5px solid var(--ink); border-bottom:1.5px solid var(--ink); padding:9px 0;
+  font-style:italic; font-size:19px!important; }
+.pullquote{ float:right; width:40%; margin:4px 0 14px 24px; border-top:3px solid var(--ink);
+  border-bottom:3px solid var(--ink); padding:10px 0; font-style:italic; font-size:clamp(20px,2.6vw,26px)!important;
+  line-height:1.28; }
+.story .folio{ font-family:'IBM Plex Mono',ui-monospace,monospace; font-size:11px; letter-spacing:.2em;
+  text-transform:uppercase; color:#8a837a; text-align:right; border-top:1px solid var(--rule);
+  padding-top:8px; margin:26px 0 0; max-width:none; clear:both; }
+.story .continues{ font-family:var(--head); font-weight:700; font-size:12.5px; letter-spacing:.08em;
+  text-transform:uppercase; text-align:right; max-width:none; }
+
+figure{ margin:0 0 18px; }
+figure img{ display:block; width:100%; height:auto; border:1px solid var(--ink); }
+figcaption{ font-style:italic; font-size:14px; line-height:1.4; color:var(--ink); margin-top:6px; }
+.figright{ float:right; width:42%; margin:4px 0 16px 24px; }
+.figleft{ float:left; width:40%; margin:4px 24px 16px 0; }
+.figwide{ margin:6px 0 20px; }
+.figsmall{ max-width:420px; }
+.clearfix::after{ content:""; display:block; clear:both; }
+@media (max-width:640px){ .figright,.figleft,.pullquote{ float:none; width:100%; margin:0 0 18px; } }
+
+.notebox{ border:2px solid var(--ink); padding:16px 20px 6px; margin:24px 0 0; }
+.notebox .lh{ font-family:var(--head); font-weight:700; font-size:clamp(20px,3vw,28px);
+  line-height:1.05; margin:0 0 8px; }
+.notebox .lh2{ font-family:var(--head); font-weight:700; font-size:20px; line-height:1.15;
+  border-bottom:1.5px solid var(--ink); padding-bottom:6px; margin:0 0 12px; }
+.splitbox{ display:grid; grid-template-columns:minmax(0,1.35fr) minmax(0,1fr); gap:20px; align-items:start; }
+@media (max-width:640px){ .splitbox{ grid-template-columns:minmax(0,1fr); } }
+.cta{ font-family:var(--head); font-weight:700; font-size:17px!important; line-height:1.3; }
+.writebox{ border-top:3px solid var(--ink); margin:22px 0 0; padding-top:12px; text-align:center; }
+.writebox .lh{ font-family:var(--head); font-weight:700; font-size:14px; letter-spacing:.1em;
+  text-transform:uppercase; margin:0 0 6px; }
+.writebox p{ margin:0 auto 4px!important; font-size:15.5px!important; max-width:none; }
+
+.notice img{ max-width:620px; margin:0 auto; border:0; }
+
+.brief{ border-top:1px solid var(--rule); padding-top:16px; margin-top:24px; }
+.brief:first-of-type{ border-top:0; margin-top:6px; padding-top:4px; }
+.brief .bh{ font-family:var(--head); font-weight:700; font-size:clamp(22px,3.2vw,30px);
+  line-height:1.06; letter-spacing:-.02em; margin:0 0 6px; }
+.brief .bdeck{ font-style:italic; font-size:16px; line-height:1.38; }
+.brief .sub{ font-family:var(--head); font-weight:700; font-size:16px!important; line-height:1.25; margin:14px 0 6px; }
+.brief .lab{ font-family:var(--head); font-weight:700; font-size:14px; letter-spacing:.06em; text-transform:uppercase; }
+.brief .replyhead{ font-family:var(--head); font-weight:700; font-size:14px!important;
+  letter-spacing:.1em; text-transform:uppercase; border-top:1.5px solid var(--ink); padding-top:10px; margin-top:18px; }
+.sectionhead{ text-align:center; }
+.sectionhead .phead{ text-align:center; }
+.sectionhead .pdeck{ text-align:center; }
+
+.letter{ border-bottom:3px solid var(--ink); padding-bottom:6px; margin:0 0 22px; }
+.letter .lh{ font-family:var(--head); font-weight:700; font-size:14px; letter-spacing:.06em; text-transform:uppercase; font-style:normal; }
+.letter .q{ font-style:italic; }
+.verdict{ font-weight:700; border-top:1.5px solid var(--ink); border-bottom:1.5px solid var(--ink); padding:8px 0; }
+
+.advert{ border:2px solid var(--ink); padding:12px; margin:26px auto 0; max-width:340px; text-align:center; }
+.advert a{ display:block; }
+.advert img{ display:block; width:100%; height:auto; }
+.wrap .advert .adlab{ font-family:'IBM Plex Mono',ui-monospace,monospace; font-size:10.5px; letter-spacing:.18em;
+  text-transform:uppercase; color:var(--muted); margin:10px 0 0; max-width:none; }
+.adrow{ display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:24px; align-items:start; margin-top:26px; }
+.adrow .advert{ margin:0; max-width:none; }
+.adrow figure{ margin:0; }
+@media (max-width:640px){ .adrow{ grid-template-columns:minmax(0,1fr); } .adrow .advert{ max-width:340px; margin:0 auto; } }
+.shoutout{ border-top:3px solid var(--ink); margin-top:18px; padding-top:10px; }
+.shoutout .lh{ font-family:var(--head); font-weight:700; font-size:17px; line-height:1.2; margin:0 0 6px; }
+
+/* crossword */
+table.xw{ border-collapse:collapse; margin:18px auto; }
+table.xw td{ width:34px; height:34px; border:1px solid var(--ink); position:relative; background:#fff; padding:0; }
+table.xw td.blk{ background:var(--ink); }
+table.xw .n{ position:absolute; top:1px; left:3px; font-family:Arial,sans-serif; font-size:9.5px; line-height:1; color:var(--muted); }
+table.sol{ border-collapse:collapse; margin:10px 0 6px; }
+table.sol td{ width:22px; height:22px; border:1px solid var(--ink); text-align:center; font-family:Arial,sans-serif;
+  font-size:11px; font-weight:bold; padding:0; }
+table.sol td.blk{ background:var(--ink); }
+@media (max-width:560px){ table.xw td{ width:26px; height:26px; } table.xw .n{ font-size:8px; } }
+@media (max-width:360px){ table.xw td{ width:23px; height:23px; } }
+.answers{ border-top:3px solid var(--ink); margin-top:28px; padding-top:10px; }
+.answers .lh{ font-family:var(--head); font-weight:700; font-size:15px; margin:0; }
+.xwclues{ display:grid; grid-template-columns:1fr 1fr; gap:26px; margin-top:8px; }
+@media (max-width:560px){ .xwclues{ grid-template-columns:1fr; } }
+.xwclues .lh{ font-family:var(--head); font-weight:700; font-size:14px; letter-spacing:.08em;
+  text-transform:uppercase; color:var(--red); border-bottom:1.5px solid var(--red); padding-bottom:3px; margin:0 0 8px; }
+ol.clues{ list-style:none; margin:0; padding:0; }
+ol.clues li{ font-size:15px; line-height:1.4; margin-bottom:6px; }
+ol.clues b{ font-family:Arial,sans-serif; font-size:13px; }
+.finale{ border-top:3px solid var(--ink); margin-top:30px; padding-top:14px; }
+.finale .lh{ font-family:var(--head); font-weight:700; font-size:clamp(17px,2.4vw,22px);
+  text-align:center; letter-spacing:.02em; text-transform:uppercase; margin:0 0 10px; }
+.finale .sign{ font-family:var(--head); font-weight:700; text-align:center; font-size:15px; overflow-wrap:anywhere; }
+
+/* the quiet link from each story to its own page */
+.story p.sharelink{ font-family:'IBM Plex Mono',ui-monospace,monospace; font-size:11px; letter-spacing:.1em;
+  text-transform:uppercase; text-align:left; max-width:none; margin:22px 0 6px; clear:both; }
+.brief p.sharelink{ margin:14px 0 4px; }
+.story p.sharelink a{ color:#6b645c; border-bottom:1px solid #d8d4c4; padding:12px 0 1px; display:inline-block; }
+.story p.sharelink a:hover{ color:var(--red); border-bottom-color:var(--red); }
+
+/* closing furniture, shared with the generated story pages */
+.issuenav{ border-top:1px solid var(--ink); border-bottom:1px solid var(--ink); padding:16px 0; margin:34px 0 0; }
+.issuenav .issuenav-label{ font-family:Arial,sans-serif; font-size:11px; font-weight:bold; text-transform:uppercase;
+  letter-spacing:1.5px; color:var(--red); margin:0 0 8px; }
+.issuenav a{ display:block; font-size:15px; line-height:1.4; color:var(--ink); text-decoration:none;
+  border-bottom:1px solid var(--rule); padding:10px 0; }
+.issuenav a:last-child{ border-bottom:none; }
+.issuenav a:hover{ color:var(--red); }
+.payup{ border:3px solid var(--red); background:#fbf3f2; padding:20px 22px; margin:30px 0; }
+.payup .payhead{ font-family:Arial,sans-serif; font-weight:900; text-transform:uppercase; letter-spacing:.5px;
+  font-size:20px; line-height:1.15; color:var(--red); margin:0 0 12px; }
+.payup p{ font-size:15px; line-height:1.55; margin:0 0 12px; }
+.paybtns{ margin:16px 0 0; }
+.paybtns a{ display:block; width:100%; max-width:360px; text-align:center; font-family:Arial,sans-serif; font-weight:bold;
+  font-size:15px; text-transform:uppercase; letter-spacing:.5px; text-decoration:none; padding:16px 18px; min-height:52px;
+  background:var(--red); color:var(--paper); border:2px solid var(--red); margin:0 0 10px; }
+.paybtns a:hover{ background:#111; border-color:#111; }
+.payup p.payfine{ font-size:13.5px; color:var(--muted); line-height:1.5; margin:12px 0 0; }
+.colophon{ border-top:2px solid var(--ink); margin-top:44px; padding-top:18px; font-size:14px; color:var(--muted); text-align:center; }
+.colophon p{ font-size:14px!important; overflow-wrap:anywhere; }
+.colophon a{ color:var(--ink); }
+.tt-footnav{ background:#14110f; display:flex; justify-content:center; flex-wrap:wrap; gap:8px 22px;
+  font-family:'IBM Plex Mono',ui-monospace,'Courier New',monospace; font-size:11.5px; letter-spacing:.08em;
+  text-transform:uppercase; padding:18px 22px; }
+.tt-footnav a{ color:#d8d2c9; text-decoration:none; border-bottom:2px solid transparent; padding:6px 0 2px; }
+.tt-footnav a:hover{ color:#fff; border-bottom-color:#b3241c; }
+/* Reader Potpourri landing: a short contents list for the cover's "They Sent Us What?!" jump */
+.briefnav{ text-align:left; margin:4px 0 6px; }
+.briefnav-k{ font-family:var(--head); font-weight:700; font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:var(--red); margin:0 0 4px; }
+.briefnav ul{ list-style:none; margin:0; padding:0; }
+.briefnav li{ border-top:1px solid var(--rule); }
+.briefnav li:first-child{ border-top:0; }
+.briefnav a{ display:block; padding:9px 0; font-family:var(--head); font-weight:700; font-size:17px; line-height:1.25; color:var(--ink); text-decoration:none; }
+.briefnav a::after{ content:"\00a0\2192"; color:var(--red); }
+.briefnav a:hover{ color:var(--red); }
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "NewsArticle",
+      "headline": "Christmas in Crisis! The December 2026 Monroe Street Tattler",
+      "url": "https://monroestreettattler.com/december-2026.html",
+      "mainEntityOfPage": "https://monroestreettattler.com/december-2026.html",
+      "inLanguage": "en-US",
+      "isAccessibleForFree": true,
+      "datePublished": "2026-11-25",
+      "author": {"@type": "Organization", "name": "The Monroe Street Tattler"},
+      "publisher": {
+        "@type": "NewsMediaOrganization",
+        "name": "The Monroe Street Tattler",
+        "url": "https://monroestreettattler.com/"
+      },
+      "image": "https://monroestreettattler.com/december-2026-og.png"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {"@type": "ListItem", "position": 1, "name": "The Monroe Street Tattler", "item": "https://monroestreettattler.com/"},
+        {"@type": "ListItem", "position": 2, "name": "Past Issues", "item": "https://monroestreettattler.com/issues.html"},
+        {"@type": "ListItem", "position": 3, "name": "December 2026"}
+      ]
+    }
+  ]
+}
+</script>
+<!-- Cloudflare Web Analytics -->
+<script
+  type="module"
+  src="https://static.cloudflareinsights.com/beacon.min.js"
+  data-cf-beacon='{"token": "b4b7990d0c27478ea9b605f098b4ad3c"}'>
+</script>
+<!-- End Cloudflare Web Analytics -->
+</head>
+<body>
+<aside class="paper-context" aria-label="Complete paper navigation">
+  <span>You’re reading the complete December paper.</span>
+  <a href="december-2026.html">Start at the front ↑</a>
+</aside>
+<div class="wrap">
+
+  <nav class="sitebar">
+    <a href="index.html">&larr; Monroe Street Tattler</a>
+    <span>
+      <a href="issues.html">Past Issues</a>
+      <a href="files.html">Explore</a>
+      <a href="index.html#delivery">Subscribe</a>
+      <a href="https://ko-fi.com/monroestreettattler#checkoutModal" target="_blank" rel="noopener">&#9749; Buy Us a Coffee</a>
+    </span>
+  </nav>
+  <div class="issue-pdf"><a href="december_2026_digital.pdf">Download the December paper as a PDF ↓</a></div>
+
+  <header class="cover">
+    <div class="cfolio">
+      <span>Extra!&nbsp;&middot; Vol.&nbsp;3, No.&nbsp;10&nbsp;&middot; <span class="mo">December&nbsp;2026</span></span>
+      <span class="hl">The Season Finale</span>
+    </div>
+    <h1 class="cmast">The Monroe Street Tattler</h1>
+    <p class="ctag">News so hyperlocal, it's amazing anyone takes an interest.</p>
+    <p class="cedition">A Special Season Finale Edition</p>
+
+    <div class="cgrid">
+      <div class="cmain">
+        <a class="crisis" href="#christmas">
+          <h2>Christmas in Crisis!</h2>
+          <p>Is this the end of Christmas on Monroe Street?</p>
+          <span class="pref">Page 5</span>
+        </a>
+
+        <a class="mano" href="#sauna">
+          <h2>Manosphere Makes Neighborhood Debut</h2>
+          <p>Or is this simply healthy living? <span class="pref">Page 7</span></p>
+        </a>
+
+        <div class="gamebox">
+          <a class="gamelink" href="#game">
+            <img src="assets/december-2026/santas-on-monroe-street-cover-art.png" width="1492" height="810" alt="Santas on Monroe Street: The Game! Pixel-art bungalows with an inflatable Santa on every lawn, a sleigh at the curb and Santa’s sleigh crossing a full moon" decoding="async">
+            <div class="gband">
+              <span class="gtag">Blockbuster Game</span>
+              <h2>Grand Theft Auto VI Faces Unexpected Low-Budget Rival</h2>
+              <p>The Tattler enters the video game industry with significantly fewer resources.</p>
+              <span class="pref">Page 2</span>
+            </div>
+          </a>
+          <a class="playstrip" href="santas-game.html">Play Free at MonroeStreetTattler.com</a>
+        </div>
+      </div>
+
+      <aside class="crail" aria-label="Also inside">
+        <p class="railbar">Also Inside</p>
+        <a class="ai" href="#badgerbots"><h3>Neighborhood Teens Caught!!&hellip; In the Act of Engineering!</h3>
+          <p>Do you know what your teenager is building? <span class="pg">Pg 3</span></p></a>
+        <a class="ai solo" href="#christmas"><h3>Is 2026 as Good as It's Going to Get?</h3>
+          <span class="pg">Pg 5</span></a>
+        <a class="ai" href="#census"><h3>Local Population Explodes; Officials Scramble</h3>
+          <p>Emergency census launched. Residents urged to cooperate. <span class="pg">Pg 2</span></p></a>
+        <a class="ai" href="#missingchild"><h3>Missing Child Found. Parents Not Looking.</h3>
+          <p>Disturbing discovery in Glenwood Children's Park raises more questions than answers. <span class="pg">Pg 6</span></p></a>
+        <div class="split">
+        <a class="ai solo" href="#patrick"><h3>Keyes Window Peeper Given Official Title</h3><span class="pg">Pg 8</span></a>
+        <a class="ai solo" href="#jackolanterns"><h3>Capital Punishment Appears Back on the Table</h3><span class="pg">Pg 8</span></a>
+        <a class="ai solo" href="#potpourri"><h3>They Sent Us What?!</h3><span class="pg">Pg 10</span></a>
+        <a class="ai solo" href="#missedconnection"><h3>Missed Connections</h3><span class="pg">Pg 10</span></a>
+        <a class="ai solo" href="#salon"><h3>Neighborhood Business Defies Traffic Logic</h3><span class="pg">Pg 10</span></a>
+        <a class="ai solo" href="#leafpile"><h3>Ignorance Is Bliss</h3><span class="pg">Pg 10</span></a>
+        <a class="ai solo" href="#dearbarb"><h3>Dear Barb</h3><span class="pg">Pg 9</span></a>
+        </div>
+      </aside>
+    </div>
+    <p class="cfoot">MonroeStreetTattler.com</p>
+  </header>
+
+  <p class="continue"><span aria-hidden="true">&darr;</span> Continue into the issue in newspaper order</p>
+
+  <section class="story" id="game">
+  <div class="strip"><span>The Monroe Street Tattler</span><span class="r">Santas on Monroe Street</span></div>
+  <h2 class="phead">Santa delivery goes digital</h2>
+  <p class="pdeck">New video game puts the neighborhood's inflatable Santa supply in your hands.</p>
+  <figure class="figwide"><img src="assets/december-2026/santas-on-monroe-street-gameplay.png" width="1920" height="1025" alt="Gameplay from Santas on Monroe Street: an elf in a sleigh with a sack of Santas drives past snowy houses and the Lauren Tavern, with an inflatable Santa on a lawn, the score, block number and delivery count across the top and a red Deliver button" loading="lazy" decoding="async"><figcaption>Elf takes in the sights and serves up the joy, one Santa at a time.</figcaption></figure>
+  <p>The Tattler is proud to introduce Santas on Monroe Street, a new video game for players of all skill levels. Deliver inflatable Santas around the neighborhood, navigate local happenings, and rack up points as you chase the high score.</p>
+  <p class="cta"><a href="santas-game.html">Play it today at MonroeStreetTattler.com.</a><span class="endmark r" aria-hidden="true"></span></p>
+  <p class="sharelink"><a href="stories/2026-12-santas-on-monroe-street-game.html#share-story" aria-label="Share this story: Grand Theft Auto VI Faces Unexpected Low-Budget Rival">Share this story &rarr;</a></p>
+  </section>
+
+  <section class="story" id="census">
+  <div class="notebox">
+    <h2 class="phead">Census officially underway</h2>
+    <p class="pdeck">The Tattler invites the neighborhood to take part in the official count of inflatable Santas.</p>
+    <div class="splitbox">
+      <figure><img src="assets/december-2026/santa-tracker-map.png" width="1774" height="887" alt="A street map of Monroe Street, Odana Road, Nakoma Road and Lake Wingra with inflatable Santa markers along Monroe Street" loading="lazy" decoding="async"></figure>
+      <div>
+        <p>An accurate count is essential to ensuring fair representation across the neighborhood. Blocks that fail to count their Santas risk losing their fair share of seasonal attention.</p>
+        <p>Do your civic duty. Every Santa counts.</p>
+        <p class="cta"><a href="santa-map.html">Please go to MonroeStreetTattler.com and enter any inflatable Santa you spot in the Santa Tracker.</a><span class="endmark r" aria-hidden="true"></span></p>
+      </div>
+    </div>
+    <p class="sharelink"><a href="stories/2026-12-santa-census.html#share-story" aria-label="Share this story: Local Population Explodes; Officials Scramble">Share this story &rarr;</a></p>
+  </div>
+  <p class="folio">Page 2</p>
+  </section>
+
+  <section class="story" id="badgerbots">
+  <div class="strip"><span>The Monroe Street Tattler</span><span class="r">BadgerBOTS Team 1306</span></div>
+  <h2 class="phead">BadgerBOTS are building something big</h2>
+  <p class="pdeck">Inside the student-led team competing on the world stage.</p>
+  <figure class="figright"><img src="assets/december-2026/badgerbots-gimli-pit.jpg" width="1600" height="853" alt="Gimli, Team 1306’s robot, in the pit: a black box with GIMLI in white letters on a blue bumper marked 1306" loading="lazy" decoding="async"></figure>
+  <p>There are teenagers in our neighborhood spending their time designing machines in CAD, cutting metal, wiring electronics, programming control systems and repairing broken mechanisms under pressure.</p>
+  <p>Then they send the finished robot out to compete.</p>
+  <p>Last season, BadgerBOTS Team 1306 made it all the way to the World Championship.</p>
+  <p>Asked to describe the kind of people who voluntarily devote this much time to competitive robotics, the team offered this:</p>
+  <p class="pullrule">&ldquo;Dedicated and nerdy.&rdquo;</p>
+  <p>Every year, FIRST Robotics releases a brand-new game, and teams around the world have to figure out how to build a robot capable of playing it.</p>
+  <p>That means the students cannot simply dust off last year's machine. They have to start over.</p>
+  <p>They study the new challenge, decide what kind of robot might succeed, design it, build it, wire it, program it and figure out how to make the whole thing work reliably enough to compete.</p>
+  <p>BadgerBOTS divides that work among teams focused on build, design, electrical, programming, strategy, outreach and business.</p>
+  <p>And according to the students, newcomers do not need to arrive knowing how to do any of it.</p>
+  <p>&ldquo;Only thing you need to know is how to use a computer,&rdquo; one student explained. &ldquo;We teach the rest.&rdquo;</p>
+  <p>During the craziest parts of the season, students may spend about two hours a day at the team's facility, then another couple of hours working outside it.</p>
+  <p>&ldquo;We basically live in metal shavings from our machines,&rdquo; the team reported.</p>
+  <h3 class="psub">Meet Gimli</h3>
+  <p>Their most recent robot.</p>
+  <p>Why? Because he is &ldquo;short and stout.&rdquo;</p>
+  <p>Gimli's job, in very simplified terms, is to collect balls using rotating rollers, move them through the robot on what the students describe as something like the rolling floor of an airport X-ray machine, then fire them rapidly from a shooter.</p>
+  <p>Making that happen reliably is considerably harder than that sentence suggests.</p>
+  <p>The intake system, which brings balls into the robot, became one of the biggest challenges of the season. The students redesigned it several times.</p>
+  <p>Then came the Wisconsin State Championship, where, according to the team, the intake broke roughly 10 times. &ldquo;I'm not exaggerating,&rdquo; one student added. It failed again during the second finals match, and at one point the team tried something that sounds almost offensively simple: they removed a bar from the intake. That fixed the problem, just in time for the playoffs.</p>
+  <p>This is apparently part of competitive robotics too: months of design and engineering, followed occasionally by the discovery that the correct solution is to take one piece off.</p>
+  <p>Then comes the moment when there is nothing left to adjust.</p>
+  <p>The repair is finished. The robot has to go back out.</p>
+  <p>Students described that moment as sending the machine onto the field and just hoping, in their words, it does not &ldquo;break and kill itself.&rdquo;</p>
+  <h3 class="psub">They are also very good at this</h3>
+  <p>BadgerBOTS did not spend last season merely keeping Gimli alive.</p>
+  <p>They won.</p>
+  <p>At one competition in Appleton, the team went undefeated.</p>
+  <p>At another early event, they reached the finals while losing only one match.</p>
+  <p>Their season eventually took them to Houston for the World Championship, where hundreds of teams gathered to compete at one of the highest levels of student robotics.</p>
+  <p class="contd">Continued from page 3</p>
+  <figure class="figsmall"><img src="assets/december-2026/badgerbots-gimli-competition-floor.jpg" width="403" height="268" alt="Gimli on the competition floor among scattered balls, with a referee at the edge of the field" loading="lazy" decoding="async"><figcaption>Gimli and Team 1306 on the competition floor.</figcaption></figure>
+  <p>For people outside the robotics world, it can be difficult to understand just how competitive all of this becomes. Teams know which programs are strong, remember standout robots and performances, and adjust their own strategy as competitions unfold. And when things go badly, they remember that too.</p>
+  <p>At the Wisconsin State Championship, BadgerBOTS struggled through qualifying as robot failures piled up. But their earlier results had already shown what the team was capable of.</p>
+  <p>When the competition shifted into its championship rounds, top teams selected other teams to join them in alliances. The third-ranked team took a gamble on BadgerBOTS, and together they went on to make the finals.</p>
+  <p>That kind of performance requires more than building a clever machine. Students have to operate it under pressure, repair it quickly, understand what other teams are doing, communicate clearly and make decisions while the competition is still unfolding.</p>
+  <p>The team describes itself as student-led.</p>
+  <p>Asked what students actually make decisions about, the response was straightforward:</p>
+  <p>&ldquo;Basically everything.&rdquo;</p>
+  <h3 class="psub">Not just for robot people</h3>
+  <p>It would be easy to assume a team like this is made entirely of teenagers who have been programming since preschool.</p>
+  <p>It is not.</p>
+  <p>Students learn on the team, and not everyone is there because they want to become an engineer. BadgerBOTS also has students working in outreach, business and community programs, including summer camps.</p>
+  <p>That balance came through when the team was asked to estimate how much of competitive robotics is actually engineering.</p>
+  <p>Their answer: about 45 percent.</p>
+  <p>Another 45 percent, they said, is outreach.</p>
+  <p class="pullrule">The remaining 10 percent is feeding teenagers.</p>
+  <p>The work also consumes a steady supply of 3D-printing filament, sheet metal and, according to the team, &ldquo;our determination.&rdquo;</p>
+  <h3 class="psub">More than a robot</h3>
+  <p>By the end of the season, all of that work had carried BadgerBOTS from a workshop full of metal shavings to competition on the world stage.</p>
+  <p>And they are already looking ahead.</p>
+  <p>Their goal for this season is simple: get even better.</p>
+  <p>After seeing what they built last year, that seems worth paying attention to.</p>
+  <p><strong>LEARN MORE:</strong> Find Team 1306 BadgerBOTS, their robots, competitions, summer programs and information about joining the team at <a href="https://teams.badgerbots.org/team1306" target="_blank" rel="noopener">teams.badgerbots.org/team1306</a>.<span class="endmark" aria-hidden="true"></span></p>
+  <p class="sharelink"><a href="stories/2026-12-badgerbots.html#share-story" aria-label="Share this story: Neighborhood Teens Caught!!… In the Act of Engineering!">Share this story &rarr;</a></p>
+  <p class="folio">Pages 3&ndash;4</p>
+  </section>
+
+  <section class="story" id="christmas">
+  <div class="strip"><span>The Monroe Street Tattler</span><span class="r">Christmas in Crisis</span></div>
+  <p class="kick">You in danger, girl!</p>
+  <h2 class="phead caps">Santa Population on Brink of Collapse</h2>
+  <p class="pdeck">A Tattler investigation reveals an existential threat to Monroe Street's most recognizable inflatables.</p>
+  <p>Every December, Monroe Street undergoes a remarkable transformation as identical inflatable Santas appear up and down the street, creating one of Madison's more subtle, yet well-known, holiday traditions.</p>
+  <p>Naturally, the Monroe Street Tattler felt obligated to find some untold angle on the story.</p>
+  <figure class="figright"><img src="assets/december-2026/santa-endangered-model.jpg" width="430" height="594" alt="A grainy black-and-white close-up of the 12-foot inflatable Santa, fully inflated" loading="lazy" decoding="async"><figcaption>The endangered model, seen here in full inflation.</figcaption></figure>
+  <p>What began as a routine inquiry into the neighborhood's annual Santa population has uncovered a deeply troubling development.</p>
+  <p>The Santas appear to be no longer manufactured!</p>
+  <p>Gemmy Industries, the company responsible for producing the particular 12-foot inflatable Santa that has become synonymous with Monroe Street Christmas, appears to have discontinued the model.</p>
+  <p>The implications are considerable.</p>
+  <div class="clearfix"></div>
+  <figure class="figleft"><img src="assets/december-2026/santa-seasonal-resident-railing.jpg" width="1512" height="1553" alt="A black-and-white photo of an inflatable Santa with a candy cane standing behind a porch railing" loading="lazy" decoding="async"><figcaption>A seasonal resident stands tall behind a regulation-height railing.</figcaption></figure>
+  <p>Inflatable Santas are not immortal. They endure all the indignities of spending several weeks outdoors in Wisconsin. By the end of the season, some look a little worse for wear, and every now and then one springs a leak or meets some other unfortunate end. The neighborhood's Santa population is holding steady for now. The conditions remain appalling, and over time they could lead to a slow but irreversible collapse.</p>
+  <p>In an effort to avert a potential Christmas catastrophe, we have taken the extraordinary step of writing directly to Gemmy's chief executive officer Dan, urging the company to reconsider its decision to help preserve this beloved neighborhood tradition.</p>
+  <p>At press time, no response had been received.</p>
+  <div class="clearfix"></div>
+  <p>We are now calling upon residents, readers, and anyone else who has found joy in this peculiar annual spectacle to make their voices heard.</p>
+  <p>If these Santas have brought a smile to your face, brightened your December commute, or simply reassured you that the neighborhood remains appropriately eccentric, we encourage you to write to Gemmy and explain why this Santa's continued existence matters.</p>
+  <p>The Santas are standing this year. But without intervention, the future of Monroe Street Christmas remains uncertain.</p>
+  <p>The Tattler will continue to monitor this developing situation.<span class="endmark" aria-hidden="true"></span></p>
+  <div class="writebox">
+    <p class="lh">If you do wish to write, Dan's info is below:</p>
+    <p>Dan Flaherty - CEO Gemmy Industries</p>
+    <p>117 Wrangler Dr #100, Coppell, TX 75019</p>
+    <p>Santa of concern &ldquo;12' Inflatable Santa with Gift&rdquo;</p>
+  </div>
+  <p class="sharelink"><a href="stories/2026-12-christmas-in-crisis.html#share-story" aria-label="Share this story: Christmas in Crisis!">Share this story &rarr;</a></p>
+  <p class="folio">Page 5</p>
+  </section>
+
+  <section class="story notice" id="missingchild">
+  <div class="strip"><span>Public Notice</span><span class="r">The Monroe Street Tattler</span></div>
+  <h2 class="phead vh">Have You Seen Me?</h2>
+  <figure><img src="assets/december-2026/missing-child-public-notice.jpg" width="1024" height="1536" alt="A Monroe Street Tattler public notice. Have you seen me? Missing child found. Parents not looking. A photo shows a large baby doll with wild hair and a floral dress sitting on a rock beneath the Glenwood Children’s Park sign. Last seen sitting on a rock, Glenwood Children’s Park. Unusually large doll. Floral dress. Bare feet. Refused to answer questions. No reward currently offered." loading="lazy" decoding="async"></figure>
+  <p class="sharelink"><a href="stories/2026-12-missing-child-found.html#share-story" aria-label="Share this story: Missing Child Found. Parents Not Looking.">Share this story &rarr;</a></p>
+  <p class="folio">Page 6</p>
+  </section>
+
+  <section class="story" id="sauna">
+  <div class="strip"><span>The Monroe Street Tattler</span><span class="r">Wellness</span></div>
+  <h2 class="phead">Sauna opens amid growing demand for unpleasant temperatures</h2>
+  <p>It started with a podcast. Then came the electrolytes, creatine, and a Whoop armband. Now your husband talks about &ldquo;recovery&rdquo; despite having done nothing particularly strenuous. He's tracking his sleep, monitoring his cortisol, and has developed strong opinions about inflammation.</p>
+  <p>Fortunately, Madison Saunas, a new sauna near Lake Wingra, has opened, providing a place for him to sit in extreme temperatures and discuss optimal recovery protocols with others who listened to the same podcast. Sessions can be booked online, allowing recovery to be scheduled well in advance of any actual exertion.</p>
+  <p>Whether this represents a welcome addition to neighborhood wellness or simply the latest stage of the male midlife crisis remains to be seen.</p>
+  <p>The sauna is clearly open to everyone, regardless of gender, podcast preferences, or perceived need for recovery.</p>
+  <p>The Tattler welcomes this new addition to the neighborhood and looks forward to experiencing its scientifically documented benefits for cardiovascular health, cellular recovery, and long-term longevity. Our Whoop has already been charged.</p>
+  <p>Up next: When will the neighborhood get its much needed cold plunge?</p>
+  <div class="notebox">
+    <h3 class="lh2">A note to Madison Saunas</h3>
+    <p>Madison Saunas if you're reading this, we'd love to sell you an advertisement in the Tattler. In fact, we've already designed one for you, entirely without your knowledge or consent.</p>
+    <p>We trust you'll find it persuasive.<span class="endmark" aria-hidden="true"></span></p>
+  </div>
+  <div class="advert">
+    <img src="assets/december-2026/ad-madison-saunas-hypothetical.jpg" width="1125" height="1500" alt="A hypothetical advertisement: Your husband listened to a podcast. Now he needs a sauna. Madison Saunas, at Wingra Boats on Lake Wingra, madisonsaunas.com, 824 Knickerbocker St., Madison. Open to everyone. Even people who don’t listen to podcasts." loading="lazy" decoding="async">
+    <p class="adlab">Hypothetical advertisement</p>
+  </div>
+  <p class="sharelink"><a href="stories/2026-12-madison-saunas.html#share-story" aria-label="Share this story: Manosphere Makes Neighborhood Debut">Share this story &rarr;</a></p>
+  <figure class="figwide issue-only" id="puddin"><img src="assets/december-2026/monkey-with-puddin.jpg" width="1512" height="1068" alt="A small black-and-white dog lying on a pink cushion by a window beside a stuffed monkey from the Monkey Hunt" loading="lazy" decoding="async"><figcaption>A Monkey Hunt adoptee settles into its new home. It's already sharing the best seat in the house with the family dog.</figcaption></figure>
+  <p class="folio">Page 7</p>
+  </section>
+
+  <section class="story" id="neighborhood">
+  <div class="strip"><span>The Monroe Street Tattler</span><span class="r">Around the Neighborhood</span></div>
+  <h2 class="phead center">Around the Neighborhood</h2>
+
+  <div class="brief" id="patrick">
+    <h3 class="bh">Newest member of neighborhood watch: Patrick Booping</h3>
+    <figure class="figright"><img src="assets/december-2026/patrick-booping-neighborhood-watch.jpg" width="661" height="638" alt="Patrick Booping, a lop-eared rabbit, sits on a couch by a window keeping watch over the street" loading="lazy" decoding="async"></figure>
+    <p>Don't be alarmed if you're walking down Keyes Avenue and spot a furry face staring you down through a fogged window. It's just your neighborhood officer reporting for duty: Patrick Booping!</p>
+    <p>Let Patrick know if you'd like to lend a helping paw to his patrol team or have any suspicious activity you'd like him to investigate. He's committed to keeping the neighborhood safe and informed.</p>
+    <p><em>His motto: &ldquo;Eliminate snooping with Officer Booping.&rdquo;</em><span class="endmark" aria-hidden="true"></span></p>
+    <div class="clearfix"></div>
+    <p class="sharelink"><a href="stories/2026-12-keyes-window-peeper.html#share-story" aria-label="Share this story: Keyes Window Peeper Given Official Title">Share this story &rarr;</a></p>
+  </div>
+
+  <div class="brief" id="jackolanterns">
+    <h3 class="bh">Former porch fixtures face a grim future</h3>
+    <figure class="figright"><img src="assets/december-2026/jack-o-lanterns-grim-future.jpg" width="1200" height="1600" alt="Four sagging carved jack-o’-lanterns huddled on a leaf-covered terrace beside city trash carts at the curb" loading="lazy" decoding="async"></figure>
+    <p class="sub">Once-cherished Halloween decorations left to contemplate their final hours</p>
+    <p>Former Halloween favorites were discovered huddled together, their faces contorted in anguish as they await their inevitable fate. Neighbors appear unmoved.<span class="endmark" aria-hidden="true"></span></p>
+    <div class="clearfix"></div>
+    <p class="sharelink"><a href="stories/2026-12-jack-o-lanterns.html#share-story" aria-label="Share this story: Capital Punishment Appears Back on the Table">Share this story &rarr;</a></p>
+  </div>
+
+  <div class="answers" id="answers">
+    <p class="lh">Last month's answers</p>
+    <p><em>Tattler Crossword No. 3, November 2026. No. 4 is on <a href="#crossword">page 12</a>.</em></p>
+    <table class="sol" aria-label="Answers to Crossword No. 3"><tr><td>W</td><td>I</td><td>L</td><td>D</td><td class="blk"></td><td>O</td><td>H</td><td class="blk"></td><td>M</td><td>O</td><td>B</td></tr><tr><td class="blk"></td><td>S</td><td>E</td><td>V</td><td>E</td><td>N</td><td class="blk"></td><td>H</td><td>O</td><td>P</td><td>S</td></tr><tr><td class="blk"></td><td>A</td><td>N</td><td>D</td><td>R</td><td>E</td><td class="blk"></td><td>A</td><td>D</td><td>E</td><td class="blk"></td></tr><tr><td>P</td><td>A</td><td>S</td><td class="blk"></td><td class="blk"></td><td>A</td><td>L</td><td>I</td><td>E</td><td>N</td><td>S</td></tr><tr><td>A</td><td>C</td><td>E</td><td>R</td><td class="blk"></td><td>L</td><td>T</td><td>R</td><td class="blk"></td><td class="blk"></td><td>L</td></tr><tr><td>N</td><td class="blk"></td><td>S</td><td class="blk"></td><td>N</td><td class="blk"></td><td>D</td><td class="blk"></td><td>T</td><td class="blk"></td><td>E</td></tr><tr><td>I</td><td class="blk"></td><td class="blk"></td><td>B</td><td>O</td><td>S</td><td class="blk"></td><td>M</td><td>O</td><td>R</td><td>E</td></tr><tr><td>C</td><td>E</td><td>S</td><td>A</td><td>R</td><td>E</td><td class="blk"></td><td class="blk"></td><td>T</td><td>A</td><td>P</td></tr><tr><td class="blk"></td><td>Q</td><td>E</td><td>D</td><td class="blk"></td><td>T</td><td>H</td><td>R</td><td>O</td><td>B</td><td class="blk"></td></tr><tr><td>M</td><td>U</td><td>T</td><td>E</td><td class="blk"></td><td>T</td><td>I</td><td>A</td><td>R</td><td>A</td><td class="blk"></td></tr><tr><td>T</td><td>I</td><td>S</td><td class="blk"></td><td>T</td><td>O</td><td class="blk"></td><td>G</td><td>O</td><td>T</td><td>O</td></tr></table>
+  </div>
+  <p class="folio">Page 8</p>
+  </section>
+
+  <section class="story" id="dearbarb">
+  <div class="strip"><span>The Monroe Street Tattler</span><span class="r">Dear Barb</span></div>
+  <h2 class="phead center">Dear Barb</h2>
+  <p class="pdeck center">Season's greetings. Mind your manners.</p>
+  <div class="letter">
+    <p class="q"><span class="lh">Dear Barb:</span> Every year, our extended family gets together the weekend before Christmas so everyone can spend Christmas Day with their own families. It's a lovely tradition, except my mother insists on making a formal seating chart, even though nearly the same twelve people have attended for the past fifteen years. Last year, she separated my husband and me because she said we were &ldquo;getting too comfortable.&rdquo; Is this normal?</p>
+    <p class="q">- Displaced</p>
+    <p><span class="lh">Dear Displaced:</span> Your mother understands something most people don't: an extended family holiday gathering is not a celebration. It is a carefully managed diplomatic summit. Fifteen years of peace is no accident. There are reasons you aren't privy to.</p>
+    <p class="verdict">Verdict: Respect the seating chart. Your husband may have been traded for concessions.</p>
+  </div>
+  <div class="letter">
+    <p class="q"><span class="lh">Dear Barb:</span> We received a wedding gift from a good friend in a lovely Von Maur box. Although there was no gift receipt, I decided to try exchanging it at the Madison location. At the counter, however, the sales associate informed me that Von Maur doesn't even sell the item.</p>
+    <p class="q">I was mortified.</p>
+    <p class="q">Do I tell my friend or pretend it never happened?</p>
+    <p class="q">- Sincerely, Boxed and Betrayed</p>
+    <p><span class="lh">Dear Boxed and Betrayed:</span> A Von Maur box is not just a box. It is a promise of tasteful merchandise, attentive customer service, and the reasonable expectation that whatever is inside can be returned or exchanged.</p>
+    <p>Your friend has violated that sacred trust.</p>
+    <p>I cannot imagine the humiliation. I would now avoid that particular Von Maur for at least six months.</p>
+    <p>That said, I am troubled by your decision to return a wedding gift. In my day, we accepted unwanted gifts graciously and stored them in the basement until the giver died.</p>
+    <p>As for your friend, do not confront them. Maintain the friendship and never mention the incident.</p>
+    <p>There is no reason the friendship cannot continue. You simply know a little more about the person than you did before.</p>
+    <p class="verdict">Verdict: Keep the friend. Put the gift in the basement. Give Von Maur six months.</p>
+  </div>
+  <p class="sharelink"><a href="stories/2026-12-dear-barb.html#share-story" aria-label="Share this story: Dear Barb">Share this story &rarr;</a></p>
+  <div class="issue-only" id="treehouse">
+    <div class="advert">
+      <a href="https://treehousearborscience.com/" target="_blank" rel="noopener"><img src="assets/december-2026/ad-tree-house-arbor-science.png" width="718" height="1578" alt="Tree House Arbor Science. Ask your trees about us. TreeHouseArborScience.com, (608) 234-5935, Madison, WI" loading="lazy" decoding="async"></a>
+      <p class="adlab">Advertisement</p>
+    </div>
+    <div class="shoutout">
+      <h3 class="lh"><span aria-hidden="true">&#9650;</span> A shout-out to our neighbors at Tree House Arbor Science</h3>
+      <p>Tree House Arbor Science helped put this December issue of the Tattler in your hands. They're also a great resource for those of us with old trees we'd like to keep around. And here's something we learned: they work even in the dead of winter. If your trees could use some care, give them a call today and tell 'em the Tattler sent you.</p>
+    </div>
+  </div>
+  <p class="folio">Page 9</p>
+  </section>
+
+  <section class="story" id="potpourri">
+  <div class="strip"><span>The Monroe Street Tattler</span><span class="r">Reader Potpourri</span></div>
+  <div class="sectionhead">
+    <h2 class="phead caps">Reader Potpourri</h2>
+    <p class="pdeck">An assortment of things our readers insisted we know.</p>
+    <nav class="briefnav" aria-label="In Reader Potpourri">
+      <p class="briefnav-k">In this section</p>
+      <ul>
+        <li><a href="#salon">Neighborhood Business Defies Traffic Logic</a></li>
+        <li><a href="#leafpile">Ignorance Is Bliss</a></li>
+        <li><a href="#missedconnection">Missed Connections</a></li>
+        <li><a href="#phillysanta">Santa Takes Up Post in West Philadelphia</a></li>
+      </ul>
+    </nav>
+  </div>
+
+  <div class="brief" id="salon">
+    <h3 class="bh">Neighborhood hair salon defies traffic logic</h3>
+    <p class="bdeck">Motorists continue to attempt drive-through service at an establishment that offers none.</p>
+    <p>A Monroe Street resident of 20 years has written to the Tattler seeking help with a longstanding mystery: Just how many times has a vehicle crashed into the Fritz &amp; Associates building?</p>
+    <p>The reader recalls at least three incidents over the past two decades, an impressive figure for a building that, despite being well off the road, reportedly continues to attract vehicles.</p>
+    <p>The Tattler is seeking assistance in reconstructing this troubling history. Do you remember an incident? Have photographs? Know how or why these vehicles managed to reach the building in the first place?<span class="endmark" aria-hidden="true"></span></p>
+    <p class="sharelink"><a href="stories/2026-12-hair-salon-traffic-logic.html#share-story" aria-label="Share this story: Neighborhood Business Defies Traffic Logic">Share this story &rarr;</a></p>
+  </div>
+
+  <div class="brief" id="leafpile">
+    <h3 class="bh">An unfortunate truth about a beloved terrace leaf pile</h3>
+    <p class="bdeck">While walking my dog, I saw a heartwarming fall scene: a small child playing in a leaf pile on their terrace. They had some toy trucks (one dump, one bucket) and were industriously moving leaves to and fro. I could almost imagine the story the tike's brain was writing. Truly endearing.</p>
+    <p class="bdeck">Do you think this child knows that my dog, and who knows how many others, has peed in that leaf pile?<span class="endmark" aria-hidden="true"></span></p>
+    <p class="sharelink"><a href="stories/2026-12-terrace-leaf-pile.html#share-story" aria-label="Share this story: Ignorance Is Bliss">Share this story &rarr;</a></p>
+  </div>
+
+  <div class="brief" id="missedconnection">
+    <h3 class="bh">Missed connection</h3>
+    <figure class="figright"><img src="assets/december-2026/ruthie-the-plant.jpg" width="1201" height="1600" alt="Ruthie the plant, a spiky succulent in a white pot, on a windowsill beside a desk organizer" loading="lazy" decoding="async"><figcaption>Ruthie, purchased from Trader Joe's, promises to be easy and so far remains alive.</figcaption></figure>
+    <p><span class="lab">You:</span> Man innocently walking your dog on Monroe Street.</p>
+    <p><span class="lab">Us:</span> Family of three that asked your dog's name so we could give it to our new plant.</p>
+    <p><span class="lab">Plant:</span> Ruthie was purchased from Trader Joe's, promises to be &ldquo;easy,&rdquo; and (so far) remains alive.</p>
+    <p><span class="lab">Request:</span> Please inform us of any other pet or baby names in your household. We have a lot of plants.</p>
+    <p class="replyhead">The Tattler's reply</p>
+    <p>Thank you for bringing this to our attention.</p>
+    <p>The Tattler takes all Missed Connections seriously. RIP Craigslist Missed Connections.</p>
+    <p>Please keep Ruthie the Plant alive through publication. It would complicate matters considerably if we had to run this as an obituary.<span class="endmark" aria-hidden="true"></span></p>
+    <div class="clearfix"></div>
+    <p class="sharelink"><a href="stories/2026-12-missed-connection.html#share-story" aria-label="Share this story: Missed Connections">Share this story &rarr;</a></p>
+  </div>
+
+  <p class="contd">Reader Potpourri continued from page 10</p>
+
+  <div class="brief" id="phillysanta">
+    <h3 class="bh">Santa takes up post in West Philadelphia</h3>
+    <figure class="figleft"><img src="assets/december-2026/philly-santa-florence-avenue.jpg" width="1200" height="1600" alt="An inflatable Santa with a candy cane and green sack in the small front yard of a West Philadelphia row home under a blue sky" loading="lazy" decoding="async"></figure>
+    <p>A Saintly Samaritan of Monroe Street facilitated a cross country Santa exchange that brought joy and good tidings to the streets of West Philadelphia. On Florence Ave, which boasts historic row homes with historically small yards, this Monroe Street emissary stands tall, a beacon of light to help all through the dark winter months. One passerby observed, &ldquo;Just one Santa is the talk of our block, I can't imagine what a whole street of Santas would look like!&rdquo; Her associate chimed in, &ldquo;Tanta!&rdquo; And all was well in the neighborhood.</p>
+    <p>The homeowners who were bestowed this blessed, billowing bearer of gifts expressed their gratitude to the joy makers of Monroe Street. &ldquo;Our winters aren't even that long or cold, but he really helps with the January-February slump.&rdquo; A warm glow and welcoming wave are wonderful for wandering eyes and whimsical whiners alike. A neighbor observed, &ldquo;Halloween is the big to do in our neighborhood, but for little kids it's a lot of sugar and scares. Santa is sweet without all the emotional swings.&rdquo;</p>
+    <p>In coming months you may find yourself waxing eloquent about the fireside chats of your childhood. Or feeling crunched by the pressures of late stage capitalism. The Tattler and this Philadelphia correspondent remind you breathe, be present, and forget the presents. Welcome what comes.<span class="endmark r" aria-hidden="true"></span></p>
+    <div class="clearfix"></div>
+    <p class="sharelink"><a href="stories/2026-12-west-philadelphia-santa.html#share-story" aria-label="Share this story: Santa Takes Up Post in West Philadelphia">Share this story &rarr;</a></p>
+  </div>
+
+  <div class="adrow issue-only" id="popcorn">
+    <div class="advert">
+      <a href="https://chocolateshoppeicecream.com/" target="_blank" rel="noopener"><img src="assets/december-2026/ad-chocolate-shoppe.jpg" width="1125" height="1530" alt="Chocolate Shoppe Ice Cream: Wisconsin made, family owned, community loved since 1962. ChocolateShoppeIceCream.com" loading="lazy" decoding="async"></a>
+      <p class="adlab">Advertisement</p>
+    </div>
+    <figure><img src="assets/december-2026/monkey-popcorn-new-home.jpg" width="1200" height="1600" alt="Popcorn, a stuffed monkey from the Monkey Hunt, sits in a car seat beside a Bucky Badger plush holding a Welcome Home Popcorn sign" loading="lazy" decoding="async"><figcaption>After the Great Monkey Escape, Popcorn settles into his new home with a warm welcome from his new sibling, Bucky Badger. Photo submitted by a Tattler reader.</figcaption></figure>
+  </div>
+  <p class="folio">Pages 10&ndash;11</p>
+  </section>
+
+  <section class="story" id="crossword">
+  <div class="strip"><span>The Monroe Street Tattler</span><span class="r">Crossword No. 4</span></div>
+  <h2 class="phead center">Tattler Crossword No. 4</h2>
+  <p class="pdeck center">Santa Knows You Looked It Up</p>
+  <p><a href="december_2026_digital.pdf" target="_blank" rel="noopener"><strong>Download the printed issue to play along &rarr;</strong></a></p>
+  <table class="xw" aria-label="Crossword No. 4 grid, 11 by 11"><tr><td><span class="n">1</span></td><td></td><td><span class="n">2</span></td><td><span class="n">3</span></td><td class="blk"></td><td><span class="n">4</span></td><td><span class="n">5</span></td><td></td><td><span class="n">6</span></td><td><span class="n">7</span></td><td><span class="n">8</span></td></tr><tr><td></td><td class="blk"></td><td><span class="n">9</span></td><td></td><td><span class="n">10</span></td><td></td><td></td><td class="blk"></td><td><span class="n">11</span></td><td></td><td></td></tr><tr><td><span class="n">12</span></td><td><span class="n">13</span></td><td></td><td></td><td></td><td></td><td></td><td><span class="n">14</span></td><td></td><td></td><td></td></tr><tr><td><span class="n">15</span></td><td></td><td></td><td class="blk"></td><td><span class="n">16</span></td><td></td><td class="blk"></td><td><span class="n">17</span></td><td></td><td></td><td></td></tr><tr><td><span class="n">18</span></td><td></td><td></td><td><span class="n">19</span></td><td></td><td class="blk"></td><td><span class="n">20</span></td><td></td><td></td><td></td><td></td></tr><tr><td class="blk"></td><td class="blk"></td><td class="blk"></td><td><span class="n">21</span></td><td></td><td></td><td></td><td></td><td class="blk"></td><td class="blk"></td><td class="blk"></td></tr><tr><td><span class="n">22</span></td><td><span class="n">23</span></td><td><span class="n">24</span></td><td></td><td></td><td class="blk"></td><td><span class="n">25</span></td><td></td><td><span class="n">26</span></td><td><span class="n">27</span></td><td><span class="n">28</span></td></tr><tr><td><span class="n">29</span></td><td></td><td></td><td></td><td class="blk"></td><td><span class="n">30</span></td><td></td><td class="blk"></td><td><span class="n">31</span></td><td></td><td></td></tr><tr><td><span class="n">32</span></td><td></td><td></td><td></td><td><span class="n">33</span></td><td></td><td></td><td><span class="n">34</span></td><td></td><td></td><td></td></tr><tr><td><span class="n">35</span></td><td></td><td></td><td class="blk"></td><td><span class="n">36</span></td><td></td><td></td><td></td><td></td><td class="blk"></td><td></td></tr><tr><td><span class="n">37</span></td><td></td><td></td><td></td><td></td><td></td><td class="blk"></td><td><span class="n">38</span></td><td></td><td></td><td></td></tr></table>
+  <div class="xwclues">
+    <div>
+      <p class="lh">Across</p>
+      <ol class="clues">
+      <li><b>1</b> Computer command to keep</li>
+      <li><b>4</b> &ldquo;The news isn't good&rdquo;</li>
+      <li><b>9</b> Love, Italian-style</li>
+      <li><b>11</b> Prefix with friendly or conscious</li>
+      <li><b>12</b> Profit made from a stock sale</li>
+      <li><b>15</b> The &ldquo;A&rdquo; in LGBTQIA+, for some</li>
+      <li><b>16</b> IQ's counterpart</li>
+      <li><b>17</b> First four letters of UNDERDOG</li>
+      <li><b>18</b> Clorox competitor</li>
+      <li><b>20</b> Listerine rival</li>
+      <li><b>21</b> One Little Monkey Eats Corn -- take the initials.</li>
+      <li><b>22</b> What a metronome marks</li>
+      <li><b>25</b> Walks with an uneven gait</li>
+      <li><b>29</b> Iowa State University's home</li>
+      <li><b>30</b> One-thousandth of a liter, abbr.</li>
+      <li><b>31</b> After extra time, on a soccer scoreboard</li>
+      <li><b>32</b> The Statue of Liberty, familiarly</li>
+      <li><b>35</b> Start of Old MacDonald's refrain &ldquo;___-I-O&rdquo;</li>
+      <li><b>36</b> Offer a casual hello</li>
+      <li><b>37</b> Runs, as ink on wet paper</li>
+      <li><b>38</b> Aching after a workout</li>
+      </ol>
+    </div>
+    <div>
+      <p class="lh">Down</p>
+      <ol class="clues">
+      <li><b>1</b> Southern California, for short</li>
+      <li><b>2</b> Takes a puff from an e-cigarette</li>
+      <li><b>3</b> Middle three letters of REMIX</li>
+      <li><b>4</b> Country with Baghdad as its capital</li>
+      <li><b>5</b> ___ Aviv, Israel</li>
+      <li><b>6</b> Gas-prevention brand</li>
+      <li><b>7</b> First five letters of &ldquo;acid-proof&rdquo;</li>
+      <li><b>8</b> Person on the receiving end of a donation</li>
+      <li><b>10</b> Verdi opera based on Shakespeare's Othello</li>
+      <li><b>13</b> Ending of literacy or diplomacy</li>
+      <li><b>14</b> Italian fashion house with a double-G logo</li>
+      <li><b>19</b> Cutesy &ldquo;My bad!&rdquo;</li>
+      <li><b>20</b> Words before a date on a milk carton</li>
+      <li><b>22</b> Nassim Nicholas ___, author of The Black Swan</li>
+      <li><b>23</b> Send via Gmail, say</li>
+      <li><b>24</b> ME + DEEP without the P</li>
+      <li><b>26</b> Classic video-game character</li>
+      <li><b>27</b> Word before &ldquo;peeve&rdquo; or &ldquo;project&rdquo;</li>
+      <li><b>28</b> Arrange, as hair</li>
+      <li><b>30</b> Lost Soldiers (abbr.)</li>
+      <li><b>33</b> Acid, in drug slang</li>
+      <li><b>34</b> Edgewood High School, for short</li>
+      </ol>
+    </div>
+  </div>
+  <div class="finale">
+    <p class="lh">Your ads. Your gossip. Our newspaper.</p>
+    <p>Thanks for making this season spectacular. We hope you had as much fun reading the Tattler as we had putting it together.</p>
+    <p>Local business ads and reader contributions keep the Tattler free. If you'd like to see another season, please consider chipping in. We tried to get through the finale without an NPR-style pledge drive. We almost made it.</p>
+    <p>While we're asking, we're also looking for more advertisers as we explore expanding neighborhood delivery through the actual United States Postal Service. Have a business to promote, a few dollars to spare, or some neighborhood dirt? We have a use for all three.</p>
+    <p class="sign"><a href="index.html">MonroeStreetTattler.com</a> &middot; <a href="mailto:MonroeStreetTattler@gmail.com">MonroeStreetTattler@gmail.com</a></p>
+  </div>
+  <p class="folio">Page 12</p>
+  </section>
+
+  <div class="issuenav">
+    <div class="issuenav-label">More from the Tattler</div>
+    <a href="files.html">Explore stories &mdash; Keep wandering</a>
+    <a href="november-2026.html">November 2026 &mdash; Monroe Street Pizzagate</a>
+    <a href="october-2026.html">October 2026 &mdash; A Monkey and a Cult</a>
+    <a href="santa-map.html">Santas on Monroe Street &mdash; The Santa Tracker</a>
+  </div>
+
+  <div class="payup">
+    <p class="payhead">The News Is Free. The Paper Is Not.</p>
+    <p>You just read the whole issue, free. Advertising pays for part of this paper.
+    Reader contributions help with the rest.</p>
+    <p>If the paper is worth something to you, chip in.</p>
+    <div class="paybtns">
+      <a class="pay1" href="https://ko-fi.com/monroestreettattler#checkoutModal" target="_blank" rel="noopener">&#9749; Buy Us a Coffee</a>
+      <a class="pay2" href="index.html#delivery">Subscribe &mdash; Never Miss an Issue</a>
+    </div>
+    <p class="payfine">One time or monthly. Both options are on the next screen.
+    Contributions go toward printing and getting the paper around the neighborhood.</p>
+  </div>
+
+  <div class="colophon">
+    <p><strong>The Monroe Street Tattler</strong> is printed monthly-ish and distributed free throughout the surrounding neighborhoods.</p>
+    <p>Subscribe, read past issues, chip in, host a stack or run an ad at <a href="/">MonroeStreetTattler.com</a>.</p>
+    <p>Tips, neighborhood lore and unexplained local developments to
+       <a href="mailto:MonroeStreetTattler@gmail.com">MonroeStreetTattler@gmail.com</a>.
+       Story ideas are welcome and submissions need not be polished.</p>
+  </div>
+
+</div>
+
+<div class="tt-footnav">
+  <a href="index.html">Home</a>
+  <a href="files.html">The Tattler Files</a>
+  <a href="dog-map.html">Dog Map</a>
+  <a href="faq.html">FAQ</a>
+  <a href="issues.html">Past Issues</a>
+  <a href="index.html#delivery">Subscribe</a>
+  <a href="mailto:MonroeStreetTattler@gmail.com">Contact</a>
+</div>
+</body>
+</html>

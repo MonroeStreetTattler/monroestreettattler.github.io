@@ -1,0 +1,239 @@
+{
+  "issue": "december-2026.html",
+  "issue_name": "December 2026",
+  "date_published": "2026-11-25",
+  "site": "https://monroestreettattler.com/",
+  "stories_dir": "stories",
+  "path_prefix": "2026-12-",
+  "explore": {
+    "href": "files.html",
+    "label": "Explore stories"
+  },
+  "units": [
+    {
+      "id": "game",
+      "slug": "santas-on-monroe-street-game",
+      "discovery_headline": "Grand Theft Auto VI Faces Unexpected Low-Budget Rival",
+      "discovery_description": "The Tattler enters the video game industry with significantly fewer resources.",
+      "article_headline": "Santa delivery goes digital",
+      "heading": {
+        "promote": "h2.phead"
+      },
+      "related": [
+        "census",
+        "christmas"
+      ],
+      "og_image": "2026-12-santas-on-monroe-street-game-og.png",
+      "og_image_alt": "The Monroe Street Tattler, December 2026. Santas on Monroe Street: The Game! Blockbuster game: Grand Theft Auto VI faces unexpected low-budget rival. The Tattler enters the video game industry with significantly fewer resources."
+    },
+    {
+      "id": "census",
+      "slug": "santa-census",
+      "discovery_headline": "Local Population Explodes; Officials Scramble",
+      "discovery_description": "Emergency census launched. Residents urged to cooperate.",
+      "article_headline": "Census officially underway",
+      "heading": {
+        "promote": "h2.phead"
+      },
+      "related": [
+        "christmas",
+        "game",
+        "phillysanta"
+      ],
+      "og_image": "2026-12-santa-census-og.png",
+      "og_image_alt": "The Monroe Street Tattler, December 2026. Also Inside: Local population explodes; officials scramble. Emergency census launched. Residents urged to cooperate."
+    },
+    {
+      "id": "badgerbots",
+      "slug": "badgerbots",
+      "discovery_headline": "Neighborhood Teens Caught!!… In the Act of Engineering!",
+      "discovery_description": "Do you know what your teenager is building?",
+      "article_headline": "BadgerBOTS are building something big",
+      "heading": {
+        "promote": "h2.phead"
+      },
+      "exclude": [
+        "p.contd"
+      ],
+      "related": [
+        "game",
+        "missedconnection"
+      ],
+      "og_image": "2026-12-badgerbots-og.png",
+      "og_image_alt": "The Monroe Street Tattler, December 2026. Also Inside: Neighborhood teens caught!!… in the act of engineering! Do you know what your teenager is building?"
+    },
+    {
+      "id": "christmas",
+      "slug": "christmas-in-crisis",
+      "discovery_headline": "Christmas in Crisis!",
+      "discovery_description": "Is this the end of Christmas on Monroe Street?",
+      "article_headline": "Santa Population on Brink of Collapse",
+      "heading": {
+        "promote": "h2.phead"
+      },
+      "related": [
+        "census",
+        "phillysanta",
+        "game"
+      ],
+      "og_image": "2026-12-christmas-in-crisis-og.png",
+      "og_image_alt": "The Monroe Street Tattler, December 2026. Christmas in Crisis! Is this the end of Christmas on Monroe Street?"
+    },
+    {
+      "id": "missingchild",
+      "slug": "missing-child-found",
+      "discovery_headline": "Missing Child Found. Parents Not Looking.",
+      "discovery_description": "Disturbing discovery in Glenwood Children's Park raises more questions than answers.",
+      "article_headline": "Have You Seen Me?",
+      "heading": {
+        "promote": "h2.phead"
+      },
+      "related": [
+        "jackolanterns",
+        "leafpile"
+      ],
+      "og_image": "2026-12-missing-child-found-og.png",
+      "og_image_alt": "The Monroe Street Tattler, December 2026. Also Inside: Missing child found. Parents not looking. Disturbing discovery in Glenwood Children's Park raises more questions than answers."
+    },
+    {
+      "id": "sauna",
+      "slug": "madison-saunas",
+      "discovery_headline": "Manosphere Makes Neighborhood Debut",
+      "discovery_description": "Or is this simply healthy living?",
+      "article_headline": "Sauna opens amid growing demand for unpleasant temperatures",
+      "heading": {
+        "promote": "h2.phead"
+      },
+      "exclude": [
+        "figure.issue-only"
+      ],
+      "related": [
+        "dearbarb",
+        "salon"
+      ],
+      "og_image": "2026-12-madison-saunas-og.png",
+      "og_image_alt": "The Monroe Street Tattler, December 2026. Page 7: Manosphere makes neighborhood debut. Or is this simply healthy living?"
+    },
+    {
+      "id": "patrick",
+      "slug": "keyes-window-peeper",
+      "discovery_headline": "Keyes Window Peeper Given Official Title",
+      "discovery_description": "From Around the Neighborhood in the December 2026 Tattler.",
+      "article_headline": "Newest member of neighborhood watch: Patrick Booping",
+      "heading": {
+        "promote": "h3.bh"
+      },
+      "context": "parent",
+      "related": [
+        "jackolanterns",
+        "missedconnection"
+      ],
+      "og_image": "2026-12-keyes-window-peeper-og.png",
+      "og_image_alt": "The Monroe Street Tattler, December 2026. Also Inside: Keyes window peeper given official title."
+    },
+    {
+      "id": "jackolanterns",
+      "slug": "jack-o-lanterns",
+      "discovery_headline": "Capital Punishment Appears Back on the Table",
+      "discovery_description": "From Around the Neighborhood in the December 2026 Tattler.",
+      "article_headline": "Former porch fixtures face a grim future",
+      "heading": {
+        "promote": "h3.bh"
+      },
+      "context": "parent",
+      "related": [
+        "patrick",
+        "missingchild"
+      ],
+      "og_image": "2026-12-jack-o-lanterns-og.png",
+      "og_image_alt": "The Monroe Street Tattler, December 2026. Also Inside: Capital punishment appears back on the table."
+    },
+    {
+      "id": "dearbarb",
+      "slug": "dear-barb",
+      "discovery_headline": "Dear Barb",
+      "discovery_description": "Season's greetings. Mind your manners.",
+      "article_headline": "Dear Barb",
+      "heading": {
+        "promote": "h2.phead"
+      },
+      "exclude": [
+        "div.issue-only"
+      ],
+      "related": [
+        "missedconnection",
+        "sauna"
+      ],
+      "og_image": "2026-12-dear-barb-og.png",
+      "og_image_alt": "The Monroe Street Tattler, December 2026. Reader Mail: Dear Barb. Season's greetings. Mind your manners."
+    },
+    {
+      "id": "salon",
+      "slug": "hair-salon-traffic-logic",
+      "discovery_headline": "Neighborhood Business Defies Traffic Logic",
+      "discovery_description": "Reader Potpourri: an assortment of things our readers insisted we know.",
+      "article_headline": "Neighborhood hair salon defies traffic logic",
+      "heading": {
+        "promote": "h3.bh"
+      },
+      "context": "parent",
+      "related": [
+        "leafpile",
+        "missedconnection"
+      ],
+      "og_image": "2026-12-hair-salon-traffic-logic-og.png",
+      "og_image_alt": "The Monroe Street Tattler, December 2026. Also Inside: Neighborhood business defies traffic logic."
+    },
+    {
+      "id": "leafpile",
+      "slug": "terrace-leaf-pile",
+      "discovery_headline": "Ignorance Is Bliss",
+      "discovery_description": "Reader Potpourri: an assortment of things our readers insisted we know.",
+      "article_headline": "An unfortunate truth about a beloved terrace leaf pile",
+      "heading": {
+        "promote": "h3.bh"
+      },
+      "context": "parent",
+      "related": [
+        "missedconnection",
+        "salon"
+      ],
+      "og_image": "2026-12-terrace-leaf-pile-og.png",
+      "og_image_alt": "The Monroe Street Tattler, December 2026. Also Inside: Ignorance is bliss."
+    },
+    {
+      "id": "missedconnection",
+      "slug": "missed-connection",
+      "discovery_headline": "Missed Connections",
+      "discovery_description": "Reader Potpourri: an assortment of things our readers insisted we know.",
+      "article_headline": "Missed connection",
+      "heading": {
+        "promote": "h3.bh"
+      },
+      "context": "parent",
+      "related": [
+        "leafpile",
+        "patrick"
+      ],
+      "og_image": "2026-12-missed-connection-og.png",
+      "og_image_alt": "The Monroe Street Tattler, December 2026. Also Inside: Missed connections."
+    },
+    {
+      "id": "phillysanta",
+      "slug": "west-philadelphia-santa",
+      "discovery_headline": "Santa Takes Up Post in West Philadelphia",
+      "discovery_description": "Reader Potpourri: an assortment of things our readers insisted we know.",
+      "article_headline": "Santa takes up post in West Philadelphia",
+      "heading": {
+        "promote": "h3.bh"
+      },
+      "context": "parent",
+      "related": [
+        "christmas",
+        "census"
+      ],
+      "og_image": "2026-12-west-philadelphia-santa-og.png",
+      "og_image_alt": "The Monroe Street Tattler, December 2026. Reader Potpourri: Santa takes up post in West Philadelphia."
+    }
+  ]
+}

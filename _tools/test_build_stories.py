@@ -267,6 +267,46 @@ class SharingTests(Fixture):
         self.assertLess(page.index('id="share-story"'), page.index('class="storyreturn"'))
 
 
+class PathsTests(Fixture):
+    """Related stories and the Explore link are opt-in per manifest."""
+
+    def test_without_paths_the_page_has_none(self):
+        page = self.build()['stories/t-alpha.html']
+        self.assertNotIn('storyrelated', page)
+        self.assertNotIn('storyexplore', page)
+
+    def test_related_and_explore_render_after_the_return_link(self):
+        m = json.loads(json.dumps(MANIFEST))
+        m['units'][0]['related'] = ['delta', 'gamma']
+        m['explore'] = {'href': 'page.html', 'label': 'Explore stories'}
+        self.write_manifest(m)
+        pages = self.build()
+        page = pages['stories/t-alpha.html']
+        self.assertIn('<nav class="storyrelated" aria-label="Related stories">', page)
+        self.assertLess(page.index('t-delta.html"><span class="ttl">delta teaser</span>'),
+                        page.index('t-gamma.html"><span class="ttl">gamma teaser</span>'))
+        self.assertIn('<span class="dek">delta description</span>', page)
+        self.assertIn('<p class="storyexplore"><a href="../page.html">Explore stories &rarr;</a></p>', page)
+        self.assertLess(page.index('class="storyreturn"'), page.index('class="storyrelated"'))
+        self.assertLess(page.index('class="storyexplore"'), page.index('class="storynav"'))
+        self.assertNotIn('storyrelated"', pages['stories/t-gamma.html'])   # only units that list related
+        self.assertIn('storyexplore', pages['stories/t-gamma.html'])
+
+    def test_unknown_related_story_fails(self):
+        m = json.loads(json.dumps(MANIFEST))
+        m['units'][0]['related'] = ['omega']
+        self.write_manifest(m)
+        with self.assertRaisesRegex(bs.BuildError, 'related story "omega"'):
+            self.build()
+
+    def test_missing_explore_page_fails(self):
+        m = json.loads(json.dumps(MANIFEST))
+        m['explore'] = {'href': 'nowhere.html', 'label': 'Explore stories'}
+        self.write_manifest(m)
+        with self.assertRaisesRegex(bs.BuildError, 'nowhere.html'):
+            self.build()
+
+
 class CheckModeTests(Fixture):
     def test_check_reports_stale_then_clean(self):
         self.assertEqual(bs.main(['manifest.json', '--root', self.root, '--check']), 1)  # missing
@@ -318,6 +358,24 @@ class NovemberTests(unittest.TestCase):
         self.assertEqual(changed, ['stories/2026-11-pizzagate.html'])
         self.assertIn('[CORRECTION TEST]', after['stories/2026-11-pizzagate.html'])
         self.assertEqual(sha(real_issue), real_hash)
+
+
+@unittest.skipUnless(os.path.exists(os.path.join(SITE_ROOT, '_src', 'december-2026.json')),
+                     'December manifest not present')
+class DecemberTests(unittest.TestCase):
+    MANIFEST = '_src/december-2026.json'
+
+    def test_committed_pages_are_current(self):
+        pages = bs.build(SITE_ROOT, self.MANIFEST)
+        m = bs.load_manifest(os.path.join(SITE_ROOT, self.MANIFEST))
+        self.assertEqual(bs.stale(SITE_ROOT, pages, m), [])
+        self.assertEqual(len(pages), 13)
+
+    def test_every_page_offers_related_stories_issue_and_explore(self):
+        for path, page in bs.build(SITE_ROOT, self.MANIFEST).items():
+            self.assertIn('class="storyrelated"', page, path)
+            self.assertIn('href="../december-2026.html#', page, path)
+            self.assertIn('<a href="../files.html">Explore stories &rarr;</a>', page, path)
 
 
 if __name__ == '__main__':
