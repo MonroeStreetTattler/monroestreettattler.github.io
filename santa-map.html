@@ -4,20 +4,20 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Santas on Monroe Street: Santa Map &amp; Tracker | Madison, WI</title>
-<meta name="description" content="Explore the Monroe Street Santa map in Madison, Wisconsin. Find matching 12-foot inflatable Santas, report a sighting, and follow the neighborhood count.">
+<meta name="description" content="Explore the Monroe Street Santa map in Madison, Wisconsin. Find inflatable Santas, add a sighting, and follow the neighborhood count.">
 <link rel="canonical" href="https://monroestreettattler.com/santa-map.html">
 <meta property="og:site_name" content="The Monroe Street Tattler">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://monroestreettattler.com/santa-map.html">
 <meta property="og:title" content="Santas on Monroe Street | Madison Santa Map &amp; Tracker">
-<meta property="og:description" content="Explore the Monroe Street Santa map in Madison, Wisconsin. Find matching 12-foot inflatable Santas, report a sighting, and follow the neighborhood count.">
+<meta property="og:description" content="Explore the Monroe Street Santa map in Madison, Wisconsin. Find inflatable Santas, add a sighting, and follow the neighborhood count.">
 <meta property="og:image" content="https://monroestreettattler.com/assets/santa-map/santa-map-share.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="An inflatable Santa holding a candy cane and a green present beside the words Santas on Monroe Street, Madison’s inflatable Santa map and tracker. MonroeStreetTattler.com">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Santas on Monroe Street | Madison Santa Map &amp; Tracker">
-<meta name="twitter:description" content="Explore the Monroe Street Santa map in Madison, Wisconsin. Find matching 12-foot inflatable Santas, report a sighting, and follow the neighborhood count.">
+<meta name="twitter:description" content="Explore the Monroe Street Santa map in Madison, Wisconsin. Find inflatable Santas, add a sighting, and follow the neighborhood count.">
 <meta name="twitter:image" content="https://monroestreettattler.com/assets/santa-map/santa-map-share.png">
 <meta name="twitter:image:alt" content="An inflatable Santa holding a candy cane and a green present beside the words Santas on Monroe Street, Madison’s inflatable Santa map and tracker. MonroeStreetTattler.com">
 <!-- Santa map API base URL: the production Cloudflare Worker (_services/santa-map/cloudflare). -->
@@ -27,7 +27,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;900&family=IBM+Plex+Mono:wght@400;600&display=swap">
-<link rel="stylesheet" href="santa-map.css">
+<link rel="stylesheet" href="santa-map.css?v=single-009">
 <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "b4b7990d0c27478ea9b605f098b4ad3c"}'></script><!-- End Cloudflare Web Analytics -->
 <link rel="stylesheet" href="utility-share.css">
 </head>
@@ -57,51 +57,20 @@
   <p class="meta">Neighborhood fieldwork · 2026 season</p>
   <h1>Santas on Monroe Street</h1>
   <p class="subtitle">Madison’s inflatable Santa map &amp; tracker</p>
-  <p class="intro">Find inflatable Santas along Monroe Street and nearby blocks in Madison, Wisconsin. Explore neighbor-reported sightings, add one you’ve spotted, and help count the matching 12-foot Santas with the candy cane and green present.</p>
-  <p class="intro" id="preseason-note" hidden>Santas start going up on Black Friday, November 27. Explore the map and come back as neighbors add sightings.</p>
-
-  <section class="reference" aria-labelledby="reference-heading">
-    <img src="assets/santa-map/santa-reference.png" width="300" height="450" alt="Reference Santa: red suit, raised candy cane, green present with red ribbon, black boots">
-    <div>
-      <h2 id="reference-heading">Help us find this Santa!</h2>
-      <p>The matching 12-foot Santas are a Monroe Street tradition. Spotted one? Add it to the neighborhood count.</p>
-    </div>
-  </section>
-
-  <div class="actions" id="start-actions">
-    <button class="primary" id="start-matching" type="button" aria-controls="santa-form">Found a match!</button>
-    <button id="start-other" type="button" aria-controls="santa-form">Spotted a different Santa!</button>
-  </div>
-
-  <div class="utility-share share-top"><button type="button" data-share-url="https://monroestreettattler.com/santa-map.html" data-share-title="Santas on Monroe Street | Madison Santa Map &amp; Tracker" data-share-copied="Map link copied." data-share-manual="share-manual-top" aria-controls="share-status-top" hidden><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M12 16V3m-4 4 4-4 4 4M5 12v8h14v-8"/></svg> Share the Santa tracker</button><div id="share-status-top" role="status"></div><div id="share-manual-top" hidden><input readonly aria-label="Map link"></div></div>
-
-  <div class="count">
-    <span class="number" id="match-count">–</span>
-    <span><span id="match-label">matching 12-foot Santas spotted</span><br><small id="count-note">2026 season · Loading the count…</small></span>
+  <div class="action-row">
+    <button class="primary" id="start-matching" type="button" aria-controls="santa-form" aria-expanded="false">Spotted a Santa? Add it →</button>
+    <p class="count"><span class="number" id="match-count">–</span> <span id="match-label">Santas spotted</span></p>
   </div>
 
   <div class="mapbox">
     <div id="map" role="region" aria-label="Map of reported Santas on Monroe Street and nearby blocks"></div>
-    <p class="map-status" id="map-status" role="status">Loading the map…</p>
+    <p class="map-status"><span id="count-note">2026 season · Loading the count…</span> · <span id="map-status" role="status">Loading the map…</span></p>
   </div>
-
-  <label class="toggle"><input id="other-toggle" type="checkbox"> Show all Santas <span id="other-count"></span></label>
-  <p class="legend"><span><img src="assets/santa-map/santa-matching.png" width="32" height="48" alt=""> Matching 12-foot Santa</span> <span><img src="assets/santa-map/santa-other.png" width="24" height="36" alt=""> Other Santa · Any other inflatable Santa design counts here.</span></p>
 
   <noscript><p class="notice">Adding a Santa needs JavaScript. You can still read about the map below.</p></noscript>
 
   <form id="santa-form" hidden novalidate>
-    <h2 id="form-title" tabindex="-1">Add a matching Santa</h2>
-    <p class="form-note" id="other-note" hidden>Different style, same holiday spirit. Add your inflatable Santa sighting here.</p>
-
-    <div class="matching-only">
-      <p class="form-note">Let’s add it to the neighborhood count.</p>
-    </div>
-
-    <label class="field other-only" hidden>Tell us about your find
-      <span class="hint" id="description-hint">A few words. Up to 150 characters.</span>
-      <input id="description" maxlength="150" autocomplete="off" aria-describedby="description-hint">
-    </label>
+    <h2 id="form-title" tabindex="-1">Add a Santa</h2>
 
     <label class="field">Street address of the display
       <span class="hint" id="address-hint">House number and street. We’ll look for it in Madison, WI.</span>
@@ -127,13 +96,25 @@
     <button type="button" id="add-another">Add another Santa</button>
   </section>
 
+  <section class="reference" aria-labelledby="reference-heading">
+    <img src="assets/santa-map/santa-reference.png" width="300" height="450" alt="Reference Santa: red suit, raised candy cane, green present with red ribbon, black boots">
+    <div>
+      <h2 id="reference-heading">Santas on the map</h2>
+      <p>Spotted an inflatable Santa? Add its address to the neighborhood map.</p>
+      <div class="utility-share share-top"><button type="button" data-share-url="https://monroestreettattler.com/santa-map.html" data-share-title="Santas on Monroe Street | Madison Santa Map &amp; Tracker" data-share-copied="Map link copied." data-share-manual="share-manual-top" aria-controls="share-status-top" hidden><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M12 16V3m-4 4 4-4 4 4M5 12v8h14v-8"/></svg> Share the Santa tracker</button><div id="share-status-top" role="status"></div><div id="share-manual-top" hidden><input readonly aria-label="Map link"></div></div>
+    </div>
+  </section>
+
+  <p class="intro">Find inflatable Santas along Monroe Street and nearby blocks in Madison, Wisconsin. Explore neighbor-reported sightings, add one you’ve spotted, and follow the neighborhood count.</p>
+  <p class="intro" id="preseason-note" hidden>Santas start going up on Black Friday, November 27. Explore the map and come back as neighbors add sightings.</p>
+
   <section class="answers" aria-label="About the Santa map">
     <h2>Where are the Santas?</h2>
     <p>The map covers Monroe Street and nearby blocks in Madison, including parts of Nakoma and Odana. Pins show neighbor-reported outdoor displays.</p>
     <h2>Which Santas count?</h2>
-    <p>The main count includes only the matching 12-foot Santa shown above, holding a candy cane and green present. Other inflatable Santas have a separate count and appear when you turn on “Show all Santas.”</p>
+    <p>Inflatable Santas along Monroe Street and nearby blocks. Every sighting uses the Santa icon shown here.</p>
     <h2>How do I add one?</h2>
-    <p>Choose the matching Santa or other Santa button, enter the display’s street address, and confirm its location before submitting.</p>
+    <p>Choose ‘Spotted a Santa? Add it’, enter the display’s street address, and check its location before submitting.</p>
     <h2>Are all the Santas out right now?</h2>
     <p>Sightings are reported by neighbors. Displays may change, and an inflatable may be deflated or switched off when you visit. View displays from public streets and sidewalks, and respect residents’ property.</p>
   </section>
@@ -153,11 +134,10 @@
           <option value="removed">This Santa is gone</option>
           <option value="location">The pin is in the wrong place</option>
           <option value="quantity">The number of Santas is wrong</option>
-          <option value="category">It’s the wrong kind of Santa</option>
           <option value="other">Something else</option>
         </select>
       </label>
-      <label class="field" id="correction-quantity-wrap" hidden>Correct number of matching Santas
+      <label class="field" id="correction-quantity-wrap" hidden>Correct number of Santas
         <select id="correction-quantity"><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option></select>
       </label>
       <label class="field">Details <span class="hint" id="correction-hint">Optional for removals. Up to 500 characters. Please don’t include names.</span>
@@ -186,7 +166,7 @@
   <a href="mailto:MonroeStreetTattler@gmail.com">Contact</a>
 </div>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-<script src="santa-map.js" defer></script>
+<script src="santa-map.js?v=single-009" defer></script>
 <script src="story-share.js" defer></script>
 </body>
 </html>

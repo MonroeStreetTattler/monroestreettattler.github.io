@@ -14,18 +14,15 @@
   var AREA_BOUNDS = [[43.04131, -89.45362], [43.07493, -89.40307]];
   var REFRESH_MS = 60000;
   var SAVE_TIMEOUT_MS = 15000;
-  var ICONS = {
-    matching: { src: 'assets/santa-map/santa-matching.png', w: 32, h: 48, box: [44, 52] },
-    other: { src: 'assets/santa-map/santa-other.png', w: 24, h: 36, box: [44, 44] }
-  };
-  var LABEL = { matching: 'Matching 12-foot Santa', other: 'Other Santa' };
+  // Every sighting, whatever its stored category (older reports may be 'other'), uses the main Santa.
+  var ICON = { src: 'assets/santa-map/santa-matching.png', w: 32, h: 48, box: [44, 52] };
 
   var $ = function (id) { return document.getElementById(id); };
   var els = {
-    count: $('match-count'), countLabel: $('match-label'), countNote: $('count-note'), otherCount: $('other-count'),
-    toggle: $('other-toggle'), mapStatus: $('map-status'), list: $('santa-list'), listStatus: $('list-status'),
-    form: $('santa-form'), title: $('form-title'), otherNote: $('other-note'),
-    description: $('description'), address: $('address'), find: $('find-address'),
+    count: $('match-count'), countLabel: $('match-label'), countNote: $('count-note'),
+    mapStatus: $('map-status'), list: $('santa-list'), listStatus: $('list-status'),
+    start: $('start-matching'), form: $('santa-form'), title: $('form-title'),
+    address: $('address'), find: $('find-address'),
     choices: $('choices'), preview: $('preview'), previewAddress: $('preview-address'), save: $('save'),
     status: $('form-status'), cancel: $('cancel'), done: $('done'), doneMessage: $('done-message'),
     doneAddress: $('done-address'), addAnother: $('add-another'),
@@ -37,9 +34,10 @@
   };
 
   // lookup counts address lookups and session counts form openings: an answer is used only while both still match.
+  // New reports are sent as the API's 'matching' category (one Santa, confirm_match) for compatibility.
   var state = { kind: 'matching', key: null, place: null, saving: false, loadedAt: null, displays: {}, correctionFor: null,
     lookup: 0, session: 0 };
-  var map = null, layers = {}, markers = {}, previewMarker = null;
+  var map = null, layer = null, markers = {}, previewMarker = null;
 
   // ------------------------------------------------------------------ helpers
   function newKey() {
@@ -88,11 +86,9 @@
     node.classList.toggle('error', !!isError);
   }
 
-  function describe(d) {
-    if (d.category === 'matching') {
-      return d.quantity > 1 ? d.quantity + ' matching 12-foot Santas' : 'Matching 12-foot Santa';
-    }
-    return 'Other Santa';
+  function quantity(d) {
+    var n = d.quantity > 0 ? d.quantity : 1;
+    return n === 1 ? '1 Santa' : n + ' Santas';
   }
 
   // ---------------------------------------------------------------------- map
@@ -105,8 +101,7 @@
     map = L.map('map', { scrollWheelZoom: false, zoomSnap: 0.25 });
     L.tileLayer(TILE_URL, { maxZoom: 19, attribution: ATTRIBUTION }).addTo(map);
     map.fitBounds(AREA_BOUNDS);
-    layers.matching = L.layerGroup().addTo(map);
-    layers.other = L.layerGroup();
+    layer = L.layerGroup().addTo(map);
   }
 
   // The coverage area is not drawn; its bounds only frame the map.
@@ -115,10 +110,10 @@
     if (area.bounds) { AREA_BOUNDS = area.bounds; if (!state.loadedAt) map.fitBounds(AREA_BOUNDS); }
   }
 
-  function icon(kind, shift, preview) {
-    var i = ICONS[kind];
+  function icon(shift, preview) {
+    var i = ICON;
     return L.divIcon({
-      className: 'santa-marker ' + kind + (preview ? ' preview' : ''),
+      className: 'santa-marker' + (preview ? ' preview' : ''),
       html: '<span class="pin"><img src="' + i.src + '" width="' + i.w + '" height="' + i.h + '" alt=""></span>',
       iconSize: i.box,
       iconAnchor: [i.box[0] / 2 - shift, i.box[1] - 2],
@@ -128,10 +123,9 @@
 
   function popupFor(d) {
     var box = el('div');
-    box.appendChild(el('p', 'popup-kind', LABEL[d.category]));
     box.appendChild(el('p', 'popup-address', d.address));
-    if (d.category === 'other' && d.description) box.appendChild(el('p', null, d.description));
-    if (d.category === 'matching') box.appendChild(el('p', null, d.quantity === 1 ? '1 Santa' : d.quantity + ' Santas'));
+    if (d.description) box.appendChild(el('p', null, d.description));     // older reports may have one
+    box.appendChild(el('p', null, quantity(d)));
     box.appendChild(el('p', null, 'Reported ' + niceDate(d.first_reported_on) +
       (d.last_reported_on && d.last_reported_on !== d.first_reported_on ? ' · last reported ' + niceDate(d.last_reported_on) : '')));
     var fix = el('button', 'popup-fix', 'Report a correction or removal');
@@ -141,7 +135,7 @@
     return box;
   }
 
-  // Two displays at one property (one of each kind) sit side by side instead of on top of each other.
+  // Two displays at one property (stored under different categories) sit side by side.
   function shiftFor(d, all) {
     var twin = all.some(function (o) {
       return o.id !== d.id && o.category !== d.category && o.lat === d.lat && o.lon === d.lon;
@@ -156,58 +150,42 @@
       seen[d.id] = true;
       var m = markers[d.id];
       var shift = shiftFor(d, list);
-      if (m && m.santaCategory !== d.category) { layers[m.santaCategory].removeLayer(m); m = null; }
       if (!m) {
-        m = L.marker([d.lat, d.lon], { icon: icon(d.category, shift), keyboard: true, title: LABEL[d.category] + ': ' + d.address, riseOnHover: true });
-        m.santaCategory = d.category;
+        m = L.marker([d.lat, d.lon], { icon: icon(shift), keyboard: true, title: 'Santa: ' + d.address, riseOnHover: true });
         m.bindPopup(popupFor(d), { maxWidth: 260, autoPanPaddingTopLeft: [52, 12], autoPanPaddingBottomRight: [12, 24] });
-        m.addTo(layers[d.category]);
+        m.addTo(layer);
         markers[d.id] = m;
       } else {
         m.setLatLng([d.lat, d.lon]);
-        m.setIcon(icon(d.category, shift));
+        m.setIcon(icon(shift));
         m.setPopupContent(popupFor(d));
       }
       var node = m.getElement();
-      if (node) { node.setAttribute('aria-label', LABEL[d.category] + ': ' + d.address); node.setAttribute('role', 'button'); }
+      if (node) { node.setAttribute('aria-label', 'Santa: ' + d.address); node.setAttribute('role', 'button'); }
     });
     Object.keys(markers).forEach(function (id) {
-      if (!seen[id]) { layers[markers[id].santaCategory].removeLayer(markers[id]); delete markers[id]; }
+      if (!seen[id]) { layer.removeLayer(markers[id]); delete markers[id]; }
     });
-  }
-
-  function showOthers(on) {
-    els.toggle.checked = on;
-    if (map) {
-      if (on) layers.other.addTo(map); else map.removeLayer(layers.other);
-      // markers added while hidden get their labels once they are in the page
-      Object.keys(state.displays).forEach(function (id) {
-        var m = markers[id], d = state.displays[id];
-        var node = m && m.getElement();
-        if (node) { node.setAttribute('aria-label', LABEL[d.category] + ': ' + d.address); node.setAttribute('role', 'button'); }
-      });
-    }
-    renderList();
   }
 
   // ------------------------------------------------------------ counts & list
   function renderTotals(totals, lastReport) {
-    var n = totals.matching;
+    // One count: every visible Santa, by quantity, whatever its stored category.
+    var n = Object.keys(totals || {}).reduce(function (sum, c) { return sum + (Number(totals[c]) || 0); }, 0);
     els.count.textContent = String(n);
-    els.countLabel.textContent = n === 1 ? 'matching 12-foot Santa spotted' : 'matching 12-foot Santas spotted';
+    els.countLabel.textContent = n === 1 ? 'Santa spotted' : 'Santas spotted';
     els.countNote.textContent = '2026 season · ' + (lastReport ? 'Last report ' + niceDate(lastReport) : 'No sightings reported yet');
-    els.otherCount.textContent = '(' + totals.other + ' more spotted)';
   }
 
   function renderList() {
     var all = Object.keys(state.displays).map(function (id) { return state.displays[id]; });
-    var shown = all.filter(function (d) { return d.category === 'matching' || els.toggle.checked; });
+    var shown = all.slice();
     shown.sort(function (a, b) { return a.address.localeCompare(b.address) || a.category.localeCompare(b.category); });
     els.list.textContent = '';
     shown.forEach(function (d) {
       var li = el('li');
       li.appendChild(el('span', 'item-address', d.address));
-      var line = describe(d) + (d.category === 'other' && d.description ? ': ' + d.description : '') +
+      var line = quantity(d) + (d.description ? ': ' + d.description : '') +
         ' · Reported ' + niceDate(d.first_reported_on);
       li.appendChild(document.createTextNode(line));
       var actions = el('span', 'item-actions');
@@ -231,10 +209,7 @@
       els.list.appendChild(li);
     });
     if (!state.loadedAt) return;
-    var hiddenOthers = all.length - shown.length;
-    els.listStatus.textContent = shown.length
-      ? (hiddenOthers ? 'Turn on “Show all Santas” to include ' + hiddenOthers + ' more.' : '')
-      : (hiddenOthers ? 'No matching Santas reported yet. Turn on “Show all Santas” to see the others.' : 'No Santas reported yet this season.');
+    els.listStatus.textContent = shown.length ? '' : 'No Santas reported yet this season.';
   }
 
   function apply(snapshot) {
@@ -258,7 +233,6 @@
       } else {
         els.count.textContent = '–';
         els.countNote.textContent = '2026 season · Count unavailable right now';
-        els.otherCount.textContent = '';
         els.mapStatus.textContent = 'The Santa sightings couldn’t be loaded right now. Please try again later.';
         els.listStatus.textContent = 'Sightings are unavailable right now.';
       }
@@ -266,16 +240,11 @@
   }
 
   // --------------------------------------------------------------- sighting form
-  function openForm(kind) {
+  function openForm() {
     state.session++;
-    state.kind = kind;
     els.done.hidden = true;
     els.form.hidden = false;
-    els.form.classList.toggle('is-other', kind === 'other');
-    els.title.textContent = kind === 'matching' ? 'Add a matching Santa' : 'Another Santa? Let’s see it!';
-    els.otherNote.hidden = kind === 'matching';
-    els.form.querySelector('.matching-only').hidden = kind !== 'matching';
-    els.form.querySelector('.other-only').hidden = kind === 'matching';
+    els.start.setAttribute('aria-expanded', 'true');
     resetPreview();
     say(els.status, '');
     els.title.focus();
@@ -301,7 +270,7 @@
   }
 
   function clearInvalid() {
-    [els.address, els.description].forEach(function (f) { f.removeAttribute('aria-invalid'); });
+    els.address.removeAttribute('aria-invalid');
   }
 
   function errorText(err, during) {
@@ -334,7 +303,7 @@
       els.preview.hidden = false;
       say(els.status, 'Check the pin, then add the Santa.');
       if (map) {
-        previewMarker = L.marker([res.place.lat, res.place.lon], { icon: icon(state.kind, 0, true), keyboard: false, interactive: false }).addTo(map);
+        previewMarker = L.marker([res.place.lat, res.place.lon], { icon: icon(0, true), keyboard: false, interactive: false }).addTo(map);
         map.setView([res.place.lat, res.place.lon], Math.max(map.getZoom(), 16));
       }
     }, function (err) {
@@ -369,14 +338,7 @@
       resetPreview();
       return invalid(els.address, 'The address changed. Press “Find this address” to check the new one before adding it.');
     }
-    var body = { category: place.kind, address: place.entered, idempotency_key: state.key };
-    if (place.kind === 'matching') {
-      body.confirm_match = true;
-      body.quantity = 1;
-    } else {
-      if (els.description.value.trim().length < 3) return invalid(els.description, 'Please describe the Santa in a few words.');
-      body.description = els.description.value;
-    }
+    var body = { category: 'matching', address: place.entered, idempotency_key: state.key, confirm_match: true, quantity: 1 };
     var session = state.session;
     state.saving = true;
     els.save.disabled = true;
@@ -390,8 +352,7 @@
       renderTotals(res.totals, Object.keys(state.displays).reduce(function (m, id) {
         var d = state.displays[id].last_reported_on; return d > m ? d : m;
       }, ''));
-      if (body.category === 'other' && res.display) showOthers(true);
-      else renderList();
+      renderList();
       load();                     // reconcile with the full current map (a retry may refer to a since-hidden display)
       if (session === state.session) finish(res);
     }, function (err) {
@@ -410,11 +371,12 @@
     state.session++;
     if (previewMarker && map) { map.removeLayer(previewMarker); previewMarker = null; }
     els.form.hidden = true;
+    els.start.setAttribute('aria-expanded', 'false');
     els.form.reset();
     resetPreview();
     say(els.status, '');
     els.doneMessage.textContent = res.message;
-    els.doneAddress.textContent = d ? LABEL[d.category] + ' · ' + d.address : '';
+    els.doneAddress.textContent = d ? d.address : '';
     els.done.hidden = false;
     els.done.focus();
     if (d && map && markers[d.id]) { map.setView(markers[d.id].getLatLng(), Math.max(map.getZoom(), 16)); }
@@ -425,7 +387,7 @@
     var d = state.displays[id];
     if (!d) return;
     state.correctionFor = id;
-    els.correctionAddress.textContent = d.address + ' (' + LABEL[d.category] + ')';
+    els.correctionAddress.textContent = d.address;
     els.correctionForm.reset();
     els.correctionQuantityWrap.hidden = true;
     say(els.correctionStatus, '');
@@ -439,7 +401,7 @@
     var kind = els.correctionKind.value;
     var body = { display_id: state.correctionFor, kind: kind, message: els.correctionMessage.value };
     if (kind === 'quantity') body.proposed_quantity = parseInt(els.correctionQuantity.value, 10);
-    if (['location', 'category', 'other'].indexOf(kind) >= 0 && !els.correctionMessage.value.trim()) {
+    if (['location', 'other'].indexOf(kind) >= 0 && !els.correctionMessage.value.trim()) {
       els.correctionMessage.setAttribute('aria-invalid', 'true');
       els.correctionMessage.focus();
       return say(els.correctionStatus, 'Please say briefly what should change.', true);
@@ -455,21 +417,19 @@
   }
 
   // ------------------------------------------------------------------ wiring
-  $('start-matching').addEventListener('click', function () { openForm('matching'); });
-  $('start-other').addEventListener('click', function () { openForm('other'); });
+  els.start.addEventListener('click', function () { openForm(); });
   els.find.addEventListener('click', function () { findAddress(); });
   els.address.addEventListener('keydown', function (e) {
     if (e.key === 'Enter') { e.preventDefault(); findAddress(); }
   });
   els.address.addEventListener('input', resetPreview);                          // a changed address must be found again
-  els.description.addEventListener('change', function () { if (state.place) state.key = newKey(); });  // a changed report is a new attempt
   els.form.addEventListener('submit', save);
   els.cancel.addEventListener('click', function () {
     state.session++;
-    els.form.hidden = true; els.form.reset(); resetPreview(); say(els.status, ''); $('start-matching').focus();
+    els.form.hidden = true; els.start.setAttribute('aria-expanded', 'false');
+    els.form.reset(); resetPreview(); say(els.status, ''); els.start.focus();
   });
-  els.addAnother.addEventListener('click', function () { openForm(state.kind); });
-  els.toggle.addEventListener('change', function () { showOthers(els.toggle.checked); });
+  els.addAnother.addEventListener('click', function () { openForm(); });
   els.correctionKind.addEventListener('change', function () {
     els.correctionQuantityWrap.hidden = els.correctionKind.value !== 'quantity';
   });
